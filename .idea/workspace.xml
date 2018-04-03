@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b13ca22c-aa83-4a4c-b49c-16d8734a87b2" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose-legacy-pluralize/LICENSE" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose-legacy-pluralize/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose-legacy-pluralize/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose-legacy-pluralize/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/.eslintignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/.github/ISSUE_TEMPLATE.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/.github/PULL_REQUEST_TEMPLATE.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/.travis.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/CONTRIBUTING.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/History.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/browser.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/aggregate/aggregate.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/aggregate/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/aggregate/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/doc-methods.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/connection-sharing/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/connection-sharing/app.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/connection-sharing/modelA.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/connection-sharing/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/express/connection-sharing/routes.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/geospatial/geoJSONSchema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/geospatial/geoJSONexample.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/geospatial/geospatial.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/geospatial/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/geospatial/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/globalschemas/gs_example.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/globalschemas/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/lean/lean.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/lean/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/lean/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/mapreduce/mapreduce.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/mapreduce/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/mapreduce/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-across-three-collections.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-basic.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-of-existing-doc.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-of-multiple-existing-docs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-options.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/population/population-plain-objects.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/promises/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/promises/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/promises/promise.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/querybuilder/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/querybuilder/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/querybuilder/querybuilder.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/replicasets/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/replicasets/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/replicasets/replica-sets.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/schema/schema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/schema/storing-schemas-as-json/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/schema/storing-schemas-as-json/schema.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/statics/person.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/examples/statics/statics.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/aggregate.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/browser.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/browserDocument.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/cast.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/collection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/connection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/connectionstate.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/cursor/AggregationCursor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/cursor/ChangeStream.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/cursor/QueryCursor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/document.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/document_provider.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/SPEC.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/browser/ReadPreference.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/browser/binary.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/browser/decimal128.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/browser/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/browser/objectid.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/index.web.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/ReadPreference.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/binary.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/decimal128.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/drivers/node-mongodb-native/objectid.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/browserMissingSchema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/cast.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/disconnected.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/divergentArray.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/messages.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/missingSchema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/notFound.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/objectExpected.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/objectParameter.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/overwriteModel.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/strict.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/validation.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/validator.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/error/version.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/internal.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/model.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/options.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/plugins/idGetter.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/plugins/removeSubdocs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/plugins/saveSubdocs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/plugins/sharding.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/plugins/validateBeforeSave.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/promise_provider.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/query.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/queryhelpers.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/array.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/boolean.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/buffer.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/date.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/decimal128.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/documentarray.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/embedded.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/mixed.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/number.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/objectid.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/operators/bitwise.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/operators/exists.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/operators/geospatial.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/operators/helpers.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/operators/type.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schema/string.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/schematype.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/common.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/cursor/eachAsync.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/document/cleanModifiedSubpaths.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/document/compile.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/model/applyHooks.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/model/applyMethods.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/model/applyStatics.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/model/discriminator.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/populate/getSchemaTypes.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/projection/isDefiningProjection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/projection/isExclusive.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/projection/isInclusive.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/projection/isPathSelectedInclusive.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/query/castUpdate.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/query/hasDollarKeys.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/query/selectPopulatedFields.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/setDefaultsOnInsert.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/services/updateValidators.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/statemachine.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/array.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/buffer.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/decimal128.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/documentarray.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/embedded.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/index.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/objectid.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/types/subdocument.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/utils.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/lib/virtualtype.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/migrating_to_5.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/release-items.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/static.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/tools/auth.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/tools/repl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/tools/sharded.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API/node_modules/mongoose/website.js" />
+      <change beforePath="$PROJECT_DIR$/API/package-lock.json" afterPath="$PROJECT_DIR$/API/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/API/package.json" afterPath="$PROJECT_DIR$/API/package.json" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/API/node_modules" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="725" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="node_modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b13ca22c-aa83-4a4c-b49c-16d8734a87b2" name="Default" comment="" />
+      <created>1522797128768</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1522797128768</updated>
+      <workItem from="1522797130162" duration="50000" />
+      <workItem from="1522797717091" duration="101000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="151000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="729" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37479806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/API/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
