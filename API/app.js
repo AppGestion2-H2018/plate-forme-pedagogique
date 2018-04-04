@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var bibliothequeRouter = require('./routes/API/bibliotheque/bibliotheque');
@@ -13,6 +15,8 @@ var resultatsScolairesRouter = require('./routes/API/resultats-scolaires/resulta
 var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
 
 var app = express();
+app.use(cors());
+mongoose.connect('mongodb://localhost:27017/plate-forme-pedagogique'); //Connection string locale pour le moment
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
