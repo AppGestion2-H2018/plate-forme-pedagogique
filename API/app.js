@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var mongoose = require('mongoose');
 
+var config = require('./config');
 var indexRouter = require('./routes/index');
 var bibliothequeRouter = require('./routes/API/bibliotheque/bibliotheque');
 var evenementsRouter = require('./routes/API/evenements/evenements');
@@ -16,7 +17,7 @@ var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
 
 var app = express();
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/plate-forme-pedagogique'); //Connection string locale pour le moment
+mongoose.connect(config.database.uri); //Connection string commune
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
