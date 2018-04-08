@@ -12,6 +12,7 @@ router.post('/', function(req, res, next) {
         actif:1
     });
     groupe.save();
+    res.json(groupe);
 });
 
 
