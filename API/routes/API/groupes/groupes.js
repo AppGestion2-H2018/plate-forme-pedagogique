@@ -6,28 +6,61 @@ var express = require('express');
 var router = express.Router();
 var Groupe = require('../../../models/groupe');
 
+/**
+ * afficher tous les groupes
+ */
+router.get('/', function (req, res, next) {
+    Groupe.find(function (err, groupe){
+        if (err) return handleError(err, query);
+        res.json(groupe);
+    });
+});
+
+/**
+ * Enregistrer un groupe
+ */
 router.post('/', function(req, res, next) {
+    var newGroup = req.body;
+
     var groupe = new Groupe({
-        nom:'Apprendrsdfasdfe',
-        actif:1
+        nom:newGroup.nom,
+        actif:newGroup.actif,
+        public:newGroup.public
     });
     groupe.save();
     res.json(groupe);
 });
 
 /**
- * afficher une tâche par son ID
+ * Trouver un groupe par son id
  */
-router.get('/:idGroupe', function (req, res, next) {
+router.get('/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Groupe.findById(objectId,function(err,groupe){
+        if (err) return res.status(500).send(err);
+        return res.send(groupe);
+    });
+});
+
+/**
+ * Modifier un groupe par son id
+ */
+router.put('/', function (req, res, next) {
+    var objet = req.body;
+    Groupe.findByIdAndUpdate(objet._id,objet,{new:true},function(err,groupe){
+        if (err) return res.status(500).send(err);
+        return res.send(groupe);
+    });
+});
+
+/**
+ * Effacer un groupe par son id
+ */
+router.delete('/:idGroupe', function (req, res, next) {
     var idGroupe = req.params.idGroupe;
-    var query = Groupe.findOne({ '_id': idGroupe });
-    query.select('nom actif');
-
-
-    // execute the query at a later time
-    query.exec(function (err, groupe) {
+    Groupe.remove({'_id': idGroupe}, function(err, result) {
         if (err) return handleError(err, query);
-        res.json(groupe);
+        res.json(result);
     });
 });
 
