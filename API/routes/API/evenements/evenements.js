@@ -4,16 +4,16 @@ var router = express.Router();
 /**
  * Informations sur la base de donnée.
  */
-var nomBD = '';
-var collection = '';
-//var config = require('../config');
-//const MongoClient = require('mongodb').MongoClient;
-// const assert = require('assert');
-// const url = config.database.uri;
-// var ObjectId = require('mongodb').ObjectID;
+var nomBD = 'plate-forme-pedagogique';
+var collection = 'evenements';
+var config = require('../../../config');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const url = config.database.uri;
+var ObjectId = require('mongodb').ObjectID;
 
 /**
- * Voir avec Carine si ok : https://angular-material-calendar.bradb.net/ 
+ * Voir avec Carine si ok : https://angular-material-calendar.bradb.net/
  */
 
 /**
@@ -23,7 +23,7 @@ var collection = '';
  */
 router.get('/', function(req, res, next) {
     MongoClient.connect(url, function (erreur, client) {
-        assert.equal(null, err);
+        assert.equal(null, erreur);
         console.log("Connexion au serveur réussie");
         const db = client.db(nomBD);
 
@@ -41,15 +41,15 @@ router.get('/', function(req, res, next) {
  * Retourne un événement sous format json.
  * URL : http://localhost:3000/api/evenements/:evenementId
  */
-router.get('/evenements/:evenementId', function (req, res, next) {
+router.get('/:evenementId', function (req, res, next) {
     var evenementId = req.params.evenementId;
     MongoClient.connect(url, function (erreur, client) {
-        assert.equal(null, err);
+        assert.equal(null, erreur);
         console.log("Connexion au serveur réussie");
         const db = client.db(nomBD);
 
         db.collection(collection).findOne({_id: ObjectId.createFromHexString(evenementId)}, function (err, resultat) {
-            if (err) return console.log(erreur)
+            if (erreur) return console.log(erreur)
             console.log(resultat);
             res.json(resultat)
         })
@@ -57,5 +57,4 @@ router.get('/evenements/:evenementId', function (req, res, next) {
         client.close();
     });
 });
-
 module.exports = router;
