@@ -2,3 +2,4 @@ APP/config.js
 .DS_Store
 APP/.DS_Store
 APP/src/app/app.component.*
+.idea

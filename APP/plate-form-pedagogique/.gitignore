@@ -1,5 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# pour tester nos component
+/src/app/app.component.*
+
+/src/app/app.component.*
+
 # compiled output
 /dist
 /dist-server
@@ -7,7 +12,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+
 
 # IDEs and editors
 /.idea
@@ -42,3 +47,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+.idea/workspace.xml
+
