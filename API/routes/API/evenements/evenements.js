@@ -6,11 +6,11 @@ var router = express.Router();
  */
 var nomBD = '';
 var collection = '';
-//var config = require('../config');
-//const MongoClient = require('mongodb').MongoClient;
-// const assert = require('assert');
-// const url = config.database.uri;
-// var ObjectId = require('mongodb').ObjectID;
+var config = require('../config');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const url = config.database.uri;
+var ObjectId = require('mongodb').ObjectID;
 
 /**
  * Voir avec Carine si ok : https://angular-material-calendar.bradb.net/ 
