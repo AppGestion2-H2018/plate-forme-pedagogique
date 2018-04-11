@@ -7,7 +7,6 @@ var schema = new Schema({
     prenom:{type: String, required:true},
     courriel:{type: String, required:true, unique:true},
     groupes:[{type:Schema.Types.ObjectId, ref: 'groupe'}],
-
 });
 
 //PLugin pour valider un champs unique

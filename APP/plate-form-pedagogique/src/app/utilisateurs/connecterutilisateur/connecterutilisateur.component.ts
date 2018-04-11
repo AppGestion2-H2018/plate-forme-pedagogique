@@ -11,5 +11,9 @@ export class ConnecterutilisateurComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  loginUsager(e){
+    e.preventDefault();
+    var usager = e.target.elements[0].value;
+    var motdepasse = e.target.elements[1].value;
+  }
 }
