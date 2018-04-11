@@ -8,6 +8,8 @@ import { ConnecterUtilisateurComponent } from './utilisateurs/connecter-utilisat
 import { CreerUtilisateurComponent } from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateur/modifier-utilisateur.component';
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
+import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
+import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-pa
     ConnecterUtilisateurComponent,
     CreerUtilisateurComponent,
     ModifierUtilisateurComponent,
-    RecupererMotDePasseComponent
+    RecupererMotDePasseComponent,
+    ModifierMotDePasseComponent,
+    ConfirmationReinitialisationMotDePasseComponent
   ],
   imports: [
     BrowserModule
