@@ -7,6 +7,8 @@ var router = express.Router();
 var Groupe = require('../../../models/groupe');
 
 
+
+
 /**
  * afficher tous les groupes
  */

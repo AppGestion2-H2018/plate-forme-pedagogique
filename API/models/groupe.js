@@ -5,6 +5,7 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
 //todo faire un modele type
 //todo faire un modele programme
 
+
 var schema = new Schema({
     proprietaire:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: false},
     nom: {type: String, required: true},
