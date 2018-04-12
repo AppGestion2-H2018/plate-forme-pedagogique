@@ -11,6 +11,8 @@ import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-pa
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
+import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { AjoutPublicationComponent } from './publications/ajout-publication/ajou
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
     AjoutPublicationComponent,
+    CreerGroupeComponent
   ],
   imports: [
     BrowserModule
