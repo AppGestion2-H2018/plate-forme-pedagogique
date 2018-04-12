@@ -1,5 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# pour tester nos component
+/src/app/app.component.*
+
+/src/app/app.component.*
+
 # compiled output
 /dist
 /dist-server
@@ -41,4 +46,12 @@ testem.log
 
 # System Files
 .DS_Store
+<<<<<<< HEAD
 Thumbs.db
+=======
+Thumbs.db
+
+
+.idea/workspace.xml
+
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
