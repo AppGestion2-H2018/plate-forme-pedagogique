@@ -18,6 +18,9 @@ import { MenuPublicationsComponent } from './publications/menu-publications/menu
 import { PrincipalPublicationsComponent } from './publications/principal-publications/principal-publications.component';
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
+
+import { UtilisateurService } from './service/utilisateur.service';
+
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
 
@@ -53,7 +56,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UtilisateurService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
