@@ -10,7 +10,11 @@ import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateu
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
+<<<<<<< HEAD
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+=======
+import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component'
+>>>>>>> b50818561af892f30e41aa916c00272fdcdd63de
 
 
 @NgModule({
