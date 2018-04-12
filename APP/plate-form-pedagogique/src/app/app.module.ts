@@ -10,7 +10,7 @@ import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateu
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
-import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component'
+import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { AjoutPublicationComponent } from './publications/ajout-publication/ajou
     ModifierUtilisateurComponent,
     RecupererMotDePasseComponent,
     ModifierMotDePasseComponent,
-    ConfirmationReinitialisationMotDePasseComponent
+    ConfirmationReinitialisationMotDePasseComponent,
+    AjoutPublicationComponent,
   ],
   imports: [
     BrowserModule
