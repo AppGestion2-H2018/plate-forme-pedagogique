@@ -5,6 +5,7 @@ var router = express.Router();
 router.use('/recuperation', require('./motdepasse'));
 router.use('/auth', require('./auth'));
 router.use('/login', require('./login'));
+router.use('/register', require('./register'));
 
 router.get('/', function(req, res, next) {
   res.send('api Utilisateurs');
