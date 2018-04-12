@@ -12,6 +12,7 @@ import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-pass
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
 <<<<<<< HEAD
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+import { ClassesComponent } from './groupe/classes/classes.component';
 =======
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component'
 >>>>>>> b50818561af892f30e41aa916c00272fdcdd63de
@@ -27,7 +28,8 @@ import { AjoutPublicationComponent } from './publications/ajout-publication/ajou
     RecupererMotDePasseComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
-    CreerGroupeComponent
+    CreerGroupeComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule
