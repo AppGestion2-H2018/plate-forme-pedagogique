@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="b13ca22c-aa83-4a4c-b49c-16d8734a87b2" name="Default" comment="" />
+=======
     <list default="true" id="b13ca22c-aa83-4a4c-b49c-16d8734a87b2" name="Default" comment="">
 <<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -30106,6 +30109,7 @@
       <change beforePath="$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.module.ts" afterPath="$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.module.ts" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
     </list>
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30116,11 +30120,39 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< HEAD
+      <file leaf-file-name="groupes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/API/routes/API/groupes/groupes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="960">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bibliotheque.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/API/routes/API/bibliotheque/bibliotheque.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+=======
+<<<<<<< HEAD
       <file leaf-file-name="connecterutilisateur.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/utilisateurs/connecterutilisateur/connecterutilisateur.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
               <folding />
             </state>
           </provider>
@@ -30139,8 +30171,13 @@
       <file leaf-file-name="connecterutilisateur.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/utilisateurs/connecterutilisateur/connecterutilisateur.component.ts">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="320">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="40" />
+=======
             <state relative-caret-position="272">
               <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
               <folding />
             </state>
           </provider>
@@ -30149,11 +30186,17 @@
       <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="200">
+              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+              <folding />
+=======
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </state>
           </provider>
         </entry>
@@ -30161,6 +30204,20 @@
       <file leaf-file-name="connecterutilisateur.component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/utilisateurs/connecterutilisateur/connecterutilisateur.component.css">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="1280">
+              <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/API/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+=======
             <state relative-caret-position="476">
               <caret line="28" column="1" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
 =======
@@ -30170,6 +30227,7 @@
             <state relative-caret-position="60">
               <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
               <folding />
             </state>
           </provider>
@@ -30243,6 +30301,13 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
 <<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1" />
+    <option name="y" value="23" />
+    <option name="width" value="1187" />
+    <option name="height" value="664" />
+=======
+<<<<<<< HEAD
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -30253,6 +30318,10 @@
     <option name="width" value="1600" />
     <option name="height" value="900" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -30285,6 +30354,10 @@
             <path>
               <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
               <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
+              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
 <<<<<<< HEAD
               <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
@@ -30320,21 +30393,28 @@
               <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="APP" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="plate-form-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </path>
             <path>
               <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
               <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="APP" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
+=======
               <item name="plate-form-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </path>
             <path>
               <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
               <item name="plate-forme-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="APP" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="plate-form-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
+=======
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </path>
             <path>
               <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
@@ -30342,8 +30422,11 @@
               <item name="APP" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="plate-form-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
+=======
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="utilisateurs" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </path>
             <path>
               <item name="plate-forme-pedagogique" type="b2602c69:ProjectViewProjectNode" />
@@ -30352,16 +30435,23 @@
               <item name="plate-form-pedagogique" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
+=======
               <item name="utilisateurs" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="connecterutilisateur" type="2a2b976b:PhpTreeStructureProvider$1" />
 =======
               <item name="APP" type="2a2b976b:PhpTreeStructureProvider$1" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+      <pane id="Scratches" />
+=======
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
       <pane id="Scope" />
     </panes>
   </component>
@@ -30412,6 +30502,11 @@
       <workItem from="1523228161220" duration="74000" />
 <<<<<<< HEAD
       <workItem from="1523228460906" duration="3440000" />
+<<<<<<< HEAD
+      <workItem from="1523385445285" duration="2161000" />
+      <workItem from="1523396522524" duration="8000" />
+      <workItem from="1523559662776" duration="821000" />
+=======
       <workItem from="1523383381171" duration="26000" />
       <workItem from="1523383408253" duration="1870000" />
       <workItem from="1523385828887" duration="2117000" />
@@ -30423,10 +30518,20 @@
       <workItem from="1523394141060" duration="223000" />
       <workItem from="1523394521316" duration="42000" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="21819000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="24947000" />
   </component>
@@ -30445,10 +30550,16 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18035944" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07920792" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+=======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
@@ -30458,6 +30569,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3212121" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -30504,12 +30616,96 @@
   </component>
   <component name="editorHistoryManager">
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/API/models/groupe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1280">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/routes/API/groupes/groupes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/routes/API/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/models/groupe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/models/utilisateur.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1280">
+          <caret line="32" column="11" lean-forward="true" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/routes/API/groupes/groupes.js">
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/API/models/utilisateur.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="40" />
 =======
     <entry file="file://$PROJECT_DIR$/API/routes/API/api.js">
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -30910,8 +31106,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/API/models/utilisateur.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="320">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="40" />
+=======
         <state relative-caret-position="120">
           <caret line="8" column="52" lean-forward="false" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>
@@ -30924,13 +31125,24 @@
 =======
     <entry file="file://$PROJECT_DIR$/API/models/groupe.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="200">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+=======
         <state relative-caret-position="75">
           <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/API/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1280">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+=======
     <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/utilisateurs/connecterutilisateur/connecterutilisateur.component.css">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -30940,19 +31152,33 @@
         <state relative-caret-position="45">
           <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>
     </entry>
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/API/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/utilisateurs/connecterutilisateur/connecterutilisateur.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/API/routes/API/groupes/groupes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+=======
     <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -30973,10 +31199,33 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/API/routes/API/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/routes/API/bibliotheque/bibliotheque.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/APP/plate-form-pedagogique/src/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -30988,6 +31237,7 @@
         <state relative-caret-position="60">
           <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
 >>>>>>> 517cb2e3a55cde1291fa28ca5c2aa5b72d0886fc
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
           <folding />
         </state>
       </provider>

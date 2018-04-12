@@ -46,8 +46,12 @@ testem.log
 
 # System Files
 .DS_Store
+<<<<<<< HEAD
+Thumbs.db
+=======
 Thumbs.db
 
 
 .idea/workspace.xml
 
+>>>>>>> c263c74d04b8d38a531460ea9bfe65fc20a77bd2
