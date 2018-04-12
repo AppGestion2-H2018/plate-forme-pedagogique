@@ -1,23 +1,6 @@
-<form (submit)="loginUsager($event)">
-  <div class="input">
-    <label>Usager</label>
-    <input type="text">
-  </div>
-
-  <div class="input">
-    <label>Mot de passe</label>
-    <input type="password">
-  </div>
-  <div class="input">
-    <input type="button" value="Login">
-  </div>
-  <div>
-    <a href="#">mot de passe oublié</a>
-  </div>
-</form>
 
 <div class="card login">
-  <form action="/login" method="POST" class="auth-form login">
+  <form action="/login" method="POST" class="auth-form login" (submit)="loginUsager($event)">
     <input type="hidden" name="_csrf" value="EelfUCL2-1dFSE4RbQA6YA3S2l0oM_ZiMRKg"/>
 
     <div class="row email">
