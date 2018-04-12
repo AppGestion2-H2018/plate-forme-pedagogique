@@ -10,7 +10,6 @@ import { ConnecterUtilisateurComponent } from './utilisateurs/connecter-utilisat
 import { CreerUtilisateurComponent } from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateur/modifier-utilisateur.component';
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
-<<<<<<< HEAD
 import { PrincipalUtilisateursComponent } from './utilisateurs/principal-utilisateurs/principal-utilisateurs.component';
 import { MenuUtilisateursComponent } from './utilisateurs/menu-utilisateurs/menu-utilisateurs.component';
 import { PrincipalBiblioComponent } from './biblio/principal-biblio/principal-biblio.component';
@@ -22,6 +21,7 @@ import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.compone
     PrincipalBiblioComponent,
     MenuBiblioComponent,
     MenuPublicationsComponent,
-    PrincipalPublicationsComponent
+    PrincipalPublicationsComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
     AjoutPublicationComponent,
@@ -50,7 +50,8 @@ import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.compone
     MatCardModule,
     MatListModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
