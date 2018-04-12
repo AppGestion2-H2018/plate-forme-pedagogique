@@ -3,3 +3,4 @@ APP/config.js
 APP/.DS_Store
 APP/src/app/app.component.*
 .idea
+API/models/utilisateur.js
