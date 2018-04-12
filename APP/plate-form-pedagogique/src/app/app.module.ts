@@ -10,6 +10,7 @@ import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateu
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
+import { UtilisateurService } from './service/utilisateur.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [UtilisateurService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
