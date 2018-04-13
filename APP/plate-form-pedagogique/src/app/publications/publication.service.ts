@@ -12,6 +12,4 @@ export class PublicationService {
   getPublications(): Observable<Publication[]> {
       return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications');
   }
-
-
 }
