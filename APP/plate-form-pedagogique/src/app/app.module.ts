@@ -25,6 +25,9 @@ import { AjoutPublicationComponent } from './publications/ajout-publication/ajou
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
 
 import { FormsModule } from '@angular/forms';
+import { PublicationService } from './publications/publication.service';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -54,9 +57,10 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [UtilisateurService],
+  providers: [UtilisateurService, PublicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
