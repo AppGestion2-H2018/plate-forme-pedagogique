@@ -1,0 +1,44 @@
+<!-- Source : https://www.wunderlist.com/forgotpassword -->
+<div class="card forgot-password">
+  <form class="auth-form forgot-password">
+    <div class="row labels">
+      <h2>Vous avez oublié votre mot de passe ?</h2>
+      <h3>Entrez simplement votre adresse e-mail ci-dessous et nous vous enverrons des instructions.</h3>
+    </div>
+
+    <div class="row email">
+      <span class="icon email">
+        <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g transform="translate(-248.000000, -339.000000)" stroke-linecap="round" stroke="#2B88D9" stroke-linejoin="round">
+                  <g transform="translate(231.000000, 238.000000)">
+                      <g transform="translate(0.000000, 20.000000)">
+                          <g transform="translate(0.000000, 20.000000)">
+                              <g transform="translate(0.000000, 60.000000)">
+                                  <path d="M37,4.46153846 C37,3.10153846 35.8663333,2 34.4666667,2 L20.5333333,2 C19.1336667,2 18,3.10153846 18,4.46153846 L18,15.5384615 C18,16.8984615 19.1336667,18 20.5333333,18 L34.4666667,18 C35.8663333,18 37,16.8984615 37,15.5384615 L37,4.46153846 L37,4.46153846 Z M20.5333333,4.46153846 L27.5,11.2307692 L34.4666667,4.46153846"></path>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </svg>
+      </span>
+      <input type="email" name="email"
+             required autofocus autocomplete
+             pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
+             title="Veuillez entrer une adresse e-mail valide."
+             placeholder="Adresse e-mail"
+             [(ngModel)]="courriel"/>
+    </div>
+
+    <div class="row submit">
+      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" (click)="sendMail()"/>
+    </div>
+  </form>
+
+  <span class="link login">
+    Vous avez déjà un compte ?
+    <a href="#">Se connecter</a>
+  </span>
+</div>
