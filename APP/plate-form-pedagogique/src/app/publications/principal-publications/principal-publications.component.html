@@ -1,3 +1,20 @@
-<p>
-  principal-publications works!
-</p>
+<!--<h2>{{publication.titre}}</h2>
+<div>
+  <label>id : </label>{{publication.id}}
+</div>
+<div>
+  <label>Contenu : </label>{{publication.contenu}}
+</div>
+<div>
+  <label>Commentaires : </label>{{publication.commentaires}}
+</div>
+<div>
+  <label>Tags : </label>{{publication.tags}}
+</div>-->
+
+<ul class="publications">
+  <li *ngFor="let publication of publications"> 
+    <span>{{publication.titre}}</span>
+    <span>{{publication.contenu}}</span>
+  </li>
+</ul>
