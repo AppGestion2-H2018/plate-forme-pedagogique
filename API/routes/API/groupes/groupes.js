@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var Groupe = require('../../../models/groupe');
-
+var Utilisateur = require('../../../models/utilisateur');
 
 
 
@@ -27,16 +27,29 @@ router.get('/all', function (req, res, next) {
  */
 router.post('/', function(req, res, next) {
     var newGroup = req.body;
-    var groupe = new Groupe({
-        nom:newGroup.nom,
-        actif: newGroup.actif,
-        est_publique: newGroup.est_publique,
-        commenter: newGroup.commenter
+    //Vérifier si la classe existe
+
+    //Vérifier si le programme existe
+
+    //Vérifier si la
+
+    //Vérifie si le propriétaire existe.
+    Utilisateur.findById(newGroup.proprietaire, function(err, result){
+        if(err) return res.status(500).send(err);
+        var groupe = new Groupe({
+            proprietaire:newGroup.proprietaire,
+            nom:newGroup.nom,
+            actif: newGroup.actif,
+            est_publique: newGroup.est_publique,
+            commenter: newGroup.commenter
+        });
+        groupe.save(function (err, result){
+            if (err) return res.status(500).send(err);
+            res.send(result);
+        });
     });
-    groupe.save(function (err, result){
-        if (err) return res.status(500).send(err);
-        res.send(result);
-    });
+
+
 });
 
 /**
