@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-ObjectId = Schema.ObjectId;
-var mongooseUniqueValidator = require('mongoose-unique-validator');
-//todo faire un modele type
-//todo faire un modele programme
 
+var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
-    proprietaire:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: false},
+    proprietaire:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: true},
     nom: {type: String, required: true},
     date_fin: {type: Date, required: false},
     actif: {type: Boolean, required:true},

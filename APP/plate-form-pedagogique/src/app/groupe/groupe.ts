@@ -1,5 +1,5 @@
 export class Groupe {
-  _id: number;
+  _id: String;
   nom: string;
   date_fin: Date;
   actif: Boolean;
