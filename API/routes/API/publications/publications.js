@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
         const db = client.db(dbName);
         db.collection(collection).find().limit(15).toArray(function(err, result) {
             console.log(result);
+            res.json(result);
         })
 
         client.close();
