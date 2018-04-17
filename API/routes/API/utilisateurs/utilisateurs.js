@@ -8,7 +8,8 @@ router.use('/login', require('./login'));
 router.use('/register', require('./register'));
 
 router.get('/', function(req, res, next) {
-  res.send('api Utilisateurs');
+  //res.send('api Utilisateurs');
+    res.redirect('/api/utilisateurs/auth/all')
 });
 
 module.exports = router;
