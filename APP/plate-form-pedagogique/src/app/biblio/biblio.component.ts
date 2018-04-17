@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Livre } from './livre';
-import { LIVRES } from './mock-livres';
+import { BiblioService } from '../service/biblio.service';
+import {Biblio} from "./biblio";
 
 @Component({
   selector: 'app-biblio',
@@ -8,16 +9,25 @@ import { LIVRES } from './mock-livres';
   styleUrls: ['./biblio.component.css']
 })
 export class BiblioComponent implements OnInit {
-  livres = LIVRES;
+
+  biblio: Biblio;
   selectedLivre: Livre;
 
-  constructor() { }
+  constructor(private biblioService: BiblioService) { }
 
   onSelect(livre: Livre): void {
     this.selectedLivre = livre;
-    console.log(this.selectedLivre)
+    console.log(this.selectedLivre);
   }
 
-  ngOnInit() {
-  }
+  getLivres(): void {
+    this.biblioService.getLivres()
+        .subscribe(resultat => this.biblio = resultat);
+      console.log('in ngOnInit');
+    }
+
+    ngOnInit() {
+        console.log('in ngOnInit');
+        this.getLivres();
+    }
 }

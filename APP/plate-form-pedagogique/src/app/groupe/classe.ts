@@ -4,4 +4,3 @@ export class Classe {
 	fin:Date;
 	etudiants:number[];
 }
-	

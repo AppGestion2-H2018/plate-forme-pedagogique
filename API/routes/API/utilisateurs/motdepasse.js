@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 
+
 // Envoie d'un courriel de reinitialisation si l'adresse courriel est valider
 router.post('/sendmail', function (req, res, next) {
   var email = req.body.email;
