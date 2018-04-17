@@ -23,6 +23,8 @@ import { UtilisateurService } from './service/utilisateur.service';
 
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+import { ClassesComponent } from './groupe/classes/classes.component';
+
 
 import { FormsModule } from '@angular/forms';
 import { PublicationService } from './publications/publication.service';
@@ -46,8 +48,10 @@ import { BiblioService } from './service/biblio.service';
     PrincipalPublicationsComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
+    CreerGroupeComponent,
+    ClassesComponent,
     AjoutPublicationComponent,
-    CreerGroupeComponent
+    CreerGroupeComponent,
   ],
   imports: [
     BrowserModule,
