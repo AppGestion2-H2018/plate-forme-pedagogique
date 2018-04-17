@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UtilisateurService} from '../../service/utilisateur.service';
+import {Utilisateur} from '../../class/utilisateur';
 
 @Component({
   selector: 'app-connecter-utilisateur',
@@ -7,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnecterUtilisateurComponent implements OnInit {
 
-  constructor() { }
+  utilisateures: Utilisateur[];
+  da: string;
+  motdepasse: string;
 
-  ngOnInit() {
+  constructor(private utilisateurservie: UtilisateurService) { }
+
+
+  login(): void{
+    console.log(this.da);
+    console.log(this.motdepasse);
   }
-    usager: number;
-    motsdepasse: string;
+    getUtilisateurs():void{
+      this.utilisateurservie.getUtilisateur().subscribe(utilisateures => {this.utilisateures = utilisateures
+      });
+    }
+    ngOnInit() {
+        this.getUtilisateurs();
+    }
 }

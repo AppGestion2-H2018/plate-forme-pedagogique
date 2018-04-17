@@ -23,6 +23,9 @@ import { UtilisateurService } from './service/utilisateur.service';
 
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+
+
+
 import { ClassesComponent } from './groupe/classes/classes.component';
 
 
@@ -31,8 +34,11 @@ import { PublicationService } from './publications/publication.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BiblioService } from './service/biblio.service';
-import { AjoutEvenementComponent } from './evement/ajout-evenement/ajout-evenement.component';
+
 import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.component';
+
+import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement.component';
+
 
 @NgModule({
   declarations: [
@@ -52,10 +58,16 @@ import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.comp
     ConfirmationReinitialisationMotDePasseComponent,
     CreerGroupeComponent,
     ClassesComponent,
+    CreerGroupeComponent,
+    ClassesComponent,
     AjoutPublicationComponent,
     CreerGroupeComponent,
     AjoutEvenementComponent,
+<<<<<<< HEAD
     BiblioDetailComponent,
+=======
+
+>>>>>>> a5add18105db736bb45f5e2ba7044c947e6ac7d3
   ],
   imports: [
     BrowserModule,
