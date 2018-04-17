@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Publication } from '../publication';
+import { PublicationService } from '../publication.service';
 
 @Component({
   selector: 'app-principal-publications',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalPublicationsComponent implements OnInit {
 
-  constructor() { }
+  publications: Publication[];
 
-  ngOnInit() {
-  }
+  constructor(private publicationService: PublicationService) { }
+
+  getPublications(): void {
+    this.publicationService.getPublications()
+        .subscribe(publications => this.publications = publications);
+}
+
+ngOnInit() {
+  console.log('in ngOnInit');
+  this.getPublications();
+}
+
 
 }

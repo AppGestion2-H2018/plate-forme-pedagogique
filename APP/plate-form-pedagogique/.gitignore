@@ -2,8 +2,7 @@
 
 # pour tester nos component
 /src/app/app.component.*
-
-/src/app/app.component.*
+/src/app/app.module.ts
 
 # compiled output
 /dist
@@ -46,8 +45,5 @@ testem.log
 
 # System Files
 .DS_Store
+
 Thumbs.db
-
-
-.idea/workspace.xml
-
