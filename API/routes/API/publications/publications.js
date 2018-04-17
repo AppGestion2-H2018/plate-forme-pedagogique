@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
         console.log("Connexion au serveur réussie");
         const db = client.db(dbName);
         db.collection(collection).find().limit(15).toArray(function(err, result) {
+            if (err) return console.log(err)
             console.log(result);
             res.json(result);
         })
