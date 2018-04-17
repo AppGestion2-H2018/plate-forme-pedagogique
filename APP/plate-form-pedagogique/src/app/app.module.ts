@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { PublicationService } from './publications/publication.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { BiblioService } from './service/biblio.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UtilisateurService, PublicationService],
+  providers: [UtilisateurService, PublicationService, BiblioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
