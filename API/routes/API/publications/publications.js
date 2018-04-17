@@ -16,19 +16,6 @@ router.get('/', function(req, res, next) {
         assert.equal(null, err);
         console.log("Connexion au serveur réussie");
         const db = client.db(dbName);
-        db.collection(collection).find().limit(15).toArray(function(err, result) {
-            console.log(result);
-        })
-
-        client.close();
-    });
-});
-
-router.get('/date-de-publication', function(req, res, next) {
-    MongoClient.connect(url, function(err, client) {
-        assert.equal(null, err);
-        console.log("Connexion yeaaaaah!");
-        const db = client.db(dbName);
         db.collection(collection).find().sort({date_publication: -1}).limit(15).toArray(function(err, result) {
             if (err) return console.log(err)
             console.log(result);

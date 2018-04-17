@@ -58,6 +58,7 @@ router.get('/:evenementId', function (req, res, next) {
     });
 });
 
+
 /**
  * Ajoute un événement sous format json.
  * URL : http://localhost:3000/api/evenements/ajout

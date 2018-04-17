@@ -7,10 +7,10 @@ export class Groupe {
   commenter: Boolean;
   super_admin: number;
   admin: number;
-  programmes: number;
-  classes: number;
-  type: number;
-  utilisateur: number;
+  programmes: number[];
+  classes: number[];
+  type: number[];
+  utilisateur: number[];
   blacklist: number;
   
 }
