@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from './class/utilisateur';
+import { Utilisateur } from '../class/utilisateur';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -11,7 +11,8 @@ export class UtilisateurService {
     console.log('User Service Initialized...');
   }
 
-  getUserFromEmail(courriel: string): Observable<boolean>{
-    
+  sendResetPassword(){
+    // return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail');
+    console.log('sendResetPassword');
   }
 }
