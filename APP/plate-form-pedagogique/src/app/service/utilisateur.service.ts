@@ -11,8 +11,14 @@ export class UtilisateurService {
     console.log('User Service Initialized...');
   }
 
-  getUtilisateur() : Observable<Utilisateur[]>{
-    return this.http.get<Utilisateur[]>('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/auth/login');
+
+  getUtilisateur() : Observable<Utilisateur[]> {
+      return this.http.get<Utilisateur[]>('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/auth/login');
+  }
+  sendResetPassword(){
+    // return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail');
+    console.log('sendResetPassword');
+
   }
   // getUserFromEmail(courriel: string): Observable<boolean>{
   //

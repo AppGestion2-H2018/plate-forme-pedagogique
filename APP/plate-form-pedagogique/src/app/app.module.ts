@@ -24,6 +24,8 @@ import { UtilisateurService } from './service/utilisateur.service';
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
 
+
+
 import { ClassesComponent } from './groupe/classes/classes.component';
 
 
@@ -31,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { PublicationService } from './publications/publication.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { BiblioService } from './service/biblio.service';
 
 @NgModule({
   declarations: [
@@ -48,12 +51,12 @@ import { HttpClientModule } from '@angular/common/http';
     PrincipalPublicationsComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
-
     CreerGroupeComponent,
     ClassesComponent,
-
+    CreerGroupeComponent,
+    ClassesComponent,
     AjoutPublicationComponent,
-    CreerGroupeComponent
+    CreerGroupeComponent,
 
   ],
   imports: [
@@ -68,7 +71,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UtilisateurService, PublicationService],
+  providers: [UtilisateurService, PublicationService, BiblioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
