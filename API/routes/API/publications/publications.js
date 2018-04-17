@@ -26,6 +26,38 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/date-de-publication', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion yeaaaaah!");
+        const db = client.db(dbName);
+        db.collection(collection).find().sort({date_publication: -1}).limit(15).toArray(function(err, result) {
+            if (err) return console.log(err)
+            console.log(result);
+            res.json(result);
+        })
+
+        client.close();
+    });
+});
+
+router.get('/date-de-remise', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion yeaaaaah!");
+        const db = client.db(dbName);
+        db.collection(collection).find().sort({date_remise: -1}).limit(15).toArray(function(err, result) {
+            if (err) return console.log(err)
+            console.log(result);
+            res.json(result);
+        })
+
+        client.close();
+    });
+});
+
+
+
 
 router.get('/:id', function(req, res, next){
     MongoClient.connect(url, function(err, client) {
