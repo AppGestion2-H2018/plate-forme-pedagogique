@@ -31,7 +31,7 @@ import { PublicationService } from './publications/publication.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BiblioService } from './service/biblio.service';
-import { AjoutEvenementComponent } from './evement/ajout-evenement/ajout-evenement.component';
+import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement.component';
 
 @NgModule({
   declarations: [

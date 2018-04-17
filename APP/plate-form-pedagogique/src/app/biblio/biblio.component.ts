@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Livre } from './livre';
 import { BiblioService } from '../service/biblio.service';
+import {Biblio} from "./biblio";
 
 @Component({
   selector: 'app-biblio',
@@ -9,7 +10,7 @@ import { BiblioService } from '../service/biblio.service';
 })
 export class BiblioComponent implements OnInit {
 
-  livres: Livre[];
+  biblio: Biblio;
   selectedLivre: Livre;
 
   constructor(private biblioService: BiblioService) { }
@@ -21,7 +22,7 @@ export class BiblioComponent implements OnInit {
 
   getLivres(): void {
     this.biblioService.getLivres()
-        .subscribe(livres => this.livres = livres.items);
+        .subscribe(resultat => this.biblio = resultat);
       console.log('in ngOnInit');
     }
 
