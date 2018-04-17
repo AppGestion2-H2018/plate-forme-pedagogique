@@ -1,18 +1,8 @@
-
-    <ul class="livres">
+Test-Biblio
+<ul class="livres">
         <li *ngFor="let livre of livres"
             [class.selected]="livre === selectedLivre"
             (click)="onSelect(livre)">
-            <span class="badge">{{livre.id}}</span> {{livre.titre}}
+            {{livre.volumeInfo.title}}
         </li>
     </ul>
-
-    <div *ngIf="selectedLivre">
-        <h2>Informations sur {{selectedLivre.titre}}</h2>
-        <div>
-            <label>id : </label>{{selectedLivre.id}}
-        </div>
-        <div>
-            <label>auteur : </label>{{selectedLivre.auteur}}
-        </div>
-    </div>

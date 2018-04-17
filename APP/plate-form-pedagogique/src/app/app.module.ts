@@ -23,18 +23,15 @@ import { UtilisateurService } from './service/utilisateur.service';
 
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
-<<<<<<< HEAD
 import { ClassesComponent } from './groupe/classes/classes.component';
-=======
-import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component'
->>>>>>> b50818561af892f30e41aa916c00272fdcdd63de
-=======
->>>>>>> 58f8b1b6faf07cfb947ede1ccb961d87b3d56449
+
 
 import { FormsModule } from '@angular/forms';
 import { PublicationService } from './publications/publication.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { BiblioService } from './service/biblio.service';
+import { AjoutEvenementComponent } from './evement/ajout-evenement/ajout-evenement.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +49,11 @@ import { HttpClientModule } from '@angular/common/http';
     PrincipalPublicationsComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
-<<<<<<< HEAD
     CreerGroupeComponent,
-    ClassesComponent
-=======
+    ClassesComponent,
     AjoutPublicationComponent,
-    CreerGroupeComponent
->>>>>>> 58f8b1b6faf07cfb947ede1ccb961d87b3d56449
+    CreerGroupeComponent,
+    AjoutEvenementComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +67,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UtilisateurService, PublicationService],
+  providers: [UtilisateurService, PublicationService, BiblioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
