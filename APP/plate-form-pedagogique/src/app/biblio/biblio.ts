@@ -1,5 +1,5 @@
 import {Livre} from "./livre";
 
-export class Bilbio {
-    item: Livre[];
+export class Biblio {
+    items: Livre[];
 }
