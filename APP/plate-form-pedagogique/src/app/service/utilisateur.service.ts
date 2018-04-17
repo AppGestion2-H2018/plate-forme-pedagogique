@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Utilisateur } from '../class/utilisateur';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class UtilisateurService {
@@ -11,8 +15,9 @@ export class UtilisateurService {
     console.log('User Service Initialized...');
   }
 
-  sendResetPassword(){
-    // return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail');
-    console.log('sendResetPassword');
+  sendResetPassword(email: string){
+    var objEmail = {"email" : email};
+    return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
+    //console.log('sendResetPassword');
   }
 }
