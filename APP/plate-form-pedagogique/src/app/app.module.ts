@@ -10,7 +10,6 @@ import { ConnecterUtilisateurComponent } from './utilisateurs/connecter-utilisat
 import { CreerUtilisateurComponent } from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateur/modifier-utilisateur.component';
 import { RecupererMotDePasseComponent } from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
-<<<<<<< HEAD
 import { PrincipalUtilisateursComponent } from './utilisateurs/principal-utilisateurs/principal-utilisateurs.component';
 import { MenuUtilisateursComponent } from './utilisateurs/menu-utilisateurs/menu-utilisateurs.component';
 import { PrincipalBiblioComponent } from './biblio/principal-biblio/principal-biblio.component';
@@ -19,9 +18,20 @@ import { MenuPublicationsComponent } from './publications/menu-publications/menu
 import { PrincipalPublicationsComponent } from './publications/principal-publications/principal-publications.component';
 import { ModifierMotDePasseComponent } from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { ConfirmationReinitialisationMotDePasseComponent } from './utilisateurs/confirmation-reinitialisation-mot-de-passe/confirmation-reinitialisation-mot-de-passe.component';
+
+import { UtilisateurService } from './service/utilisateur.service';
+
 import { AjoutPublicationComponent } from './publications/ajout-publication/ajout-publication.component';
 import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.component';
+import { ClassesComponent } from './groupe/classes/classes.component';
 
+
+import { FormsModule } from '@angular/forms';
+import { PublicationService } from './publications/publication.service';
+
+import { HttpClientModule } from '@angular/common/http';
+import { BiblioService } from './service/biblio.service';
+import { AjoutEvenementComponent } from './evement/ajout-evenement/ajout-evenement.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +46,14 @@ import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.compone
     PrincipalBiblioComponent,
     MenuBiblioComponent,
     MenuPublicationsComponent,
-    PrincipalPublicationsComponent
+    PrincipalPublicationsComponent,
     ModifierMotDePasseComponent,
     ConfirmationReinitialisationMotDePasseComponent,
+    CreerGroupeComponent,
+    ClassesComponent,
     AjoutPublicationComponent,
-    CreerGroupeComponent
+    CreerGroupeComponent,
+    AjoutEvenementComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +63,11 @@ import { CreerGroupeComponent } from './groupe/creer-groupe/creer-groupe.compone
     MatCardModule,
     MatListModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UtilisateurService, PublicationService, BiblioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

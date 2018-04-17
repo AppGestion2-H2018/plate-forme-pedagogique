@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilisateurService } from '../../service/utilisateur.service';
 
 @Component({
   selector: 'app-recuperer-mot-de-passe',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecupererMotDePasseComponent implements OnInit {
 
-  constructor() { }
+  courriel: string;
+
+  constructor(private utilisateurService:UtilisateurService) { }
+
+  // Envoi du courriel de réinitialisation du mot de passe
+  forgotpassword():void{
+    console.log(this.courriel);
+    // Valide si le courriel est présent dans la bd
+
+    // Appelle la fonction d'envoi de courriel du server
+    this.utilisateurService.sendResetPassword();
+  }
 
   ngOnInit() {
   }

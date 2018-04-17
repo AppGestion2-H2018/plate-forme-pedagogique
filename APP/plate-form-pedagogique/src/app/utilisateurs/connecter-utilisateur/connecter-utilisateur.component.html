@@ -1,8 +1,12 @@
 
 <div class="card login">
-  <form action="/login" method="POST" class="auth-form login" (submit)="loginUsager($event)">
+
+  <!--Création du form pour la page de login-->
+  <!--ne pas oublier de remettre /login lorsqu'on va être rendu a ce connecter-->
+  <form action="/" method="POST" class="auth-form login" >
     <input type="hidden" name="_csrf" value="EelfUCL2-1dFSE4RbQA6YA3S2l0oM_ZiMRKg"/>
 
+    <!--affichage du Da de l'élève-->
     <div class="row email">
       <span class="icon email"><svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -19,13 +23,16 @@
         </g>
     </g>
 </svg></span>
-      <input type="email" name="email" value=""
+
+      <!--Endroit pour que l'utilisateur mettre son DA et qui gère les possibiliter que l'utilisateur voudrait faire-->
+      <input type="text" name="da" value=""
              required autofocus
              pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
-             title="Veuillez entrer une adresse e-mail valide."
-             placeholder="Adresse e-mail"/>
+             title="Veuillez entrer un DA valide."
+             placeholder="Votre Da"/>
     </div>
 
+    <!--Affichage des mots de passe  -->
     <div class="row password">
       <span class="icon padlock"><svg width="21px" height="25px" viewBox="0 0 21 25" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -42,15 +49,19 @@
         </g>
     </g>
 </svg></span>
-      <input type="password" name="password" required
+
+      <!--Textbox du mot de passe-->
+      <input type="password" name="motdepasse" required
              placeholder="Mot de passe"/>
     </div>
 
+    <!--Bouton qui permet de ce connecter-->
     <div class="row submit">
       <input type="submit" class="button big blue"
              value="Se connecter"/>
     </div>
 
+    <!--lien si l'utilisateur à oublier son mots de passe-->
     <span class="link forgot-password">
       <a href="#">
         Vous avez oublié votre mot de passe ?
