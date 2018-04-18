@@ -5,7 +5,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { BiblioComponent } from './biblio/biblio.component';
 import { ConnecterUtilisateurComponent } from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
 import { CreerUtilisateurComponent } from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import { ModifierUtilisateurComponent } from './utilisateurs/modifier-utilisateur/modifier-utilisateur.component';
@@ -44,7 +43,6 @@ import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.comp
 @NgModule({
   declarations: [
     AppComponent,
-    BiblioComponent,
     ConnecterUtilisateurComponent,
     CreerUtilisateurComponent,
     ModifierUtilisateurComponent,
