@@ -35,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BiblioService } from './service/biblio.service';
 
 import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.component';
-
+import { BiblioListeComponent } from './biblio/biblio-liste/biblio-liste.component';
 //import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
 
@@ -63,7 +63,7 @@ import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.comp
     CreerGroupeComponent,
     //AjoutEvenementComponent,
     BiblioDetailComponent,
-
+    BiblioListeComponent,
   ],
   imports: [
     BrowserModule,
