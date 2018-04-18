@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # pour tester nos component
-#/src/app/app.component.*
-#/src/app/app.module.ts
+/src/app/app.component.*
+/src/app/app.module.ts
 
 # compiled output
 /dist
