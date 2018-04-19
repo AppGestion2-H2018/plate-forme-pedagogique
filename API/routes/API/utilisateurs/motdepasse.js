@@ -27,12 +27,34 @@ router.post('/sendmail', function (req, res, next) {
           utilisateur.set({ resetPasswordToken: token, resetPasswordExpires: passwordExpires});
           utilisateur.save(function (err, updatedUtilisateur){
             if (err) return console.error(err);
-
-            // Send mail
-
           });
           console.log('Token sauvegardé dans la bd');
-          reponse = 'Token généré';
+
+          // Send mail
+          var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'mailbot84@gmail.com',
+              pass: 'bonjourlespoulets'
+            }
+          });
+
+          var urlResetPwd = 'http://localhost:3000/api/utilisateurs/recuperation/' + token;
+          var mailOptions = {
+            from: 'mailbot84@gmail.com',
+            to: 'math.frechette@gmail.com',
+            subject: 'Demande de réinitialisation de mot de passe.',
+            html: '<h2>Plate-forme pédagogique</h2><p>Il semble que vous ayez oublié votre mot de passe. Ne vous inquiétez pas. Vous pouvez le réinitialiser en cliquant sur le lien ci-dessous.</p>' +
+              '<a href="' + urlResetPwd + '">' + urlResetPwd + '</a>'
+          };
+
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 
       }
       else{
@@ -43,6 +65,10 @@ router.post('/sendmail', function (req, res, next) {
       res.json(objReponse);
   });
 });
+
+// Afficher le formulaire de récupération du mot de passe
+
+
 
 // Modification du mot de passe
 router.patch('/:id', function(req, res, next){
