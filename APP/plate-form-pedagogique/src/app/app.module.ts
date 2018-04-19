@@ -75,7 +75,7 @@ import { SupprimerGroupeComponent } from './groupe/supprimer-groupe/supprimer-gr
     ClassesComponent,
     AjoutPublicationComponent,
     CreerGroupeComponent,
-    //AjoutEvenementComponent,
+    // AjoutEvenementComponent,
     BiblioDetailComponent,
     BiblioListeComponent,
     AjoutEvenementComponent,
