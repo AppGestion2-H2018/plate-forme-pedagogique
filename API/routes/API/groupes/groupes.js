@@ -6,9 +6,10 @@ var express = require('express');
 var router = express.Router();
 var Groupe = require('../../../models/groupe');
 var Utilisateur = require('../../../models/utilisateur');
+var Programme = require('../../../models/programme');
+var Type = require('../../../models/type');
 
-
-
+/**************************************** GESTION DES GROUPES *****************************/
 /**
  * afficher tous les groupes
  */
@@ -19,19 +20,15 @@ router.get('/all', function (req, res, next) {
     });
 });
 
+
 /**
  * Enregistrer un groupe
- * todo Ajouter des mock de classe, d'usager
- * todo S'assurer que les types et le programme
- * fait partie de l'usager et faire un modèle pour chacun
  */
 router.post('/', function(req, res, next) {
     var newGroup = req.body;
-    //Vérifier si la classe existe
+    //CRÉER LE TABLEAU DE CLASSE S'IL Y EN A UN
 
-    //Vérifier si le programme existe
-
-    //Vérifier si la
+    //CRÉER LE TABLEAU DE PROGRAMME S'IL EXISTE
 
     //Vérifie si le propriétaire existe.
     Utilisateur.findById(newGroup.proprietaire, function(err, result){
@@ -95,5 +92,54 @@ router.purge('/es-tusurtabarnik', function (req, res, next) {
         res.json("collection enlevée");
     });
 });
+/************************************* FIN GESTION DES GROUPES *****************************/
+/************************************** GESTION DES PROGRAMMES *****************************/
+
+/**
+ * afficher tous les programmes
+ */
+router.get('/programmes/all', function (req, res, next) {
+    Programme.find(function (err, groupe){
+        if (err) return handleError(err, query);
+        res.json(groupe);
+    });
+});
+
+/**
+ * afficher un programme par son id
+ */
+router.get('/programmes/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Programme.findById(objectId,function (err, programme){
+        if (err) return handleError(err, query);
+        res.json(programme);
+    });
+});
+/************************************ FIN GESTION DES PROGRAMMES *****************************/
+
+/**************************************** GESTION DES TYPES **********************************/
+
+/**
+ * afficher tous les types
+ */
+router.get('/types/all', function (req, res, next) {
+    Type.find(function (err, groupe){
+        if (err) return handleError(err, query);
+        res.json(groupe);
+    });
+});
+
+/**
+ * afficher un type par son id
+ */
+router.get('/types/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Type.findById(objectId,function (err, type){
+        if (err) return handleError(err, query);
+        res.json(type);
+    });
+});
+/************************************ FIN GESTION DES TYPES *****************************/
+
 
 module.exports = router;
