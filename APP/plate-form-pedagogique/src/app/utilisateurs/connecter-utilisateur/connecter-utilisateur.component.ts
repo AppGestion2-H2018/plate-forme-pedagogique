@@ -18,14 +18,11 @@ export class ConnecterUtilisateurComponent implements OnInit {
 
   login(): void{
 
-    console.log(this.da);
-    console.log(this.motdepasse);
+    this.utilisateurservie.getUtilisateurLogin(this.da).subscribe();
   }
-    getUtilisateurs():void{
-      this.utilisateurservie.getUtilisateur().subscribe(utilisateures => {this.utilisateures = utilisateures
-      });
-    }
+
+
     ngOnInit() {
-        this.getUtilisateurs();
+
     }
 }
