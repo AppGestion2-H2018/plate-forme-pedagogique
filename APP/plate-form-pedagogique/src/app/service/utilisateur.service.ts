@@ -15,11 +15,11 @@ export class UtilisateurService {
     console.log('User Service Initialized...');
   }
 
-  getUtilisateurLogin(da: string){
-    var objDa = {"da": da};
-   // var objPw = {"motdepasse": motdepasse};
+  getUtilisateurLogin(da: number,motdepasse: number){
+    var objDa = {"da": da,"motdepasse":motdepasse};
 
-    return  this.http.post('https://localhost:3000/api/utilisateurs/login/login',JSON.stringify(objDa), httpOptions);
+
+    return  this.http.post('http://localhost:3000/api/utilisateurs/login/',JSON.stringify(objDa), httpOptions);
   }
 
 
