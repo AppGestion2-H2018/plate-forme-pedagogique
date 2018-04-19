@@ -25,7 +25,7 @@
 </svg></span>
 
       <!--Endroit pour que l'utilisateur mettre son DA et qui gère les possibiliter que l'utilisateur voudrait faire-->
-      <input type="text" name="da" value=""
+      <input type="text" name="da" [(ngModel)]="da" value=""
              required autofocus
              pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
              title="Veuillez entrer un DA valide."
@@ -51,14 +51,14 @@
 </svg></span>
 
       <!--Textbox du mot de passe-->
-      <input type="password" name="motdepasse" required
+      <input [(ngModel)]="motdepasse" type="password" name="motdepasse" required
              placeholder="Mot de passe"/>
     </div>
 
     <!--Bouton qui permet de ce connecter-->
     <div class="row submit">
       <input type="submit" class="button big blue"
-             value="Se connecter"/>
+             value="Se connecter" (click)="login()"/>
     </div>
 
     <!--lien si l'utilisateur à oublier son mots de passe-->
