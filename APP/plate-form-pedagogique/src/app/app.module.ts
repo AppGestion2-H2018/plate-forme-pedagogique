@@ -39,6 +39,10 @@ import { BiblioListeComponent } from './biblio/biblio-liste/biblio-liste.compone
 import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement.component';
 import { ListeEvenementsComponent } from './evenement/liste-evenements/liste-evenements.component';
 import { MenuEvenementsComponent } from './evenement/menu-evenements/menu-evenements.component';
+import { BiblioRechercheComponent } from './biblio/biblio-recherche/biblio-recherche.component';
+import { AfficherGroupeComponent } from './groupe/afficher-groupe/afficher-groupe.component';
+import { ModifierGroupeComponent } from './groupe/modifier-groupe/modifier-groupe.component';
+import { SupprimerGroupeComponent } from './groupe/supprimer-groupe/supprimer-groupe.component';
 //import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
 
@@ -70,6 +74,10 @@ import { MenuEvenementsComponent } from './evenement/menu-evenements/menu-evenem
     AjoutEvenementComponent,
     ListeEvenementsComponent,
     MenuEvenementsComponent,
+    BiblioRechercheComponent,
+    AfficherGroupeComponent,
+    ModifierGroupeComponent,
+    SupprimerGroupeComponent,
   ],
   imports: [
     BrowserModule,
