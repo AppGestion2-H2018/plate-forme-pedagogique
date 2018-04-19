@@ -35,76 +35,82 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
-import {FormsModule} from '@angular/forms';
-import {PublicationService} from './publications/publication.service';
+import { FormsModule } from '@angular/forms';
+import { PublicationService } from './publications/publication.service';
 
-import {HttpClientModule} from '@angular/common/http';
-import {BiblioService} from './service/biblio.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BiblioService } from './service/biblio.service';
 
-import {BiblioDetailComponent} from './biblio/biblio-detail/biblio-detail.component';
-import {BiblioListeComponent} from './biblio/biblio-liste/biblio-liste.component';
-import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
-import {ListeEvenementsComponent} from './evenement/liste-evenements/liste-evenements.component';
-import {MenuEvenementsComponent} from './evenement/menu-evenements/menu-evenements.component';
-import {BiblioRechercheComponent} from './biblio/biblio-recherche/biblio-recherche.component';
-import {AfficherGroupeComponent} from './groupe/afficher-groupe/afficher-groupe.component';
-import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.component';
-import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
+import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.component';
+import { BiblioListeComponent } from './biblio/biblio-liste/biblio-liste.component';
+import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement.component';
+import { ListeEvenementsComponent } from './evenement/liste-evenements/liste-evenements.component';
+import { MenuEvenementsComponent } from './evenement/menu-evenements/menu-evenements.component';
+import { BiblioRechercheComponent } from './biblio/biblio-recherche/biblio-recherche.component';
+import { AfficherGroupeComponent } from './groupe/afficher-groupe/afficher-groupe.component';
+import { ModifierGroupeComponent } from './groupe/modifier-groupe/modifier-groupe.component';
+import { SupprimerGroupeComponent } from './groupe/supprimer-groupe/supprimer-groupe.component';
+
+import { AfficherResultatsComponent } from './resultats/afficher-resultats/afficher-resultats.component';
+import { AjoutGrilleComponent } from './resultats/ajout-grille/ajout-grille.component';
+import { AjoutNotesComponent } from './resultats/ajout-notes/ajout-notes.component';
+import { MenuResultatsComponent } from './resultats/menu-resultats/menu-resultats.component';
+import { PrincipalResultatsComponent } from './resultats/principal-resultats/principal-resultats.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ConnecterUtilisateurComponent,
-        CreerUtilisateurComponent,
-        ModifierUtilisateurComponent,
-        RecupererMotDePasseComponent,
-        PrincipalUtilisateursComponent,
-        MenuUtilisateursComponent,
-        PrincipalBiblioComponent,
-        MenuBiblioComponent,
-        MenuPublicationsComponent,
-        PrincipalPublicationsComponent,
-        ModifierMotDePasseComponent,
-        ConfirmationReinitialisationMotDePasseComponent,
-        CreerGroupeComponent,
-        ClassesComponent,
-        CreerGroupeComponent,
-        ClassesComponent,
-        AjoutPublicationComponent,
-        CreerGroupeComponent,
-        // AjoutEvenementComponent,
-        BiblioDetailComponent,
-        BiblioListeComponent,
-        AjoutEvenementComponent,
-        ListeEvenementsComponent,
-        MenuEvenementsComponent,
-        BiblioRechercheComponent,
-        AfficherGroupeComponent,
-        ModifierGroupeComponent,
-        SupprimerGroupeComponent,
-    ],
-    imports: [
-        BrowserModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatGridListModule,
-        MatCardModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatIconModule,
-        MatButtonModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        HttpClientModule,
-    ],
-    providers: [UtilisateurService, PublicationService, BiblioService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ConnecterUtilisateurComponent,
+    CreerUtilisateurComponent,
+    ModifierUtilisateurComponent,
+    RecupererMotDePasseComponent,
+    PrincipalUtilisateursComponent,
+    MenuUtilisateursComponent,
+    PrincipalBiblioComponent,
+    MenuBiblioComponent,
+    MenuPublicationsComponent,
+    PrincipalPublicationsComponent,
+    ModifierMotDePasseComponent,
+    ConfirmationReinitialisationMotDePasseComponent,
+    CreerGroupeComponent,
+    ClassesComponent,
+    CreerGroupeComponent,
+    ClassesComponent,
+    AjoutPublicationComponent,
+    CreerGroupeComponent,
+    // AjoutEvenementComponent,
+    BiblioDetailComponent,
+    BiblioListeComponent,
+    AjoutEvenementComponent,
+    ListeEvenementsComponent,
+    MenuEvenementsComponent,
+    BiblioRechercheComponent,
+    AfficherGroupeComponent,
+    ModifierGroupeComponent,
+    SupprimerGroupeComponent,
+	AfficherResultatsComponent,
+    AjoutGrilleComponent,
+    AjoutNotesComponent,
+    MenuResultatsComponent,
+    PrincipalResultatsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+  ],
+  providers: [UtilisateurService, PublicationService, BiblioService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
