@@ -57,4 +57,31 @@ router.get('/:evenementId', function (req, res, next) {
         client.close();
     });
 });
+
+
+/**
+ * Ajoute un événement sous format json.
+ * URL : http://localhost:3000/api/evenements/ajout
+ */
+router.post('/ajout', function(req, res, next){
+    var evenement = req.body;
+    console.log(evenement);
+    if(!evenement.nom || (!evenement.description)) {
+        res.status(400);
+        res.json({"erreur" : "Données incorrectes"});
+    } else {
+        MongoClient.connect(url, function(err, client) {
+            assert.equal(null, err);
+            console.log("Connexion au serveur réussie");
+            const db = client.db(nomBD);
+            db.collection('evenements').insertOne(evenement, function(err, result) {
+                if (err) return console.log(err)
+                console.log("Évènement ajouté");
+                res.json(result);
+            })
+            client.close();
+        });
+    }
+});
+
 module.exports = router;

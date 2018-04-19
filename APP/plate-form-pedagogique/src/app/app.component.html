@@ -12,12 +12,14 @@
         <mat-list>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Publications</h3>
-                <p matLine><app-menu-publications></app-menu-publications></p>
+                <p matLine>
+                    <app-menu-publications></app-menu-publications>
+                </p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Événements</h3>
-                <p matLine><!--<app-menu-evenements></app-menu-evenements>--></p>
+                <p matLine><app-menu-evenements></app-menu-evenements></p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -27,7 +29,7 @@
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Résultats scolaires</h3>
-                <p matLine><!--<app-menu-resultats-scolaires></app-menu-resultats-scolaires>--></p>
+                <p matLine><app-menu-resultats></app-menu-resultats></p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -37,31 +39,51 @@
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Utilisateurs</h3>
+
                 <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
+
+                <p matLine>
+                    <app-menu-utilisateurs>
+                        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
+                    </app-menu-utilisateurs>
+                </p>
+
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour intégrer sur la page d'accueil</h2>
+        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour
+            intégrer sur la page d'accueil</h2>
 
         <h3>Publications</h3>
         <app-principal-publications></app-principal-publications>
 
         <h3>Événements</h3>
-        <!--<app-principal-evenements></app-principal-evenements>-->
+        <app-principal-evenements></app-principal-evenements>
 
         <h3>Groupes</h3>
         <!--<app-principal-groupes></app-principal-groupes>-->
-
+        <app-afficher-groupe></app-afficher-groupe>
         <h3>Résultats scolaires</h3>
-        <!--<app-principal-resultats-scolaires></app-principal-resultats-scolaires>-->
+        <app-principal-resultats></app-principal-resultats>
+
+        <app-ajout-grille></app-ajout-grille>
+
+        <app-ajout-notes></app-ajout-notes>
+
+        <app-afficher-resultats></app-afficher-resultats>
 
         <h3>Bibliothèque</h3>
         <app-principal-biblio></app-principal-biblio>
 
         <h3>Utilisateurs</h3>
         <app-principal-utilisateurs></app-principal-utilisateurs>
+
+        <app-connecter-utilisateur></app-connecter-utilisateur>
+
+        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
+
 
         <h2>Exemple personnalisation du thème</h2>
 
@@ -77,3 +99,5 @@
         </mat-grid-list>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-creer-utilisateur></app-creer-utilisateur>

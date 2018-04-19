@@ -1,3 +1,33 @@
-<p>
-  principal-publications works!
-</p>
+<!--<h2>{{publication.titre}}</h2>
+<div>
+  <label>id : </label>{{publication.id}}
+</div>
+<div>
+  <label>Contenu : </label>{{publication.contenu}}
+</div>
+<div>
+  <label>Commentaires : </label>{{publication.commentaires}}
+</div>
+<div>
+  <label>Tags : </label>{{publication.tags}}
+</div>-->
+
+<button mat-raised-button (click)="getPublications()">Trier par date de publication</button>
+<button mat-raised-button (click)="getDateRemise()">Trier par date de remise</button>
+
+<div class="publications"> 
+    <ul class="publications">
+        <li *ngFor="let publication of publications">
+          <h2>{{publication.titre}}</h2> 
+          <span>Auteur: {{publication.auteur}}</span>
+          / <span>Groupe: {{publication.groupe}}</span>
+          / <span>Date de publication: {{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span>
+          / <span>Date de remise: {{publication.date_remise | date:'dd-MM-yyyy HH:MM:ss'}}</span>
+          / <span>Contenu: {{publication.contenu}}</span>
+          / <span>Tags: {{publication.tags}}</span>
+          / <span>Commentaire(s): {{publication.commentaire}}</span>
+          / <span>Fichier(s): {{publication.fichier}}</span>
+    </li>
+  </ul>
+    <app-ajout-publication></app-ajout-publication>
+</div>

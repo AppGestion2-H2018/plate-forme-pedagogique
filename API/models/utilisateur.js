@@ -14,6 +14,8 @@ var schema = new Schema({
     sexe: {type: String, required: true},
     role: {type: Number, required: false},
     motdepasse: {type: String, required: true},
+    resetPasswordToken: {type: String},
+    resetPasswordExpires: {type: Date},
     photo: {type: String, required: false},
     access_token: {
         remember_token: {type: String},
