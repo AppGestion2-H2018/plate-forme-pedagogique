@@ -12,7 +12,9 @@
         <mat-list>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Publications</h3>
-                <p matLine><app-menu-publications></app-menu-publications></p>
+                <p matLine>
+                    <app-menu-publications></app-menu-publications>
+                </p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -27,7 +29,7 @@
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Résultats scolaires</h3>
-                <p matLine><!--<app-menu-resultats-scolaires></app-menu-resultats-scolaires>--></p>
+                <p matLine><app-menu-resultats></app-menu-resultats></p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -41,7 +43,9 @@
                 <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
 
                 <p matLine>
-                  <app-menu-utilisateurs></app-menu-utilisateurs>
+                    <app-menu-utilisateurs>
+                        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
+                    </app-menu-utilisateurs>
                 </p>
 
             </mat-list-item>
@@ -49,7 +53,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour intégrer sur la page d'accueil</h2>
+        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour
+            intégrer sur la page d'accueil</h2>
 
         <h3>Publications</h3>
         <app-principal-publications></app-principal-publications>
@@ -61,7 +66,13 @@
         <!--<app-principal-groupes></app-principal-groupes>-->
         <app-afficher-groupe></app-afficher-groupe>
         <h3>Résultats scolaires</h3>
-        <!--<app-principal-resultats-scolaires></app-principal-resultats-scolaires>-->
+        <app-principal-resultats></app-principal-resultats>
+
+        <app-ajout-grille></app-ajout-grille>
+
+        <app-ajout-notes></app-ajout-notes>
+
+        <app-afficher-resultats></app-afficher-resultats>
 
         <h3>Bibliothèque</h3>
         <app-principal-biblio></app-principal-biblio>
@@ -88,3 +99,5 @@
         </mat-grid-list>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-creer-utilisateur></app-creer-utilisateur>
