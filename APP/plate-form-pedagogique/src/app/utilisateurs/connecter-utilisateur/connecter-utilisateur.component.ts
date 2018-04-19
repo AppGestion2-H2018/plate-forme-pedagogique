@@ -10,15 +10,15 @@ import {Utilisateur} from '../../class/utilisateur';
 export class ConnecterUtilisateurComponent implements OnInit {
 
   utilisateures: Utilisateur[];
-  da: string;
-  motdepasse: string;
+  da: number;
+  motdepasse: number;
 
   constructor(private utilisateurservie: UtilisateurService) { }
 
 
   login(): void{
 
-    this.utilisateurservie.getUtilisateurLogin(this.da).subscribe();
+    this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe();
   }
 
 

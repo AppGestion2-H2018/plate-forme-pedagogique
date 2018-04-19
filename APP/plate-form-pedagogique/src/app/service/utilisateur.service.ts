@@ -15,24 +15,18 @@ export class UtilisateurService {
     console.log('User Service Initialized...');
   }
 
-  getUtilisateurLogin(da: string){
-    var objDa = {"da": da};
-   // var objPw = {"motdepasse": motdepasse};
+  getUtilisateurLogin(da: number,motdepasse: number){
+    var objDa = {"da": da,"motdepasse":motdepasse};
 
-    return  this.http.post('https://localhost:3000/api/utilisateurs/login/login',JSON.stringify(objDa), httpOptions);
+
+    return  this.http.post('http://localhost:3000/api/utilisateurs/login/',JSON.stringify(objDa), httpOptions);
   }
 
-  // sendResetPassword() {
-  //     // return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail');
-  //     console.log('sendResetPassword');
-  //
-  // }
+
   sendResetPassword(email: string){
     var objEmail = {"email" : email};
+    // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
     return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
-    //console.log('sendResetPassword');
   }
-  // getUserFromEmail(courriel: string): Observable<boolean>{
-  //
-  // }
+
 }
