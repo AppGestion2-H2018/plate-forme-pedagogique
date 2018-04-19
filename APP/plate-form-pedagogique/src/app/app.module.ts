@@ -36,6 +36,9 @@ import { BiblioService } from './service/biblio.service';
 
 import { BiblioDetailComponent } from './biblio/biblio-detail/biblio-detail.component';
 import { BiblioListeComponent } from './biblio/biblio-liste/biblio-liste.component';
+import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement.component';
+import { ListeEvenementsComponent } from './evenement/liste-evenements/liste-evenements.component';
+import { MenuEvenementsComponent } from './evenement/menu-evenements/menu-evenements.component';
 //import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
 
@@ -64,6 +67,9 @@ import { BiblioListeComponent } from './biblio/biblio-liste/biblio-liste.compone
     //AjoutEvenementComponent,
     BiblioDetailComponent,
     BiblioListeComponent,
+    AjoutEvenementComponent,
+    ListeEvenementsComponent,
+    MenuEvenementsComponent,
   ],
   imports: [
     BrowserModule,
