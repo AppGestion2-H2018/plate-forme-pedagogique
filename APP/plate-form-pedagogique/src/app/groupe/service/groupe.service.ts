@@ -17,18 +17,18 @@ export class GroupeService{
   //headers.append('Content-Type', 'application/json');
   //return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupe/creer-groupe', JSON.stringify(newGroupe), {headers : headers});
 //}
-//	deleteGroupe(id : string){
-//		var groupes = this.groupes;
+	deleteGroupe(id : string){
+		var groupes = this.groupes;
 		
-//		this.groupeService.deleteGroupe(id).subscribe(date => {
-//			if(data.n == 1){
-//				for(var i = 0; i < groupes.length; i++;) {
-//					if(groupes[i]._id == id) {
-//						groupes.splice(i,1);
-//					}
-//				}
-//			}
-//		}
+		this.groupeService.deleteGroupe(id).subscribe(date => {
+			if(data.n == 1){
+				for(var i = 0; i < groupes.length; i++) {
+					if(groupes[i]._id == id) {
+						groupes.splice(i,1);
+					}
+				}
+			}
+		}
 
-//	}
+	}
 }
