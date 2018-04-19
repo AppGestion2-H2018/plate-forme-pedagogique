@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Biblio} from "../biblio/biblio";
+import { Biblio} from "../class/biblio";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';

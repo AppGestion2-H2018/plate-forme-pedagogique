@@ -1,0 +1,6 @@
+<h2>Mes groupes </h2>
+<ul class="Groupe">
+  <li *ngFor="let groupe of groupes">
+    <span class="badge">{{groupe.id}}</span> {{groupe.nom}} <button type="button">Modifier</button> <button type="button">Supprimer</button>
+  </li>
+</ul>

@@ -1,8 +1,0 @@
-Test-Biblio
-<ul class="livres">
-        <li *ngFor="let livre of biblio.items"
-            [class.selected]="livre === selectedLivre"
-            (click)="onSelect(livre)">
-            {{livre.volumeInfo.title}}
-        </li>
-    </ul>

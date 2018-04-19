@@ -16,7 +16,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {BiblioComponent} from './biblio/biblio.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
 import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import {ModifierUtilisateurComponent} from './utilisateurs/modifier-utilisateur/modifier-utilisateur.component';
@@ -36,18 +35,27 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
-
 import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BiblioService} from './service/biblio.service';
-import {AjoutEvenementComponent} from './evement/ajout-evenement/ajout-evenement.component';
+
+import {BiblioDetailComponent} from './biblio/biblio-detail/biblio-detail.component';
+import {BiblioListeComponent} from './biblio/biblio-liste/biblio-liste.component';
+import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
+import {ListeEvenementsComponent} from './evenement/liste-evenements/liste-evenements.component';
+import {MenuEvenementsComponent} from './evenement/menu-evenements/menu-evenements.component';
+import {AfficherGroupeComponent} from './groupe/afficher-groupe/afficher-groupe.component';
+import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.component';
+import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
+
+// import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        BiblioComponent,
         ConnecterUtilisateurComponent,
         CreerUtilisateurComponent,
         ModifierUtilisateurComponent,
@@ -62,22 +70,27 @@ import {AjoutEvenementComponent} from './evement/ajout-evenement/ajout-evenement
         ConfirmationReinitialisationMotDePasseComponent,
         CreerGroupeComponent,
         ClassesComponent,
+        CreerGroupeComponent,
+        ClassesComponent,
         AjoutPublicationComponent,
         CreerGroupeComponent,
+        // AjoutEvenementComponent,
+        BiblioDetailComponent,
+        BiblioListeComponent,
         AjoutEvenementComponent,
+        ListeEvenementsComponent,
+        MenuEvenementsComponent,
+        AfficherGroupeComponent,
+        ModifierGroupeComponent,
+        SupprimerGroupeComponent,
     ],
     imports: [
         BrowserModule,
         MatSidenavModule,
         MatToolbarModule,
-        MatCheckboxModule,
         MatGridListModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatRadioModule,
         MatCardModule,
         MatListModule,
-        MatIconModule,
         MatButtonModule,
         BrowserAnimationsModule,
         FormsModule,
