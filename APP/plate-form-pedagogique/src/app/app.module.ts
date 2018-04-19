@@ -56,6 +56,7 @@ import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.compon
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -96,6 +97,7 @@ import {PrincipalResultatsComponent} from './resultats/principal-resultats/princ
         AjoutNotesComponent,
         MenuResultatsComponent,
         PrincipalResultatsComponent,
+        PrincipalEvenementsComponent,
     ],
     imports: [
         BrowserModule,
