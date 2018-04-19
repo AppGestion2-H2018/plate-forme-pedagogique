@@ -11,6 +11,6 @@ export class Groupe {
   classes: number[];
   type: number[];
   utilisateur: number[];
-  blacklist: number;
+  blacklist: number[];
   
 }
