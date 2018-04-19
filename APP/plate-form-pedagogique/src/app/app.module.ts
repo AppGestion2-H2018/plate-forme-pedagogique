@@ -51,6 +51,12 @@ import { AfficherGroupeComponent } from './groupe/afficher-groupe/afficher-group
 import { ModifierGroupeComponent } from './groupe/modifier-groupe/modifier-groupe.component';
 import { SupprimerGroupeComponent } from './groupe/supprimer-groupe/supprimer-groupe.component';
 
+import { AfficherResultatsComponent } from './resultats/afficher-resultats/afficher-resultats.component';
+import { AjoutGrilleComponent } from './resultats/ajout-grille/ajout-grille.component';
+import { AjoutNotesComponent } from './resultats/ajout-notes/ajout-notes.component';
+import { MenuResultatsComponent } from './resultats/menu-resultats/menu-resultats.component';
+import { PrincipalResultatsComponent } from './resultats/principal-resultats/principal-resultats.component';
+
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
 
@@ -85,6 +91,11 @@ import { SupprimerGroupeComponent } from './groupe/supprimer-groupe/supprimer-gr
     AfficherGroupeComponent,
     ModifierGroupeComponent,
     SupprimerGroupeComponent,
+	AfficherResultatsComponent,
+    AjoutGrilleComponent,
+    AjoutNotesComponent,
+    MenuResultatsComponent,
+    PrincipalResultatsComponent,
   ],
   imports: [
     BrowserModule,
