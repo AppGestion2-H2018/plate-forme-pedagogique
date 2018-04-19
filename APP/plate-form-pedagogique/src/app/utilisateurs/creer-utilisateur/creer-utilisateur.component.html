@@ -2,37 +2,18 @@
   <!--creer-utilisateur works!-->
 <!--</p>-->
 
-<!--<div class="example-container">-->
-  <!--<form class="example-container" [formGroup]="options">-->
-    <!--<mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>-->
-    <!--<div>-->
-      <!--<label>Float label: </label>-->
-      <!--<mat-radio-group formControlName="floatLabel">-->
-        <!--<mat-radio-button value="auto">Auto</mat-radio-button>-->
-        <!--<mat-radio-button value="always">Always</mat-radio-button>-->
-        <!--<mat-radio-button value="never">Never</mat-radio-button>-->
-      <!--</mat-radio-group>-->
-    <!--</div>-->
-  <!--</form>-->
+<div class="example-container">
+    <mat-form-field>
+        <input matInput placeholder="Input">
+    </mat-form-field>
 
-  <!--<mat-form-field-->
-          <!--[hideRequiredMarker]="options.value.hideRequired"-->
-          <!--[floatLabel]="options.value.floatLabel">-->
-    <!--<input matInput placeholder="Simple placeholder" required>-->
-  <!--</mat-form-field>-->
+    <mat-form-field>
+        <textarea matInput placeholder="Textarea"></textarea>
+    </mat-form-field>
 
-  <!--<mat-form-field [floatLabel]="options.value.floatLabel">-->
-    <!--<mat-label>Both a label and a placeholder</mat-label>-->
-    <!--<input matInput placeholder="Simple placeholder">-->
-  <!--</mat-form-field>-->
-
-  <!--<mat-form-field-->
-          <!--[hideRequiredMarker]="options.value.hideRequired"-->
-          <!--[floatLabel]="options.value.floatLabel">-->
-    <!--<mat-select required>-->
-      <!--<mat-option>&#45;&#45; None &#45;&#45;</mat-option>-->
-      <!--<mat-option value="option">Option</mat-option>-->
-    <!--</mat-select>-->
-    <!--<mat-placeholder><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> placeholder</i></mat-placeholder>-->
-  <!--</mat-form-field>-->
-<!--</div>-->
+    <mat-form-field>
+        <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
