@@ -1,97 +1,97 @@
-<!--<mat-toolbar color="primary">-->
-    <!--<button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>-->
-    <!--<button mat-button><i class="material-icons">home</i></button>-->
-    <!--<button mat-button><i class="material-icons">people</i></button>-->
-    <!--<button mat-button><i class="material-icons">event</i></button>-->
-    <!--<button mat-button><i class="material-icons">school</i></button>-->
-    <!--<button mat-button><i class="material-icons">account_balance</i></button>-->
-<!--</mat-toolbar>-->
+<mat-toolbar color="primary">
+    <button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>
+    <button mat-button><i class="material-icons">home</i></button>
+    <button mat-button><i class="material-icons">people</i></button>
+    <button mat-button><i class="material-icons">event</i></button>
+    <button mat-button><i class="material-icons">school</i></button>
+    <button mat-button><i class="material-icons">account_balance</i></button>
+</mat-toolbar>
 
-<!--<mat-sidenav-container>-->
-    <!--<mat-sidenav #sidenav>-->
-        <!--<mat-list>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Publications</h3>-->
-                <!--<p matLine>-->
-                    <!--<app-menu-publications></app-menu-publications>-->
-                <!--</p>-->
-            <!--</mat-list-item>-->
-            <!--<mat-divider></mat-divider>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Événements</h3>-->
-                <!--<p matLine><app-menu-evenements></app-menu-evenements></p>-->
-            <!--</mat-list-item>-->
-            <!--<mat-divider></mat-divider>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Groupes</h3>-->
-                <!--<p matLine>&lt;!&ndash;<app-menu-groupes></app-menu-groupes>&ndash;&gt;</p>-->
-            <!--</mat-list-item>-->
-            <!--<mat-divider></mat-divider>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Résultats scolaires</h3>-->
-                <!--<p matLine>&lt;!&ndash;<app-menu-resultats-scolaires></app-menu-resultats-scolaires>&ndash;&gt;</p>-->
-            <!--</mat-list-item>-->
-            <!--<mat-divider></mat-divider>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Bibliothèque</h3>-->
-                <!--<p matLine><app-menu-biblio></app-menu-biblio></p>-->
-            <!--</mat-list-item>-->
-            <!--<mat-divider></mat-divider>-->
-            <!--<mat-list-item>-->
-                <!--<h3 matLine>Carte de menu - Utilisateurs</h3>-->
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-list>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Publications</h3>
+                <p matLine>
+                    <app-menu-publications></app-menu-publications>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Événements</h3>
+                <p matLine><app-menu-evenements></app-menu-evenements></p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Groupes</h3>
+                <p matLine><!--<app-menu-groupes></app-menu-groupes>--></p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Résultats scolaires</h3>
+                <p matLine><!--<app-menu-resultats-scolaires></app-menu-resultats-scolaires>--></p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Bibliothèque</h3>
+                <p matLine><app-menu-biblio></app-menu-biblio></p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Carte de menu - Utilisateurs</h3>
 
-                <!--<p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>-->
+                <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
 
-                <!--<p matLine>-->
-                    <!--<app-menu-utilisateurs>-->
-                        <!--<app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>-->
-                    <!--</app-menu-utilisateurs>-->
-                <!--</p>-->
+                <p matLine>
+                    <app-menu-utilisateurs>
+                        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
+                    </app-menu-utilisateurs>
+                </p>
 
-            <!--</mat-list-item>-->
-        <!--</mat-list>-->
-    <!--</mat-sidenav>-->
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
 
-    <!--<mat-sidenav-content>-->
-        <!--<h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour-->
-            <!--intégrer sur la page d'accueil</h2>-->
+    <mat-sidenav-content>
+        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour
+            intégrer sur la page d'accueil</h2>
 
-        <!--<h3>Publications</h3>-->
-        <!--<app-principal-publications></app-principal-publications>-->
+        <h3>Publications</h3>
+        <app-principal-publications></app-principal-publications>
 
-        <!--<h3>Événements</h3>-->
-        <!--&lt;!&ndash;<app-principal-evenements></app-principal-evenements>&ndash;&gt;-->
+        <h3>Événements</h3>
+        <!--<app-principal-evenements></app-principal-evenements>-->
 
-        <!--<h3>Groupes</h3>-->
-        <!--&lt;!&ndash;<app-principal-groupes></app-principal-groupes>&ndash;&gt;-->
-        <!--<app-afficher-groupe></app-afficher-groupe>-->
-        <!--<h3>Résultats scolaires</h3>-->
-        <!--&lt;!&ndash;<app-principal-resultats-scolaires></app-principal-resultats-scolaires>&ndash;&gt;-->
+        <h3>Groupes</h3>
+        <!--<app-principal-groupes></app-principal-groupes>-->
+        <app-afficher-groupe></app-afficher-groupe>
+        <h3>Résultats scolaires</h3>
+        <!--<app-principal-resultats-scolaires></app-principal-resultats-scolaires>-->
 
-        <!--<h3>Bibliothèque</h3>-->
-        <!--<app-principal-biblio></app-principal-biblio>-->
+        <h3>Bibliothèque</h3>
+        <app-principal-biblio></app-principal-biblio>
 
-        <!--<h3>Utilisateurs</h3>-->
-        <!--<app-principal-utilisateurs></app-principal-utilisateurs>-->
+        <h3>Utilisateurs</h3>
+        <app-principal-utilisateurs></app-principal-utilisateurs>
 
-        <!--<app-connecter-utilisateur></app-connecter-utilisateur>-->
+        <app-connecter-utilisateur></app-connecter-utilisateur>
 
-        <!--<app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>-->
+        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
 
 
-        <!--<h2>Exemple personnalisation du thème</h2>-->
+        <h2>Exemple personnalisation du thème</h2>
 
-        <!--<h2>Exemple de grille que nous pourrions utiliser au besoin</h2>-->
-        <!--<mat-grid-list cols="4" rowHeight="200px">-->
-            <!--<mat-grid-tile-->
-                    <!--*ngFor="let tile of tiles"-->
-                    <!--[colspan]="tile.cols"-->
-                    <!--[rowspan]="tile.rows"-->
-                    <!--[style.background]="tile.color">-->
-                <!--{{tile.text}}-->
-            <!--</mat-grid-tile>-->
-        <!--</mat-grid-list>-->
-    <!--</mat-sidenav-content>-->
-<!--</mat-sidenav-container>-->
+        <h2>Exemple de grille que nous pourrions utiliser au besoin</h2>
+        <mat-grid-list cols="4" rowHeight="200px">
+            <mat-grid-tile
+                    *ngFor="let tile of tiles"
+                    [colspan]="tile.cols"
+                    [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                {{tile.text}}
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
 <app-creer-utilisateur></app-creer-utilisateur>
