@@ -15,5 +15,6 @@ export class PublicationService {
 
   getDateRemise(): Observable<Publication[]> {
     return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/date-de-remise');
-}
+  }
+
 }

@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
         const db = client.db(dbName);
         var sort = {date_publication: -1};
         var requete = {_id: 0, auteur: 1, date_publication: 1, date_remise: 1, titre: 1, contenu: 1, tags: 1, commentaire: 1, fichier: 1};
-        db.collection(collection).find({}, requete).sort(sort).limit(15).toArray(function(err, result) {
+        db.collection(collection).find({}, requete).sort(sort).limit(5).toArray(function(err, result) {
             if (err) return console.log(err)
             console.log(result);
             res.json(result);
@@ -35,7 +35,7 @@ router.get('/date-de-remise', function(req, res, next) {
         const db = client.db(dbName);
         var sort = {date_remise: -1};
         var requete = {_id: 0, auteur: 1, date_publication: -1, date_remise: 1, titre: 1, contenu: 1, tags: 1, commentaire: 1, fichier: 1};
-        db.collection(collection).find({}, requete).sort(sort).limit(15).toArray(function(err, result) {
+        db.collection(collection).find({}, requete).sort(sort).limit(5).toArray(function(err, result) {
             if (err) return console.log(err)
             console.log(result);
             res.json(result);
