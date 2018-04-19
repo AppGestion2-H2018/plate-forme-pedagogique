@@ -18,6 +18,11 @@ export class PrincipalPublicationsComponent implements OnInit {
         .subscribe(publications => this.publications = publications);
 }
 
+getDateRemise(): void {
+  this.publicationService.getDateRemise()
+      .subscribe(publications => this.publications = publications);
+}
+
 ngOnInit() {
   console.log('in ngOnInit');
   this.getPublications();
