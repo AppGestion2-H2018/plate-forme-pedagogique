@@ -19,17 +19,11 @@ export class UtilisateurService {
   getUtilisateur() : Observable<Utilisateur[]> {
       return this.http.get<Utilisateur[]>('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/auth/login');
   }
-  // sendResetPassword() {
-  //     // return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail');
-  //     console.log('sendResetPassword');
-  //
-  // }
+
   sendResetPassword(email: string){
     var objEmail = {"email" : email};
+    // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
     return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
-    //console.log('sendResetPassword');
   }
-  // getUserFromEmail(courriel: string): Observable<boolean>{
-  //
-  // }
+
 }
