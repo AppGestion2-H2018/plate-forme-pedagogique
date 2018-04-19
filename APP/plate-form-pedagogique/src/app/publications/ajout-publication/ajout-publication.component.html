@@ -1,3 +1,34 @@
-<p>
-  ajout-publication works!
-</p>
+
+<h2>Ajout d une publication</h2>
+<div>
+  <label class="labels">Titre :</label>
+  <input class="inputs" name="titre" placeholder="Entrez un titre">
+</div>
+<div>
+  <label class="labels">Contenue : </label>
+  <input class="inputs" name="contenue" placeholder="Entrez votre message">
+</div>
+<div>
+  <div>
+    <label class="labels">Tags : </label>
+    <input type="button" (click)="popup()" value="+">
+  </div>
+
+  <p id="autreTag"></p>
+  <div id="choixTag" class="popup">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <label class="labels">Entrez un tag : </label>
+      <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
+      <button (click)="ajoutTag(); closePopup()">Ajouter</button>
+    </div>
+  </div>
+</div>
+<div>
+  <label class="labels">Vous pouvez choisir un fichier :</label><br>
+  <input class="inputs" type="file" name="fichier[]">
+</div>
+<div>
+  <label class="labels">Vous pouvez choisir une date de remise :</label><br>
+  <input class="inputs" type="date" name="date-remise">
+</div>
