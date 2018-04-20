@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Evenement = require('../../../models/evenement');
 
 /**
  * Informations sur la base de donnée.
@@ -14,55 +13,95 @@ const url = config.database.uri;
 var ObjectId = require('mongodb').ObjectID;
 
 /**
+ * Voir avec Carine si ok : https://angular-material-calendar.bradb.net/
+ */
+
+/**
  * Retourne tous les événements sous format json.
  * URL : http://localhost:3000/api/evenements
- * Philip Drouin
+ * Voir le use (à la ligne 33 pour l'instant) du fichier 'app.js'.
  */
-router.get('/', function (req, res, next) {
-    Evenement.find(function (err, evenement){
-        if (err) return handleError(err, query);
-        res.json(evenement);
+router.get('/', function(req, res, next) {
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).find().toArray(function (erreur, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
     });
 });
 
 /**
  * Retourne un événement sous format json.
  * URL : http://localhost:3000/api/evenements/:evenementId
- * Philip Drouin
  */
-router.get('/:id', function (req, res, next) {
-    var objectId = req.params.id;
-    Evenement.findById(objectId,function(err,evenement){
-        if (err) return res.status(500).send(err);
-        return res.send(evenement);
+router.get('/:evenementId', function (req, res, next) {
+    var evenementId = req.params.evenementId;
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).findOne({_id: ObjectId.createFromHexString(evenementId)}, function (err, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
     });
 });
 
 /**
- * Retourne un événement sous format json selon le id d'un groupe.
- * URL : http://localhost:3000/api/evenements/:evenementId
- * Philip Drouin
+ * Retourne les événements d'un groupe sous format json.
+ * URL : http://localhost:3000/api/evenements/groupe/:groupeId
  */
-router.get('/groupe/:id', function (req, res, next) {
-    var groupeId = req.params.id;
-    Evenement.find({ 'group_id' : groupeId },function(err,evenement){
-        if (err) return res.status(500).send(err);
-        return res.send(evenement);
+router.get('/groupe/:groupeId', function (req, res, next) {
+    var groupe_id = req.params.groupeId;
+    console.log(groupe_id);
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).find({"group_id":groupe_id}).toArray( function (err, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
     });
 });
 
 /**
- * Retourne un événement sous format json selon le id d'un utilisateur.
- * URL : http://localhost:3000/api/evenements/:evenementId
- * Philip Drouin
+ * Retourne les événements d'un utilisateur sous format json.
+ * URL : http://localhost:3000/api/evenements/admin/:adminId
  */
-router.get('/admin/:id', function (req, res, next) {
-    var adminId = req.params.id;
-    Evenement.find({ 'admin_id' : adminId },function(err,evenement){
-        if (err) return res.status(500).send(err);
-        return res.send(evenement);
+router.get('/admin/:adminId', function (req, res, next) {
+    var adminId = req.params.adminId;
+    console.log(adminId);
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).find({"admin_id":adminId}).toArray( function (err, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
     });
 });
+
 
 /**
  * Ajoute un événement sous format json.
@@ -71,7 +110,7 @@ router.get('/admin/:id', function (req, res, next) {
 router.post('/ajout', function(req, res, next){
     var evenement = req.body;
     console.log(evenement);
-    if(!evenement.text || (!evenement.description) || (!evenement.categorie)|| (!evenement.start_date)|| (!evenement.end_date)|| (!evenement.type)||(!evenement.creation_date)||(!evenement.admin_id) ||  (!evenement.group_id)|| (!evenement.active)) {
+    if(!evenement.nom || (!evenement.description)) {
         res.status(400);
         res.json({"erreur" : "Données incorrectes"});
     } else {
@@ -79,7 +118,7 @@ router.post('/ajout', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(nomBD);
-            db.collection('evenements').insertOne(evenement, function(err, result) {
+            db.collection(collection).insertOne(evenement, function(err, result) {
                 if (err) return console.log(err)
                 console.log("Évènement ajouté");
                 res.json(result);
