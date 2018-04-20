@@ -1,3 +1,4 @@
+
 /**
  * Module de routes API créé par Jean-Sébastien Lemelin
  * @type {*|createApplication}
@@ -20,26 +21,59 @@ router.get('/all', function (req, res, next) {
     });
 });
 
-
 /**
  * Enregistrer un groupe
  */
 router.post('/', function(req, res, next) {
     var newGroup = req.body;
-    //CRÉER LE TABLEAU DE CLASSE S'IL Y EN A UN
 
-    //CRÉER LE TABLEAU DE PROGRAMME S'IL EXISTE
 
     //Vérifie si le propriétaire existe.
     Utilisateur.findById(newGroup.proprietaire, function(err, result){
         if(err) return res.status(500).send(err);
+
+        //CRÉER L'OBJET AVEC LES ÉLÉMENTS OBLIGATOIRES
         var groupe = new Groupe({
             proprietaire:newGroup.proprietaire,
             nom:newGroup.nom,
             actif: newGroup.actif,
             est_publique: newGroup.est_publique,
-            commenter: newGroup.commenter
+            commenter: newGroup.commenter,
         });
+
+        //Personaliser les messages d'erreur
+        var error = groupe.validateSync();
+
+        //CRÉER LE TABLEAU D'UTILISATEURS S'IL EXISTE
+        if(newGroup.utilisateurs !== null){
+            groupe.utilisateurs = newGroup.utilisateurs;
+        }
+
+        //CRÉER LE TABLEAU DE PROGRAMME S'IL EXISTE
+        if(newGroup.programmes !== null){
+            groupe.programmes= newGroup.programmes;
+        }
+
+        //CRÉER LE TABLEAU DE CLASSE S'IL EXISTE
+        if(newGroup.classes !== null){
+            groupe.classes= newGroup.classes;
+        }
+
+        //CRÉER LE TABELAU D'ADMIN S'IL EXISTE
+        if(newGroup.admins !== null){
+            groupe.admins = newGroup.admins;
+        }
+
+        //CRÉER LE TABLEAU DE SUPER-ADMIN S'IL EXISTE
+        if(newGroup.super_admins !== null){
+            groupe.super_admins = newGroup.super_admins;
+        }
+
+        //CRÉER LE TABLEAU DE BLACKLIST S'IL EXISTE
+        if(newGroup.blacklist !== null){
+            groupe.blacklist = newGroup.blacklist;
+        }
+
         groupe.save(function (err, result){
             if (err) return res.status(500).send(err);
             res.send(result);
@@ -140,6 +174,5 @@ router.get('/types/:id', function (req, res, next) {
     });
 });
 /************************************ FIN GESTION DES TYPES *****************************/
-
 
 module.exports = router;
