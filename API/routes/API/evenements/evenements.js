@@ -58,6 +58,50 @@ router.get('/:evenementId', function (req, res, next) {
     });
 });
 
+/**
+ * Retourne les événements d'un groupe sous format json.
+ * URL : http://localhost:3000/api/evenements/groupe/:groupeId
+ */
+router.get('/groupe/:groupeId', function (req, res, next) {
+    var groupe_id = req.params.groupeId;
+    console.log(groupe_id);
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).find({"group_id":groupe_id}).toArray( function (err, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
+    });
+});
+
+/**
+ * Retourne les événements d'un utilisateur sous format json.
+ * URL : http://localhost:3000/api/evenements/admin/:adminId
+ */
+router.get('/admin/:adminId', function (req, res, next) {
+    var adminId = req.params.adminId;
+    console.log(adminId);
+    MongoClient.connect(url, function (erreur, client) {
+        assert.equal(null, erreur);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(nomBD);
+
+        db.collection(collection).find({"admin_id":adminId}).toArray( function (err, resultat) {
+            if (erreur) return console.log(erreur)
+            console.log(resultat);
+            res.json(resultat)
+        })
+
+        client.close();
+    });
+});
+
 
 
 /**
@@ -117,7 +161,7 @@ router.post('/ajout', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(nomBD);
-            db.collection('evenements').insertOne(evenement, function(err, result) {
+            db.collection(collection).insertOne(evenement, function(err, result) {
                 if (err) return console.log(err)
                 console.log("Évènement ajouté");
                 res.json(result);
