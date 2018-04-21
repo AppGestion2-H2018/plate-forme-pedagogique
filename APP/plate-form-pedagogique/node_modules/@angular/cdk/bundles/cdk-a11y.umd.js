@@ -1279,11 +1279,9 @@ var ARIA_DESCRIBER_PROVIDER = {
  * @record
  */
 
-// unsupported: template constraints.
 /**
  * This class manages keyboard events for selectable lists. If you pass it a query list
  * of items, it will set the active item correctly when arrow events occur.
- * @template T
  */
 var ListKeyManager = /** @class */ (function () {
     function ListKeyManager(_items) {
@@ -1738,9 +1736,6 @@ var ListKeyManager = /** @class */ (function () {
  * @record
  */
 
-/**
- * @template T
- */
 var ActiveDescendantKeyManager = /** @class */ (function (_super) {
     __extends(ActiveDescendantKeyManager, _super);
     function ActiveDescendantKeyManager() {
@@ -1789,9 +1784,6 @@ var ActiveDescendantKeyManager = /** @class */ (function (_super) {
  * @record
  */
 
-/**
- * @template T
- */
 var FocusKeyManager = /** @class */ (function (_super) {
     __extends(FocusKeyManager, _super);
     function FocusKeyManager() {
