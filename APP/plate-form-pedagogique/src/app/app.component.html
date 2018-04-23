@@ -42,13 +42,6 @@
                 <h3 matLine>Carte de menu - Utilisateurs</h3>
 
                 <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
-
-                <p matLine>
-                    <app-menu-utilisateurs>
-                        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
-                    </app-menu-utilisateurs>
-                </p>
-
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
@@ -56,12 +49,20 @@
     <mat-sidenav-content>
         <div class="container">
 
+
             <p>
                 Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
                 Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
             </p>
 
-            <router-outlet></router-outlet>
+            <div *ngIf="estConnecte; else elseBlock">
+                <router-outlet></router-outlet>
+            </div>
+            <ng-template #elseBlock>
+                <app-connecter-utilisateur></app-connecter-utilisateur>
+            </ng-template>
+
+
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

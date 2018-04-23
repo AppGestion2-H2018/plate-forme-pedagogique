@@ -13,3 +13,5 @@ div.navbar-collapse {
 .container {
     padding: 10px;
 }
+
+.mat-toolbar a { color:white;}
