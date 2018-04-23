@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 
 // Envoie d'un courriel de reinitialisation si l'adresse courriel est valider
 router.post('/sendmail', function (req, res, next) {
-  var objReponse = {'Code' : 0, 'Message':'Un erreur non géré est survenu'};
+  var objReponse = {'Code' : 9, 'Message':'Un erreur non géré est survenu'};
   var email = req.body.email;
 
   Utilisateur.findOne({'courriel': email}, function (err, utilisateur) {
@@ -56,9 +56,10 @@ router.post('/sendmail', function (req, res, next) {
             }
           });
 
+          objReponse = {'Code' : 1, 'Message':'Le courriel a été envoyé avec succès'};
       }
       else{
-          objReponse = {'Code' : 1, 'Message':'Le courriel n\'est pas présent dans la bd'};
+          objReponse = {'Code' : 2, 'Message':'Le courriel n\'est pas présent dans la bd'};
       }
 
       console.log('Réponse : ' + objReponse);
