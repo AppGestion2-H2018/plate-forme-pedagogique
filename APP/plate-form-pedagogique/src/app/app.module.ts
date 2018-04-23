@@ -59,8 +59,9 @@ import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
-import { HomeComponent } from './home/home.component';
+import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -103,7 +104,8 @@ import { AppRoutingModule } from './/app-routing.module';
         PrincipalResultatsComponent,
         PrincipalEvenementsComponent,
         SchedulerComponent,
-        HomeComponent,
+        AccueilComponent,
+        PrincipalGroupesComponent
     ],
     imports: [
         BrowserModule,
