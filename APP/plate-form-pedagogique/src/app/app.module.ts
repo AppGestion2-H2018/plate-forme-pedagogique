@@ -60,6 +60,7 @@ import {PrincipalResultatsComponent} from './resultats/principal-resultats/princ
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -121,6 +122,7 @@ import { HomeComponent } from './home/home.component';
         FormsModule,
         HttpClientModule,
         HttpModule,
+        AppRoutingModule,
     ],
     providers: [UtilisateurService, PublicationService, BiblioService],
     bootstrap: [AppComponent]
