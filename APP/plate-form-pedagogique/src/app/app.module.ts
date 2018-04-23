@@ -59,6 +59,7 @@ import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
+import { HomeComponent } from './home/home.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -101,6 +102,7 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
         PrincipalResultatsComponent,
         PrincipalEvenementsComponent,
         SchedulerComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
