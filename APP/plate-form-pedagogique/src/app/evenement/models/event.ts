@@ -12,7 +12,6 @@ export class Event {
     // @JsonProperty('date_fin')
     end_date: string;
     type: string;
-    creation_date: string;
     admin_id:string;
     group_id: string;
     active: boolean;

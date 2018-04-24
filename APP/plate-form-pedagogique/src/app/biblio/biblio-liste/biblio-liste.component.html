@@ -1,7 +1,5 @@
-<ul class="livres">
-  <li *ngFor="let livre of biblio.items"
-      [class.selected]="livre === selectedLivre"
-      (click)="onSelect(livre)">
+<ul>
+  <li *ngFor="let livre of biblio.items">
     {{livre.volumeInfo.title}}
   </li>
 </ul>

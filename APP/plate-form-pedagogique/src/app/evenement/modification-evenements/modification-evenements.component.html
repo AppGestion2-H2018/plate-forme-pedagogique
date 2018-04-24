@@ -1,0 +1,6 @@
+<h2>Mes évènements </h2>
+<ul class="Groupe">
+  <li *ngFor="let evenement of evenement">
+    <span class="badge">{{evenement.id}}</span> {{evenement.nom}} <button type="button">Modifier</button> <button type="button">Supprimer</button>
+  </li>
+</ul>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Livre} from "../../class/livre";
+import {BiblioService} from "../../service/biblio.service";
+import {Biblio} from "../../class/biblio";
 
 @Component({
   selector: 'app-biblio-detail',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BiblioDetailComponent implements OnInit {
 
-  constructor() { }
+    biblio: Biblio;
+    selectedLivre: Livre;
 
-  ngOnInit() {
-  }
+    constructor(private biblioService: BiblioService) { }
 
+
+    getLivres(): void {
+        this.biblioService.getLivres()
+            .subscribe(resultat => this.biblio = resultat);
+        console.log('in ngOnInit');
+    }
+
+    ngOnInit() {
+        console.log('in ngOnInit');
+        this.getLivres();
+    }
 }
