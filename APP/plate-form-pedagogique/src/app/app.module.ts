@@ -10,7 +10,8 @@ import {
     MatRadioModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
 } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -101,6 +102,7 @@ import {PrincipalResultatsComponent} from './resultats/principal-resultats/princ
         BrowserModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatDatepickerModule,
         MatGridListModule,
         MatCardModule,
         MatListModule,
