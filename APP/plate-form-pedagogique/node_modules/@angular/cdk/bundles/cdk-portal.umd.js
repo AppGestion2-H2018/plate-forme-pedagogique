@@ -100,14 +100,12 @@ function throwNoPortalAttachedError() {
 /**
  * Interface that can be used to generically type a class.
  * @record
- * @template T
  */
 
 /**
  * A `Portal` is something that you want to render somewhere else.
  * It can be attach to / detached from a `PortalOutlet`.
  * @abstract
- * @template T
  */
 var Portal = /** @class */ (function () {
     function Portal() {
@@ -187,7 +185,6 @@ var Portal = /** @class */ (function () {
 }());
 /**
  * A `ComponentPortal` is a portal that instantiates some Component upon attachment.
- * @template T
  */
 var ComponentPortal = /** @class */ (function (_super) {
     __extends(ComponentPortal, _super);
@@ -202,7 +199,6 @@ var ComponentPortal = /** @class */ (function (_super) {
 }(Portal));
 /**
  * A `TemplatePortal` is a portal that represents some embedded template (TemplateRef).
- * @template C
  */
 var TemplatePortal = /** @class */ (function (_super) {
     __extends(TemplatePortal, _super);

@@ -3,6 +3,7 @@ import { Utilisateur } from '../class/utilisateur';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { ReponseAPI } from '../class/reponseAPI';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,10 +24,10 @@ export class UtilisateurService {
   }
 
 
-  sendResetPassword(email: string){
+  sendResetPassword(email: string): Observable<ReponseAPI>{
     var objEmail = {"email" : email};
     // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
-    return this.http.post('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
+    return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
   }
 
 }
