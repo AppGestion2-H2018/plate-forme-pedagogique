@@ -88,7 +88,6 @@ CdkHeaderRowDef.ctorParameters = () => [
  * Data row definition for the CDK table.
  * Captures the header row's template and other row properties such as the columns to display and
  * a when predicate that describes when this row should be used.
- * @template T
  */
 class CdkRowDef extends BaseRowDef {
     /**
@@ -113,7 +112,6 @@ CdkRowDef.ctorParameters = () => [
 /**
  * Context provided to the row cells
  * @record
- * @template T
  */
 
 /**
@@ -425,7 +423,6 @@ const CDK_TABLE_TEMPLATE = `
  * the data to be rendered. The data can be provided either as a data array, an Observable stream
  * that emits the data array to render, or a DataSource with a connect function that will
  * return an Observable stream that emits the data array to render.
- * @template T
  */
 class CdkTable {
     /**

@@ -1005,11 +1005,9 @@ const ARIA_DESCRIBER_PROVIDER = {
  * @record
  */
 
-// unsupported: template constraints.
 /**
  * This class manages keyboard events for selectable lists. If you pass it a query list
  * of items, it will set the active item correctly when arrow events occur.
- * @template T
  */
 class ListKeyManager {
     /**
@@ -1321,9 +1319,6 @@ class ListKeyManager {
  * @record
  */
 
-/**
- * @template T
- */
 class ActiveDescendantKeyManager extends ListKeyManager {
     /**
      * This method sets the active item to the item at the specified index.
@@ -1355,9 +1350,6 @@ class ActiveDescendantKeyManager extends ListKeyManager {
  * @record
  */
 
-/**
- * @template T
- */
 class FocusKeyManager extends ListKeyManager {
     constructor() {
         super(...arguments);

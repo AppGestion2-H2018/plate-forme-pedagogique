@@ -18,7 +18,6 @@
 
 /**
  * @abstract
- * @template T
  */
 var DataSource = /** @class */ (function () {
     function DataSource() {
@@ -33,7 +32,6 @@ var DataSource = /** @class */ (function () {
 
 /**
  * Class to be used to power selecting one or more options from a list.
- * @template T
  */
 var SelectionModel = /** @class */ (function () {
     function SelectionModel(_multiple, initiallySelectedValues, _emitChanges) {
@@ -322,7 +320,6 @@ var SelectionModel = /** @class */ (function () {
  * Event emitted when the value of a MatSelectionModel has changed.
  * \@docs-private
  * @record
- * @template T
  */
 
 /**

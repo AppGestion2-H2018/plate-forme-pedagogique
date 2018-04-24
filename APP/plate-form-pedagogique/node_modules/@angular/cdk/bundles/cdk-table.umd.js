@@ -119,7 +119,6 @@ var CdkHeaderRowDef = /** @class */ (function (_super) {
  * Data row definition for the CDK table.
  * Captures the header row's template and other row properties such as the columns to display and
  * a when predicate that describes when this row should be used.
- * @template T
  */
 var CdkRowDef = /** @class */ (function (_super) {
     __extends(CdkRowDef, _super);
@@ -144,7 +143,6 @@ var CdkRowDef = /** @class */ (function (_super) {
 /**
  * Context provided to the row cells
  * @record
- * @template T
  */
 
 /**
@@ -450,7 +448,6 @@ var CDK_TABLE_TEMPLATE = "\n  <ng-container headerRowPlaceholder></ng-container>
  * Class used to conveniently type the embedded view ref for rows with a context.
  * \@docs-private
  * @abstract
- * @template T
  */
 var RowViewRef = /** @class */ (function (_super) {
     __extends(RowViewRef, _super);
@@ -464,7 +461,6 @@ var RowViewRef = /** @class */ (function (_super) {
  * the data to be rendered. The data can be provided either as a data array, an Observable stream
  * that emits the data array to render, or a DataSource with a connect function that will
  * return an Observable stream that emits the data array to render.
- * @template T
  */
 var CdkTable = /** @class */ (function () {
     function CdkTable(_differs, _changeDetectorRef, elementRef, role) {

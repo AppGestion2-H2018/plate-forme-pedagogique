@@ -70,14 +70,12 @@ function throwNoPortalAttachedError() {
 /**
  * Interface that can be used to generically type a class.
  * @record
- * @template T
  */
 
 /**
  * A `Portal` is something that you want to render somewhere else.
  * It can be attach to / detached from a `PortalOutlet`.
  * @abstract
- * @template T
  */
 class Portal {
     /**
@@ -128,7 +126,6 @@ class Portal {
 }
 /**
  * A `ComponentPortal` is a portal that instantiates some Component upon attachment.
- * @template T
  */
 class ComponentPortal extends Portal {
     /**
@@ -145,7 +142,6 @@ class ComponentPortal extends Portal {
 }
 /**
  * A `TemplatePortal` is a portal that represents some embedded template (TemplateRef).
- * @template C
  */
 class TemplatePortal extends Portal {
     /**

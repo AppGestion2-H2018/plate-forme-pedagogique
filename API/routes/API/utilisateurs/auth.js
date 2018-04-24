@@ -21,18 +21,22 @@ router.get('/moncompte', function (req, res, next) {
     var reponse = {"default": "default"};
 
     // Obtient l'information du Token du client
-    var Token = "";
+    var Token = req.headers.token;
+    console.log("token info : " + Token);
 
     // Obtient l'ID de l'utilisateur actuelle.
-    var DA = 1111111;
+    var DA = req.headers.da;
+
+    console.log("da info : " + DA);
 
     // Effectue la recherche...
-    Utilisateur.find({'da': DA/*, 'access_token': {'remember_token': Token}*/}, {}, function (err, utilisateur) {
+    Utilisateur.find({'da': DA, 'access_token.remember_token': {$eq: Token}}, {}, function (err, utilisateur) {
         if (err) {
+            console.log("erreur : " + err.toString());
             reponse = {"message": "Une erreur est survenue"};
         } else {
             // Vérifier si il y a une réponse et une valeur seulement.
-            if (utilisateur.length === 0) {
+            if (utilisateur == null || utilisateur.length === 0) {
                 reponse = {"message": "Aucun utilisateur de trouvé..."};
             }
             else if (!verificationAccessToken(utilisateur)) // Vérifier si le Token est toujours valide
