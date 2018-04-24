@@ -1,10 +1,11 @@
+
 <mat-toolbar color="primary">
     <button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>
-    <button mat-button><i class="material-icons">home</i></button>
-    <button mat-button><i class="material-icons">people</i></button>
-    <button mat-button><i class="material-icons">event</i></button>
-    <button mat-button><i class="material-icons">school</i></button>
-    <button mat-button><i class="material-icons">account_balance</i></button>
+    <a routerLink="/accueil"><button mat-button><i class="material-icons">home</i></button></a>
+    <a routerLink="/groupes"><button mat-button><i class="material-icons">people</i></button></a>
+    <a routerLink="/evenements"><button mat-button><i class="material-icons">event</i></button></a>
+    <a routerLink="/resultats-scolaires"><button mat-button><i class="material-icons">school</i></button></a>
+    <a routerLink="/bibliotheque"><button mat-button><i class="material-icons">account_balance</i></button></a>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -41,63 +42,27 @@
                 <h3 matLine>Carte de menu - Utilisateurs</h3>
 
                 <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
-
-                <p matLine>
-                    <app-menu-utilisateurs>
-                        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
-                    </app-menu-utilisateurs>
-                </p>
-
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <h2>Chaque équipe possède son composant "principal" qu'il peut utiliser pour tester ses composants ou pour
-            intégrer sur la page d'accueil</h2>
-
-        <h3>Publications</h3>
-        <app-principal-publications></app-principal-publications>
-
-        <h3>Événements</h3>
-        <!--<app-principal-evenements></app-principal-evenements>-->
-
-        <h3>Groupes</h3>
-        <!--<app-principal-groupes></app-principal-groupes>-->
-        <app-afficher-groupe></app-afficher-groupe>
-        <h3>Résultats scolaires</h3>
-        <app-principal-resultats></app-principal-resultats>
-
-        <app-ajout-grille></app-ajout-grille>
-
-        <app-ajout-notes></app-ajout-notes>
-
-        <app-afficher-resultats></app-afficher-resultats>
-
-        <h3>Bibliothèque</h3>
-        <app-principal-biblio></app-principal-biblio>
-
-        <h3>Utilisateurs</h3>
-        <app-principal-utilisateurs></app-principal-utilisateurs>
-
-        <app-connecter-utilisateur></app-connecter-utilisateur>
-
-        <app-recuperer-mot-de-passe></app-recuperer-mot-de-passe>
+        <div class="container">
 
 
-        <h2>Exemple personnalisation du thème</h2>
+            <p>
+                Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
+                Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
+            </p>
 
-        <h2>Exemple de grille que nous pourrions utiliser au besoin</h2>
-        <mat-grid-list cols="4" rowHeight="200px">
-            <mat-grid-tile
-                    *ngFor="let tile of tiles"
-                    [colspan]="tile.cols"
-                    [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-                {{tile.text}}
-            </mat-grid-tile>
-        </mat-grid-list>
+            <div *ngIf="estConnecte; else elseBlock">
+                <router-outlet></router-outlet>
+            </div>
+            <ng-template #elseBlock>
+                <app-connecter-utilisateur></app-connecter-utilisateur>
+            </ng-template>
+
+
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
-
-<app-creer-utilisateur></app-creer-utilisateur>

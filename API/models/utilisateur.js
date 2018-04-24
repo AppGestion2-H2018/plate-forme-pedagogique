@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+    var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var mongooseUniqueValidator = require('mongoose-unique-validator');
@@ -22,8 +22,7 @@ var schema = new Schema({
         token_type: {type: String},
         expires_in: {type: Number},
         created_at: {type: Date}
-    },
-    groupes:[{type:Schema.Types.ObjectId, ref: 'groupe', required: false}]
+    }
 });
 
 //PLugin pour valider un champs unique

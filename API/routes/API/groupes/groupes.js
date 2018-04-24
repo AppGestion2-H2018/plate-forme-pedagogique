@@ -1,3 +1,4 @@
+
 /**
  * Module de routes API créé par Jean-Sébastien Lemelin
  * @type {*|createApplication}
@@ -6,9 +7,10 @@ var express = require('express');
 var router = express.Router();
 var Groupe = require('../../../models/groupe');
 var Utilisateur = require('../../../models/utilisateur');
+var Programme = require('../../../models/programme');
+var Type = require('../../../models/type');
 
-
-
+/**************************************** GESTION DES GROUPES *****************************/
 /**
  * afficher tous les groupes
  */
@@ -21,28 +23,57 @@ router.get('/all', function (req, res, next) {
 
 /**
  * Enregistrer un groupe
- * todo Ajouter des mock de classe, d'usager
- * todo S'assurer que les types et le programme
- * fait partie de l'usager et faire un modèle pour chacun
  */
 router.post('/', function(req, res, next) {
     var newGroup = req.body;
-    //Vérifier si la classe existe
 
-    //Vérifier si le programme existe
-
-    //Vérifier si la
 
     //Vérifie si le propriétaire existe.
     Utilisateur.findById(newGroup.proprietaire, function(err, result){
         if(err) return res.status(500).send(err);
+
+        //CRÉER L'OBJET AVEC LES ÉLÉMENTS OBLIGATOIRES
         var groupe = new Groupe({
             proprietaire:newGroup.proprietaire,
             nom:newGroup.nom,
             actif: newGroup.actif,
             est_publique: newGroup.est_publique,
-            commenter: newGroup.commenter
+            commenter: newGroup.commenter,
         });
+
+        //Personaliser les messages d'erreur
+        var error = groupe.validateSync();
+
+        //CRÉER LE TABLEAU D'UTILISATEURS S'IL EXISTE
+        if(newGroup.utilisateurs !== null){
+            groupe.utilisateurs = newGroup.utilisateurs;
+        }
+
+        //CRÉER LE TABLEAU DE PROGRAMME S'IL EXISTE
+        if(newGroup.programmes !== null){
+            groupe.programmes= newGroup.programmes;
+        }
+
+        //CRÉER LE TABLEAU DE CLASSE S'IL EXISTE
+        if(newGroup.classes !== null){
+            groupe.classes= newGroup.classes;
+        }
+
+        //CRÉER LE TABELAU D'ADMIN S'IL EXISTE
+        if(newGroup.admins !== null){
+            groupe.admins = newGroup.admins;
+        }
+
+        //CRÉER LE TABLEAU DE SUPER-ADMIN S'IL EXISTE
+        if(newGroup.super_admins !== null){
+            groupe.super_admins = newGroup.super_admins;
+        }
+
+        //CRÉER LE TABLEAU DE BLACKLIST S'IL EXISTE
+        if(newGroup.blacklist !== null){
+            groupe.blacklist = newGroup.blacklist;
+        }
+
         groupe.save(function (err, result){
             if (err) return res.status(500).send(err);
             res.send(result);
@@ -95,5 +126,53 @@ router.purge('/es-tusurtabarnik', function (req, res, next) {
         res.json("collection enlevée");
     });
 });
+/************************************* FIN GESTION DES GROUPES *****************************/
+/************************************** GESTION DES PROGRAMMES *****************************/
+
+/**
+ * afficher tous les programmes
+ */
+router.get('/programmes/all', function (req, res, next) {
+    Programme.find(function (err, groupe){
+        if (err) return handleError(err, query);
+        res.json(groupe);
+    });
+});
+
+/**
+ * afficher un programme par son id
+ */
+router.get('/programmes/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Programme.findById(objectId,function (err, programme){
+        if (err) return handleError(err, query);
+        res.json(programme);
+    });
+});
+/************************************ FIN GESTION DES PROGRAMMES *****************************/
+
+/**************************************** GESTION DES TYPES **********************************/
+
+/**
+ * afficher tous les types
+ */
+router.get('/types/all', function (req, res, next) {
+    Type.find(function (err, groupe){
+        if (err) return handleError(err, query);
+        res.json(groupe);
+    });
+});
+
+/**
+ * afficher un type par son id
+ */
+router.get('/types/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Type.findById(objectId,function (err, type){
+        if (err) return handleError(err, query);
+        res.json(type);
+    });
+});
+/************************************ FIN GESTION DES TYPES *****************************/
 
 module.exports = router;
