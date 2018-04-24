@@ -1,67 +1,69 @@
-<mat-toolbar color="primary">
-    <button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>
-    <a routerLink="/accueil"><button mat-button><i class="material-icons">home</i></button></a>
-    <a routerLink="/groupes"><button mat-button><i class="material-icons">people</i></button></a>
-    <a routerLink="/evenements"><button mat-button><i class="material-icons">event</i></button></a>
-    <a routerLink="/resultats-scolaires"><button mat-button><i class="material-icons">school</i></button></a>
-    <a routerLink="/bibliotheque"><button mat-button><i class="material-icons">account_balance</i></button></a>
-</mat-toolbar>
+<!--<mat-toolbar color="primary">-->
+    <!--<button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>-->
+    <!--<a routerLink="/accueil"><button mat-button><i class="material-icons">home</i></button></a>-->
+    <!--<a routerLink="/groupes"><button mat-button><i class="material-icons">people</i></button></a>-->
+    <!--<a routerLink="/evenements"><button mat-button><i class="material-icons">event</i></button></a>-->
+    <!--<a routerLink="/resultats-scolaires"><button mat-button><i class="material-icons">school</i></button></a>-->
+    <!--<a routerLink="/bibliotheque"><button mat-button><i class="material-icons">account_balance</i></button></a>-->
+<!--</mat-toolbar>-->
 
-<mat-sidenav-container>
-    <mat-sidenav #sidenav>
-        <mat-list>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Publications</h3>
-                <p matLine>
-                    <app-menu-publications></app-menu-publications>
-                </p>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Événements</h3>
-                <p matLine><app-menu-evenements></app-menu-evenements></p>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Groupes</h3>
-                <p matLine><!--<app-menu-groupes></app-menu-groupes>--></p>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Résultats scolaires</h3>
-                <p matLine><app-menu-resultats></app-menu-resultats></p>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Bibliothèque</h3>
-                <p matLine><app-menu-biblio></app-menu-biblio></p>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-                <h3 matLine>Carte de menu - Utilisateurs</h3>
+<!--<mat-sidenav-container>-->
+    <!--<mat-sidenav #sidenav>-->
+        <!--<mat-list>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Publications</h3>-->
+                <!--<p matLine>-->
+                    <!--<app-menu-publications></app-menu-publications>-->
+                <!--</p>-->
+            <!--</mat-list-item>-->
+            <!--<mat-divider></mat-divider>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Événements</h3>-->
+                <!--<p matLine><app-menu-evenements></app-menu-evenements></p>-->
+            <!--</mat-list-item>-->
+            <!--<mat-divider></mat-divider>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Groupes</h3>-->
+                <!--<p matLine>&lt;!&ndash;<app-menu-groupes></app-menu-groupes>&ndash;&gt;</p>-->
+            <!--</mat-list-item>-->
+            <!--<mat-divider></mat-divider>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Résultats scolaires</h3>-->
+                <!--<p matLine><app-menu-resultats></app-menu-resultats></p>-->
+            <!--</mat-list-item>-->
+            <!--<mat-divider></mat-divider>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Bibliothèque</h3>-->
+                <!--<p matLine><app-menu-biblio></app-menu-biblio></p>-->
+            <!--</mat-list-item>-->
+            <!--<mat-divider></mat-divider>-->
+            <!--<mat-list-item>-->
+                <!--<h3 matLine>Carte de menu - Utilisateurs</h3>-->
 
-                <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
-            </mat-list-item>
-        </mat-list>
-    </mat-sidenav>
+                <!--<p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>-->
+            <!--</mat-list-item>-->
+        <!--</mat-list>-->
+    <!--</mat-sidenav>-->
 
-    <mat-sidenav-content>
-        <div class="container">
-
-
-            <p>
-                Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
-                Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
-            </p>
-
-            <div *ngIf="estConnecte; else elseBlock">
-                <router-outlet></router-outlet>
-            </div>
-            <ng-template #elseBlock>
-                <app-connecter-utilisateur></app-connecter-utilisateur>
-            </ng-template>
+    <!--<mat-sidenav-content>-->
+        <!--<div class="container">-->
 
 
-        </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+            <!--<p>-->
+                <!--Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>-->
+                <!--Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.-->
+            <!--</p>-->
+
+            <!--<div *ngIf="estConnecte; else elseBlock">-->
+                <!--<router-outlet></router-outlet>-->
+            <!--</div>-->
+            <!--<ng-template #elseBlock>-->
+                <!--<app-connecter-utilisateur></app-connecter-utilisateur>-->
+            <!--</ng-template>-->
+
+
+        <!--</div>-->
+    <!--</mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+<app-creer-utilisateur></app-creer-utilisateur>

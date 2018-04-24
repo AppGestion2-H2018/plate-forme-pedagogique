@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UtilisateurService} from '../../service/utilisateur.service';
+import {Utilisateur} from '../../class/utilisateur';
 
 @Component({
-  selector: 'app-creer-utilisateur',
-  templateUrl: './creer-utilisateur.component.html',
-  styleUrls: ['./creer-utilisateur.component.css']
+    selector: 'app-creer-utilisateur',
+    templateUrl: './creer-utilisateur.component.html',
+    styleUrls: ['./creer-utilisateur.component.css']
 })
 export class CreerUtilisateurComponent implements OnInit {
 
-  constructor() { }
+    utilisateur: Utilisateur;
 
-  ngOnInit() {
-  }
+    constructor(private utilisateurService: UtilisateurService) {
+
+        this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe();
+    }
+
+    ngOnInit() {
+    }
 
 }
