@@ -1,0 +1,11 @@
+.example-card {
+    max-width: 600px;
+    margin-bottom:25px;
+}
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
