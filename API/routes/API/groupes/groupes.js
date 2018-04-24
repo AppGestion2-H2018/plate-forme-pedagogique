@@ -114,7 +114,11 @@ router.delete('/:idGroupe', function (req, res, next) {
     var idGroupe = req.params.idGroupe;
     Groupe.remove({'_id': idGroupe}, function(err, result) {
         if (err) return handleError(err, query);
-        res.json(result);
+        if(result.n == 0){
+            res.json({code:0,message:'Aucun enregistrement'});
+        }else{
+            res.json({code:1,message:'Aucun enregistrement'});
+        }
     });
 });
 
@@ -176,5 +180,29 @@ router.get('/types/:id', function (req, res, next) {
     });
 });
 /************************************ FIN GESTION DES TYPES *****************************/
+
+/**************************************** GESTION DES CLASSES**********************************/
+
+/**
+ * afficher tous les types
+ */
+router.get('/classes/all', function (req, res, next) {
+    Type.find(function (err, classe){
+        if (err) return handleError(err, query);
+        res.json(classe);
+    });
+});
+
+/**
+ * afficher un type par son id
+ */
+router.get('/classes/:id', function (req, res, next) {
+    var objectId = req.params.id;
+    Type.findById(objectId,function (err, classe){
+        if (err) return handleError(err, query);
+        res.json(classe);
+    });
+});
+/************************************ FIN GESTION DES CLASSES *****************************/
 
 module.exports = router;
