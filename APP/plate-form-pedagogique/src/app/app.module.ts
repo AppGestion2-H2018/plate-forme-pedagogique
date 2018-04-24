@@ -11,7 +11,8 @@ import {
     MatRadioModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
 } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -59,6 +60,9 @@ import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -101,11 +105,14 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
         PrincipalResultatsComponent,
         PrincipalEvenementsComponent,
         SchedulerComponent,
+        AccueilComponent,
+        PrincipalGroupesComponent
     ],
     imports: [
         BrowserModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatDatepickerModule,
         MatGridListModule,
         MatCardModule,
         MatListModule,
@@ -119,6 +126,7 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
         FormsModule,
         HttpClientModule,
         HttpModule,
+        AppRoutingModule,
     ],
     providers: [UtilisateurService, PublicationService, BiblioService],
     bootstrap: [AppComponent]
