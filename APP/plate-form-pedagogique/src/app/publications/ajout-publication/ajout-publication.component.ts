@@ -16,27 +16,43 @@ export class AjoutPublicationComponent implements OnInit {
 
   constructor(private publicationService: PublicationService) { }
 
-  popup() {
-      var popup = document.getElementById('choixTag');
-      var focus = document.getElementById('texteTag').focus();
-      popup.style.display = "block";
-  }
-  closePopup() {
-      var popup = document.getElementById('choixTag');
-      popup.style.display = "none";
-      window.onclick = function(event) {
-          if (event.target == popup) {
-              popup.style.display = "none";
-          }
-      };
-  }
-  ajoutTag() {
-    var autreTag = document.getElementById('autreTag');
-    console.log(this.values);
-    this.values.push(this.value);
-    autreTag.innerHTML = autreTag.innerHTML + ' ' + this.value;
-    this.value = '';
-  }
+    popup() {
+        var popup = document.getElementById('choixTag');
+        var focus = document.getElementById('texteTag').focus();
+        popup.style.display = "block";
+    }
+    closePopup() {
+        var popup = document.getElementById('choixTag');
+        popup.style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+    ajoutTag() {
+        var autreTag = document.getElementById('autreTag');
+        console.log(this.values);
+        this.values.push(this.value);
+        autreTag.innerHTML = autreTag.innerHTML + ' ' + this.value;
+        this.value = '';
+    }
+
+    popupGroup() {
+        var popup = document.getElementById('allGroup');
+        popup.style.display = "block";
+    }
+    closePopupGroup() {
+        var popup = document.getElementById('allGroup');
+        popup.style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+
+
 
 
   ngOnInit() {

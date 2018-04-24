@@ -10,22 +10,19 @@ import {Utilisateur} from '../../class/utilisateur';
 export class ConnecterUtilisateurComponent implements OnInit {
 
   utilisateures: Utilisateur[];
-  da: string;
-  motdepasse: string;
+  da: number;
+  motdepasse: number;
 
   constructor(private utilisateurservie: UtilisateurService) { }
 
 
   login(): void{
 
-    console.log(this.da);
-    console.log(this.motdepasse);
+    this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe();
   }
-    getUtilisateurs():void{
-      this.utilisateurservie.getUtilisateur().subscribe(utilisateures => {this.utilisateures = utilisateures
-      });
-    }
+
+
     ngOnInit() {
-        this.getUtilisateurs();
+
     }
 }

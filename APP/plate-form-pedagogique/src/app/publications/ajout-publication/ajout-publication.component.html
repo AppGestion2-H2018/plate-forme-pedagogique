@@ -25,6 +25,19 @@
   </div>
 </div>
 <div>
+  <input type="button" name="groupe[]" (click)="popupGroup()" value="Choisir groupes">
+  <div class="popup" id="allGroup">
+    <div class="popup-content">
+      <span class="close" (click)="closePopupGroup()">&times;</span>
+      <ul>
+        <li *ngFor="let group of utilisateur">
+          <input type="checkbox" name="group" value="{{group}}">
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div>
   <label class="labels">Vous pouvez choisir un fichier :</label><br>
   <input class="inputs" type="file" name="fichier[]">
 </div>

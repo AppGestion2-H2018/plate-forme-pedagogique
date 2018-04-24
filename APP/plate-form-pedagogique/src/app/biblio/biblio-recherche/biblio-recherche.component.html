@@ -1,3 +1,11 @@
-<p>
-  biblio-recherche works!
-</p>
+<input [(ngModel)]="recherche" placeholder="Rechercher">
+
+<div *ngIf="recherche != null && recherche != ''">
+  <ul class="livres">
+    <li *ngFor="let livre of biblio.items"
+        [class.selected]="livre === selectedLivre"
+        (click)="onSelect(livre)">
+      {{livre.volumeInfo.title}}
+    </li>
+  </ul>
+</div>
