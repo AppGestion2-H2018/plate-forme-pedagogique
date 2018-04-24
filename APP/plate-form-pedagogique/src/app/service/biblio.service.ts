@@ -9,8 +9,8 @@ export class BiblioService {
 
     constructor(private http: HttpClient) { }
 
-    getLivres(): Observable<Biblio> {
-        return this.http.get<Biblio>('https://www.googleapis.com/books/v1/volumes?q=albert');
+    getLivres(url: string): Observable<Biblio> {
+        return this.http.get<Biblio>(url);
     }
 }
 
