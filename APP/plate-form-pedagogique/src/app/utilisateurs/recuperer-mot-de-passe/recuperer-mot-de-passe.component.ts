@@ -21,8 +21,13 @@ export class RecupererMotDePasseComponent implements OnInit {
     // Valide si le courriel est présent dans la bd
 
     // Appelle la fonction d'envoi de courriel du server
-    this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
-    console.log(this.reponseAPI);
+    //this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
+    //console.log(this.reponseAPI);
+    this.utilisateurService.sendResetPassword(this.courriel).subscribe(
+      function(){
+        reponseAPI => this.reponseAPI = reponseAPI;
+        console.log(this.reponseAPI);
+      });
   }
 
   ngOnInit() {

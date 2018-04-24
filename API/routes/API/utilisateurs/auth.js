@@ -22,12 +22,9 @@ router.get('/moncompte', function (req, res, next) {
 
     // Obtient l'information du Token du client
     var Token = req.headers.token;
-    console.log("token info : " + Token);
 
     // Obtient l'ID de l'utilisateur actuelle.
     var DA = req.headers.da;
-
-    console.log("da info : " + DA);
 
     // Effectue la recherche...
     Utilisateur.find({'da': DA, 'access_token.remember_token': {$eq: Token}}, {}, function (err, utilisateur) {
@@ -44,8 +41,6 @@ router.get('/moncompte', function (req, res, next) {
                 reponse = {"message": "La connection n'est plus valide, redirection vers la page de connection!"};
             }
             else {
-
-                //TODO: Compléter la validation du token si il est valide!
 
                 // Générer et donner le nouveau token
                 var nouveau_token = genererAccessToken();
@@ -144,6 +139,18 @@ router.get('/login/:da', function (req, res, next) {
     });
 });
 
+//Renouvelle mon token
+router.get('/renouvelle', function (req, res, next) {
+    // Obtient le token
+    var oldToken = req.headers.token;
+    // Obtient le DA
+    var DA = req.headers.da;
+
+    obtenirTokenUtilisateurBD(DA).then(function (token) {
+        res.json(token);
+    });
+});
+
 // Obtient les informations de l'usager avec son DA
 router.get('/:da', function (req, res, next) {
     Utilisateur.find({'da': req.params.da}, function (err, utilisateur) {
@@ -235,4 +242,25 @@ function ajouterTokenDansJson(json, token) {
 
 function secondesEnJours(secondes) {
     return ((secondes / 60) / 60) / 24;
+}
+
+function obtenirTokenUtilisateurBD(DA) {
+    // Effectue la recherche...
+    return new Promise(function (resolve, reject) {
+        Utilisateur.findOne({da: DA}, {_id: false, "access_token": true}, function (err, utilisateurToken) {
+            var reponse = null;
+            if (err) {
+                reponse = null;
+            } else {
+                // Vérifier si il y a une réponse et une valeur seulement.
+                if (utilisateurToken == null || utilisateurToken.length === 0) {
+                    reponse = null;
+                }
+                else {
+                    reponse = utilisateurToken;
+                }
+            }
+            resolve(reponse);
+        });
+    });
 }
