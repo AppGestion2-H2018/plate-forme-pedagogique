@@ -63,6 +63,7 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
+import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -106,7 +107,8 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
         PrincipalEvenementsComponent,
         SchedulerComponent,
         AccueilComponent,
-        PrincipalGroupesComponent
+        PrincipalGroupesComponent,
+        ModificationEvenementsComponent
     ],
     imports: [
         BrowserModule,
