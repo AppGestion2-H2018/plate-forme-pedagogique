@@ -3,6 +3,7 @@ import { Publication } from './publication';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import {MatCardModule} from '@angular/material/card';
 
 @Injectable()
 export class PublicationService {
