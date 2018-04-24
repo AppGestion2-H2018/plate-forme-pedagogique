@@ -12,28 +12,20 @@ export class GroupeService{
    getGroupes(): Observable<Groupe[]> {
 		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe');
 	}
-//	addGroupe(newGroupe: Groupe) {
+	addGroupe(newGroupe: Groupe) {
   //var headers = new Headers();
   //headers.append('Content-Type', 'application/json');
   //return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupe/creer-groupe', JSON.stringify(newGroupe), {headers : headers});
-//}
+}
 	getGroupe(id : string){
-		const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupe/${id}';
-		return this.http.get<Groupe>(url).pipe(
-			tap(_ => this.log('fetched groupe id=${id}')),
-			catchError(this.handleError<Groupe>('getGroupe id=${id}'))
-		);	
+//		const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupe/${id}';
+//		return this.http.get<Groupe>(url).pipe(
+//			tap(_ => this.log('fetched groupe id=${id}')),
+//			catchError(this.handleError<Groupe>('getGroupe id=${id}'))
+//		);	
 	}
 	deleteGroupe(id : string){
-		var groupes = this.groupes;
-		this.groupeService.deleteGroupe(id).subscribe(data => {
-			if(data.n == 1){
-				for(var i = 0; i < groupes.length; i++) {
-					if(groupes[i]._id == id) {
-						groupes.splice(i,1);
-					}
-				}
-			}
-		)}
+		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/' + id);
 	}
 }
+
