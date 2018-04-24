@@ -1,4 +1,10 @@
 <!-- Source : https://www.wunderlist.com/forgotpassword -->
+<div class="errors">
+  <div role="alert" class="message">
+    Nous n’avons trouvé aucun compte associé à cette adresse e-mail. Veuillez réessayer ou entrer un autre adresse.
+  </div>
+</div>
+
 <div class="card forgot-password">
   <form class="auth-form forgot-password">
     <div class="row labels">
@@ -36,6 +42,13 @@
       <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" (click)="forgotpassword()"/>
     </div>
   </form>
+
+  <div class="auth-form forgot-password-success">
+    <div class="row labels">
+      <h2>Réinitialiser le mot de passe</h2>
+      <h3>Veuillez consulter vos e-mails pour lire des instructions concernant la réinitialisation de votre mot de passe.</h3>
+    </div>
+  </div>
 
   <span class="link login">
     Vous avez déjà un compte ?

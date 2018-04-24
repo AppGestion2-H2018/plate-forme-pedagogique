@@ -12,7 +12,8 @@
   <label>Tags : </label>{{publication.tags}}
 </div>-->
 
-
+<button mat-raised-button (click)="getPublications()">Trier par date de publication</button>
+<button mat-raised-button (click)="getDateRemise()">Trier par date de remise</button>
 
 <div class="publications"> 
     <ul class="publications">
@@ -28,4 +29,5 @@
           / <span>Fichier(s): {{publication.fichier}}</span>
     </li>
   </ul>
+    <app-ajout-publication></app-ajout-publication>
 </div>

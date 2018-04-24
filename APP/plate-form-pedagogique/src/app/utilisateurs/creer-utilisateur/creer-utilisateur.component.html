@@ -1,3 +1,48 @@
-<p>
-  creer-utilisateur works!
-</p>
+<!--<p>-->
+<!--creer-utilisateur works!-->
+<!--</p>-->
+
+<div class="example-container">
+    <mat-form-field>
+        <input matInput placeholder="DA">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Prénom">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Nom">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Courriel">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Nom">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea matInput placeholder="Textarea"></textarea>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
