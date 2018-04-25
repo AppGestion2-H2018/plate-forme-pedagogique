@@ -17,7 +17,7 @@ export class BiblioDetailComponent implements OnInit {
 
 
     getLivres(): void {
-        this.biblioService.getLivres()
+        this.biblioService.getLivres('https://www.googleapis.com/books/v1/volumes?q=Albert')
             .subscribe(resultat => this.biblio = resultat);
         console.log('in ngOnInit');
     }
