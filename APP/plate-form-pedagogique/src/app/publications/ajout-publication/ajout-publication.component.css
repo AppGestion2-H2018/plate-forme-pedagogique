@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 .popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -33,7 +34,6 @@
     text-decoration: none;
     cursor: pointer;
 }
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 html{    background:url(http://thekitemap.com/images/feedback-img.jpg) no-repeat;
     background-size: cover;
