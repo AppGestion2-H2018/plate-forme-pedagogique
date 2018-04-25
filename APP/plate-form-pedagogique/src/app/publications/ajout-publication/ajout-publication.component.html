@@ -1,47 +1,65 @@
-
 <h2>Ajout d une publication</h2>
-<div>
-  <label class="labels">Titre :</label>
-  <input class="inputs" name="titre" placeholder="Entrez un titre">
-</div>
-<div>
-  <label class="labels">Contenue : </label>
-  <input class="inputs" name="contenue" placeholder="Entrez votre message">
-</div>
-<div>
-  <div>
-    <label class="labels">Tags : </label>
-    <input type="button" (click)="popup()" value="+">
+<form method="post" action="/ajouter" (ngSubmit)="publier()" id="form-main">
+  <div id="form-div">
+    <div>
+      <label class="labels">*Titre:</label>
+      <div class="inputs">
+        <input name="titre" placeholder="Entrez un titre" required>
+      </div>
+    </div>
+    <div>
+      <label class="labels">*Contenue: </label>
+      <div class="inputs">
+        <input name="contenue" placeholder="Entrez votre message" required>
+      </div>
+    </div>
+    <div>
+      <div>
+        <label class="labels">Tags: </label>
+        <div class="inputs">
+          <input type="button" class="button" (click)="popup()" value="+">
+        </div>
+      </div>
+
+      <p id="autreTag"></p>
+      <div id="choixTag" class="popup">
+        <div class="popup-content">
+          <span class="close" (click)="closePopup()">&times;</span>
+          <label class="labels">Entrez un tag : </label>
+          <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
+          <input type="button" class="button" (click)="ajoutTag(); closePopup()" value="Ajouter">
+        </div>
+      </div>
+    </div>
+    <div>
+      <label>*Choix du groupe:</label>
+      <div class="inputs">
+        <input class="button" type="button" name="groupe[]" (click)="popupGroup()" value="Choisir groupes">
+      </div>
+      <div class="popup" id="allGroup">
+        <div class="popup-content">
+          <span class="close" (click)="closePopupGroup()">&times;</span>
+          <ul>
+            <li *ngFor="let utilisateur of getUtilisateurLogin('1633265')">
+              <label class="labels">Choisissez vos groupes : </label>
+              <input *ngFor="let groupe of utilisateur.groupes" type="checkbox" name="group" value="{{groupe}}">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label class="labels">Choix de fichier :</label><br>
+      <input class="button" type="file" name="fichier[]" id="fichier" (change)="fileChange($event)">
+    </div>
+    <div>
+      <label class="labels">Date de remise :</label><br>
+      <input class="inputs" type="date" name="date-remise">
+    </div>
+    <br>
+    <div>
+      <input class="inputs" type="submit" value="Publier !" id="button-blue">
+    </div>
   </div>
 
-  <p id="autreTag"></p>
-  <div id="choixTag" class="popup">
-    <div class="popup-content">
-      <span class="close" (click)="closePopup()">&times;</span>
-      <label class="labels">Entrez un tag : </label>
-      <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
-      <button (click)="ajoutTag(); closePopup()">Ajouter</button>
-    </div>
-  </div>
-</div>
-<div>
-  <input type="button" name="groupe[]" (click)="popupGroup()" value="Choisir groupes">
-  <div class="popup" id="allGroup">
-    <div class="popup-content">
-      <span class="close" (click)="closePopupGroup()">&times;</span>
-      <ul>
-        <li *ngFor="let group of utilisateur">
-          <input type="checkbox" name="group" value="{{group}}">
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div>
-  <label class="labels">Vous pouvez choisir un fichier :</label><br>
-  <input class="inputs" type="file" name="fichier[]">
-</div>
-<div>
-  <label class="labels">Vous pouvez choisir une date de remise :</label><br>
-  <input class="inputs" type="date" name="date-remise">
-</div>
+</form>
