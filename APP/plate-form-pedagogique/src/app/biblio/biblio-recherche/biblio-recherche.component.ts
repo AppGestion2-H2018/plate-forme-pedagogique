@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnChanges, Input, SimpleChanges} from '@angular/core';
 import {Biblio} from "../../class/biblio";
 import {BiblioService} from "../../service/biblio.service";
 import {Livre} from "../../class/livre";
@@ -10,26 +10,9 @@ import {Livre} from "../../class/livre";
 })
 export class BiblioRechercheComponent implements OnInit {
 
-    biblio: Biblio;
-    selectedLivre: Livre;
-    recherche: string;
-
-    constructor(private biblioService: BiblioService) { }
-
-    onSelect(livre: Livre): void {
-        this.selectedLivre = livre;
-        console.log(this.selectedLivre);
-    }
-
-    getLivres(): void {
-        this.biblioService.getLivres()
-            .subscribe(resultat => this.biblio = resultat);
-        console.log('in ngOnInit');
-    }
+    constructor() { }
 
     ngOnInit() {
         console.log('in ngOnInit');
-        this.getLivres();
     }
-
 }

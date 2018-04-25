@@ -63,7 +63,9 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
+import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
+
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -108,7 +110,8 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
         SchedulerComponent,
         AccueilComponent,
         PrincipalGroupesComponent,
-        AccueilPublicationsComponent
+        ModificationEvenementsComponent,
+        AccueilPublicationsComponent,
     ],
     imports: [
         BrowserModule,

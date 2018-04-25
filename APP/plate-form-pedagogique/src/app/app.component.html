@@ -7,6 +7,7 @@
     <a routerLink="/bibliotheque"><button mat-button><i class="material-icons">account_balance</i></button></a>
 </mat-toolbar>
 
+
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
         <mat-list>
@@ -40,14 +41,24 @@
             <mat-list-item>
                 <h3 matLine>Carte de menu - Utilisateurs</h3>
 
+    <mat-sidenav-content>
+
+        <div class="container">
+
                 <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
 
+
     <mat-sidenav-content>
-        
         <div class="container">
+
+
+            <p>
+                Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
+                Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
+            </p>
 
 
 

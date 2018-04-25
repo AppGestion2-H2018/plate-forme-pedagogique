@@ -4,17 +4,18 @@ import { PublicationService } from '../publication.service';
 import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
-  selector: 'app-ajout-publication',
-  templateUrl: './ajout-publication.component.html',
-  styleUrls: ['./ajout-publication.component.css']
+    selector: 'app-ajout-publication',
+    templateUrl: './ajout-publication.component.html',
+    styleUrls: ['./ajout-publication.component.css']
 })
 export class AjoutPublicationComponent implements OnInit {
+    form: any;
 
-  publication: Publication[];
-  value;
-  values : Array<string> = new Array();
+    publication: Publication[];
+    value;
+    values : Array<string> = new Array();
 
-  constructor(private publicationService: PublicationService) { }
+    constructor(private publicationService: PublicationService) { }
 
     popup() {
         var popup = document.getElementById('choixTag');
@@ -51,11 +52,32 @@ export class AjoutPublicationComponent implements OnInit {
             }
         }
     }
+    fileChange(event){
+        let reader = new FileReader();
+        if(event.target.files && event.target.files.length > 0) {
+            let file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.form.get('fichier').setValue({
+                    filename: file.name,
+                    filetype: file.type,
+                    value: reader.result.split(',')[1]
+                })
+            };
+        }
+    }
+
+    publier(){
+        /*var request = document.getElementById('fichier');
+        var fichier =*/
+
+    }
 
 
 
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
 
 }

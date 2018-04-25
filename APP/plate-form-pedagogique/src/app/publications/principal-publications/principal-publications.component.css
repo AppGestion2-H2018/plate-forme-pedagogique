@@ -9,3 +9,14 @@
 .alignright {
     float: right;
 }
+.ajout {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    color: red;
+    z-index: 100;
+}
+.box {
+    position: relative;
+    width: 100%;
+}

@@ -1,5 +1,6 @@
-<div class="publications">
+<div class="publications box">
     <ul class="publications">
+        <a routerLink="/publications/ajout"><button mat-button><i class="material-icons ajout">alarm_add</i></button></a>
         <div *ngFor="let publication of publications">
             <mat-card class="example-card">
                 <mat-card-header>
@@ -37,4 +38,5 @@
             </mat-card>
         </div>
     </ul>
+
 </div>
