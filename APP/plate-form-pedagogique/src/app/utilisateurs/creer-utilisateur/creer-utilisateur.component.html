@@ -1,48 +1,65 @@
-<!--<p>-->
-<!--creer-utilisateur works!-->
-<!--</p>-->
+<!--<div class="example-container">-->
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="DA">-->
+<!--</mat-form-field>-->
+<!--<br>-->
 
-<div class="example-container">
-    <mat-form-field>
-        <input matInput placeholder="DA">
-    </mat-form-field>
-    <br>
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Prénom">-->
+<!--</mat-form-field>-->
+<!--<br>-->
 
-    <mat-form-field>
-        <input matInput placeholder="Prénom">
-    </mat-form-field>
-    <br>
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Nom">-->
+<!--</mat-form-field>-->
+<!--<br>-->
 
-    <mat-form-field>
-        <input matInput placeholder="Nom">
-    </mat-form-field>
-    <br>
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Courriel">-->
+<!--</mat-form-field>-->
+<!--<br>-->
 
-    <mat-form-field>
-        <input matInput placeholder="Courriel">
-    </mat-form-field>
-    <br>
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Nom">-->
+<!--</mat-form-field>-->
+<!--<br>-->
 
-    <mat-form-field>
-        <input matInput placeholder="Nom">
-    </mat-form-field>
-    <br>
+<!--</div>-->
+<h2>Hello {{utilisateur.nom}}</h2>
+<form (submit)="register($event)">
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.da" name="utilisateur.da" class="form-control" placeholder="Numéro de DA">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.nom" name="utilisateur.nom" class="form-control" placeholder="Nom">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.prenom" name="utilisateur.prenom" class="form-control" placeholder="Prénom">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.courriel" name="utilisateur.courriel" class="form-control" placeholder="Courriel">
+    </div>
+    <div class="form-group">
+        <input type="date" [(ngModel)]="utilisateur.datedenaissance" name="utilisateur.datedenaissance" class="form-control" placeholder="Date de naissance">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.codepermanent" name="utilisateur.codepermanent" class="form-control" placeholder="Code permanent">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.programme" name="utilisateur.programme" class="form-control" placeholder="Programme">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.sexe" name="utilisateur.sexe" class="form-control" placeholder="Sexe">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.role" name="utilisateur.role" class="form-control" placeholder="Rôle">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.motdepasse" name="utilisateur.motdepasse" class="form-control" placeholder="Mot de passe">
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)]="utilisateur.photo" name="utilisateur.photo" class="form-control" placeholder="Photo">
+    </div>
 
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
-    </mat-form-field>
-    <br>
-
-    <mat-form-field>
-        <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-</div>
+    <input type="submit" class="button" value="Enregistrer"/>
+</form>

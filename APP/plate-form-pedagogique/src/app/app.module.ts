@@ -64,6 +64,7 @@ import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.compon
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -73,8 +74,6 @@ import { ModificationEvenementsComponent } from './evenement/modification-evenem
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
-
-
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
