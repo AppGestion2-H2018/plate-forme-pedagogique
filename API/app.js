@@ -12,12 +12,10 @@ var bibliothequeRouter = require('./routes/API/bibliotheque/bibliotheque');
 var evenementsRouter = require('./routes/API/evenements/evenements');
 var groupesRouter = require('./routes/API/groupes/groupes');
 var publicationsRouter = require('./routes/API/publications/publications');
-var resultatsScolairesRouter = require('./routes/API/resultats-scolaires/resultats-scolaires');
-var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
 var auth = require('./routes/API/utilisateurs/auth');
 var resultatsRouter = require('./routes/API/resultats/resultats');
-var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
+var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
 var app = express();
 app.use(cors());
