@@ -6,7 +6,7 @@ export class Utilisateur {
     courriel: string;
     datedenaissance: Date;
     codepermanent: string;
-    programme: string;  // TODO : ObjectID
+    programme: number;  // TODO : ObjectID
     sexe: string;
     role: string;  // TODO : ObjectID
     motdepasse: string;
