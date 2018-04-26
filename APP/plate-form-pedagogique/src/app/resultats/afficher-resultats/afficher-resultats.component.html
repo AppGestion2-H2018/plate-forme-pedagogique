@@ -1,3 +1,7 @@
-<p>
-  afficher-resultats works!
-</p>
+<div class="resultats"> 
+    <ul class="resultats">
+        <li *ngFor="let evaluation of evaluations">
+          <h2>{{evaluation.nom}}</h2> 
+    </li>
+  </ul>
+</div>
