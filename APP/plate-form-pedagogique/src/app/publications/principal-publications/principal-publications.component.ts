@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Publication } from '../publication';
 import { PublicationService } from '../publication.service';
+import { FormControl } from '@angular/forms'
+import {Observable} from 'rxjs/Observable';
+import { catchError, map, tap,startWith, switchMap, debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-principal-publications',
@@ -10,6 +13,9 @@ import { PublicationService } from '../publication.service';
 export class PrincipalPublicationsComponent implements OnInit {
 
   publications: Publication[];
+  myControl = new FormControl();
+
+  filteredOptions: Observable<any[]>;
 
   constructor(private publicationService: PublicationService) { }
 
@@ -26,7 +32,6 @@ getDateRemise(): void {
 ngOnInit() {
   console.log('in ngOnInit');
   this.getPublications();
+  }
 }
 
-
-}

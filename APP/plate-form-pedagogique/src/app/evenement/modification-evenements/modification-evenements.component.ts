@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Event} from "../models/event";
+import {EvenementService} from "../evenement.service";
 import {GROUPES} from "../../groupe/afficher-groupe/liste-groupe-test";
 
 
@@ -10,9 +11,30 @@ import {GROUPES} from "../../groupe/afficher-groupe/liste-groupe-test";
 })
 export class ModificationEvenementsComponent implements OnInit {
 
-  constructor() { }
+  events: Event[];
+  selectedEvent: Event;
 
-  ngOnInit() {
-  }
+  constructor(private evenementService: EvenementService) { }
+
+    onSelect(event: Event): void {
+        this.selectedEvent = event;
+        console.log(this.selectedEvent);
+    }
+    getEvents(): void {
+        this.evenementService.getEvents()
+            .subscribe(events => this.events = events);
+    }
+
+
+    publier(){
+        /*var request = document.getElementById('fichier');
+        var fichier =*/
+    }
+
+    ngOnInit() {
+        console.log('in ngOnInit');
+        this.getEvents();
+    }
+
 
 }

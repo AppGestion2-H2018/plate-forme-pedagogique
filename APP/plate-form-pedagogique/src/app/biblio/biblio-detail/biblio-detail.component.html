@@ -1,25 +1,18 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h1>{{biblio.items[0].volumeInfo.title}}</h1>
-            <h2>{{biblio.items[0].volumeInfo.subtitle}}</h2>
-            <img src = {{biblio.items[0].volumeInfo.imageLinks.thumbnail}}><br>
-            <span>
-                <a href="{{biblio.items[0].volumeInfo.previewLink}}">Aperçu</a>
-                <a href="{{biblio.items[0].volumeInfo.infoLink}}">Informations</a>
-                </span>
-            <div class="col-md-8">
-
-                <h3>Auteur(s): </h3>
-                <ul>
-                    <li *ngFor="let author of biblio.items[0].volumeInfo.authors">
-                        <h3>{{author}}</h3>
-                    </li>
-                </ul>
-                <h3>Date de parution: {{biblio.items[0].volumeInfo.publishedDate}}</h3>
-                <h3>Nombre de pages: {{biblio.items[0].volumeInfo.pageCount}}</h3>
-                <h3>Langue: "{{biblio.items[0].volumeInfo.language}}"</h3>
-            </div>
-        </div>
-        </div>
+<div *ngIf="selectedLivre">
+    <h1>{{selectedLivre.volumeInfo.title}}</h1>
+    <h2>{{selectedLivre.volumeInfo.subtitle}}</h2>
+    <img src = {{selectedLivre.volumeInfo.imageLinks.thumbnail}}><br>
+    <span>
+    <a href="{{selectedLivre.volumeInfo.previewLink}}">Aperçu</a>
+    <a href="{{selectedLivre.volumeInfo.infoLink}}">Informations</a>
+</span>
+    <h3>Auteur(s): </h3>
+    <ul>
+        <li *ngFor="let author of selectedLivre.volumeInfo.authors">
+            <h3>{{author}}</h3>
+        </li>
+    </ul>
+    <h3>Date de parution: {{selectedLivre.volumeInfo.publishedDate}}</h3>
+    <h3>Nombre de pages: {{selectedLivre.volumeInfo.pageCount}}</h3>
+    <h3>Langue: "{{selectedLivre.volumeInfo.language}}"</h3>
 </div>
