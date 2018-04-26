@@ -26,4 +26,7 @@ export class PublicationService {
       return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/publications/ajouter', JSON.stringify(objpost), httpOptions);
   }
 
+    deletePublication(id : string){
+        return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/' + id);
+    }
 }
