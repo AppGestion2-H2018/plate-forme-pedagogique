@@ -14,6 +14,7 @@ export class ConnecterUtilisateurComponent implements OnInit {
   utilisateurs: Utilisateur;
   da: string;
   motdepasse: string;
+  code:number;
 
   constructor(private utilisateurservie: UtilisateurService) { }
 
@@ -27,5 +28,7 @@ export class ConnecterUtilisateurComponent implements OnInit {
 
     ngOnInit() {
         this.reponseLogin = { 'Code': 0,'Message':''};
+        console.log(this.reponseLogin);
+        this.code = 0;
     }
 }
