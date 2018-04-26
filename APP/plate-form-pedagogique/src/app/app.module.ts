@@ -38,6 +38,7 @@ import {ClassesComponent} from './groupe/classes/classes.component';
 
 import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
+import {EvaluationService} from './resultats/evaluation.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BiblioService} from './service/biblio.service';
@@ -126,7 +127,7 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
         HttpModule,
         AppRoutingModule,
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService],
+    providers: [UtilisateurService, PublicationService, BiblioService, EvaluationService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
