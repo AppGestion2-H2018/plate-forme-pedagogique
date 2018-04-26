@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Livre} from "../../class/livre";
+import {Component, Input, OnInit} from '@angular/core';
 import {BiblioService} from "../../service/biblio.service";
-import {Biblio} from "../../class/biblio";
+import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-biblio-detail',
@@ -10,20 +9,12 @@ import {Biblio} from "../../class/biblio";
 })
 export class BiblioDetailComponent implements OnInit {
 
-    biblio: Biblio;
-    selectedLivre: Livre;
+    @Input() selectedLivre: Livre;
+    constructor(private biblioService: BiblioService) {
 
-    constructor(private biblioService: BiblioService) { }
-
-
-    getLivres(): void {
-        this.biblioService.getLivres('https://www.googleapis.com/books/v1/volumes?q=Albert')
-            .subscribe(resultat => this.biblio = resultat);
-        console.log('in ngOnInit');
     }
 
-    ngOnInit() {
-        console.log('in ngOnInit');
-        this.getLivres();
+    ngOnInit(){
+
     }
 }
