@@ -11,11 +11,11 @@ import {forEach} from "@angular/router/src/utils/collection";
 export class AjoutPublicationComponent implements OnInit {
     form: any;
 
-    publication: Publication[];
+    publication: Publication;
     value;
     values : Array<string> = new Array();
     titre: string;
-    contenue: string;
+    contenu: string;
     date_remise: Date;
 
     constructor(private publicationService: PublicationService) { }
@@ -74,19 +74,21 @@ export class AjoutPublicationComponent implements OnInit {
         var fichier =*/
 
         this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
-        this.contenue = ((document.getElementById("contenue") as HTMLInputElement).value);
+        this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
         this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
 
         //Verification avant
+        this.publication = {"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise};
 
-        this.publicationService.postPublication(this.titre, this.contenue, this.date_remise ).subscribe();
-
+        this.publicationService.postPublication(this.titre, this.contenu, this.date_remise).subscribe();
+        console.log(this.publication);
     }
 
 
 
 
     ngOnInit() {
+        this.publication = {"titre": '', "contenu": '', "date_remise": null};
     }
 
 

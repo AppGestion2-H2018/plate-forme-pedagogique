@@ -21,8 +21,8 @@ export class PublicationService {
   getDateRemise(): Observable<Publication[]> {
     return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/date-de-remise');
   }
-  postPublication(titre: string, contenue: string, date_remise: Date){
-    var objpost = {"titre":titre,"contenue":contenue,"date-remise":date_remise};
+  postPublication(titre: string, contenu: string, date_remise: Date){
+      let objpost = {"titre":titre,"contenu":contenu,"date_remise":date_remise};
       return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/publications/ajouter', JSON.stringify(objpost), httpOptions);
   }
 
