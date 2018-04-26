@@ -13,6 +13,7 @@ import {
     MatSelectModule,
     MatIconModule,
     MatDatepickerModule,
+    MatChipsModule,
 } from '@angular/material';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -135,6 +136,8 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
         HttpClientModule,
         HttpModule,
         AppRoutingModule,
+        MatChipsModule,
+        
     ],
     providers: [UtilisateurService, PublicationService, BiblioService],
     bootstrap: [AppComponent]
