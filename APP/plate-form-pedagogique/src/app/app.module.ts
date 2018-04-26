@@ -15,6 +15,7 @@ import {
     MatIconModule,
     MatDatepickerModule,
     MatChipsModule,
+    MatAutocompleteModule,
 } from '@angular/material';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -141,7 +142,7 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         HttpModule,
         AppRoutingModule,
         MatChipsModule,
-        
+        MatAutocompleteModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService],
