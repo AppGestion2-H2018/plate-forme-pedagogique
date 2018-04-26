@@ -9,14 +9,18 @@ import {Utilisateur} from '../../class/utilisateur';
 })
 export class CreerUtilisateurComponent implements OnInit {
 
-    utilisateur: Utilisateur;
+    utilisateur = new Utilisateur();
 
     constructor(private utilisateurService: UtilisateurService) {
 
+    }
+
+    register(event: any): void {
+        event.preventDefault();
         this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe();
     }
 
     ngOnInit() {
-    }
 
+    }
 }

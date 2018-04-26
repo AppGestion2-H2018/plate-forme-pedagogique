@@ -25,15 +25,8 @@ export class UtilisateurService {
      * @returns {Observable<Object>}
      */
     registerUtilisateur(utilisateur: Utilisateur) {
-        const objUtilisateur = {
-            'da': utilisateur.da,
-            'nom': utilisateur.nom,
-            'prenom': utilisateur.prenom,
-            'courriel': utilisateur.courriel,
-            'motdepasse': utilisateur.motdepasse
-        };
-
-        return this.http.post('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(objUtilisateur), httpOptions);
+        console.log(JSON.stringify(utilisateur));
+        return this.http.post('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
     }
 
 
