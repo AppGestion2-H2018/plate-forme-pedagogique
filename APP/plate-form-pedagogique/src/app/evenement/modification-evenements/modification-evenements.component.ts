@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Event} from "../models/event";
+import {EvenementService} from "../evenement.service";
 import {GROUPES} from "../../groupe/afficher-groupe/liste-groupe-test";
 
 
@@ -10,9 +11,57 @@ import {GROUPES} from "../../groupe/afficher-groupe/liste-groupe-test";
 })
 export class ModificationEvenementsComponent implements OnInit {
 
-  constructor() { }
+  events: Event[];
+  selectedEvent: Event;
 
-  ngOnInit() {
-  }
+  constructor(private evenementService: EvenementService) { }
+
+    onSelect(event: Event): void {
+        this.selectedEvent = event;
+        console.log(this.selectedEvent);
+    }
+    getEvents(): void {
+        this.evenementService.getEvents()
+            .subscribe(events => this.events = events);
+    }
+
+    popup() {
+        var popup = document.getElementById('choixTag');
+        var focus = document.getElementById('texteTag').focus();
+        popup.style.display = "block";
+    }
+    closePopup() {
+        var popup = document.getElementById('choixTag');
+        popup.style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+    aj
+    popupGroup() {
+        var popup = document.getElementById('allGroup');
+        popup.style.display = "block";
+    }
+    closePopupGroup() {
+        var popup = document.getElementById('allGroup');
+        popup.style.display = "none";
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+    publier(){
+        /*var request = document.getElementById('fichier');
+        var fichier =*/
+    }
+
+    ngOnInit() {
+        console.log('in ngOnInit');
+        this.getEvents();
+    }
+
 
 }
