@@ -1,13 +1,13 @@
 <!-- Source : https://www.wunderlist.com/forgotpassword -->
 <div class="errors"  *ngIf="reponseAPI.Code > 1">
   <div role="alert" class="message">
-    Nous n’avons trouvé aucun compte associé à cette adresse e-mail. Veuillez réessayer ou entrer un autre adresse.
+    {{reponseAPI.Message}}
   </div>
 </div>
-
+{{courriel}}
 <div class="card forgot-password">
   <div *ngIf="reponseAPI.Code != 1">
-  <form class="auth-form forgot-password">
+  <form class="auth-form forgot-password" name="forgotpasswordForm" novalidate="" #forgotForm="ngForm">
     <div class="row labels">
       <h2>Vous avez oublié votre mot de passe ?</h2>
       <h3>Entrez simplement votre adresse e-mail ci-dessous et nous vous enverrons des instructions.</h3>
@@ -31,16 +31,33 @@
           </g>
       </svg>
       </span>
-      <input type="email" name="email"
+      <!-- <input type="email" name"email" [(ngModel)]="courriel" required /> -->
+      <input type="email" name="email" id="email"
              required autofocus autocomplete
              pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
              title="Veuillez entrer une adresse e-mail valide."
              placeholder="Adresse e-mail"
-             [(ngModel)]="courriel"/>
+             [(ngModel)]="courriel"
+             #email="ngModel"/>
+
+             <div *ngIf="email.invalid"
+     class="alert alert-danger">
+
+  <div *ngIf="email.errors.required">
+    Email is required.
+  </div>
+  <div *ngIf="email.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="email.errors.forbiddenName">
+    Name cannot be Bob.
+  </div>
+
+</div>
     </div>
 
     <div class="row submit">
-      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" (click)="forgotpassword()"/>
+      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" (click)="forgotpassword()" [disabled]="!forgotForm.form.valid"/>
     </div>
   </form>
 

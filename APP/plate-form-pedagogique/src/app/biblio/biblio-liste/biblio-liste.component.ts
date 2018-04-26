@@ -11,14 +11,14 @@ import {Biblio} from "../../class/biblio";
 export class BiblioListeComponent implements OnInit, OnChanges {
 
     biblio: Biblio;
-    selectedLivre: Livre;
-    @Input() recherche: string;
+    selectedLivreParent: Livre;
+    @Input() rechercheEnfant: string;
 
     constructor(private biblioService: BiblioService) { }
 
     onSelect(livre: Livre): void {
-        this.selectedLivre = livre;
-        console.log(this.selectedLivre);
+        this.selectedLivreParent = livre;
+        console.log(this.selectedLivreParent);
     }
 
     getLivres(recherche: string): void {
@@ -32,6 +32,6 @@ export class BiblioListeComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.getLivres(changes.recherche.currentValue);
+        this.getLivres(changes.rechercheEnfant.currentValue);
     }
 }

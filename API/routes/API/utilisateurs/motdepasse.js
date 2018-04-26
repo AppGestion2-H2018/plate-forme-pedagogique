@@ -25,6 +25,7 @@ router.post('/sendmail', function (req, res, next) {
 
           // Save token and expiration date
           utilisateur.set({ resetPasswordToken: token, resetPasswordExpires: passwordExpires});
+          // console.log(utilisateur);
           utilisateur.save(function (err, updatedUtilisateur){
             if (err) return console.error(err);
           });

@@ -16,6 +16,8 @@ var resultatsScolairesRouter = require('./routes/API/resultats-scolaires/resulta
 var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
 var auth = require('./routes/API/utilisateurs/auth');
+var resultatsRouter = require('./routes/API/resultats/resultats');
+var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
 
 var app = express();
 app.use(cors());
@@ -85,7 +87,7 @@ app.use('/api/bibliotheque', bibliothequeRouter);
 app.use('/api/evenements', evenementsRouter);
 app.use('/api/groupes', groupesRouter);
 app.use('/api/publications', publicationsRouter);
-app.use('/api/resultats-scolaires', resultatsScolairesRouter);
+app.use('/api/resultats', resultatsRouter);
 app.use('/api/utilisateurs', utlisateursRouter);
 
 // catch 404 and forward to error handler
