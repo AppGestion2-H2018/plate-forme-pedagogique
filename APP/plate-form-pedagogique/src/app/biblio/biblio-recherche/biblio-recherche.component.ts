@@ -10,6 +10,8 @@ import {Livre} from "../../class/livre";
 })
 export class BiblioRechercheComponent implements OnInit {
 
+    rechercheParent: string;
+
     constructor() { }
 
     ngOnInit() {
