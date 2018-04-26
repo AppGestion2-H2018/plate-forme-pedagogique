@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {Utilisateur} from '../../class/utilisateur';
+import{ReponseLogin} from "../../class/reponseLogin"
 
 @Component({
   selector: 'app-connecter-utilisateur',
@@ -9,20 +10,25 @@ import {Utilisateur} from '../../class/utilisateur';
 })
 export class ConnecterUtilisateurComponent implements OnInit {
 
-  utilisateures: Utilisateur[];
-  da: number;
-  motdepasse: number;
+  reponseLogin: ReponseLogin;
+  utilisateurs: Utilisateur;
+  da: string;
+  motdepasse: string;
+  code:number;
 
   constructor(private utilisateurservie: UtilisateurService) { }
 
 
   login(): void{
 
-    this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe();
+    this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe(reponseLogin => this.reponseLogin = reponseLogin);
+    console.log(this.reponseLogin);
   }
 
 
     ngOnInit() {
-
+        this.reponseLogin = { 'Code': 0,'Message':''};
+        console.log(this.reponseLogin);
+        this.code = 0;
     }
 }

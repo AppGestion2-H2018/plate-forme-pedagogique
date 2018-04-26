@@ -8,6 +8,8 @@ router.post('/', function (req, res, next) {
     var reponse = '';
     var da = req.body.da;
     var motdepasse = req.body.motdepasse
+    var objReponse = {'Code':0,'Message':''}
+
 
     //recheche le da de l'utilisateur dans la base de donner
     Utilisateur.findOne({'da': da}, function (err, utilisateur) {
@@ -17,18 +19,18 @@ router.post('/', function (req, res, next) {
         if(utilisateur !== null) {
 
             if(motdepasse == utilisateur.motdepasse){
-                reponse = 'bienvenue';
+               objReponse = {'Code':1,'Message':'La connexion à été effectuée avec succès.'}
             }
           else {
-                reponse = 'mot de passe invalide';
+                objReponse = {'Code':2,'Message':'Le numéro de DA ou le mot de passe n\'est pas valide.'}
             }
 
         } else
         {
-            reponse = 'l/utilsiateur est invalide';
+            objReponse = {'Code':3,'Message':'Une erreur interne est survenue, veuillez réessayer plus tard. '}
         }
-        console.log(reponse);
-        res.json(reponse);
+        console.log(objReponse);
+        res.json(objReponse);
     });
 });
 

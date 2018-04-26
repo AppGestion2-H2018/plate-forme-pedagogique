@@ -1,33 +1,60 @@
-<!--<h2>{{publication.titre}}</h2>
-<div>
-  <label>id : </label>{{publication.id}}
-</div>
-<div>
-  <label>Contenu : </label>{{publication.contenu}}
-</div>
-<div>
-  <label>Commentaires : </label>{{publication.commentaires}}
-</div>
-<div>
-  <label>Tags : </label>{{publication.tags}}
-</div>-->
-
 <button mat-raised-button (click)="getPublications()">Trier par date de publication</button>
 <button mat-raised-button (click)="getDateRemise()">Trier par date de remise</button>
 
-<div class="publications"> 
+<div class="publications box">
     <ul class="publications">
-        <li *ngFor="let publication of publications">
-          <h2>{{publication.titre}}</h2> 
-          <span>Auteur: {{publication.auteur}}</span>
-          / <span>Groupe: {{publication.groupe}}</span>
-          / <span>Date de publication: {{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span>
-          / <span>Date de remise: {{publication.date_remise | date:'dd-MM-yyyy HH:MM:ss'}}</span>
-          / <span>Contenu: {{publication.contenu}}</span>
-          / <span>Tags: {{publication.tags}}</span>
-          / <span>Commentaire(s): {{publication.commentaire}}</span>
-          / <span>Fichier(s): {{publication.fichier}}</span>
-    </li>
-  </ul>
-    <app-ajout-publication></app-ajout-publication>
+        <a routerLink="/publications/ajout"><button mat-button><i class="material-icons ajout">alarm_add</i></button></a>
+
+        <form>
+            <mat-form-field>
+                <input matInput [matAutocomplete]="auto" placeholder="Chercher un tag...">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <div  *ngFor="let publication of publications">
+                        <mat-option *ngFor="let tag of publication.tags" [value]="tag" onselect="getTags(tag)">
+                            <span>{{ tag }}</span>
+                        </mat-option>
+                    </div>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+
+        <div *ngFor="let publication of publications">
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title><span>{{publication.auteur}}</span></mat-card-title>
+
+                    <mat-card-subtitle><span>{{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span> </mat-card-subtitle>
+
+                    <mat-card-subtitle>
+                        <p class="alignleft"> Groupe: {{publication.groupe}}</p>
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <p>
+                        <span>{{publication.contenu}}</span>
+                    </p>
+
+                    <mat-card-subtitle>
+                        <p style="text-align:left;">
+                            <span> Remise :{{publication.date_remise | date:'dd-MM-yyyy HH:MM:ss'}}</span>
+                            <span style="float:right;"> Fichier(s): {{publication.fichier}}   </span>
+                        </p>
+                    </mat-card-subtitle>
+
+                    <mat-chip-list>
+                        <label>Tags: </label>
+                        <mat-chip  *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
+                    </mat-chip-list>
+
+                    Commentaire(s): {{publication.commentaire}}
+                </mat-card-content>
+
+                <mat-card-footer>
+
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </ul>
 </div>

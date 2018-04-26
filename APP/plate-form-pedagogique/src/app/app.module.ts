@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import {HttpModule} from '@angular/http';
 import {
     MatSidenavModule,
@@ -11,10 +12,15 @@ import {
     MatRadioModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatChipsModule,
+    MatAutocompleteModule,
 } from '@angular/material';
+
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -63,6 +69,12 @@ import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
+import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
+import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
+import { EvenementService } from './evenement/evenement.service';
+import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
+
+
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -106,12 +118,15 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
         PrincipalEvenementsComponent,
         SchedulerComponent,
         AccueilComponent,
-        PrincipalGroupesComponent
+        PrincipalGroupesComponent,
+        ModificationEvenementsComponent,
+        AccueilPublicationsComponent,
     ],
     imports: [
         BrowserModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatDatepickerModule,
         MatGridListModule,
         MatCardModule,
         MatListModule,
@@ -120,14 +135,19 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
         MatRadioModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatInputModule,
         MatIconModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
         HttpModule,
         AppRoutingModule,
+        MatChipsModule,
+        MatAutocompleteModule,
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService, EvaluationService],
+
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
+
     bootstrap: [AppComponent]
 })
 export class AppModule {
