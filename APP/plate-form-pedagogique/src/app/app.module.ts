@@ -68,6 +68,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
+import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
@@ -139,7 +140,7 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
         MatChipsModule,
         
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService],
+    providers: [UtilisateurService, PublicationService, BiblioService, AjoutEvenementService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
