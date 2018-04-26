@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import {HttpModule} from '@angular/http';
 import {
     MatSidenavModule,
@@ -68,7 +69,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
+import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
+
 
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
@@ -140,7 +143,8 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         MatChipsModule,
         
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService, AjoutEvenementService],
+
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
