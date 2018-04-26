@@ -25,34 +25,7 @@ export class ModificationEvenementsComponent implements OnInit {
             .subscribe(events => this.events = events);
     }
 
-    popup() {
-        var popup = document.getElementById('choixTag');
-        var focus = document.getElementById('texteTag').focus();
-        popup.style.display = "block";
-    }
-    closePopup() {
-        var popup = document.getElementById('choixTag');
-        popup.style.display = "none";
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.style.display = "none";
-            }
-        }
-    }
-    aj
-    popupGroup() {
-        var popup = document.getElementById('allGroup');
-        popup.style.display = "block";
-    }
-    closePopupGroup() {
-        var popup = document.getElementById('allGroup');
-        popup.style.display = "none";
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.style.display = "none";
-            }
-        }
-    }
+
     publier(){
         /*var request = document.getElementById('fichier');
         var fichier =*/

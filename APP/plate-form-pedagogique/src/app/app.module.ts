@@ -14,9 +14,12 @@ import {
     MatSelectModule,
     MatIconModule,
     MatDatepickerModule,
+    MatChipsModule,
 } from '@angular/material';
+
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -67,6 +70,8 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
+import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
+
 
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
@@ -128,14 +133,18 @@ import { EvenementService } from './evenement/evenement.service';
         MatRadioModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatInputModule,
         MatIconModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
         HttpModule,
         AppRoutingModule,
+        MatChipsModule,
+        
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService],
+
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

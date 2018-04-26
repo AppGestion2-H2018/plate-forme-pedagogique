@@ -8,6 +8,7 @@ import {PrincipalResultatsComponent} from './resultats/principal-resultats/princ
 import {PrincipalGroupesComponent} from './groupe/principal-groupes/principal-groupes.component';
 import {RecupererMotDePasseComponent} from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
 import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-publication.component';
+import {AjoutEvenementComponent} from "./evenement/ajout-evenement/ajout-evenement.component";
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'accueil', redirectTo: '', pathMatch: 'full' },
     { path: 'motdepasse-oublie', component: RecupererMotDePasseComponent },
     { path: 'publications/ajout', component: AjoutPublicationComponent},
+    { path: 'ajout-evenement', component: AjoutEvenementComponent },
 ];
 
 @NgModule({

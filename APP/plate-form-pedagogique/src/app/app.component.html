@@ -45,23 +45,8 @@
         </mat-list>
     </mat-sidenav>
 
-
     <mat-sidenav-content>
         <div class="container">
-
-
-            <p>
-                Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
-                Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
-            </p>
-
-
-
-            <p>
-                Bonjour! Les composants principaux ont été déplacés dans les onglets respectifs à l'exception du login.<br>
-                Pour plus d'information, veuillez consulter la page d'<a routerLink="/accueil">accueil</a>.
-            </p>
-
             <div *ngIf="estConnecte; else elseBlock">
                 <router-outlet></router-outlet>
             </div>

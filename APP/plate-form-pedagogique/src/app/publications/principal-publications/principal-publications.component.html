@@ -1,3 +1,6 @@
+<button mat-raised-button (click)="getPublications()">Trier par date de publication</button>
+<button mat-raised-button (click)="getDateRemise()">Trier par date de remise</button>
+
 <div class="publications box">
     <ul class="publications">
         <a routerLink="/publications/ajout"><button mat-button><i class="material-icons ajout">alarm_add</i></button></a>
@@ -10,12 +13,7 @@
 
                     <mat-card-subtitle>
                         <p class="alignleft"> Groupe: {{publication.groupe}}</p>
-                        &emsp;
-                        <p class="alignright">Tags: {{publication.tags}}</p>
                     </mat-card-subtitle>
-
-
-
 
                 </mat-card-header>
                 <mat-card-content>
@@ -28,6 +26,10 @@
                             <span style="float:right;"> Fichier(s): {{publication.fichier}}   </span>
                         </p>
                     </mat-card-subtitle>
+
+                    <mat-chip-list *ngFor="let tag of publication.tags">
+                        <mat-chip>{{tag}}</mat-chip>
+                </mat-chip-list>
 
                     Commentaire(s): {{publication.commentaire}}
                 </mat-card-content>
