@@ -14,12 +14,15 @@ export class AjoutPublicationComponent implements OnInit {
     publication: Publication[];
     value;
     values : Array<string> = new Array();
+    titre: string;
+    contenue: string;
+    date_remise: Date;
 
     constructor(private publicationService: PublicationService) { }
 
     popup() {
         var popup = document.getElementById('choixTag');
-        var focus = document.getElementById('texteTag').focus();
+        popup.focus();
         popup.style.display = "block";
     }
     closePopup() {
@@ -33,7 +36,7 @@ export class AjoutPublicationComponent implements OnInit {
     }
     ajoutTag() {
         var autreTag = document.getElementById('autreTag');
-        console.log(this.values);
+        //console.log(this.values);
         this.values.push(this.value);
         autreTag.innerHTML = autreTag.innerHTML + ' ' + this.value;
         this.value = '';
@@ -66,10 +69,17 @@ export class AjoutPublicationComponent implements OnInit {
             };
         }
     }
-
     publier(){
         /*var request = document.getElementById('fichier');
         var fichier =*/
+
+        this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
+        this.contenue = ((document.getElementById("contenue") as HTMLInputElement).value);
+        this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
+
+        //Verification avant
+
+        this.publicationService.postPublication(this.titre, this.contenue, this.date_remise ).subscribe();
 
     }
 
