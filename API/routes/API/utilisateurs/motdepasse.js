@@ -59,7 +59,7 @@ router.post('/sendmail', function (req, res, next) {
           objReponse = {'Code' : 1, 'Message':'Le courriel a été envoyé avec succès'};
       }
       else{
-          objReponse = {'Code' : 2, 'Message':'Le courriel n\'est pas présent dans la bd'};
+          objReponse = {'Code' : 2, 'Message':'Nous n\'avons trouvé aucun compte associé à cette adresse e-mail. Veuillez réessayer ou entrer un autre adresse.'};
       }
 
       console.log('Réponse : ' + objReponse);
