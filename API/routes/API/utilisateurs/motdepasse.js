@@ -48,13 +48,13 @@ router.post('/sendmail', function (req, res, next) {
               '<a href="' + urlResetPwd + '">' + urlResetPwd + '</a>'
           };
 
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
-          });
+          // transporter.sendMail(mailOptions, function(error, info){
+          //   if (error) {
+          //     console.log(error);
+          //   } else {
+          //     console.log('Email sent: ' + info.response);
+          //   }
+          // });
 
           objReponse = {'Code' : 1, 'Message':'Le courriel a été envoyé avec succès'};
       }

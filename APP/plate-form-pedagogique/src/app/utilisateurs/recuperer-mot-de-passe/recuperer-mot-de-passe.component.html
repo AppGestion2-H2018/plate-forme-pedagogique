@@ -1,11 +1,13 @@
 <!-- Source : https://www.wunderlist.com/forgotpassword -->
-<div class="errors">
+<div class="errors"  *ngIf="code">
   <div role="alert" class="message">
+    {{reponseAPI.Message}}
     Nous n’avons trouvé aucun compte associé à cette adresse e-mail. Veuillez réessayer ou entrer un autre adresse.
   </div>
 </div>
-
+{{reponseAPI.Code}} {{reponseAPI.Message}} {{code}}
 <div class="card forgot-password">
+  <div>
   <form class="auth-form forgot-password">
     <div class="row labels">
       <h2>Vous avez oublié votre mot de passe ?</h2>
@@ -43,15 +45,16 @@
     </div>
   </form>
 
+  <span class="link login">
+    Vous avez déjà un compte ?
+    <a href="#">Se connecter</a>
+  </span>
+  </div>
+
   <div class="auth-form forgot-password-success">
     <div class="row labels">
       <h2>Réinitialiser le mot de passe</h2>
       <h3>Veuillez consulter vos e-mails pour lire des instructions concernant la réinitialisation de votre mot de passe.</h3>
     </div>
   </div>
-
-  <span class="link login">
-    Vous avez déjà un compte ?
-    <a href="#">Se connecter</a>
-  </span>
 </div>

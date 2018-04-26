@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from '../../service/utilisateur.service';
 import { Utilisateur } from '../../class/utilisateur';
 import { ReponseAPI } from '../../class/reponseAPI';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-recuperer-mot-de-passe',
@@ -10,28 +11,38 @@ import { ReponseAPI } from '../../class/reponseAPI';
 })
 export class RecupererMotDePasseComponent implements OnInit {
   reponseAPI: ReponseAPI;
-  utilisateur: Utilisateur;
   courriel: string;
+  code: boolean;
 
 
-  constructor(private utilisateurService:UtilisateurService) { }
+  constructor(private utilisateurService:UtilisateurService, private ref:ChangeDetectorRef) { }
 
   // Envoi du courriel de réinitialisation du mot de passe
   forgotpassword():void{
-    // Valide si le courriel est présent dans la bd
-
+    console.log(this.ref);
     // Appelle la fonction d'envoi de courriel du server
-    //this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
-    //console.log(this.reponseAPI);
     this.utilisateurService.sendResetPassword(this.courriel).subscribe(
-      function(){
-        reponseAPI => this.reponseAPI = reponseAPI;
-        console.log(this.reponseAPI);
-      });
+      function(reponseAPI){
+        console.log(reponseAPI)
+
+        this.reponseAPI = reponseAPI;
+
+        console.log(this.reponseAPI.Code + ' ' + this.reponseAPI.Message);
+        // this.ref.detectChanges();
+        console.log(this.ref);
+        // this.ref.markForCheck();
+        this.code = false;
+        console.log(this.code);
+      },
+      function(error) { console.log("Error happened" + error)}
+    );
+    this.ref.markForCheck();
   }
 
   ngOnInit() {
-    this.reponseAPI =  {'Code' : 0, 'Message':''};
+    this.code = true;
+    this.reponseAPI =  {'Code' : 1, 'Message':'test'};
+    console.log(this.reponseAPI);
   }
 
 }
