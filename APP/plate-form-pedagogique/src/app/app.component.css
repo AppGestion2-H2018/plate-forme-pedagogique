@@ -15,12 +15,3 @@ div.navbar-collapse {
 }
 
 .mat-toolbar a { color:white;}
-
-.example-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.example-container > * {
-    width: 100%;
-}
