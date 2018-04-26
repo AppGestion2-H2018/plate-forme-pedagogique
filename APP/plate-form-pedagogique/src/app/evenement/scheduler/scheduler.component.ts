@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angu
 import "dhtmlx-scheduler";
 import {} from "@types/dhtmlxscheduler";
 import {EventService} from '../scheduler/services/event.service';
-import {Event} from '../scheduler/models/Event';
+import {Event} from '../models/Event';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -27,18 +27,18 @@ export class SchedulerComponent implements OnInit {
         scheduler.attachEvent('onEventAdded', (id, ev) => {
             this.eventService.insert(this.serializeEvent(ev, true))
                 .then((response) => {
-                    if (response.id !== id) {
-                        scheduler.changeEventId(id, response.id);
+                    if (response._id !== id) {
+                        scheduler.changeEventId(id, response._id);
                     }
                 });
         });
 
         scheduler.attachEvent('onEventChanged', (id, ev) => {
-            this.eventService.update(this.serializeEvent(ev));
+            this.eventService.update(ev);
         });
 
-        scheduler.attachEvent('onEventDeleted', (id) => {
-            this.eventService.remove(id);
+        scheduler.attachEvent('onEventDeleted', (id,ev) => {
+            this.eventService.remove(ev._id);
         });
 
         this.eventService.get()
@@ -63,6 +63,7 @@ export class SchedulerComponent implements OnInit {
                 result[i] = data[i];
             }
         }
+        console.log(result);
         return result as Event;
     }
 }

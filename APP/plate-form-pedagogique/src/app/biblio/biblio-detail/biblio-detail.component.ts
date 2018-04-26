@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {BiblioService} from "../../service/biblio.service";
+import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-biblio-detail',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BiblioDetailComponent implements OnInit {
 
-  constructor() { }
+    @Input() selectedLivre: Livre;
+    constructor(private biblioService: BiblioService) {
 
-  ngOnInit() {
-  }
+    }
 
+    ngOnInit(){
+
+    }
 }

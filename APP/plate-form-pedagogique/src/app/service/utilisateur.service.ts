@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {ReponseAPI} from '../class/reponseAPI';
+import {ReponseLogin} from '../class/reponseLogin';
+import {ObjectUnsubscribedError} from 'rxjs/Rx';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -29,12 +31,10 @@ export class UtilisateurService {
         return this.http.post('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
     }
 
+    getUtilisateurLogin(da: string, motdepasse: string): Observable<ReponseLogin> {
 
-    getUtilisateurLogin(da: number, motdepasse: number) {
         var objDa = {'da': da, 'motdepasse': motdepasse};
-
-
-        return this.http.post('http://localhost:3000/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
+        return this.http.post<ReponseLogin>('http://localhost:3000/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
     }
 
 

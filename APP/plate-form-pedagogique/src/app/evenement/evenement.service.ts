@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Biblio} from "../class/biblio";
+import { Event } from './models/event';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class BiblioService {
+export class EvenementService {
 
     constructor(private http: HttpClient) { }
 
-    getLivres(url: string): Observable<Biblio> {
-        return this.http.get<Biblio>(url);
+    getEvents(): Observable<Event[]> {
+        return this.http.get<Event[]>('https://api-appgestion2-h18.herokuapp.com/api/evenements');
     }
-}
 
+}

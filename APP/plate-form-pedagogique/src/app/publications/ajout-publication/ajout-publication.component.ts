@@ -4,21 +4,25 @@ import { PublicationService } from '../publication.service';
 import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
-  selector: 'app-ajout-publication',
-  templateUrl: './ajout-publication.component.html',
-  styleUrls: ['./ajout-publication.component.css']
+    selector: 'app-ajout-publication',
+    templateUrl: './ajout-publication.component.html',
+    styleUrls: ['./ajout-publication.component.css']
 })
 export class AjoutPublicationComponent implements OnInit {
+    form: any;
 
-  publication: Publication[];
-  value;
-  values : Array<string> = new Array();
+    publication: Publication;
+    value;
+    values : Array<string> = new Array();
+    titre: string;
+    contenu: string;
+    date_remise: Date;
 
-  constructor(private publicationService: PublicationService) { }
+    constructor(private publicationService: PublicationService) { }
 
     popup() {
         var popup = document.getElementById('choixTag');
-        var focus = document.getElementById('texteTag').focus();
+        popup.focus();
         popup.style.display = "block";
     }
     closePopup() {
@@ -32,7 +36,7 @@ export class AjoutPublicationComponent implements OnInit {
     }
     ajoutTag() {
         var autreTag = document.getElementById('autreTag');
-        console.log(this.values);
+        //console.log(this.values);
         this.values.push(this.value);
         autreTag.innerHTML = autreTag.innerHTML + ' ' + this.value;
         this.value = '';
@@ -51,11 +55,41 @@ export class AjoutPublicationComponent implements OnInit {
             }
         }
     }
+    fileChange(event){
+        let reader = new FileReader();
+        if(event.target.files && event.target.files.length > 0) {
+            let file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.form.get('fichier').setValue({
+                    filename: file.name,
+                    filetype: file.type,
+                    value: reader.result.split(',')[1]
+                })
+            };
+        }
+    }
+    publier(){
+        /*var request = document.getElementById('fichier');
+        var fichier =*/
+
+        this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
+        this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
+        this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
+
+        //Verification avant
+        this.publication = {"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise};
+
+        this.publicationService.postPublication(this.titre, this.contenu, this.date_remise).subscribe();
+        console.log(this.publication);
+    }
 
 
 
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.publication = {"titre": '', "contenu": '', "date_remise": null};
+    }
+
 
 }
