@@ -11,6 +11,22 @@ export class CreerUtilisateurComponent implements OnInit {
 
     utilisateur = new Utilisateur();
 
+    programmes = [
+        {value: '0', viewValue: 'Informatique'},
+        {value: '1', viewValue: 'Comptabilité et gestion'},
+        {value: '2', viewValue: 'Électronique industrielle'},
+        {value: '3', viewValue: 'Soins infirmiers'},
+        {value: '4', viewValue: 'Sciences de la nature'},
+        {value: '5', viewValue: 'Sciences humaines'}
+    ];
+
+    roles = [
+        {value: '0', viewValue: 'Étudiant'},
+        {value: '1', viewValue: 'Enseignant'},
+        {value: '2', viewValue: 'Personnel de soutien'}
+    ];
+
+
     constructor(private utilisateurService: UtilisateurService) {
 
     }
