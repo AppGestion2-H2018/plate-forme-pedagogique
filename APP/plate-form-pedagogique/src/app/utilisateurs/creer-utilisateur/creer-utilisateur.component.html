@@ -2,6 +2,20 @@
     <mat-card-title>Créer un nouvel utilisateur</mat-card-title>
     <mat-card-content>
 
+        <div class="errors"  *ngIf="reponseAPI.Code > 1">
+            <div role="alert" class="message">
+                {{reponseAPI.Message}}
+            </div>
+            <br>
+        </div>
+
+        <div class="success"  *ngIf="reponseAPI.Code === 1">
+            <div role="alert" class="message">
+                {{reponseAPI.Message}}
+            </div>
+            <br>
+        </div>
+
         <form (submit)="register($event)">
 
             <mat-form-field>
@@ -32,7 +46,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput [(ngModel)]="utilisateur.programme" placeholder="Programme (Doit être un number) Ex: 5">
+                <input matInput [(ngModel)]="utilisateur.programme" name="utilisateur.programme" placeholder="Programme (Doit être un ObjectID) Ex: 5ae24fa820405a42f8e78724">
             </mat-form-field>
 
             <mat-radio-group [(ngModel)]="utilisateur.sexe" name="utilisateur.sexe">
@@ -42,7 +56,7 @@
 
 
             <mat-form-field>
-                <input matInput [(ngModel)]="utilisateur.role" placeholder="Rôle (Doit être un number) Ex: 5">
+                <input matInput [(ngModel)]="utilisateur.role" name="utilisateur.role" placeholder="Rôle (Doit être un ObjectID) Ex: 5ae24fa820405a42f8e78724">
             </mat-form-field>
 
             <mat-form-field>
@@ -55,6 +69,10 @@
             </mat-form-field>
 
             <button mat-raised-button color="primary">Inscrire</button>
+
+            <!-- Temporaire -->
+            <h3>Object ID de test: 5ae24fa820405a42f8e78724</h3>
+            <!-- / Temporaire -->
 
         </form>
 

@@ -26,9 +26,9 @@ export class UtilisateurService {
      * @param {Utilisateur} utilisateur
      * @returns {Observable<Object>}
      */
-    registerUtilisateur(utilisateur: Utilisateur) {
+    registerUtilisateur(utilisateur: Utilisateur): Observable<ReponseAPI> {
         console.log(JSON.stringify(utilisateur));
-        return this.http.post('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
+        return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
     }
 
     getUtilisateurLogin(da: string, motdepasse: string): Observable<ReponseLogin> {
