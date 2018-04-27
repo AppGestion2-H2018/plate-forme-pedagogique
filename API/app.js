@@ -12,8 +12,10 @@ var bibliothequeRouter = require('./routes/API/bibliotheque/bibliotheque');
 var evenementsRouter = require('./routes/API/evenements/evenements');
 var groupesRouter = require('./routes/API/groupes/groupes');
 var publicationsRouter = require('./routes/API/publications/publications');
-var resultatsScolairesRouter = require('./routes/API/resultats-scolaires/resultats-scolaires');
-var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
+
+var auth = require('./routes/API/utilisateurs/auth');
+var resultatsRouter = require('./routes/API/resultats/resultats');
+var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
 var app = express();
 app.use(cors());
@@ -53,12 +55,37 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * Permet de catcher toutes les requêtes et de faire du préprocessing avant qu'on laisse la requête continuer.
+ */
+app.use(function (req, res, next) {
+    // Mettre du preprocessing ici
+    const fal = false;
+    if (fal) {
+        GestionCompleteDesCookiesEtDesDonneesDeConnexion(req, res).then(function (multiReponse) {
+
+            res = multiReponse[0];
+
+            if (multiReponse[1]) {
+                // Permet de continuer la requête.
+                next();
+            } else {
+                // Accès refusé, empêcher l'obtentions des données!
+                res.send();
+            }
+
+        });
+    } else {
+        next();
+    }
+});
+
 app.use('/', indexRouter);
 app.use('/api/bibliotheque', bibliothequeRouter);
 app.use('/api/evenements', evenementsRouter);
 app.use('/api/groupes', groupesRouter);
 app.use('/api/publications', publicationsRouter);
-app.use('/api/resultats-scolaires', resultatsScolairesRouter);
+app.use('/api/resultats', resultatsRouter);
 app.use('/api/utilisateurs', utlisateursRouter);
 
 // catch 404 and forward to error handler

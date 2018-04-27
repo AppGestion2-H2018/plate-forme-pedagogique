@@ -15,6 +15,7 @@ import {
     MatIconModule,
     MatDatepickerModule,
     MatChipsModule,
+    MatAutocompleteModule,
 } from '@angular/material';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -43,6 +44,7 @@ import {ClassesComponent} from './groupe/classes/classes.component';
 
 import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
+import {EvaluationService} from './resultats/evaluation.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BiblioService} from './service/biblio.service';
@@ -62,6 +64,7 @@ import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.compon
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -71,8 +74,6 @@ import { ModificationEvenementsComponent } from './evenement/modification-evenem
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
-
-
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -141,10 +142,11 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         HttpModule,
         AppRoutingModule,
         MatChipsModule,
-        
+        MatAutocompleteModule,
     ],
 
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService],
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
+
     bootstrap: [AppComponent]
 })
 export class AppModule {
