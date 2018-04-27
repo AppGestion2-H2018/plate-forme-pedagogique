@@ -74,6 +74,7 @@ import { ModificationEvenementsComponent } from './evenement/modification-evenem
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
+import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -120,6 +121,7 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         PrincipalGroupesComponent,
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
+        RecherchePublicationsComponent,
     ],
     imports: [
         BrowserModule,
