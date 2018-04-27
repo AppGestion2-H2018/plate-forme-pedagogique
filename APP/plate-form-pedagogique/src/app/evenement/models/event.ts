@@ -1,35 +1,12 @@
-// import {JsonObject, JsonProperty} from "json2typescript";
-//
 export class Event {
-
-    id: string;
+    _id: string;
+    start_date: string;
+    end_date: string;
     text: string;
-    // @JsonProperty('description')
+    active: boolean;
     description: string;
     categorie: string;
-    // @JsonProperty('date_debut')
-    start_date: string;
-    // @JsonProperty('date_fin')
-    end_date: string;
     type: string;
     admin_id:string;
     group_id: string;
-    active: boolean;
 }
-
-//     @JsonProperty('description')
-//     getdescription() : string {
-//         return "text";
-//     }
-//
-//     @JsonProperty('date_debut')
-//     getdate_debut(){
-//         return "start_date";
-//     }
-//
-//     @JsonProperty('date_fin')
-//     getdate_fin(){
-//         return "end_date";
-//     }
-// }
-//

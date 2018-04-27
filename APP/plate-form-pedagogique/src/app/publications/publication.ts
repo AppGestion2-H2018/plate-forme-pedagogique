@@ -1,14 +1,14 @@
 // Définition d’une classe Publication
 export class Publication {
-    id: number;
+    //id: number;
     auteur: string;
-    groupe: number;
+    //groupe: number;
     date_publication: Date;
-    date_remise: Date;
     titre: string;
     contenu: string;
-    tags: string;
-    commentaire: string;
+    date_remise: Date;
+    //tags: string;
+    //commentaire: string;
     fichier: string;
   }
   

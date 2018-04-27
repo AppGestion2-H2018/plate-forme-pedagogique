@@ -21,9 +21,12 @@ export class PublicationService {
   getDateRemise(): Observable<Publication[]> {
     return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/date-de-remise');
   }
-  postPublication(titre: string, contenue: string, date_remise: Date){
-    var objpost = {"titre":titre,"contenue":contenue,"date-remise":date_remise};
+  postPublication(auteur: string, titre: string, contenu: string, date_remise: Date, date_publication: Date, fichier: string){
+      let objpost = {"auteur":auteur,"titre":titre,"contenu":contenu,"date_remise":date_remise,"date_publication":date_publication,"fichier":fichier};
       return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/publications/ajouter', JSON.stringify(objpost), httpOptions);
   }
 
+  deletePublication(id : string){
+        return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/' + id);
+  }
 }
