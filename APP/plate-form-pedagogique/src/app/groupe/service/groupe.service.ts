@@ -10,7 +10,7 @@ import {Groupe} from '../groupe';
 export class GroupeService{
    constructor(private http: HttpClient){}
    getGroupes(): Observable<Groupe[]> {
-		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe');
+		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/all');
 	}
 	addGroupe(newGroupe: Groupe) {
   //var headers = new Headers();
