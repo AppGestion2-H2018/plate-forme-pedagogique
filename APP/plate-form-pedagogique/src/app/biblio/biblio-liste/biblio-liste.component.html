@@ -1,6 +1,6 @@
 <ul class="livres">
   <li *ngFor="let livre of biblio.items" (click)="onSelect(livre)">
-    {{livre.volumeInfo.title}}
+    <img src="{{livre.volumeInfo.imageLinks.smallThumbnail}}">{{livre.volumeInfo.title}}
   </li>
   <app-biblio-detail [selectedLivre]="selectedLivreParent"></app-biblio-detail>
 </ul>
