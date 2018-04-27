@@ -1,4 +1,5 @@
 import {Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 import {BiblioService} from "../../service/biblio.service";
 import {Livre} from "../../class/livre";
 import {Biblio} from "../../class/biblio";
@@ -13,6 +14,12 @@ export class BiblioListeComponent implements OnInit, OnChanges {
     biblio: Biblio;
     selectedLivreParent: Livre;
     @Input() rechercheEnfant: string;
+
+    tiles = [
+        {cols: 1, rows: 2},
+        {cols: 1, rows: 1},
+        {cols: 1, rows: 1},
+    ];
 
     constructor(private biblioService: BiblioService) { }
 

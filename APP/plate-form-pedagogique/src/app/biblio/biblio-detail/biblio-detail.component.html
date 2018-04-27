@@ -3,9 +3,9 @@
     <h2>{{selectedLivre.volumeInfo.subtitle}}</h2>
     <img src = {{selectedLivre.volumeInfo.imageLinks.thumbnail}}><br>
     <span>
-    <a href="{{selectedLivre.volumeInfo.previewLink}}">Aperçu</a>
-    <a href="{{selectedLivre.volumeInfo.infoLink}}">Informations</a>
-</span>
+        <a href="{{selectedLivre.volumeInfo.previewLink}}">Aperçu</a>
+        <a href="{{selectedLivre.volumeInfo.infoLink}}">Informations</a>
+    </span>
     <h3>Auteur(s): </h3>
     <ul>
         <li *ngFor="let author of selectedLivre.volumeInfo.authors">

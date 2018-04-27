@@ -7,7 +7,7 @@
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
-    width: 15em;
+    width: 30%;
 }
 .livres li {
     cursor: pointer;
@@ -46,3 +46,26 @@
     border-radius: 4px 0 0 4px;
 }
 
+.example-card {
+    max-width: 600px;
+    margin-bottom:10px;
+}
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
+.ajout {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    color: white;
+    font-size: 28px;
+    z-index: 100;
+}
+.box {
+    position: relative;
+    width: 100%;
+}
