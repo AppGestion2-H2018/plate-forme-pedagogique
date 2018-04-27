@@ -6,16 +6,21 @@ import {forEach} from "@angular/router/src/utils/collection";
 import {Groupe} from "../../groupe/groupe";
 import {GroupeService} from "../../groupe/service/groupe.service";
 import {FormBuilder, Validators} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
+import {isUndefined} from "util";
 
 @Component({
     selector: 'app-ajout-publication',
     templateUrl: './ajout-publication.component.html',
-    styleUrls: ['./ajout-publication.component.css']
+    styleUrls: ['./ajout-publication.component.css'],
+    providers: [GroupeService]
 })
 export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
-    utilisateur: "1633263";
+    groupesUtilisateur: Groupe[];
+    groupeId: string[];
+    utilisateur: 1633263;
     utilisateurs: number[];
 
     publication: Publication;
@@ -29,25 +34,28 @@ export class AjoutPublicationComponent implements OnInit {
     fichier: string;
 
 
-    constructor(private publicationService: PublicationService) { }
+    constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
 
+    toutLesGroupes(){
+        this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
+    }
     popupGroup() {
-        alert('Question prof');
-        //Comment faire!!!!!????
-        //this.groupes = this.groupeService.getGroupes()
-        /*var liste = document.getElementById('listGroup');
-        liste.innerHTML = '<p>Voici vos groupe: </p>'
-        var popup = document.getElementById('allGroup');
-        popup.style.display = "block";
-
-        for(var i = 0; i <= this.groupes.length; i++){
-            this.utilisateurs = this.groupes[i].utilisateur;
-            for(var j = 0; j < this.utilisateurs.length; j++){
-                if(this.utilisateurs[j] == this.utilisateur){
-                    liste.innerHTML = liste.innerHTML + '<br><mat-checkbox>' + this.groupes[i].nom + '</mat-checkbox>';
-                }
+        this.groupesUtilisateur = [];
+        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
+            groupe.utilisateur.forEach(utilisateur => {if(utilisateur == this.utilisateur){
+                this.groupesUtilisateur.push(groupe);
             }
-        }*/
+        }
+        )}});
+        var popup = document.getElementById('allGroup')
+        var liste = document.getElementById('listGroup');
+        if(this.groupesUtilisateur.length != 0){
+            liste.innerHTML = '<p>Voici vos groupe: </p>';
+        }
+        else {
+            liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
+        }
+        popup.style.display = "block";
 
     }
     closePopupGroup() {
@@ -64,6 +72,12 @@ export class AjoutPublicationComponent implements OnInit {
         var fichier =*/
 
 
+        if(this.groupesUtilisateur.length != 0){
+            this.groupesUtilisateur.forEach(groupe => this.groupeId.push(groupe._id.toString()));
+        }
+        else {
+            this.groupeId = [];
+        }
         this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
         this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
         this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
@@ -73,9 +87,10 @@ export class AjoutPublicationComponent implements OnInit {
         this.fichier = filename.split("\\").pop();
 
         //Verification avant
-        this.publication = {"auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication, "fichier":this.fichier};
+        this.publication = {"auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
+            "fichier":this.fichier, "groupes": this.groupeId};
 
-        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier).subscribe();
+        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier, this.groupeId).subscribe();
         console.log(this.publication);
     }
 
@@ -83,7 +98,7 @@ export class AjoutPublicationComponent implements OnInit {
 
 
     ngOnInit() {
-
+        this.toutLesGroupes()
     }
 
 
