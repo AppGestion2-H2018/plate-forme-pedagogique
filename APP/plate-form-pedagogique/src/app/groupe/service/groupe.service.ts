@@ -9,6 +9,7 @@ import {Programme} from '../programme';
 var headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 @Injectable()
+
 export class GroupeService {
     constructor(private http: HttpClient) {
 
@@ -44,4 +45,25 @@ export class GroupeService {
 //		}
 
 //	}
+// export class GroupeService{
+//    constructor(private http: HttpClient){}
+//    getGroupes(): Observable<Groupe[]> {
+// 		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/all');
+// 	}
+// 	addGroupe(newGroupe: Groupe) {
+//   //var headers = new Headers();
+//   //headers.append('Content-Type', 'application/json');
+//   //return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupe/creer-groupe', JSON.stringify(newGroupe), {headers : headers});
+// }
+// 	getGroupe(id : string){
+// //		const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupe/${id}';
+// //		return this.http.get<Groupe>(url).pipe(
+// //			tap(_ => this.log('fetched groupe id=${id}')),
+// //			catchError(this.handleError<Groupe>('getGroupe id=${id}'))
+// //		);
+// 	}
+	deleteGroupe(id : string){
+		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/' + id);
+	}
 }
+

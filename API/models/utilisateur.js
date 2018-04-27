@@ -1,4 +1,4 @@
-    var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var mongooseUniqueValidator = require('mongoose-unique-validator');
@@ -10,9 +10,9 @@ var schema = new Schema({
     courriel: {type: String, required: true, unique: true},
     datedenaissance: {type: Date, required: true},
     codepermanent: {type: String, required: true, unique: true},
-    programme: {type: Number, required: false},
+    programme: {type: Schema.Types.ObjectId, required: false},
     sexe: {type: String, required: true},
-    role: {type: Number, required: false},
+    role: {type: Schema.Types.ObjectId, required: false},
     motdepasse: {type: String, required: true},
     resetPasswordToken: {type: String},
     resetPasswordExpires: {type: Date},

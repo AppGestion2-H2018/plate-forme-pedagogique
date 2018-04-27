@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import {HttpModule} from '@angular/http';
 import {
     MatSidenavModule,
@@ -13,9 +14,13 @@ import {
     MatSelectModule,
     MatIconModule,
     MatDatepickerModule,
+    MatChipsModule,
+    MatAutocompleteModule,
 } from '@angular/material';
+
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -39,6 +44,7 @@ import {ClassesComponent} from './groupe/classes/classes.component';
 
 import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
+import {EvaluationService} from './resultats/evaluation.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BiblioService} from './service/biblio.service';
@@ -58,12 +64,16 @@ import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.compon
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
+import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
+import { EvenementService } from './evenement/evenement.service';
+import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -108,7 +118,8 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
         SchedulerComponent,
         AccueilComponent,
         PrincipalGroupesComponent,
-        AccueilPublicationsComponent
+        ModificationEvenementsComponent,
+        AccueilPublicationsComponent,
     ],
     imports: [
         BrowserModule,
@@ -123,14 +134,19 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
         MatRadioModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatInputModule,
         MatIconModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
         HttpModule,
         AppRoutingModule,
+        MatChipsModule,
+        MatAutocompleteModule,
     ],
-    providers: [UtilisateurService, PublicationService, BiblioService],
+
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
+
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Publication } from './publication';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import {MatCardModule} from '@angular/material/card';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class PublicationService {
@@ -17,5 +21,12 @@ export class PublicationService {
   getDateRemise(): Observable<Publication[]> {
     return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/date-de-remise');
   }
+  postPublication(auteur: string, titre: string, contenu: string, date_remise: Date, date_publication: Date, fichier: string){
+      let objpost = {"auteur":auteur,"titre":titre,"contenu":contenu,"date_remise":date_remise,"date_publication":date_publication,"fichier":fichier};
+      return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/publications/ajouter', JSON.stringify(objpost), httpOptions);
+  }
 
+  deletePublication(id : string){
+        return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/' + id);
+  }
 }

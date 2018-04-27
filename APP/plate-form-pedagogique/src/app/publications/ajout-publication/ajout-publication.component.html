@@ -1,47 +1,68 @@
-
 <h2>Ajout d une publication</h2>
-<div>
-  <label class="labels">Titre :</label>
-  <input class="inputs" name="titre" placeholder="Entrez un titre">
-</div>
-<div>
-  <label class="labels">Contenue : </label>
-  <input class="inputs" name="contenue" placeholder="Entrez votre message">
-</div>
-<div>
-  <div>
-    <label class="labels">Tags : </label>
-    <input type="button" (click)="popup()" value="+">
-  </div>
+<form (ngSubmit)="publier()">
+  <div id="form-div">
+    <mat-form-field>
+        <input matInput id="titre" name="titre" placeholder="Titre" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput id="contenu" name="contenu" placeholder="Contenu" required>
+    </mat-form-field>
+    <br>
 
-  <p id="autreTag"></p>
-  <div id="choixTag" class="popup">
-    <div class="popup-content">
-      <span class="close" (click)="closePopup()">&times;</span>
-      <label class="labels">Entrez un tag : </label>
-      <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
-      <button (click)="ajoutTag(); closePopup()">Ajouter</button>
+
+
+    <!--<div>
+      <div>
+        <label class="labels">Tags: </label>
+        <div class="inputs">
+          <input type="button" class="button" (click)="popup()" value="+">
+        </div>
+      </div>
+
+      a mettre sur des div differents et de faire un display: inline
+
+      DAPHHHHHHHOUNE  MET TES AFFAIRES DE TAGS ICI !!!!!!!!!!!!!!!! pis tu peut effacer se que j ai mit la
+
+      <p id="autreTag"></p>
+      <div id="choixTag" class="popup">
+        <div class="popup-content">
+          <span class="close" (click)="closePopup()">&times;</span>
+          <label class="labels">Entrez un tag : </label>
+          <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
+          <input type="button" class="button" (click)="ajoutTag(); closePopup()" value="Ajouter">
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div>
-  <input type="button" name="groupe[]" (click)="popupGroup()" value="Choisir groupes">
-  <div class="popup" id="allGroup">
-    <div class="popup-content">
+
+    <div>-->
+
+
+
+    <button class="ajout" (click)="popupGroup()" mat-fab>Groupe</button>
+    <br>
+    <div class="popup" id="allGroup">
       <span class="close" (click)="closePopupGroup()">&times;</span>
-      <ul>
-        <li *ngFor="let group of utilisateur">
-          <input type="checkbox" name="group" value="{{group}}">
-        </li>
+      <ul id="listGroup">
+        allo
+        <!--<li *ngFor="let groupe of getGroupes()">
+          <div *ngFor="let utilisateur of groupe.utilisateur">
+            <mat-checkbox *ngIf="utilisateur == 1633263">{{groupe.nom}}</mat-checkbox>
+          </div>
+        </li>-->
       </ul>
     </div>
+    <br>
+    <div>
+      <label class="labels">Choix de fichier :</label><br>
+      <input class="button" type="file" name="fichier" id="fichier">
+    </div>
+    <br>
+    <mat-form-field>
+      <mat-label class="labels">Date de remise :</mat-label><br>
+      <input matInput id="date_remise" class="inputs" type="date" name="date_remise">
+    </mat-form-field>
+    <br>
+    <input class="inputs" type="submit" value="Publier !" id="button-blue">
   </div>
-</div>
-<div>
-  <label class="labels">Vous pouvez choisir un fichier :</label><br>
-  <input class="inputs" type="file" name="fichier[]">
-</div>
-<div>
-  <label class="labels">Vous pouvez choisir une date de remise :</label><br>
-  <input class="inputs" type="date" name="date-remise">
-</div>
+</form>
