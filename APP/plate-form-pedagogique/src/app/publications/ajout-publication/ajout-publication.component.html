@@ -1,19 +1,18 @@
 <h2>Ajout d une publication</h2>
-<form method="post" action="/ajouter" (ngSubmit)="publier()" id="form-main">
+<form (ngSubmit)="publier()">
   <div id="form-div">
-    <div>
-      <label class="labels">*Titre:</label>
-      <div class="inputs">
-        <input id="titre" name="titre" placeholder="Entrez un titre" required>
-      </div>
-    </div>
-    <div>
-      <label class="labels">*Contenu: </label>
-      <div class="inputs">
-        <input id="contenu" name="contenu" placeholder="Entrez votre message" required>
-      </div>
-    </div>
-    <div>
+    <mat-form-field>
+        <input matInput id="titre" name="titre" placeholder="Titre" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput id="contenu" name="contenu" placeholder="Contenu" required>
+    </mat-form-field>
+    <br>
+
+
+
+    <!--<div>
       <div>
         <label class="labels">Tags: </label>
         <div class="inputs">
@@ -21,7 +20,10 @@
         </div>
       </div>
 
-      <!--a mettre sur des div differents et de faire un display: inline-->
+      a mettre sur des div differents et de faire un display: inline
+
+      DAPHHHHHHHOUNE  MET TES AFFAIRES DE TAGS ICI !!!!!!!!!!!!!!!! pis tu peut effacer se que j ai mit la
+
       <p id="autreTag"></p>
       <div id="choixTag" class="popup">
         <div class="popup-content">
@@ -32,35 +34,35 @@
         </div>
       </div>
     </div>
-    <div>
-      <label>*Choix du groupe:</label>
-      <div class="inputs">
-        <input class="button" type="button" name="groupe[]" (click)="popupGroup()" value="Choisir groupes">
-      </div>
-      <div class="popup" id="allGroup">
-        <div class="popup-content">
-          <span class="close" (click)="closePopupGroup()">&times;</span>
-          <ul>
-            <!--<li *ngFor="let utilisateur of getUtilisateurLogin('1633265')">
-              <label class="labels">Choisissez vos groupes : </label>
-              <input *ngFor="let groupe of utilisateur.groupes" type="checkbox" name="group" value="{{groupe}}">
-            </li>-->
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div>
-      <label class="labels">Choix de fichier :</label><br>
-      <input class="button" type="file" name="fichier[]" id="fichier" (change)="fileChange($event)">
-    </div>
-    <div>
-      <label class="labels">Date de remise :</label><br>
-      <input id="date_remise" class="inputs" type="date" name="date_remise">
+
+    <div>-->
+
+
+
+    <button class="ajout" (click)="popupGroup()" mat-fab>Groupe</button>
+    <br>
+    <div class="popup" id="allGroup">
+      <span class="close" (click)="closePopupGroup()">&times;</span>
+      <ul id="listGroup">
+        allo
+        <!--<li *ngFor="let groupe of getGroupes()">
+          <div *ngFor="let utilisateur of groupe.utilisateur">
+            <mat-checkbox *ngIf="utilisateur == 1633263">{{groupe.nom}}</mat-checkbox>
+          </div>
+        </li>-->
+      </ul>
     </div>
     <br>
     <div>
-      <input class="inputs" type="submit" value="Publier !" id="button-blue">
+      <label class="labels">Choix de fichier :</label><br>
+      <input class="button" type="file" name="fichier" id="fichier">
     </div>
+    <br>
+    <mat-form-field>
+      <mat-label class="labels">Date de remise :</mat-label><br>
+      <input matInput id="date_remise" class="inputs" type="date" name="date_remise">
+    </mat-form-field>
+    <br>
+    <input class="inputs" type="submit" value="Publier !" id="button-blue">
   </div>
-
 </form>

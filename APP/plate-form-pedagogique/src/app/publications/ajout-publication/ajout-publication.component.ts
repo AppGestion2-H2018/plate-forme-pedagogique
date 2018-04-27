@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Publication} from "../publication";
 import { PublicationService } from '../publication.service';
 import {forEach} from "@angular/router/src/utils/collection";
+//import {Groupe} from "../../groupe/afficher-groupe/groupe";
+import {Groupe} from "../../groupe/groupe";
+import {GroupeService} from "../../groupe/service/groupe.service";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-ajout-publication',
@@ -9,42 +13,42 @@ import {forEach} from "@angular/router/src/utils/collection";
     styleUrls: ['./ajout-publication.component.css']
 })
 export class AjoutPublicationComponent implements OnInit {
-    form: any;
+
+    groupes: Groupe[];
+    utilisateur: "1633263";
+    utilisateurs: number[];
 
     publication: Publication;
-    value;
+    value: string;
     values : Array<string> = new Array();
     titre: string;
     contenu: string;
     date_remise: Date;
+    date_publication: Date;
+    tags: string[];
+    fichier: string;
+
 
     constructor(private publicationService: PublicationService) { }
 
-    popup() {
-        var popup = document.getElementById('choixTag');
-        popup.focus();
-        popup.style.display = "block";
-    }
-    closePopup() {
-        var popup = document.getElementById('choixTag');
-        popup.style.display = "none";
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.style.display = "none";
-            }
-        }
-    }
-    ajoutTag() {
-        var autreTag = document.getElementById('autreTag');
-        //console.log(this.values);
-        this.values.push(this.value);
-        autreTag.innerHTML = autreTag.innerHTML + ' ' + this.value;
-        this.value = '';
-    }
-
     popupGroup() {
+        alert('Question prof');
+        //Comment faire!!!!!????
+        //this.groupes = this.groupeService.getGroupes()
+        /*var liste = document.getElementById('listGroup');
+        liste.innerHTML = '<p>Voici vos groupe: </p>'
         var popup = document.getElementById('allGroup');
         popup.style.display = "block";
+
+        for(var i = 0; i <= this.groupes.length; i++){
+            this.utilisateurs = this.groupes[i].utilisateur;
+            for(var j = 0; j < this.utilisateurs.length; j++){
+                if(this.utilisateurs[j] == this.utilisateur){
+                    liste.innerHTML = liste.innerHTML + '<br><mat-checkbox>' + this.groupes[i].nom + '</mat-checkbox>';
+                }
+            }
+        }*/
+
     }
     closePopupGroup() {
         var popup = document.getElementById('allGroup');
@@ -55,32 +59,23 @@ export class AjoutPublicationComponent implements OnInit {
             }
         }
     }
-    fileChange(event){
-        let reader = new FileReader();
-        if(event.target.files && event.target.files.length > 0) {
-            let file = event.target.files[0];
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                this.form.get('fichier').setValue({
-                    filename: file.name,
-                    filetype: file.type,
-                    value: reader.result.split(',')[1]
-                })
-            };
-        }
-    }
     publier(){
         /*var request = document.getElementById('fichier');
         var fichier =*/
 
+
         this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
         this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
         this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
+        this.date_publication = new Date();
+        //Manque a decider comment entreposer les docs
+        var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
+        this.fichier = filename.split("\\").pop();
 
         //Verification avant
-        this.publication = {"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise};
+        this.publication = {"auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication, "fichier":this.fichier};
 
-        this.publicationService.postPublication(this.titre, this.contenu, this.date_remise).subscribe();
+        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier).subscribe();
         console.log(this.publication);
     }
 
@@ -88,7 +83,7 @@ export class AjoutPublicationComponent implements OnInit {
 
 
     ngOnInit() {
-        this.publication = {"titre": '', "contenu": '', "date_remise": null};
+
     }
 
 

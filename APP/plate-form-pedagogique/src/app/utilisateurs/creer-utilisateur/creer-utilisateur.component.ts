@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {Utilisateur} from '../../class/utilisateur';
+import {ReponseAPI} from '../../class/reponseAPI';
 
 @Component({
     selector: 'app-creer-utilisateur',
@@ -8,7 +9,7 @@ import {Utilisateur} from '../../class/utilisateur';
     styleUrls: ['./creer-utilisateur.component.css']
 })
 export class CreerUtilisateurComponent implements OnInit {
-
+    reponseAPI: ReponseAPI;
     utilisateur = new Utilisateur();
 
     programmes = [
@@ -33,10 +34,12 @@ export class CreerUtilisateurComponent implements OnInit {
 
     register(event: any): void {
         event.preventDefault();
-        this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe();
+        this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
     }
 
     ngOnInit() {
-
+        // this.reponseAPI = {'Code': 5, 'Message': 'Message test d\'erreur.'};
+        this.reponseAPI = {'Code': 0, 'Message': 'Aucun message'};
+        console.log(this.reponseAPI);
     }
 }
