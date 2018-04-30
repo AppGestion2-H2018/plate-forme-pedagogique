@@ -2,20 +2,64 @@ var express = require('express');
 var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 
+const COOKIE_DA_NAME = 'auth_da';
+const COOKIE_TOKEN_NAME = 'auth_token';
+
 // Test pour voir que ça fonctionne, à supprimer
 router.get('/', function (req, res, next) {
-    res.send(genererAccessToken());
+    res.clearCookie(COOKIE_DA_NAME, {path: '/'});
+    res.clearCookie(COOKIE_TOKEN_NAME, {path: '/'});
+    res.cookie(COOKIE_DA_NAME, req.cookies[COOKIE_DA_NAME]);
+    res.cookie(COOKIE_TOKEN_NAME, req.cookies[COOKIE_TOKEN_NAME]);
+    res.json({"message": req.cookies[COOKIE_TOKEN_NAME]});
 });
 
 // Obtenir tous les Utilisateurs
 router.get('/all', function (req, res, next) {
-    Utilisateur.find({}, {/*_id: 0, da: 1*/}, function (err, utilisateur) {
+    Utilisateur.find({}, {}, function (err, utilisateur) {
         if (err) return console.error(err);
         res.json(utilisateur);
     });
 });
 
+
+// ROUTES PRINCIPALES POUR LA GESTION DES TOKENS AVEC LES COOKIES
+
+// Nouvelle connexion
+router.get('/login/:id', function (req, res, next) {
+
+    nouvelleConnexionBD(req.params.id).then(function (jsonConnexion) {
+        res = ajouterLesCookies(res, DA, jsonConnexion.access_token.remember_token);
+        res.json(jsonConnexion);
+    });
+});
+
+// Tester si il est toujours bien connecté
+router.get('/is', function (req, res, next) {
+
+});
+
+// Ajoute les cookies de connexion au client.
+router.get('/obtenir', function (req, res, next) {
+    res = ajouterLesCookies(res, 1234567, genererAccessToken().access_token.remember_token);
+    res.send("Cookies ajouter!")
+});
+
+// Affiche les cookies actuelle du client
+router.get('/afficher', function (req, res, next) {
+    res.json(obtenirLesCookies(req));
+});
+
+// Supprime les tokens dans les cookies
+router.get('/supprimer', function (req, res, next) {
+    res = supprimerLesCookies(res);
+    res.send("Cookies supprimer!");
+});
+
 // Obtient les informations de l'usager avec les informations du POST (ou des variables de session) et non grâce à l'URL.
+/**
+ * @deprecated
+ */
 router.get('/moncompte', function (req, res, next) {
     // Informations à retourner
     var reponse = {"default": "default"};
@@ -27,7 +71,7 @@ router.get('/moncompte', function (req, res, next) {
     var DA = req.headers.da;
 
     // Effectue la recherche...
-    Utilisateur.find({'da': DA, 'access_token.remember_token': {$eq: Token}}, {}, function (err, utilisateur) {
+    Utilisateur.find({da: {$eq: DA}, 'access_token.remember_token': {$eq: Token}}, {}, function (err, utilisateur) {
         if (err) {
             console.log("erreur : " + err.toString());
             reponse = {"message": "Une erreur est survenue"};
@@ -105,7 +149,7 @@ router.post('/ajouter', function (req, res, next) {
 router.get('/login/:da', function (req, res, next) {
     var reponse = {"default": "default"};
 
-    Utilisateur.find({'da': req.params.da}, function (err, utilisateur) {
+    Utilisateur.find({da: {$eq: req.params.da}}, function (err, utilisateur) {
         if (err) return console.error(err);
 
         // Générer et donner le nouveau token
@@ -140,6 +184,9 @@ router.get('/login/:da', function (req, res, next) {
 });
 
 //Renouvelle mon token
+/**
+ * @deprecated
+ */
 router.get('/renouvelle', function (req, res, next) {
     // Obtient le token
     var oldToken = req.headers.token;
@@ -148,12 +195,14 @@ router.get('/renouvelle', function (req, res, next) {
 
     obtenirTokenUtilisateurBD(DA).then(function (token) {
         res.json(token);
+
+        //TODO: Updater la BD avec des nouveaux token
     });
 });
 
 // Obtient les informations de l'usager avec son DA
 router.get('/:da', function (req, res, next) {
-    Utilisateur.find({'da': req.params.da}, function (err, utilisateur) {
+    Utilisateur.find({da: {$eq: req.params.da}}, function (err, utilisateur) {
         if (err) return console.error(err);
         res.json(utilisateur);
     });
@@ -173,9 +222,11 @@ module.exports = router;
  */
 function verificationAccessToken(old_token) {
     // Vérifier si il y a la présence d'un Token
-    if (old_token[0].access_token === undefined) return false;
 
-    var token = old_token[0].access_token;
+    if (old_token === undefined || old_token.access_token === undefined) return false;
+
+//    var token = old_token[0].access_token;
+    var token = old_token.access_token;
 
     // Vérifier que toutes les clés sont présente
     if (token.remember_token === undefined) return false;
@@ -235,19 +286,30 @@ function creerToken() {
     return token;
 }
 
+/**
+ *
+ * @param json
+ * @param token
+ * @returns {*}
+ */
 function ajouterTokenDansJson(json, token) {
     json[0]["access_token"] = token["access_token"];
     return json;
 }
 
+/**
+ * Convertie le nombre de seconde en nombre de jours entier.
+ * @param secondes
+ * @returns {number} (en entier)
+ */
 function secondesEnJours(secondes) {
-    return ((secondes / 60) / 60) / 24;
+    return Math.floor(((secondes / 60) / 60) / 24);
 }
 
 function obtenirTokenUtilisateurBD(DA) {
     // Effectue la recherche...
     return new Promise(function (resolve, reject) {
-        Utilisateur.findOne({da: DA}, {_id: false, "access_token": true}, function (err, utilisateurToken) {
+        Utilisateur.findOne({da: {$eq: DA}}, {_id: false, "access_token": true}, function (err, utilisateurToken) {
             var reponse = null;
             if (err) {
                 reponse = null;
@@ -263,4 +325,154 @@ function obtenirTokenUtilisateurBD(DA) {
             resolve(reponse);
         });
     });
+}
+
+/**
+ * Gestion complète de cookies et de ce qu'il va faire avec.
+ * @param res
+ * @param req
+ * @constructor
+ */
+GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
+    return new Promise(function (resolve, reject) {
+        var reponseRetourner = [res, false];
+
+        // Voir si daClient et tokenClient sont valide
+        // SI cookies valide
+        const mesCookies = obtenirLesCookies(req);
+        if (mesCookies == null) {
+            console.log("J'Ai pas de cookies");
+            resolve(reponseRetourner);
+        }
+
+        const daClient = mesCookies[COOKIE_DA_NAME];
+        const tokenClient = mesCookies[COOKIE_TOKEN_NAME];
+
+        // Obtenir le token de l'usager dans la BD
+        return obtenirTokenUtilisateurBD(daClient).then(function (tokenBD) {
+            // Le vieux token est toujours valide ?
+            if (verificationAccessToken(tokenBD)) {
+                // Comparer les tokens
+                if (comparerCleTokens(tokenBD, tokenClient)) {
+                    // Si valide, créer nouveaux tokens et les envoyers au client et BD.
+                    //TODO: Faire générer tokens et cookies
+                    console.log("Renouvelage des tokens");
+                    return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
+                        ajouterLesCookies(res, daClient, nouveau_token['access_token'].remember_token);
+                        console.log("Les cookies sont ajouté");
+
+                        reponseRetourner[0] = res;
+                        reponseRetourner[1] = true;
+                        resolve(reponseRetourner);
+                    });
+
+
+                } else {
+                    console.log("La comparaison des 2 tokens à échoué");
+                    // Si non valide, supprimer les cookies et enlever les tokens de la BD.
+                    res = supprimerLesCookies(res);
+                    // TODO: Retirer tokens de la BD
+                    reponseRetourner[0] = res;
+                    reponseRetourner[1] = false;
+                    resolve(reponseRetourner);
+                }
+            } else {
+                console.log("Les tokens de la BD sont invalide");
+                // Les tokens ne sont plus valide, supprimer les cookies et Token BD
+                res = supprimerLesCookies(res);
+                // TODO: Retirer tokens de la BD
+                reponseRetourner[0] = res;
+                reponseRetourner[1] = false;
+                resolve(reponseRetourner);
+            }
+        });
+
+    });
+
+};
+
+function comparerCleTokens(tokenPrincipal, tokenSecondaire) {
+    return tokenPrincipal.access_token.remember_token === tokenSecondaire;
+}
+
+/**
+ * Renouvelle les tokens de l'usager dans la BD
+ * @param DA
+ */
+function nouvelleConnexionBD(DA) {
+    //TODO: Rendu ici
+    return new Promise(function (resolve, reject) {
+        Utilisateur.find({da: {$eq: DA}}, function (err, utilisateur) {
+            if (err) return console.error(err);
+
+            // Générer et donner le nouveau token
+            var nouveau_token = genererAccessToken();
+
+            reponse = utilisateur;
+
+            reponse = ajouterTokenDansJson(reponse, nouveau_token);
+
+            Utilisateur.update({_id: utilisateur[0]['_id']}, {
+                    $set: {
+                        access_token:
+                            {
+                                remember_token: nouveau_token['access_token'].remember_token,
+                                token_type: nouveau_token['access_token'].token_type,
+                                expires_in: nouveau_token['access_token'].expires_in,
+                                created_at: nouveau_token['access_token'].created_at
+                            }
+                    }
+                },
+                function (err, raw) {
+                    if (err) {
+                        console.log("Error log: " + err);
+                    } else {
+                        console.log("Token updated : " + raw);
+                    }
+                }
+            );
+
+            resolve(nouveau_token);
+        })
+    });
+}
+
+/**
+ * Supprime les cookies du navigateur client.
+ * @param res
+ * @returns {*}
+ */
+function supprimerLesCookies(res) {
+    res.clearCookie(COOKIE_DA_NAME, {path: '/'});
+    res.clearCookie(COOKIE_TOKEN_NAME, {path: '/'});
+    return res;
+}
+
+/**
+ * Ajouter les informations de connexion dans les cookies du navigateur.
+ * @param res
+ * @param da
+ * @param token
+ * @returns {*}
+ */
+function ajouterLesCookies(res, da, token) {
+    res.cookie(COOKIE_DA_NAME, da);
+    res.cookie(COOKIE_TOKEN_NAME, token);
+    return res;
+}
+
+/**
+ * Obtient les informations de connexion dans les cookies du client.
+ * @param req
+ * @returns json | null
+ */
+function obtenirLesCookies(req) {
+    var reponse = null;
+    if (req.cookies !== undefined && req.cookies[COOKIE_DA_NAME] !== undefined && req.cookies[COOKIE_TOKEN_NAME] !== undefined) {
+        reponse = {
+            auth_da: req.cookies[COOKIE_DA_NAME],
+            auth_token: req.cookies[COOKIE_TOKEN_NAME]
+        };
+    }
+    return reponse;
 }

@@ -1,5 +1,1 @@
-<input [(ngModel)]="recherche" id="recherche" name="recherche" placeholder="Rechercher">
-
-<div *ngIf="recherche != null && rechercher != ''">
-<app-biblio-liste [recherche]="recherche" ></app-biblio-liste>
-</div>
+<input [(ngModel)]="recherche" id="recherche" name="recherche" placeholder="Rechercher" (change)="updateRecherche()">

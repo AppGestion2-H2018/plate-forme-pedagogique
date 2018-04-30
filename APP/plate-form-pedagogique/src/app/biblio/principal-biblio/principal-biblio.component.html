@@ -1,12 +1,15 @@
 <h1>Bibliothèque</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <app-biblio-recherche></app-biblio-recherche>
-            <app-biblio-detail></app-biblio-detail>
-            <app-biblio-liste></app-biblio-liste>
-        </div>
+<app-biblio-recherche (rechercheOutputEvent)="inRechercheData($event)"></app-biblio-recherche>
+<div class="wrapper">
+    <div class="item1" *ngIf="rechercheData != null && rechercheData != ''">
+        <app-biblio-liste [rechercheEnfant]="rechercheData" (selectedOutputEvent)="inSelectedLivre($event)"></app-biblio-liste>
+    </div>
+    <div class="item2" *ngIf="selectedData != null && rechercheData != null && rechercheData != ''">
+        <app-biblio-detail [selectedEnfant]="selectedData"></app-biblio-detail>
+    </div>
+    <div class="item3">
+        [Insérer favoris ici.]
     </div>
 </div>
 

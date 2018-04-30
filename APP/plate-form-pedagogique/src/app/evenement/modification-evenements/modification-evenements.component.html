@@ -1,6 +1,205 @@
-<h2>Mes évènements </h2>
-<ul class="Groupe">
-  <li *ngFor="let evenement of evenement">
-    <span class="badge">{{evenement.id}}</span> {{evenement.nom}} <button type="button">Modifier</button> <button type="button">Supprimer</button>
+<!DOCTYPE html>
+<html>
+
+
+
+
+
+
+<ul class="events">
+  <li *ngFor="let evenement of events" [class.selected]="events === selectedEvent" (click)="onSelect(evenement)" >
+    <span class="badge"></span> {{evenement.text}}
   </li>
 </ul>
+
+
+
+
+  <div id="form-div">
+    <h2>Modification de l'évènement :  {{selectedEvent.text}}</h2>
+    <div *ngIf="selectedEvent">
+
+    <div>
+      <label class="labels">*Catégorie : </label>
+      <div class="inputs">
+        <input [(ngModel)]="selectedEvent.categorie" required autofocus="autofocus">
+      </div>
+    </div>
+
+    <div>
+      <label class="labels">*Date de début : </label>
+      <div class="inputs">
+        <input [(ngModel)]="selectedEvent.start_date" >
+      </div>
+    </div>
+      <div>
+      <label class="labels">*Date de fin : </label>
+      <div class="inputs">
+        <input [(ngModel)]="selectedEvent.end_date" >
+      </div>
+    </div>
+
+    <div>
+      <label class="labels">*Texte : </label>
+      <div class="inputs">
+        <input [(ngModel)]="selectedEvent.text" >
+      </div>
+    </div>
+      <div>
+      <label class="labels">*Description : </label>
+      <div class="inputs">
+        <textarea class="form-control" rows="5" id="comment" input [(ngModel)]="selectedEvent.description"></textarea>
+      </div>
+    </div>
+      <div>
+
+      <label class="labels">*Type : </label>
+        <div class="inputs">
+          <select class="form-control form-control-sm" >
+            <option value="">Veillez sélectionner le type</option>
+            <option>Privé</option>
+            <option>Public</option>
+          </select>
+        </div>
+        <div>
+          <label class="labels">*Groupe : </label>
+          <div class="inputs">
+            <input [(ngModel)]="selectedEvent.group_id">
+          </div>
+        </div>
+        <div>
+          <label class="labels">*Admin : </label>
+          <div class="inputs">
+            <input [(ngModel)]="selectedEvent.admin_id">
+          </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <input type="submit"  value="Modifier" (click)="onEdit(events)"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<h2>Modification de l'évènement :  {{selectedEvent.text}}</h2>-->
+
+<!--<div *ngIf="selectedEvent">-->
+
+
+  <!--<div class="container">-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Id : </label>-->
+      <!--<div class="col-sm-10">-->
+
+        <!--<input [(ngModel)]="selectedEvent.id" class="form-control" type="text" id="id" name="id"  >-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Catégorie : </label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.categorie"required autofocus="autofocus">-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Date de début :  </label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.start_date" >-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Date de fin : </label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.end_date">-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Texte :</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.text">-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>active :</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.active" >-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>description :</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.description">-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>type : </label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.type" >-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>groupe id :</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.group_id" >-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>admin id :</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="selectedEvent.admin_id" >-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div>-->
+
+  <!--</div>-->
+
+
+
+<!--</div>-->
+
+      <!--&lt;!&ndash;<input type="submit" class="btn btn-primary" value="Mettre à jour" >&ndash;&gt;-->
+
+
+
+<!--</html>-->

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import {Livre} from "../../class/livre";
-import {BiblioService} from "../../service/biblio.service";
-import {Biblio} from "../../class/biblio";
+import {DialogBiblioComponent} from "../dialog-biblio/dialog-biblio.component";
+
+
 
 @Component({
   selector: 'app-biblio-detail',
@@ -10,20 +12,19 @@ import {Biblio} from "../../class/biblio";
 })
 export class BiblioDetailComponent implements OnInit {
 
-    biblio: Biblio;
-    selectedLivre: Livre;
+    @Input() selectedEnfant: Livre;
 
-    constructor(private biblioService: BiblioService) { }
+    dialogRef: MatDialogRef<DialogBiblioComponent>;
 
+    constructor(private dialog: MatDialog) {
 
-    getLivres(): void {
-        this.biblioService.getLivres()
-            .subscribe(resultat => this.biblio = resultat);
-        console.log('in ngOnInit');
     }
 
-    ngOnInit() {
-        console.log('in ngOnInit');
-        this.getLivres();
+    openDialog(){
+        this.dialogRef = this.dialog.open(DialogBiblioComponent);
+    }
+
+    ngOnInit(){
+
     }
 }
