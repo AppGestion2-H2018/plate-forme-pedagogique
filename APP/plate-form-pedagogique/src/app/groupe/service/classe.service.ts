@@ -18,7 +18,7 @@ export class ProduitService {
         return this.httpClient.get<Classe[]>('https://produits-a-commander.herokuapp.com/api/produits');
     }
 
-    public insertProduit(produit: Produit) {
+/*    public insertProduit(produit: Produit) {
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         const body = JSON.stringify(produit);
         return this.httpClient.post(this.URL, body, {headers: headers});
@@ -28,6 +28,6 @@ export class ProduitService {
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         const body = JSON.stringify(produit);
         return this.httpClient.put<Produit>(this.URL, body, {headers: headers});
-    }
+    }*/
 
 }

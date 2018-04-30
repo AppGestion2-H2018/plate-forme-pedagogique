@@ -40,6 +40,10 @@ router.post('/', function(req, res, next) {
         est_publique: newGroup.est_publique,
         commenter: newGroup.commenter,
     });
+    //Creer une description s'il y en a une
+    if(newGroup.description !== null){
+        groupe.description = newGroup.description;
+    }
 
     //CRÉER LE TABLEAU D'UTILISATEURS S'IL EXISTE
     if (newGroup.utilisateurs !== null) {
