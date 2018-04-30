@@ -1,5 +1,1 @@
-<input [(ngModel)]="rechercheParent" id="recherche" name="recherche" placeholder="Rechercher">
-
-<div *ngIf="rechercheParent != null && rechercheParent != ''">
-<app-biblio-liste [rechercheEnfant]="rechercheParent" ></app-biblio-liste>
-</div>
+<input [(ngModel)]="recherche" id="recherche" name="recherche" placeholder="Rechercher" (change)="updateRecherche()">

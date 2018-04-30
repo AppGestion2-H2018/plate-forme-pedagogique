@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BiblioService} from "../../service/biblio.service";
 import {Livre} from "../../class/livre";
 
 @Component({
@@ -9,8 +8,8 @@ import {Livre} from "../../class/livre";
 })
 export class BiblioDetailComponent implements OnInit {
 
-    @Input() selectedLivre: Livre;
-    constructor(private biblioService: BiblioService) {
+    @Input() selectedEnfant: Livre;
+    constructor() {
 
     }
 
