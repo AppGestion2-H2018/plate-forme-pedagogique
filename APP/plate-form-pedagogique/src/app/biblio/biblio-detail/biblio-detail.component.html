@@ -22,7 +22,11 @@
             <h3>Date de parution: {{selectedEnfant.volumeInfo.publishedDate}}</h3>
             <h3>Nombre de pages: {{selectedEnfant.volumeInfo.pageCount}}</h3>
             <h3>Langue: "{{selectedEnfant.volumeInfo.language}}"</h3>
+            <div>
+                <button class="ajout alignright" mat-fab (click)="openDialog()">+</button>
+            </div>
         </div>
     </div>
+
     </mat-card>
 </div>

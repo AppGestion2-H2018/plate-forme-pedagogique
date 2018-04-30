@@ -16,8 +16,10 @@ import {
     MatDatepickerModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatDialogModule,
 } from '@angular/material';
 
+import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
@@ -42,19 +44,20 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
-import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
 import {EvaluationService} from './resultats/evaluation.service';
-
 import {HttpClientModule} from '@angular/common/http';
-import {BiblioService} from './service/biblio.service';
 
+import {BiblioService} from './service/biblio.service';
 import {BiblioDetailComponent} from './biblio/biblio-detail/biblio-detail.component';
 import {BiblioListeComponent} from './biblio/biblio-liste/biblio-liste.component';
 import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
+import {BiblioRechercheComponent} from './biblio/biblio-recherche/biblio-recherche.component';
+import { DialogBiblioComponent } from './biblio/dialog-biblio/dialog-biblio.component';
+
 import {ListeEvenementsComponent} from './evenement/liste-evenements/liste-evenements.component';
 import {MenuEvenementsComponent} from './evenement/menu-evenements/menu-evenements.component';
-import {BiblioRechercheComponent} from './biblio/biblio-recherche/biblio-recherche.component';
+
 import {AfficherGroupeComponent} from './groupe/afficher-groupe/afficher-groupe.component';
 import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.component';
 import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
@@ -68,7 +71,7 @@ import {PrincipalResultatsComponent} from './resultats/principal-resultats/princ
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
@@ -77,7 +80,6 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
-
 
 @NgModule({
     declarations: [
@@ -88,7 +90,6 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         RecupererMotDePasseComponent,
         PrincipalUtilisateursComponent,
         MenuUtilisateursComponent,
-        PrincipalBiblioComponent,
         MenuBiblioComponent,
         MenuPublicationsComponent,
         PrincipalPublicationsComponent,
@@ -101,12 +102,14 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         AjoutPublicationComponent,
         CreerGroupeComponent,
         // AjoutEvenementComponent,
+        PrincipalBiblioComponent,
         BiblioDetailComponent,
         BiblioListeComponent,
+        BiblioRechercheComponent,
+        DialogBiblioComponent,
         AjoutEvenementComponent,
         ListeEvenementsComponent,
         MenuEvenementsComponent,
-        BiblioRechercheComponent,
         AfficherGroupeComponent,
         ModifierGroupeComponent,
         SupprimerGroupeComponent,
@@ -145,11 +148,13 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         AppRoutingModule,
         MatChipsModule,
         MatAutocompleteModule,
+        MatDialogModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
 
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [DialogBiblioComponent]
 })
 export class AppModule {
 }
