@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { EvenementService } from './evenement/evenement.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[EvenementService]
 })
 export class AppComponent {
     estConnecte = true;
