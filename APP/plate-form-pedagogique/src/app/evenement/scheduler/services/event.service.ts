@@ -11,6 +11,10 @@ export class EventService {
     private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
     private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
     private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private getEventUrl = 'http://localhost:3000/api/evenements';
+    // private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+    // private updateEventUrl = 'http://localhost:3000/api/evenements';
+    // private deleteEventUrl = 'http://localhost:3000/api/evenements';
 
     constructor(private http: HttpClient) {
     }
@@ -28,7 +32,6 @@ export class EventService {
         event.type = "Prive";
         event.group_id = "";
         event.admin_id = "1";
-        console.log(event);
 
         return this.http.post(this.addEventUrl, event)
             .toPromise()
@@ -36,18 +39,20 @@ export class EventService {
     }
 
     update(event: Event): Promise<void> {
-        event.active = event.active;
-        event.description = event.text;
-        event.categorie = event.categorie;
-        event.type = event.type;
-        event.group_id = event.group_id;
-        event.admin_id = event.admin_id;
-        return this.http.put(`${this.updateEventUrl}/${event.id}`, event)
+        let newEvent = new Event();
+        newEvent.active = event.active;
+        newEvent.description = event.text;
+        newEvent.categorie = event.categorie;
+        newEvent.type = event.type;
+        newEvent.group_id = event.group_id;
+        newEvent.admin_id = event.admin_id;
+        return this.http.put(`${this.updateEventUrl}/${event._id}`,newEvent)
             .toPromise()
             .catch(HandleError);
     }
 
     remove(id: number): Promise<void> {
+        console.log(id);
         return this.http.delete(`${this.deleteEventUrl}/${id}`)
             .toPromise()
             .catch(HandleError);

@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
         if(utilisateur !== null) {
 
             if(motdepasse == utilisateur.motdepasse){
-               objReponse = {'Code':1,'Message':'La connexion à été effectué avec succès.'}
+               objReponse = {'Code':1,'Message':'La connexion à été effectuée avec succès.'}
             }
           else {
                 objReponse = {'Code':2,'Message':'Le numéro de DA ou le mot de passe n\'est pas valide.'}
@@ -29,8 +29,8 @@ router.post('/', function (req, res, next) {
         {
             objReponse = {'Code':3,'Message':'Une erreur interne est survenue, veuillez réessayer plus tard. '}
         }
-        console.log(reponse);
-        res.json(reponse);
+        console.log(objReponse);
+        res.json(objReponse);
     });
 });
 

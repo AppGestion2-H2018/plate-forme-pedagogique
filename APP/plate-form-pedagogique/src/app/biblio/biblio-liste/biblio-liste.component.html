@@ -1,5 +1,33 @@
-<ul>
-  <li *ngFor="let livre of biblio.items">
-    {{livre.volumeInfo.title}}
-  </li>
+<ul class="livres">
+    <li *ngFor="let livre of biblio.items" (click)="onSelect(livre)">
+        <mat-card class="example-card">
+            <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-tile>
+                    <mat-card-subtitle>
+                        <p style="text-align:left;">
+                            <span>
+                                <img src = {{livre.volumeInfo.imageLinks.smallThumbnail}}>
+                            </span>
+                        </p>
+                    </mat-card-subtitle>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-card-title>
+                        <span>{{livre.volumeInfo.title}}</span>
+                    </mat-card-title>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-card-subtitle>
+                        <ul>
+                            <li *ngFor="let author of livre.volumeInfo.authors">
+                                {{author}}
+                            </li>
+                        </ul>
+                    </mat-card-subtitle>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </li>
 </ul>
+
+

@@ -14,8 +14,8 @@ var schema = new Schema({
     end_date: {type: Date, required: true},
     type: {type: String, required: true},
     creation_date: {type: Date, required: true},
-    admin_id:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: true},
-    group_id:{type:Schema.Types.ObjectId, ref: 'groupe', required: true},
+    admin_id:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: false},
+    group_id:{type:Schema.Types.ObjectId, ref: 'groupe', required: false},
     active:{type:Boolean, required: true},
 });
 

@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component'
 import {PrincipalPublicationsComponent} from './publications/principal-publications/principal-publications.component';
@@ -7,8 +7,9 @@ import {PrincipalBiblioComponent} from './biblio/principal-biblio/principal-bibl
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 import {PrincipalGroupesComponent} from './groupe/principal-groupes/principal-groupes.component';
 import {RecupererMotDePasseComponent} from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
+import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-publication.component';
-import {AjoutEvenementComponent} from "./evenement/ajout-evenement/ajout-evenement.component";
+import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'resultats-scolaires', component: PrincipalResultatsComponent },
     { path: 'accueil', redirectTo: '', pathMatch: 'full' },
     { path: 'motdepasse-oublie', component: RecupererMotDePasseComponent },
+    { path: 'creer-utilisateur', component: CreerUtilisateurComponent },
     { path: 'publications/ajout', component: AjoutPublicationComponent},
     { path: 'ajout-evenement', component: AjoutEvenementComponent },
 ];
