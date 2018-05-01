@@ -10,7 +10,7 @@ import {Tablette} from "../../class/tablette";
 export class DialogBiblioComponent implements OnInit {
 
   selectionTablette: Tablette;
-  nouvelleTablette: string;
+  newTablette: Tablette;
 
   tablettes: Tablette[];
 
@@ -24,12 +24,18 @@ export class DialogBiblioComponent implements OnInit {
     this.selectionTablette = tablette;
   }
 
-    getTablette(): void {
-        this.biblioService.getTablette()
-            .subscribe(newTablettes => this.tablettes = newTablettes);
-    }
+  getTablette(): void {
+    this.biblioService.getTablette()
+        .subscribe(tablettes => this.tablettes = tablettes);
+  }
 
-  creerTablette(){
+  postTablette(): void{
+    this.newTablette.user = 'Bond07';
+    this.biblioService.postTablette(this.newTablette)
+        .subscribe(tablette =>(this.tablettes.push(tablette)));
+  }
+
+  putTablette(){
 
   }
 }

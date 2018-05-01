@@ -78,6 +78,7 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
+import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
 
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 
@@ -125,6 +126,7 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
         RecherchePublicationsComponent,
+        BiblioTabletteComponent,
     ],
     imports: [
         BrowserModule,

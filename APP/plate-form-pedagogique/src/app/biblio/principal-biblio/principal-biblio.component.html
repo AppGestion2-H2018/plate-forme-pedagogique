@@ -1,5 +1,4 @@
 <h1>Bibliothèque</h1>
-
 <app-biblio-recherche (rechercheOutputEvent)="inRechercheData($event)"></app-biblio-recherche>
 <div class="wrapper">
     <div class="item1" *ngIf="rechercheData != null && rechercheData != ''">
@@ -9,7 +8,7 @@
         <app-biblio-detail [selectedEnfant]="selectedData"></app-biblio-detail>
     </div>
     <div class="item3">
-        [Insérer favoris ici.]
+        <app-biblio-tablette></app-biblio-tablette>
     </div>
 </div>
 
