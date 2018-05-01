@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from '../classe';
-import { CLASSES } from '../mock_classe';
+//import { CLASSES } from '../mock_classe';
 
 @Component({
   selector: 'app-classes',
@@ -9,7 +9,7 @@ import { CLASSES } from '../mock_classe';
 })
 export class ClassesComponent implements OnInit {
 	
-	classes = CLASSES;
+	//classes = CLASSES;
 	
   constructor() { }
 
