@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-biblio-recherche',
@@ -8,6 +8,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 export class BiblioRechercheComponent implements OnInit {
 
     recherche: string;
+    @Input() rechercheEnfant: string;
     @Output() rechercheOutputEvent: EventEmitter<String> = new EventEmitter();
 
     constructor() { }
@@ -17,6 +18,7 @@ export class BiblioRechercheComponent implements OnInit {
     }
 
     updateRecherche() {
+        console.log("test");
         this.rechercheOutputEvent.emit(this.recherche);
     }
 }

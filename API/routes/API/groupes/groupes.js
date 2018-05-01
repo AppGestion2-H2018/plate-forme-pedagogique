@@ -9,6 +9,7 @@ var Groupe = require('../../../models/groupe');
 var Utilisateur = require('../../../models/utilisateur');
 var Programme = require('../../../models/programme');
 var Type = require('../../../models/type');
+var Classe = require('../../../models/classe');
 
 /**************************************** GESTION DES GROUPES *****************************/
 /**
@@ -196,7 +197,7 @@ router.get('/types/:id', function (req, res, next) {
  * afficher tous les types
  */
 router.get('/classes/all', function (req, res, next) {
-    Type.find(function (err, classe){
+    Classe.find(function (err, classe){
         if (err) return handleError(err, query);
         res.json(classe);
     });
@@ -207,7 +208,7 @@ router.get('/classes/all', function (req, res, next) {
  */
 router.get('/classes/:id', function (req, res, next) {
     var objectId = req.params.id;
-    Type.findById(objectId,function (err, classe){
+    Classe.findById(objectId,function (err, classe){
         if (err) return handleError(err, query);
         res.json(classe);
     });

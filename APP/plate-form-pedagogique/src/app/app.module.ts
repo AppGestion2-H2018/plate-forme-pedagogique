@@ -17,6 +17,7 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatNativeDateModule,
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
@@ -79,9 +80,8 @@ import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
 import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherungroupe.component';
-
+import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -127,6 +127,7 @@ import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherung
         AccueilPublicationsComponent,
         RecherchePublicationsComponent,
         AfficherungroupeComponent,
+        BiblioTabletteComponent,
     ],
     imports: [
         BrowserModule,
@@ -143,6 +144,7 @@ import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherung
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
