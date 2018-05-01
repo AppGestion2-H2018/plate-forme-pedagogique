@@ -313,6 +313,7 @@ function obtenirTokenUtilisateurBD(DA) {
             var reponse = null;
             if (err) {
                 reponse = null;
+                //reject(reponse);
             } else {
                 // Vérifier si il y a une réponse et une valeur seulement.
                 if (utilisateurToken == null || utilisateurToken.length === 0) {
@@ -328,6 +329,67 @@ function obtenirTokenUtilisateurBD(DA) {
 }
 
 /**
+ * Gestion complète des cookies lors d'une nouvelle connexion.
+ * @param req
+ * @param res
+ * @param da
+ * @constructor
+ */
+GestionCompleteDesNouveauxLogin = function (req, res, da) {
+    return new Promise(function (resolve, reject) {
+        var reponseRetourner = [res, false];
+
+        // Obtenir les données de login
+        // Cela inclu le DA
+        if (da === undefined || da === null) {
+            console.log("Aucun DA");
+            resolve(reponseRetourner);
+        }
+
+        Utilisateur.findOne({da: {$eq: da}}, function (err, utilisateur) {
+            if (err) return console.error(err);
+
+            // Regarder si il a trouvé quelqu'un
+            if (utilisateur === null || utilisateur.length === 0) {
+                console.log("Aucun utilisateur de trouvé");
+                resolve(reponseRetourner);
+            }
+
+            // Générer les nouveaux tokens
+            var nouveau_token = genererAccessToken();
+
+            // Envoyer les tokens à l'utilisateur de la BD.
+            Utilisateur.update({_id: utilisateur[0]['_id']}, {
+                    $set: {
+                        access_token:
+                            {
+                                remember_token: nouveau_token['access_token'].remember_token,
+                                token_type: nouveau_token['access_token'].token_type,
+                                expires_in: nouveau_token['access_token'].expires_in,
+                                created_at: nouveau_token['access_token'].created_at
+                            }
+                    }
+                },
+                function (err, raw) {
+                    if (err) {
+                        console.log("Error log: " + err);
+                    }
+                }
+            );
+
+
+            // Ajouter le nouveau token dans les cookies.
+            res = ajouterLesCookies(res, da, nouveau_token['access_token'].remember_token);
+
+            reponseRetourner[0] = res;
+            reponseRetourner[1] = true;
+
+            resolve(reponseRetourner);
+        });
+    });
+};
+
+/**
  * Gestion complète de cookies et de ce qu'il va faire avec.
  * @param res
  * @param req
@@ -341,7 +403,7 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
         // SI cookies valide
         const mesCookies = obtenirLesCookies(req);
         if (mesCookies == null) {
-            console.log("J'Ai pas de cookies");
+            console.log("J'ai pas de cookies");
             resolve(reponseRetourner);
         }
 

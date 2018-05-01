@@ -1,27 +1,38 @@
-/* private CSS styles */
+/* HerosComponent's private CSS styles */
 .selected {
     background-color: #CFD8DC !important;
     color: white;
 }
-.livres {
-    margin: 2em 2em 2em 2em;
+.biblio {
+    margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
+    width: 15em;
 }
-.livres li {
+.biblio li {
     cursor: pointer;
     position: relative;
     left: 0;
+    background-color: #EEE;
     margin: .5em;
-    padding: .3em 0;
+    padding: .5em;
+    height: 1.6em;
     border-radius: 4px;
 }
-
-.livres .text {
+.biblio li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+}
+.biblio li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+.biblio .text {
     position: relative;
     top: -3px;
 }
-.livres .badge {
+.biblio .badge {
     display: inline-block;
     font-size: small;
     color: white;
@@ -34,28 +45,4 @@
     height: 1.8em;
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
-}
-
-.example-card {
-    max-width: 600px;
-    margin-bottom:10px;
-}
-
-.alignleft {
-    float: left;
-}
-.alignright {
-    float: right;
-}
-.ajout {
-    position: fixed;
-    bottom: 10%;
-    right: 10%;
-    color: white;
-    font-size: 28px;
-    z-index: 100;
-}
-.box {
-    position: relative;
-    width: 100%;
 }
