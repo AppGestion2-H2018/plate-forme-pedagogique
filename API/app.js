@@ -17,6 +17,7 @@ var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs')
 
 var app = express();
 app.use(cors());
+
 /************************************************** MONGOOSE *********************************************************/
 const options = {
     autoIndex: false, // Don't build indexes
