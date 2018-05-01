@@ -1,29 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {Groupe} from "./groupe"
-import { GROUPES } from './liste-groupe-test';
-import { GroupeService } from '../service/groupe.service';
+import {Groupe} from "../groupe"
+import {GroupeService} from '../service/groupe.service';
 
 @Component({
   selector: 'app-afficher-groupe',
   templateUrl: './afficher-groupe.component.html',
-  styleUrls: ['./afficher-groupe.component.css']
+  styleUrls: ['./afficher-groupe.component.css'],
+    providers: [GroupeService]
 })
 export class AfficherGroupeComponent implements OnInit {
-    groupes = GROUPES;
-  constructor() { }
+    groupes: Groupe[];
+  constructor(private groupeService : GroupeService) { }
 
-  ngOnInit() {
-  }
   deleteGroupe(id : string) {
-			var groupes = this.groupes;
-			//this.groupeService.deleteGroupe(id).subscribe(data => {
-//			if(data.n == 1){
-//				for(var i = 0; i < groupes.length; i++) {
-	//				if(groupes[i]._id == id) {
-	//					groupes.splice(i,1);
-	//				}
-//				}
-//			}
-//		});
+		this.groupeService.deleteGroupe(id).subscribe();
 	}
+  //result => this.groupes = this.groupes.filter(g => g._id !== id)
+  ngOnInit() {
+	  
+  }
+  
 }
