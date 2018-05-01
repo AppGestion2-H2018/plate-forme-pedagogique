@@ -12,8 +12,8 @@ export class AfficherGroupeComponent implements OnInit {
     groupes: Groupe[];
   constructor(private groupeService : GroupeService) { }
 
-  deleteGroupe(id : string) {
-		this.groupeService.deleteGroupe(id).subscribe();
+  deleteGroupe(groupe : Groupe) {
+		this.groupeService.deleteGroupe(groupe).subscribe();
 	}
   //result => this.groupes = this.groupes.filter(g => g._id !== id)
   ngOnInit() {

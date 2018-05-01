@@ -8,8 +8,8 @@ import {Programme} from '../programme';
 import {Classe} from "../classe";
 
 const httpOptions = { 
-	headers: new HttpHeaders({'Content-Type': 'application/json'});
-}
+	headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable()
 
@@ -40,7 +40,7 @@ export class GroupeService {
     }
 
     addGroupe(newGroupe: Groupe) {
-        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), {headers: headers});
+        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), httpOptions);
     }
 
 	deleteGroupe(groupe : Groupe){
