@@ -17,6 +17,7 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatNativeDateModule,
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
@@ -143,6 +144,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
