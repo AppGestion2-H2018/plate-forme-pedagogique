@@ -17,6 +17,7 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatNativeDateModule,
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
@@ -141,6 +142,7 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
