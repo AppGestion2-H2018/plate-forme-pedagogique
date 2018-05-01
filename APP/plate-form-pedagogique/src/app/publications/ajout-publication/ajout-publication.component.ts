@@ -41,12 +41,12 @@ export class AjoutPublicationComponent implements OnInit {
     }
     popupGroup() {
         this.groupesUtilisateur = [];
-        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
+        /*this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
             groupe.utilisateur.forEach(utilisateur => {if(utilisateur == this.utilisateur){
                 this.groupesUtilisateur.push(groupe);
             }
         }
-        )}});
+        )}});*/
         var popup = document.getElementById('allGroup')
         var liste = document.getElementById('listGroup');
         if(this.groupesUtilisateur.length != 0){
