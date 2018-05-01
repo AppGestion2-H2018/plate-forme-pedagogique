@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
+import {Classe} from "../classe";
 
 var headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -27,8 +28,12 @@ export class GroupeService {
         return this.http.get<Programme[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/programmes/all');
     }
 
+    getClasses(): Observable<Classe[]> {
+        return this.http.get<Classe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/classes/all');
+    }
+
     addGroupe(newGroupe: Groupe) {
-        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupe/creer-groupe', JSON.stringify(newGroupe), {headers: headers});
+        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), {headers: headers});
     }
 
 //	deleteGroupe(id : string){

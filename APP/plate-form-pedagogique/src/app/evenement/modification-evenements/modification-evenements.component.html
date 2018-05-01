@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
+
 <ul class="events">
   <li *ngFor="let evenement of events" [class.selected]="events === selectedEvent" (click)="onSelect(evenement)" >
     <span class="badge"></span> {{evenement.text}}
@@ -27,6 +32,12 @@
         <input [(ngModel)]="selectedEvent.start_date" >
       </div>
     </div>
+      <div>
+      <label class="labels">*Date de fin : </label>
+      <div class="inputs">
+        <input [(ngModel)]="selectedEvent.end_date" >
+      </div>
+    </div>
 
     <div>
       <label class="labels">*Texte : </label>
@@ -37,19 +48,37 @@
       <div>
       <label class="labels">*Description : </label>
       <div class="inputs">
-        <input [(ngModel)]="selectedEvent.description" >
+        <textarea class="form-control" rows="5" id="comment" input [(ngModel)]="selectedEvent.description"></textarea>
       </div>
     </div>
       <div>
+
       <label class="labels">*Type : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.type" >
-      </div>
-    </div>
+        <div class="inputs">
+          <select class="form-control form-control-sm" >
+            <option value="">Veillez sélectionner le type</option>
+            <option>Privé</option>
+            <option>Public</option>
+          </select>
+        </div>
+        <div>
+          <label class="labels">*Groupe : </label>
+          <div class="inputs">
+            <input [(ngModel)]="selectedEvent.group_id">
+          </div>
+        </div>
+        <div>
+          <label class="labels">*Admin : </label>
+          <div class="inputs">
+            <input [(ngModel)]="selectedEvent.admin_id">
+          </div>
+        </div>
+
     </div>
 
+    </div>
 
-      <input class="inputs" type="submit" value="Publier !" id="button-blue">
+    <input type="submit"  value="Modifier" (click)="onEdit(events)"/>
 
 
 

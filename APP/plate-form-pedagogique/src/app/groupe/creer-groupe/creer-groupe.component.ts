@@ -3,6 +3,7 @@ import {GroupeService} from '../service/groupe.service';
 import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
+import {Classe} from "../classe";
 
 @Component({
     selector: 'app-creer-groupe',
@@ -14,23 +15,25 @@ export class CreerGroupeComponent implements OnInit {
 
     groupes: Groupe[];
     types: Type[];
+    classes: Classe[];
     programmes: Programme[];
     // groupe : Groupe;
     groupe = {
         _id:"",
         proprietaire:"5acd550bd2d9763634a93f6f",
-        nom:"NOEL NOEL NOEL NOEL NOEL NOEL NOEL NOEL NOEL NOEL NOEL NOEL",
-        actif:true,
-        est_publique:true,
-        commenter:true,
-        date_fin: new Date("2018-12-28"),
-        super_admin:1,
-        admin:1,
-        programmes:[122],
-        classes:[122],
-        type:[11212],
-        utilisateur:[2323],
-        blacklist:[1212]
+        nom:"",
+        actif:false,
+        est_publique:false,
+        description:"",
+        commenter:false,
+        date_fin: new Date(""),
+        super_admins:[],
+        admins:[],
+        programmes:[],
+        classes:[],
+        types:[],
+        utilisateurs:[],
+        blacklist:[],
     }
 
     constructor(private groupeService: GroupeService) {}
@@ -50,19 +53,24 @@ export class CreerGroupeComponent implements OnInit {
             .subscribe(programmes => this.programmes = programmes);
     }
 
-    addGroupe(event: any) {
-        event.preventDefault();
+    getClasses(): void {
+        this.groupeService.getClasses()
+            .subscribe(classes => this.classes = classes);
+    }
 
+    addGroupe(event: any): void{
+        event.preventDefault();
         this.groupeService.addGroupe(this.groupe)
             .subscribe();
     }
+
 
     ngOnInit() {
         console.log('in ngOnInit');
         this.getGroupes();
         this.getTypes();
         this.getProgrammes();
-        this.addGroupe(this.groupe);
+        this.getClasses();
     }
 
 }
