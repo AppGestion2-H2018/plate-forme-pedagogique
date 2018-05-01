@@ -4,29 +4,19 @@
     color: white;
 }
 .livres {
-    margin: 0 0 2em 0;
+    margin: 2em 2em 2em 2em;
     list-style-type: none;
     padding: 0;
-    width: 15em;
 }
 .livres li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
     border-radius: 4px;
 }
-.livres li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
-}
-.livres li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-}
+
 .livres .text {
     position: relative;
     top: -3px;
@@ -46,3 +36,26 @@
     border-radius: 4px 0 0 4px;
 }
 
+.example-card {
+    max-width: 600px;
+    margin-bottom:10px;
+}
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
+.ajout {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    color: white;
+    font-size: 28px;
+    z-index: 100;
+}
+.box {
+    position: relative;
+    width: 100%;
+}
