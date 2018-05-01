@@ -23,7 +23,7 @@ export class EvenementService {
 
 
     updateStatus(event : Event): Observable<any> {
-        const id = typeof event === 'number' ? event : event.id;
+        const id = typeof event === 'number' ? event : event._id;
         const url = `${this.eventsAPIUrl}/event/${id}`;   // ajouter l'id à l'URL de base
         return this.http.put<Event>(url, event, httpOptions);
     }

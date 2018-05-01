@@ -32,7 +32,7 @@ export class ModificationEvenementsComponent implements OnInit {
 
     updateStatu(event:Event) {
         var evenement:Event = {
-         id:event.id,
+         id:event._id,
          start_date:event.start_date,
          end_date:event.end_date,
          text:event.text,
