@@ -1,4 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-biblio-recherche',
@@ -7,9 +8,8 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 })
 export class BiblioRechercheComponent implements OnInit {
 
-    recherche: string;
-    @Input() rechercheEnfant: string;
-    @Output() rechercheOutputEvent: EventEmitter<String> = new EventEmitter();
+    rechercheData: string;
+    selectedData: Livre;
 
     constructor() { }
 
@@ -17,8 +17,7 @@ export class BiblioRechercheComponent implements OnInit {
         console.log('in ngOnInit');
     }
 
-    updateRecherche() {
-        console.log("test");
-        this.rechercheOutputEvent.emit(this.recherche);
+    inSelectedLivre(event){
+        this.selectedData = event;
     }
 }
