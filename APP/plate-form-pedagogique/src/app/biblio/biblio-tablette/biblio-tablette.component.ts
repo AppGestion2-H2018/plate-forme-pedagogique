@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BiblioService} from "../../service/biblio.service";
 import {Tablette} from "../../class/tablette";
+import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-biblio-tablette',
@@ -9,23 +10,15 @@ import {Tablette} from "../../class/tablette";
 })
 export class BiblioTabletteComponent implements OnInit {
 
-  tablettes: Tablette[];
+    @Input() tablettes: Tablette[];
 
+    constructor() { }
 
-  constructor(private biblioService: BiblioService) { }
+    ngOnInit() {
 
-  ngOnInit() {
-    this.getTablette();
-  }
-
-    getTablette(): void {
-        this.biblioService.getTablette()
-            .subscribe(resultat => this.tablettes = resultat);
-        console.log('in ngOnInit');
     }
 
     openTablette(){
 
     }
-
 }

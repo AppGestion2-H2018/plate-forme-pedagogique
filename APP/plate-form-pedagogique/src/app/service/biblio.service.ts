@@ -14,7 +14,7 @@ export class BiblioService {
 
     //'https://api-appgestion2-h18.herokuapp.com/api/bibliotheque'
     //'http://localhost:3000/api/bibliotheque'
-    private biblioAPIurl= 'https://api-appgestion2-h18.herokuapp.com/api/bibliotheque';
+    private biblioAPIurl= 'http://localhost:3000/api/bibliotheque';
 
     constructor(private http: HttpClient) { }
 
@@ -30,5 +30,11 @@ export class BiblioService {
         console.log(JSON.stringify(tablette));
         return this.http.post<Tablette>(this.biblioAPIurl + '/ajouter', tablette, httpOptions);
     }
+
+    putTablette(tablette: Tablette): Observable<Tablette> {
+        console.log(JSON.stringify(tablette));
+        return this.http.post<Tablette>(this.biblioAPIurl + '/ajouter', tablette, httpOptions);
+    }
+
 }
 

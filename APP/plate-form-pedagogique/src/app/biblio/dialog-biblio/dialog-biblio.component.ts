@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {BiblioService} from "../../service/biblio.service";
+import { Component, OnInit, Inject } from '@angular/core';
 import {Tablette} from "../../class/tablette";
 
 @Component({
@@ -9,33 +8,11 @@ import {Tablette} from "../../class/tablette";
 })
 export class DialogBiblioComponent implements OnInit {
 
-  selectionTablette: Tablette;
-  newTablette: Tablette;
+    newTablette: Tablette;
 
-  tablettes: Tablette[];
+    constructor() { }
 
-  constructor(private biblioService: BiblioService) { }
+    ngOnInit() {
 
-  ngOnInit() {
-    this.getTablette();
-  }
-
-  onSelect(tablette: Tablette): void {
-    this.selectionTablette = tablette;
-  }
-
-  getTablette(): void {
-    this.biblioService.getTablette()
-        .subscribe(tablettes => this.tablettes = tablettes);
-  }
-
-  postTablette(): void{
-    this.newTablette.user = 'Bond07';
-    this.biblioService.postTablette(this.newTablette)
-        .subscribe(tablette =>(this.tablettes.push(tablette)));
-  }
-
-  putTablette(){
-
-  }
+    }
 }
