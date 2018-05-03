@@ -127,7 +127,7 @@ router.delete('/delete/:idGroupe', function (req, res, next) {
         if (err) return handleError(err, query);
         if(result.n == 0){
             res.json({code:0,message:'Ce groupe n\'existe pas'});
-        }else{cd a
+        }else{
             res.json({code:1,message:'Le groupe a été effacé'});
         }
     });
