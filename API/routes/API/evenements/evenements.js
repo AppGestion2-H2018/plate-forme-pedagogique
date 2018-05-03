@@ -128,9 +128,10 @@ router.delete('/:evenementId', function (req, res, next) {
 router.put('/:evenementId', function (req, res, next) {
     console.log("Mise à jour de l'événement")
     var evenement = req.body;
+    delete evenement['_id'];
     var evenementId = req.params.evenementId;
     console.log(evenement);
-    console.log("evenementId : " + evenement);
+    console.log("eventementID" + evenementId);
     MongoClient.connect(url, function (err, client) {
         assert.equal(null, err);
         console.log("Connexion au serveur réussie");
@@ -152,7 +153,6 @@ router.put('/:evenementId', function (req, res, next) {
  */
 router.post('/ajout', function (req, res, next) {
     var evenement = req.body;
-    delete evenement['_id'];
     console.log(evenement);
     if (!evenement.text || (!evenement.description) || (!evenement.categorie) || (!evenement.start_date) || (!evenement.end_date) || (!evenement.type) || (!evenement.admin_id) || (!evenement.active)) {
         res.status(400);
