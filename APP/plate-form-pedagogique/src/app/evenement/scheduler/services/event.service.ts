@@ -7,14 +7,14 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class EventService {
 
-    private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
-    private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    // private getEventUrl = 'http://localhost:3000/api/evenements';
-    // private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
-    // private updateEventUrl = 'http://localhost:3000/api/evenements';
-    // private deleteEventUrl = 'http://localhost:3000/api/evenements';
+    // private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
+    // private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    private getEventUrl = 'http://localhost:3000/api/evenements';
+    private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+    private updateEventUrl = 'http://localhost:3000/api/evenements';
+    private deleteEventUrl = 'http://localhost:3000/api/evenements';
 
     constructor(private http: HttpClient) {
     }
