@@ -36,6 +36,15 @@ router.post('/', function(req, res, next) {
         est_publique: newGroup.est_publique,
         commenter: newGroup.commenter,
     });
+    //Creer une description s'il y en a une
+    if(newGroup.description !== null){
+        groupe.description = newGroup.description;
+    }
+
+    //Creer une description s'il y en a une
+    if(newGroup.date_fin!== null){
+        groupe.date_fin = newGroup.date_fin;
+    }
 
     //CRÉER LE TABLEAU D'UTILISATEURS S'IL EXISTE
     if (newGroup.utilisateurs !== null) {

@@ -23,6 +23,6 @@ var schema = new Schema({
 
 //PLugin pour valider un champs unique
 schema.plugin(mongooseUniqueValidator);
-schema.plugin(idValidator,{message:"Enregistrement innexistant"});
+schema.plugin(idValidator,{message:"Enregistrement inexistant"});
 
 module.exports = mongoose.model('groupe', schema);
