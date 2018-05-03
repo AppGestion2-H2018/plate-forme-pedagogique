@@ -152,6 +152,7 @@ router.put('/:evenementId', function (req, res, next) {
  */
 router.post('/ajout', function (req, res, next) {
     var evenement = req.body;
+    delete evenement['_id'];
     console.log(evenement);
     if (!evenement.text || (!evenement.description) || (!evenement.categorie) || (!evenement.start_date) || (!evenement.end_date) || (!evenement.type) || (!evenement.admin_id) || (!evenement.active)) {
         res.status(400);
