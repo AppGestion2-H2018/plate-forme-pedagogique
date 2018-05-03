@@ -1,6 +1,6 @@
 // Définition d’une classe Publication
 export class Publication {
-    //_id: number;
+    _id: number;
     auteur: number;
     groupes: string[];
     date_publication: Date;
