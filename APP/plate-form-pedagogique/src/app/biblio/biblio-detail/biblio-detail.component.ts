@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Livre} from "../../class/livre";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DialogBiblioComponent} from "../dialog-biblio/dialog-biblio.component";
-import {BiblioService} from "../../service/biblio.service";
 import {Tablette} from "../../class/tablette";
 
 
@@ -13,38 +12,28 @@ import {Tablette} from "../../class/tablette";
 })
 export class BiblioDetailComponent implements OnInit {
 
-    newTablette: Tablette;
-    tablettes: Tablette[];
+    popTablette: string = "Hello World!";
 
     @Input() selectedEnfant: Livre;
 
 
-    constructor(private dialog: MatDialog, private biblioService: BiblioService) {
+    constructor(private dialog: MatDialog) {
 
     }
 
-    openDialog(){ //Ouvre le dialogue sur clic de bouton.
-        //Setting du pop-ip
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.autoFocus = true;
+    openDialog():void   {
+        let dialogRef = this.dialog.open(DialogBiblioComponent, {
+            data:{popTablette: this.popTablette}
+        });
 
-        //Passe le data au pop-up
-        dialogConfig.data = {
-            livreAAjouter:this.selectedEnfant,
-            popUpTablette:this.tablettes
-        };
-
-        this.dialog.open(DialogBiblioComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(result=>{
+            console.log("The dialog was close");
+            this.popTablette = result;
+        });
     }
     
 
     ngOnInit(){
-        this.getTablette()
-    }
 
-    getTablette(): void {
-        this.biblioService.getTablette()
-            .subscribe(resultat => this.tablettes = resultat);
-        console.log('in ngOnInit');
     }
 }
