@@ -7,14 +7,14 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class EventService {
 
-    private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
-    private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    // private getEventUrl = 'http://localhost:3000/api/evenements';
-    // private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
-    // private updateEventUrl = 'http://localhost:3000/api/evenements';
-    // private deleteEventUrl = 'http://localhost:3000/api/evenements';
+    // private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
+    // private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    private getEventUrl = 'http://localhost:3000/api/evenements';
+    private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+    private updateEventUrl = 'http://localhost:3000/api/evenements';
+    private deleteEventUrl = 'http://localhost:3000/api/evenements';
 
     constructor(private http: HttpClient) {
     }
@@ -26,16 +26,21 @@ export class EventService {
     }
 
     insert(event: Event): Promise<Event> {
-        event.active = true;
-        event.description = event.text;
-        event.categorie = "1";
-        event.type = "Prive";
-        event.group_id = "";
-        event.admin_id = "1";
+        if(event.description != "" ) {
+            event.active = true;
+            event.description = event.text;
+            event.categorie = "1";
+            event.type = "Prive";
+            event.group_id = "";
+            event.admin_id = "1";
 
-        return this.http.post(this.addEventUrl, event)
-            .toPromise()
-            .catch(HandleError);
+            return this.http.post(this.addEventUrl, event)
+                .toPromise()
+                .catch(HandleError);
+        }
+        else{
+            return null;
+        }
     }
 
     update(event: Event): Promise<void> {
@@ -57,5 +62,4 @@ export class EventService {
             .toPromise()
             .catch(HandleError);
     }
-
 }

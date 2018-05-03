@@ -1,3 +1,5 @@
-<p>
-  classes works!
-</p>
+<div *ngFor="let classe of classes">
+  <p>{{classe._id}} - {{classe.nom}} - {{classe.no_groupe}}</p>
+  <button onclick="deleteClasse(classe._id)"></button>
+</div>
+

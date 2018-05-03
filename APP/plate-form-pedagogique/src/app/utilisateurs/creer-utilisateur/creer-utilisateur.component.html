@@ -16,7 +16,7 @@
             <br>
         </div>
 
-        <form (submit)="register($event)">
+        <form #utilisateurFormAjout="ngForm" id="utilisateurFormAjout" (submit)="register($event, utilisateurFormAjout)">
 
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.da" required minlength="2" maxlength="50" #da="ngModel" name="utilisateur.da" placeholder="Numéro de DA">
@@ -96,7 +96,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input type="password" matInput [(ngModel)]="utilisateur.photo" name="utilisateur.photo" placeholder="Photo">
+                <input matInput [(ngModel)]="utilisateur.photo" name="utilisateur.photo" placeholder="Photo">
             </mat-form-field>
 
             <button mat-raised-button color="primary">Inscrire</button>
