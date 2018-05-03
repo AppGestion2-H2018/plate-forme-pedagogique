@@ -160,7 +160,7 @@ router.get('/types/all', function (req, res, next) {
         if(types == null){
             return res.send({"code":0,"message":"Il n'y a pas de types"});
         }
-        res.json(groupe);
+        res.json(types);
     });
 });
 
@@ -218,9 +218,9 @@ router.post('/classes', function(req, res, next) {
  */
 router.get('/classes/:id', function (req, res, next) {
     var objectId = req.params.id;
-    Classe.findById(objectId,function (err, type){
+    Classe.findById(objectId,function (err, classe){
         if (err) return handleError(err, query);
-        res.json(type);
+        res.json(classe);
     });
 });
 
