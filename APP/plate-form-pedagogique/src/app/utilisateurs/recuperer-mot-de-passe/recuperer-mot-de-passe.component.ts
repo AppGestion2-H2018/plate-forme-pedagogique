@@ -18,7 +18,7 @@ export class RecupererMotDePasseComponent implements OnInit {
   constructor(private utilisateurService:UtilisateurService, private ref: ApplicationRef) { }
 
   // Envoi du courriel de réinitialisation du mot de passe
-  forgotpassword():void{
+  onSubmit():void{
     // Appelle la fonction d'envoi de courriel du server
     // this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
     this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
