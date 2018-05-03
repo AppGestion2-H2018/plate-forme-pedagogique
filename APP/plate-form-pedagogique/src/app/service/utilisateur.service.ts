@@ -6,7 +6,6 @@ import {of} from 'rxjs/observable/of';
 import {ReponseAPI} from '../class/reponseAPI';
 import {ReponseLogin} from '../class/reponseLogin';
 import {ObjectUnsubscribedError} from 'rxjs/Rx';
-import {RequestOptions} from "http";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'}),
