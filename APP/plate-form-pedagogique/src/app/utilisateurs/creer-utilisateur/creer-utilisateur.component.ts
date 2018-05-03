@@ -21,7 +21,7 @@ export class CreerUtilisateurComponent implements OnInit {
         {value: '5', viewValue: 'Sciences humaines'}
     ];
 
-    roles = [
+    types = [
         {value: '0', viewValue: 'Étudiant'},
         {value: '1', viewValue: 'Enseignant'},
         {value: '2', viewValue: 'Personnel de soutien'}

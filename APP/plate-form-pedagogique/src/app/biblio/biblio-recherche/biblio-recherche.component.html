@@ -1,1 +1,12 @@
-<input [(ngModel)]="recherche" id="recherche" name="recherche" placeholder="Rechercher" (change)="updateRecherche()">
+<input [(ngModel)]="rechercheData" id="recherche" name="recherche" placeholder="Rechercher">
+<div class="wrapper">
+    <div class="item1" *ngIf="rechercheData != null && rechercheData != ''">
+        <app-biblio-liste [rechercheEnfant]="rechercheData" (selectedOutputEvent)="inSelectedLivre($event)"></app-biblio-liste>
+    </div>
+    <div class="item2" *ngIf="selectedData != null && rechercheData != null && rechercheData != ''">
+        <app-biblio-detail [selectedEnfant]="selectedData"></app-biblio-detail>
+    </div>
+    <div class="item3" *ngIf="tablettesData != null">
+        <app-biblio-tablette [tablettes]="tablettesData"></app-biblio-tablette>
+    </div>
+</div>

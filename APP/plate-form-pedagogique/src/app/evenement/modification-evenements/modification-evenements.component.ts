@@ -36,12 +36,28 @@ export class ModificationEvenementsComponent implements OnInit {
     }
 
 
+
     onEdit(): void {
      // console.log(this.selectedEvent);
             this.evenementService.updateEvent(this.selectedEvent)
                 .subscribe(() => this.selectedEvent = null);
     }
 
+    updateStatu(event:Event) {
+        var evenement: Event = {
+            _id: event._id,
+            start_date: event.start_date,
+            end_date: event.end_date,
+            text: event.text,
+            active: event.active,
+            description: event.description,
+            categorie: event.categorie,
+            type: event.type,
+            group_id: event.group_id,
+            admin_id: event.admin_id
+        };
+
+    }
 
     // onEdit(event:Event) {
     //
@@ -61,13 +77,6 @@ export class ModificationEvenementsComponent implements OnInit {
     //     this.evenementService.updateEvent(this.selectedEvent)
     //                .subscribe(() => this.selectedEvent = null);
     // }
-
-    onSelect(event: Event): void {
-        this.selectedEvent = event;
-        console.log(this.selectedEvent);
-    }
-
-
 
 
 

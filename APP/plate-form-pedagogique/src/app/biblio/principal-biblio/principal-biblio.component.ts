@@ -8,19 +8,8 @@ import {Livre} from "../../class/livre";
 })
 export class PrincipalBiblioComponent implements OnInit {
 
-  rechercheData: string;
-  selectedData: Livre;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  inRechercheData(event){
-    this.rechercheData = event;
-  }
-
-  inSelectedLivre(event){
-    this.selectedData = event;
   }
 }

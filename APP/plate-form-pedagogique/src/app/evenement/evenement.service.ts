@@ -44,4 +44,6 @@ export class EvenementService {
         return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/evenements/'+ event._id , JSON.stringify(event),httpOptions);
 }
 
+
+
 }

@@ -1,16 +1,21 @@
+import {Programme} from "./programme";
+import {Type} from "./type";
+import {Utilisateur} from "../class/utilisateur";
+import {Classe} from "./classe";
+
 export class Groupe {
-  _id: String;
+  _id: string;
   nom: string;
   date_fin: Date;
-  actif: Boolean;
-  est_publique: Boolean;
-  commenter: Boolean;
-  super_admin: number;
-  admin: number;
-  programmes: number[];
-  classes: number[];
-  type: number[];
-  utilisateur: number[];
-  blacklist: number[];
-  
+  description: string;
+  actif: boolean;
+  est_publique: boolean;
+  commenter: boolean;
+  super_admins: Utilisateur[];
+  admins: Utilisateur[];
+  programmes: Programme[];
+  classes: Classe[];
+  types: Type[];
+  utilisateurs: Utilisateur[];
+  blacklist: Utilisateur[];
 }

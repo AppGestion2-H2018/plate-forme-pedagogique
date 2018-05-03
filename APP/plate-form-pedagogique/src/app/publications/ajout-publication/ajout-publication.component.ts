@@ -41,12 +41,12 @@ export class AjoutPublicationComponent implements OnInit {
     }
     popupGroup() {
         this.groupesUtilisateur = [];
-        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
+        /*this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
             groupe.utilisateur.forEach(utilisateur => {if(utilisateur == this.utilisateur){
                 this.groupesUtilisateur.push(groupe);
             }
         }
-        )}});
+        )}});*/
         var popup = document.getElementById('allGroup')
         var liste = document.getElementById('listGroup');
         if(this.groupesUtilisateur.length != 0){
@@ -71,7 +71,7 @@ export class AjoutPublicationComponent implements OnInit {
         /*var request = document.getElementById('fichier');
         var fichier =*/
 
-
+        alert('allo');
         if(this.groupesUtilisateur.length != 0){
             this.groupesUtilisateur.forEach(groupe => this.groupeId.push(groupe._id.toString()));
         }
@@ -99,6 +99,8 @@ export class AjoutPublicationComponent implements OnInit {
 
     ngOnInit() {
         this.toutLesGroupes()
+        this.publication = {"auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
+            "fichier":'', "groupes": null};
     }
 
 
