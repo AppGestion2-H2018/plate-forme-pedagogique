@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var mongooseUniqueValidator = require('mongoose-unique-validator');
+var idValidator = require('mongoose-id-validator');
 
 var schema = new Schema({
     proprietaire:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: true},
@@ -22,5 +23,6 @@ var schema = new Schema({
 
 //PLugin pour valider un champs unique
 schema.plugin(mongooseUniqueValidator);
+schema.plugin(idValidator,{message:"Enregistrement inexistant"});
 
 module.exports = mongoose.model('groupe', schema);

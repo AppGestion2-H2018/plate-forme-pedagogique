@@ -1,7 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {HttpModule} from '@angular/http';
+import {MatTableModule} from '@angular/material/table';
+
+
 import {
     MatSidenavModule,
     MatToolbarModule,
@@ -126,8 +128,11 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
         RecherchePublicationsComponent,
+
+
         AfficherungroupeComponent,
         BiblioTabletteComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -153,6 +158,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
         MatChipsModule,
         MatAutocompleteModule,
         MatDialogModule,
+        MatTableModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],

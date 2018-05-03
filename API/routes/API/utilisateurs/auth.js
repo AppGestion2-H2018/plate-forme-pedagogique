@@ -359,7 +359,7 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
             var nouveau_token = genererAccessToken();
 
             // Envoyer les tokens à l'utilisateur de la BD.
-            Utilisateur.update({_id: utilisateur[0]['_id']}, {
+            Utilisateur.update({_id: utilisateur['_id']}, {
                     $set: {
                         access_token:
                             {
@@ -518,8 +518,8 @@ function supprimerLesCookies(res) {
  * @returns {*}
  */
 function ajouterLesCookies(res, da, token) {
-    res.cookie(COOKIE_DA_NAME, da);
-    res.cookie(COOKIE_TOKEN_NAME, token);
+    res.cookie(COOKIE_DA_NAME, da, {path: '/'});
+    res.cookie(COOKIE_TOKEN_NAME, token, {path: '/'});
     return res;
 }
 
