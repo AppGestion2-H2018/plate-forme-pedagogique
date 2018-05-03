@@ -4,6 +4,14 @@
  margin:30px auto 20px auto;
  padding:0 10px
 }
+.errors_validation{
+  font-size:14px;
+  padding:10px;
+  max-width:600px;
+  margin:0px auto -20px auto !important;
+  text-align:center;
+  display:table;
+}
 .errors {
  font-size:14px;
  padding:10px;

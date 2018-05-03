@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modifier-mot-de-passe',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifierMotDePasseComponent implements OnInit {
 
-  constructor() { }
+  resetPasswordToken: string;
+
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.resetPasswordToken = this.route.snapshot.paramMap.get('resetPasswordToken');
+  }
+
+  validerToken(): void {
+    
   }
 
 }

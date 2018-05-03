@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {Utilisateur} from '../../class/utilisateur';
 import {ReponseAPI} from '../../class/reponseAPI';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-creer-utilisateur',
@@ -32,9 +33,12 @@ export class CreerUtilisateurComponent implements OnInit {
 
     }
 
-    register(event: any): void {
+    register(event: any, utilisateurFormAjout: NgForm): void {
         event.preventDefault();
-        this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
+
+        if (utilisateurFormAjout.valid) {
+            this.utilisateurService.registerUtilisateur(this.utilisateur).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
+        }
     }
 
     ngOnInit() {
