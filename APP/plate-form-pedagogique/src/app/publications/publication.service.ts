@@ -15,7 +15,7 @@ export class PublicationService {
   constructor(private http: HttpClient) { }
 
   getPublications(): Observable<Publication[]> {
-      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications');
+      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
   }
 
   getDateRemise(): Observable<Publication[]> {
