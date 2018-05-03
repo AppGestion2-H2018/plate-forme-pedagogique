@@ -126,8 +126,11 @@ router.delete('/:evenementId', function (req, res, next) {
  * Modifier un evenement par son id
  */
 router.put('/:evenementId', function (req, res, next) {
+    console.log("Mise à jour de l'événement")
     var evenement = req.body;
     var evenementId = req.params.evenementId;
+    console.log(evenement);
+    console.log("evenementId : " + evenement);
     MongoClient.connect(url, function (err, client) {
         assert.equal(null, err);
         console.log("Connexion au serveur réussie");
