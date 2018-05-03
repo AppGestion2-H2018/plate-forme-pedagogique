@@ -7,11 +7,17 @@ import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
 
-var headers = new HttpHeaders({'Content-Type': 'application/json'});
+const httpOptions = { 
+	headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable()
 
 export class GroupeService {
+	
+	private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
+	private groupesAPIUrlLocal = 'http://localhost:3000/api';
+	
     constructor(private http: HttpClient) {
 
     }
@@ -19,6 +25,7 @@ export class GroupeService {
     getGroupes(): Observable<Groupe[]> {
         return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
     }
+	
 
     getTypes(): Observable<Type[]> {
         return this.http.get<Type[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/types/all');
@@ -33,42 +40,14 @@ export class GroupeService {
     }
 
     addGroupe(newGroupe: Groupe) {
-        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), {headers: headers});
+        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), httpOptions);
     }
 
-//	deleteGroupe(id : string){
-//		var groupes = this.groupes;
-
-//		this.groupeService.deleteGroupe(id).subscribe(date => {
-//			if(data.n == 1){
-//				for(var i = 0; i < groupes.length; i++;) {
-//					if(groupes[i]._id == id) {
-//						groupes.splice(i,1);
-//					}
-//				}
-//			}
-//		}
-
-//	}
-// export class GroupeService{
-//    constructor(private http: HttpClient){}
-//    getGroupes(): Observable<Groupe[]> {
-// 		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/all');
-// 	}
-// 	addGroupe(newGroupe: Groupe) {
-//   //var headers = new Headers();
-//   //headers.append('Content-Type', 'application/json');
-//   //return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupe/creer-groupe', JSON.stringify(newGroupe), {headers : headers});
-// }
-// 	getGroupe(id : string){
-// //		const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupe/${id}';
-// //		return this.http.get<Groupe>(url).pipe(
-// //			tap(_ => this.log('fetched groupe id=${id}')),
-// //			catchError(this.handleError<Groupe>('getGroupe id=${id}'))
-// //		);
-// 	}
-	deleteGroupe(id : string){
-		return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupe/' + id);
+	deleteGroupe(groupe : Groupe){
+		const id = typeof groupe === 'string' ? groupe : groupe._id;
+		const url = '${this.groupesAPIUrl}/groupes/${id}';
+		return this.http.delete<Groupe>(url, httpOptions);	
 	}
+	
 }
 
