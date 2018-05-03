@@ -84,6 +84,7 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
 import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherungroupe.component';
 import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
+import { BiblioAjoutTabletteComponent } from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
 @NgModule({
     declarations: [
@@ -133,6 +134,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
 
         AfficherungroupeComponent,
         BiblioTabletteComponent,
+        BiblioAjoutTabletteComponent,
 
     ],
     imports: [

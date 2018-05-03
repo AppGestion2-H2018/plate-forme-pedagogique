@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Livre} from "../../class/livre";
 import {BiblioService} from "../../service/biblio.service";
 import {Tablette} from "../../class/tablette";
@@ -13,8 +13,6 @@ export class BiblioRechercheComponent implements OnInit {
     rechercheData: string;
     selectedData: Livre;
     tablettesData: Tablette[];
-
-
 
     constructor(private biblioService: BiblioService) { }
 
@@ -31,5 +29,9 @@ export class BiblioRechercheComponent implements OnInit {
         this.biblioService.getTablette()
             .subscribe(resultat => this.tablettesData = resultat);
         console.log('in ngOnInit');
+    }
+
+    openDialog() {
+
     }
 }
