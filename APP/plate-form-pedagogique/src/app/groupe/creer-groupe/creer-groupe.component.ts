@@ -4,6 +4,7 @@ import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
+import {Utilisateur} from "../../class/utilisateur";
 
 @Component({
     selector: 'app-creer-groupe',
