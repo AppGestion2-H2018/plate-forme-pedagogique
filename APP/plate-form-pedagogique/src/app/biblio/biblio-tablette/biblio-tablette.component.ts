@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BiblioService} from "../../service/biblio.service";
 import {Tablette} from "../../class/tablette";
-import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-biblio-tablette',
