@@ -3,6 +3,7 @@ var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 var Crypto = require('crypto');
 var nodemailer = require('nodemailer');
+const URL_RESET = 'http://localhost:4200/motdepasse-reinitialisation/';
 
 // Envoie d'un courriel de reinitialisation si l'adresse courriel est valider
 router.post('/sendmail', function (req, res, next) {
@@ -40,7 +41,7 @@ router.post('/sendmail', function (req, res, next) {
             }
           });
 
-          var urlResetPwd = 'http://localhost:3000/api/utilisateurs/recuperation/' + token;
+          var urlResetPwd = URL_RESET + token;
           var mailOptions = {
             from: 'mailbot84@gmail.com',
             to: 'math.frechette@gmail.com',
@@ -49,13 +50,13 @@ router.post('/sendmail', function (req, res, next) {
               '<a href="' + urlResetPwd + '">' + urlResetPwd + '</a>'
           };
 
-          // transporter.sendMail(mailOptions, function(error, info){
-          //   if (error) {
-          //     console.log(error);
-          //   } else {
-          //     console.log('Email sent: ' + info.response);
-          //   }
-          // });
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 
           objReponse = {'Code' : 1, 'Message':'Le courriel a été envoyé avec succès'};
       }
