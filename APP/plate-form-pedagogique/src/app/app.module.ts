@@ -26,6 +26,7 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -159,6 +160,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
         MatAutocompleteModule,
         MatDialogModule,
         MatTableModule,
+        MatExpansionModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
