@@ -26,16 +26,21 @@ export class EventService {
     }
 
     insert(event: Event): Promise<Event> {
-        event.active = true;
-        event.description = event.text;
-        event.categorie = "1";
-        event.type = "Prive";
-        event.group_id = "";
-        event.admin_id = "1";
+        if(event.description != "" ) {
+            event.active = true;
+            event.description = event.text;
+            event.categorie = "1";
+            event.type = "Prive";
+            event.group_id = "";
+            event.admin_id = "1";
 
-        return this.http.post(this.addEventUrl, event)
-            .toPromise()
-            .catch(HandleError);
+            return this.http.post(this.addEventUrl, event)
+                .toPromise()
+                .catch(HandleError);
+        }
+        else{
+            return null;
+        }
     }
 
     update(event: Event): Promise<void> {
@@ -57,5 +62,4 @@ export class EventService {
             .toPromise()
             .catch(HandleError);
     }
-
 }

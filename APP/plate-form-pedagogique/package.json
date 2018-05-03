@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@types/dhtmlxscheduler": "^4.3.36",
+    "angular-alert-module": "^1.0.0",
     "core-js": "^2.4.1",
     "dhtmlx-scheduler": "^4.4.0",
     "octicons": "^7.2.0",
