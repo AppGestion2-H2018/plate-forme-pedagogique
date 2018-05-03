@@ -9,6 +9,7 @@ var Groupe = require('../../../models/groupe');
 var Utilisateur = require('../../../models/utilisateur');
 var Programme = require('../../../models/programme');
 var Type = require('../../../models/type');
+var Classe = require('../../../models/classe');
 
 /**************************************** GESTION DES GROUPES *****************************/
 /**
@@ -27,11 +28,6 @@ router.get('/all', function (req, res, next) {
 router.post('/', function(req, res, next) {
     var newGroup = req.body;
 
-
-    //Vérifie si le propriétaire existe.
-    //Utilisateur.findById(newGroup.proprietaire, function(err, result){
-    //if (err) return res.status(500).send(err);
-
     //CRÉER L'OBJET AVEC LES ÉLÉMENTS OBLIGATOIRES
     var groupe = new Groupe({
         proprietaire: newGroup.proprietaire,
@@ -40,15 +36,6 @@ router.post('/', function(req, res, next) {
         est_publique: newGroup.est_publique,
         commenter: newGroup.commenter,
     });
-    //Creer une description s'il y en a une
-    if(newGroup.description !== null){
-        groupe.description = newGroup.description;
-    }
-
-    //Creer une description s'il y en a une
-    if(newGroup.date_fin!== null){
-        groupe.date_fin = newGroup.date_fin;
-    }
 
     //CRÉER LE TABLEAU D'UTILISATEURS S'IL EXISTE
     if (newGroup.utilisateurs !== null) {
@@ -126,7 +113,7 @@ router.delete('/:idGroupe', function (req, res, next) {
         if(result.n == 0){
             res.json({code:0,message:'Aucun enregistrement'});
         }else{
-            res.json({code:1,message:'Aucun enregistrement'});
+            res.json({code:1,message:'Enregistrement enlevé'});
         }
     });
 });
@@ -190,15 +177,15 @@ router.get('/types/:id', function (req, res, next) {
 });
 /************************************ FIN GESTION DES TYPES *****************************/
 
-/**************************************** GESTION DES CLASSES**********************************/
+/**************************************** GESTION DES CLASSES **********************************/
 
 /**
- * afficher tous les types
+ * afficher tous les classes
  */
 router.get('/classes/all', function (req, res, next) {
-    Type.find(function (err, classe){
+    Classe.find(function (err, groupe){
         if (err) return handleError(err, query);
-        res.json(classe);
+        res.json(groupe);
     });
 });
 
@@ -207,9 +194,9 @@ router.get('/classes/all', function (req, res, next) {
  */
 router.get('/classes/:id', function (req, res, next) {
     var objectId = req.params.id;
-    Type.findById(objectId,function (err, classe){
+    Classe.findById(objectId,function (err, type){
         if (err) return handleError(err, query);
-        res.json(classe);
+        res.json(type);
     });
 });
 /************************************ FIN GESTION DES CLASSES *****************************/

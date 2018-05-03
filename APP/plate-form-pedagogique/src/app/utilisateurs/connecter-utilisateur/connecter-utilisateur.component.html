@@ -6,14 +6,14 @@
 
 
 <div class="card login">
-    <div *ngIf="reponseLogin.Code != 1">
-        <!--Création du form pour la page de login-->
-        <!--ne pas oublier de remettre /login lorsqu'on va être rendu a ce connecter-->
-        <form action="/" method="POST" class="auth-form login">
-            <input type="hidden" name="_csrf" value="EelfUCL2-1dFSE4RbQA6YA3S2l0oM_ZiMRKg"/>
 
-            <!--affichage du Da de l'élève-->
-            <div class="row email">
+    <!--Création du form pour la page de login-->
+    <!--ne pas oublier de remettre /login lorsqu'on va être rendu a ce connecter-->
+    <form action="/" method="POST" class="auth-form login">
+        <input type="hidden" name="_csrf" value="EelfUCL2-1dFSE4RbQA6YA3S2l0oM_ZiMRKg"/>
+
+        <!--affichage du Da de l'élève-->
+        <div class="row email">
       <span class="icon email"><svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -32,16 +32,16 @@
     </g>
 </svg></span>
 
-                <!--Endroit pour que l'utilisateur mettre son DA et qui gère les possibiliter que l'utilisateur voudrait faire-->
-                <input type="text" name="da" [(ngModel)]="da" value=""
-                       required autofocus
-                       pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
-                       title="Veuillez entrer un DA valide."
-                       placeholder="Votre Da"/>
-            </div>
+            <!--Endroit pour que l'utilisateur mettre son DA et qui gère les possibiliter que l'utilisateur voudrait faire-->
+            <input type="text" name="da" [(ngModel)]="da" value=""
+                   required autofocus
+                   pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
+                   title="Veuillez entrer un DA valide."
+                   placeholder="Votre Da"/>
+        </div>
 
-            <!--Affichage des mots de passe  -->
-            <div class="row password">
+        <!--Affichage des mots de passe  -->
+        <div class="row password">
       <span class="icon padlock"><svg width="21px" height="25px" viewBox="0 0 21 25" version="1.1"
                                       xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -60,24 +60,24 @@
     </g>
 </svg></span>
 
-                <!--Textbox du mot de passe-->
-                <input [(ngModel)]="motdepasse" type="password" name="motdepasse" required
-                       placeholder="Mot de passe"/>
-            </div>
+            <!--Textbox du mot de passe-->
+            <input [(ngModel)]="motdepasse" type="password" name="motdepasse" required
+                   placeholder="Mot de passe"/>
+        </div>
 
-            <!--Bouton qui permet de ce connecter-->
-            <div class="row submit">
-                <input type="submit" class="button big blue"
-                       value="Se connecter" (click)="login()"/>
-            </div>
+        <!--Bouton qui permet de ce connecter-->
+        <div class="row submit">
+            <input type="submit" class="button big blue"
+                   value="Se connecter" (click)="login()"/>
+        </div>
 
 
-            <!--lien si l'utilisateur à oublier son mots de passe-->
-            <span class="link forgot-password">
+        <!--lien si l'utilisateur à oublier son mots de passe-->
+        <span class="link forgot-password">
           <a href="#">
          Vous avez oublié votre mot de passe ?
           </a>
        </span>
-        </form>
-    </div>
+    </form>
+
 </div>

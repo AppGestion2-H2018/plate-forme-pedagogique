@@ -29,6 +29,7 @@ export class BiblioListeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this.biblio = new Biblio();
         console.log('in ngOnInit');
     }
 
