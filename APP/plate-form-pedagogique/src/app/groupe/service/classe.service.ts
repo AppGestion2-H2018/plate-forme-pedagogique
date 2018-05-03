@@ -55,8 +55,8 @@ export class ClasseService {
      * @param {Classe} classe Le id de l
      * @returns {Observable<Object>} Un message de succès ou d'erreur
      */
-    deleteClasse($id: String){
-        return this.http.delete<Classe>(this.url + $id, httpOptions);
+    deleteClasse(id: String){
+        return this.http.delete<Classe>('{this.url}$(id)', httpOptions);
     }
 
     /**
