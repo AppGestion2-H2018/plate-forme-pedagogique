@@ -1,30 +1,47 @@
 import { Injectable } from '@angular/core';
+
 import { Event } from './models/event';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import {HandleError} from "./scheduler/services/service-helper";
 
+
+//https://api-appgestion2-h18.herokuapp.com/api/evenements/
+
+// private getEventUrl = 'http://localhost:3000/api/evenements';
+// private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+// private updateEventUrl = 'http://localhost:3000/api/evenements';
+// private deleteEventUrl = 'http://localhost:3000/api/evenements';
+
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+
 @Injectable()
 export class EvenementService {
-    private eventsAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
 
+    private menusAPIUrl = 'http://localhost:3000/api/evenements';
 
     constructor(private http: HttpClient) {console.log('Event Service Initialized...');
     }
 
 
     getEvents(): Observable<Event[]> {
-        return this.http.get<Event[]>(this.eventsAPIUrl + '/events');
+        return this.http.get<Event[]>('https://api-appgestion2-h18.herokuapp.com/api/evenements/');
     }
+    //
+    // /** PUT: mise à jour du héros */
+    // updateEvent (event: Event): Observable<any> {
+    //     const id = typeof event === 'string' ? event : event._id;
+    //     const url = `${this.menusAPIUrl}/${id}`;   // ajouter l'id à l'URL de base
+    //     return this.http.put<Event>(url, event, httpOptions);
+    // }
+    updateEvent(event : Event) {
+        console.log(event);
+        return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/evenements/'+ event._id , JSON.stringify(event),httpOptions);
+}
 
-
-    updateStatus(event : Event): Observable<any> {
-        const id = typeof event === 'number' ? event : event.id;
-        const url = `${this.eventsAPIUrl}/event/${id}`;   // ajouter l'id à l'URL de base
-        return this.http.put<Event>(url, event, httpOptions);
-    }
 }

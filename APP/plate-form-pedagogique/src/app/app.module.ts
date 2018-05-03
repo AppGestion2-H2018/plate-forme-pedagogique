@@ -1,7 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {HttpModule} from '@angular/http';
+import {MatTableModule} from '@angular/material/table';
+
+
 import {
     MatSidenavModule,
     MatToolbarModule,
@@ -125,6 +127,7 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
         RecherchePublicationsComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -149,6 +152,7 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         MatChipsModule,
         MatAutocompleteModule,
         MatDialogModule,
+        MatTableModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
