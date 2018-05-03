@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Utilisateur} from '../class/utilisateur';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpClientXsrfModule, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {ReponseAPI} from '../class/reponseAPI';
@@ -8,11 +8,13 @@ import {ReponseLogin} from '../class/reponseLogin';
 import {ObjectUnsubscribedError} from 'rxjs/Rx';
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json'}),
+    withCredentials: false
 };
 
 @Injectable()
 export class UtilisateurService {
+
 
     constructor(private http: HttpClient) {
         console.log('User Service Initialized...');
@@ -34,6 +36,7 @@ export class UtilisateurService {
     getUtilisateurLogin(da: string, motdepasse: string): Observable<ReponseLogin> {
 
         var objDa = {'da': da, 'motdepasse': motdepasse};
+
         return this.http.post<ReponseLogin>('http://localhost:3000/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
     }
 

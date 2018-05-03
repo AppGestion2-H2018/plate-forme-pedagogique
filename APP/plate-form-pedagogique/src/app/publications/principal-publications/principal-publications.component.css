@@ -21,3 +21,15 @@
     position: relative;
     width: 100%;
 }
+
+.bouton{
+    width: 50px;
+    height: 50px;
+    padding-top: 10px;
+    padding-right: 40px;
+    margin-left: 400px;
+}
+
+.mat-button{
+    min-width: 50px;
+}

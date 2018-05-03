@@ -1,7 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {HttpModule} from '@angular/http';
+import {MatTableModule} from '@angular/material/table';
+
+
 import {
     MatSidenavModule,
     MatToolbarModule,
@@ -17,12 +19,14 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatNativeDateModule,
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -78,9 +82,9 @@ import { AccueilPublicationsComponent } from './publications/accueil-publication
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
-
+import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherungroupe.component';
+import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -125,6 +129,11 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
         RecherchePublicationsComponent,
+
+
+        AfficherungroupeComponent,
+        BiblioTabletteComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -141,6 +150,7 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
@@ -149,6 +159,8 @@ import { RecherchePublicationsComponent } from './publications/recherche-publica
         MatChipsModule,
         MatAutocompleteModule,
         MatDialogModule,
+        MatTableModule,
+        MatExpansionModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],

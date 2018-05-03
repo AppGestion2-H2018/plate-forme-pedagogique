@@ -1,15 +1,11 @@
-<h1 mat-dialog-title>Ajouter ce livre à l'une de vos bibliothèques?</h1>
+<h2 mat-dialog-title>Ajouter ce livre à l'une de vos bibliothèques?</h2>
   <mat-dialog-content>
-    <input [(ngModel)]="nouvelleTablette" id="nouvelleTablette" name="nouvelleTablette" placeholder="Créer une bibliothèque" (change)="creerTablette()">
+        <input matInput="" [(ngModel)]="newTablette.nom" id="newTablette" name="newTablette" placeholder="Créer une bibliothèque" (change)="postTablette()">
   </mat-dialog-content>
 <div class="biblio">
   <mat-dialog-content>
-    <ul>
-      <li *ngFor="let tablette of tablettes" (click)="onSelect(tablette)">
-          {{tablette.nom}}
-      </li>
+    <ul class="myList">
+      <li *ngFor="let tablette of popTablettes">{{tablette.nom}}</li>
     </ul>
   </mat-dialog-content>
 </div>
-
-

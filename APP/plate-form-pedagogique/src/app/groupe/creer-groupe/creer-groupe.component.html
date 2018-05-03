@@ -11,6 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <div class="container-fluid col-md-12">
+
     <h1>Formulaire d'ajout de groupe</h1>
     <form class="ajoutGroupe" id="ajoutGroupe" (submit)="addGroupe($event)">
 
@@ -23,7 +24,8 @@
             <label class="col-md-2 required">
                 Nom :
             </label>
-            <input type=text [(ngModel)]="groupe.nom" placeholder="Nom du groupe" autofocus class="form-control col-md-10" id="nom" name="nom" ng-minlength="2" >
+            <input type=text [(ngModel)]="groupe.nom" placeholder="Nom du groupe" autofocus
+                   class="form-control col-md-10" id="nom" name="nom" ng-minlength="2">
         </div>
         <!--//////////////////////////////////////////////////////-->
         <!--//                  DESCRIPTION                     //-->
@@ -32,7 +34,8 @@
             <label class="col-md-2">
                 Description :
             </label>
-            <textarea [(ngModel)]="groupe.description" placeholder="Description" class="form-control col-md-10" id="description" name="description"
+            <textarea [(ngModel)]="groupe.description" placeholder="Description" class="form-control col-md-10"
+                      id="description" name="description"
                       form="ajoutGroupe" style="resize:none"></textarea>
         </div>
         <!--//////////////////////////////////////////////////////-->
@@ -42,7 +45,8 @@
             <label class="col-md-2">
                 Date de fermeture du groupe :
             </label>
-            <input type="datetime-local" [(ngModel)]="groupe.date_fin" class="form-control col-md-10" id="dateFermeture" name="dateFermeture">
+            <input type="datetime-local" [(ngModel)]="groupe.date_fin" class="form-control col-md-10" id="dateFermeture"
+                   name="dateFermeture">
         </div>
         <!--//////////////////////////////////////////////////////-->
         <!--//                  ACTIF                           //-->
@@ -101,7 +105,9 @@
             </label>
             <div class="col-md-10">
                 <select multiple class="form-control" [(ngModel)]="groupe.classes" id="classes" name="classes">
-                    <option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}</option>
+                    <option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}, groupe
+                        {{classe.no_groupe}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -126,7 +132,8 @@
                 Utilisateurs :
             </label>
             <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.utilisateurs" id="utilisateur" name="utilisateur">
+                <select multiple class="form-control" [(ngModel)]="groupe.utilisateurs" id="utilisateur"
+                        name="utilisateur">
                     <option>Paul Houde</option>
                     <option>Ginette Reno</option>
                     <option>Hélène Bourgeois</option>
@@ -144,7 +151,8 @@
                 Super administrateur :
             </label>
             <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.super_admins" id="super_admin" name="super_admin">
+                <select multiple class="form-control" [(ngModel)]="groupe.super_admins" id="super_admin"
+                        name="super_admin">
                     <option>Paul Houde</option>
                     <option>Ginette Reno</option>
                     <option>Hélène Bourgeois</option>
@@ -174,4 +182,8 @@
 
 <pre>user = {{groupe | json}}</pre>
 
-
+<div>
+    <div *ngFor="let groupe of groupes">
+        <div> ID : {{groupe._id}} Nom : {{groupe.nom}} Date de fin : {{groupe.date_fin}} Description : {{groupe.description}}</div>
+    </div>
+</div>
