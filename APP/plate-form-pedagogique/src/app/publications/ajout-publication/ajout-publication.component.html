@@ -1,12 +1,15 @@
 <h2>Ajout d'une publication</h2>
-<form>
+<form  (ngSubmit)="publier()">
   <div id="form-div">
     <mat-form-field>
-        <input matInput id="titre" name="titre" placeholder="Titre" required>
+        <input matInput [(ngModel)]="publication.titre" #titre="ngModel" id="titre" name="titre" placeholder="Titre" required maxlength="100" minlength="2">
+      <mat-error *ngIf="titre.invalid && (titre.dirty || titre.touched) && titre.hasError('required')">Le titre est obligatoire.</mat-error>
+      <mat-error *ngIf="titre.invalid && (titre.dirty || titre.touched) && titre.hasError('maxlength')">La longueur maximum du titre est de 100 caractères.</mat-error>
+      <mat-error *ngIf="titre.invalid && (titre.dirty || titre.touched) && titre.hasError('minlength')">La longueur minimum du titre est de 2 caractères.</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput id="contenu" name="contenu" placeholder="Contenu" required>
+        <input matInput [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" name="contenu" placeholder="Contenu">
     </mat-form-field>
     <br>
 
@@ -39,9 +42,9 @@
 
 
 </div>
-</form>
-<button class="ajout" (click)="popupGroup()" mat-fab>Groupe</button>
-<form (ngSubmit)="publier()">
+
+<input type="button" class="ajout" (click)="popupGroup()" value="Groupes">
+
   <div>
     <br>
     <div class="popup" id="allGroup">

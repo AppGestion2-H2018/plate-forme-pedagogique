@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {BiblioService} from "../../service/biblio.service";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Tablette} from "../../class/tablette";
 
 @Component({
@@ -9,27 +9,20 @@ import {Tablette} from "../../class/tablette";
 })
 export class DialogBiblioComponent implements OnInit {
 
-  selectionTablette: Tablette;
-  nouvelleTablette: string;
+    popTablettes: Tablette[];
 
-  tablettes: Tablette[];
+    constructor(
+        private dialogRef: MatDialogRef<DialogBiblioComponent>,
+        @Inject(MAT_DIALOG_DATA) data) {
 
-  constructor(private biblioService: BiblioService) { }
-
-  ngOnInit() {
-    this.getTablette();
-  }
-
-  onSelect(tablette: Tablette): void {
-    this.selectionTablette = tablette;
-  }
-
-    getTablette(): void {
-        this.biblioService.getTablette()
-            .subscribe(newTablettes => this.tablettes = newTablettes);
+        this.popTablettes = data.popUpTablette;
     }
 
-  creerTablette(){
+    ngOnInit() {
 
-  }
+    }
+
+    postTablette(){
+
+    }
 }
