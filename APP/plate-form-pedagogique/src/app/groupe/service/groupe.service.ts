@@ -47,5 +47,12 @@ export class GroupeService {
 		const url = '${this.groupesAPIUrl}/groupes/${id}';
 		return this.http.delete<Groupe>(url, httpOptions);	
 	}
+
+    /** UPDATE: modification de un groupe **/
+    updateGroupe(groupe : Groupe) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/groupes/'+ groupe._id , JSON.stringify(groupe), httpOptions);
+    }
 }
 
