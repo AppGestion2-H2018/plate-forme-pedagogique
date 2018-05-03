@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupeService} from '../service/groupe.service';
+import {UtilisateurService} from '../../service/utilisateur.service';
 import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
+import {Utilisateur} from "../../class/utilisateur";
 
 @Component({
     selector: 'app-creer-groupe',
@@ -17,6 +19,7 @@ export class CreerGroupeComponent implements OnInit {
     types: Type[];
     classes: Classe[];
     programmes: Programme[];
+    utilisateurs: Utilisateur[];
     // groupe : Groupe;
     groupe = {
         _id:"",
@@ -36,7 +39,7 @@ export class CreerGroupeComponent implements OnInit {
         blacklist:[],
     }
 
-    constructor(private groupeService: GroupeService) {}
+    constructor(private groupeService: GroupeService, private utilisateurService: UtilisateurService) {}
 
     getGroupes(): void {
         this.groupeService.getGroupes()
@@ -58,6 +61,11 @@ export class CreerGroupeComponent implements OnInit {
             .subscribe(classes => this.classes = classes);
     }
 
+    // getUtilisateurs(): void{
+    //     this.utilisateurService.getUtilisateurLogin()
+    //         .subscribe(utilisateurs=>this.utilisateurs=utilisateurs);
+    // }
+
     addGroupe(event: any): void{
         event.preventDefault();
         this.groupeService.addGroupe(this.groupe)
@@ -71,6 +79,7 @@ export class CreerGroupeComponent implements OnInit {
         this.getTypes();
         this.getProgrammes();
         this.getClasses();
+        // this.getUtilisateurs();
     }
 
 }

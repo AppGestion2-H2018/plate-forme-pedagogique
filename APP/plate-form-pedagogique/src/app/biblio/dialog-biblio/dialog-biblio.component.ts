@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Tablette} from "../../class/tablette";
 
 @Component({
@@ -8,11 +9,20 @@ import {Tablette} from "../../class/tablette";
 })
 export class DialogBiblioComponent implements OnInit {
 
-    newTablette: Tablette;
+    popTablettes: Tablette[];
 
-    constructor() { }
+    constructor(
+        private dialogRef: MatDialogRef<DialogBiblioComponent>,
+        @Inject(MAT_DIALOG_DATA) data) {
+
+        this.popTablettes = data.popUpTablette;
+    }
 
     ngOnInit() {
+
+    }
+
+    postTablette(){
 
     }
 }

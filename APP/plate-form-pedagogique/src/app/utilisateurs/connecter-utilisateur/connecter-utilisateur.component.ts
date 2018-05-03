@@ -11,11 +11,11 @@ import{ReponseLogin} from "../../class/reponseLogin"
 export class ConnecterUtilisateurComponent implements OnInit {
 
 
-  reponseLogin: ReponseLogin;
-  utilisateurs: Utilisateur;
-  da: string;
-  motdepasse: string;
-  code:number;
+    reponseLogin: ReponseLogin;
+    utilisateurs: Utilisateur;
+    da: string;
+    motdepasse: string;
+    code:number;
 
     constructor(private utilisateurservie: UtilisateurService) {
     }
@@ -23,9 +23,9 @@ export class ConnecterUtilisateurComponent implements OnInit {
 
     login(): void {
 
-    this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe(reponseLogin => this.reponseLogin = reponseLogin);
-    console.log(this.reponseLogin);
-  }
+        this.utilisateurservie.getUtilisateurLogin(this.da,this.motdepasse).subscribe(reponseLogin => this.reponseLogin = reponseLogin);
+        console.log(this.reponseLogin);
+    }
 
 
     ngOnInit() {
