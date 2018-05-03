@@ -25,7 +25,6 @@ export class GroupeService {
     getGroupes(): Observable<Groupe[]> {
         return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
     }
-	
 
     getTypes(): Observable<Type[]> {
         return this.http.get<Type[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/types/all');
