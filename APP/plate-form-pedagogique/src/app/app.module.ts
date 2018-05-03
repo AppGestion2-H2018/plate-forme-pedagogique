@@ -44,7 +44,7 @@ import {ClassesComponent} from './groupe/classes/classes.component';
 
 import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
-import {EvaluationService} from './resultats/evaluation.service';
+import {ResultatService} from './resultats/resultat.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BiblioService} from './service/biblio.service';
@@ -146,7 +146,7 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         MatAutocompleteModule,
     ],
 
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,ResultatService],
 
     bootstrap: [AppComponent]
 })

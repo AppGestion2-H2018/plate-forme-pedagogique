@@ -4,4 +4,9 @@ var config = {
         //uri: 'mongodb://localhost:27017'
     }
 };
+//var mysql = [];
+//
+//mysql = {
+//	"user" = "",
+//	"password"
 module.exports = config;
