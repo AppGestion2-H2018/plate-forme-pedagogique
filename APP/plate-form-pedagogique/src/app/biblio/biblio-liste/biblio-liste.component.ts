@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter} from '@angular/core';
 import {BiblioService} from "../../service/biblio.service";
 import {Livre} from "../../class/livre";
 import {Biblio} from "../../class/biblio";
@@ -10,15 +10,16 @@ import {Biblio} from "../../class/biblio";
 })
 export class BiblioListeComponent implements OnInit, OnChanges {
 
+    selected: Livre;
     biblio: Biblio;
-    selectedLivreParent: Livre;
     @Input() rechercheEnfant: string;
+    @Output() selectedOutputEvent: EventEmitter<Livre> = new EventEmitter();
 
     constructor(private biblioService: BiblioService) { }
 
     onSelect(livre: Livre): void {
-        this.selectedLivreParent = livre;
-        console.log(this.selectedLivreParent);
+        this.selected = livre;
+        this.selectedOutputEvent.emit(this.selected);
     }
 
     getLivres(recherche: string): void {
@@ -28,6 +29,7 @@ export class BiblioListeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this.biblio = new Biblio();
         console.log('in ngOnInit');
     }
 

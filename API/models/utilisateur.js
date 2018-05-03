@@ -1,22 +1,22 @@
-    var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
-    da: {type: String, required: true, unique: true},
-    nom: {type: String, required: true},
-    prenom: {type: String, required: true},
-    courriel: {type: String, required: true, unique: true},
-    datedenaissance: {type: Date, required: true},
-    codepermanent: {type: String, required: true, unique: true},
+    da: {type: String, required: true, unique: true}, //TODO: DONE!
+    nom: {type: String, required: true}, //TODO: DONE!
+    prenom: {type: String, required: true}, //TODO: DONE!
+    courriel: {type: String, required: true, unique: true}, //TODO: DONE!
+    datedenaissance: {type: Date, required: true}, //TODO: 3/4 DONE!
+    codepermanent: {type: String, required: true, unique: true}, //TODO: DONE!
     programme: {type: Schema.Types.ObjectId, required: false},
-    sexe: {type: String, required: true},
+    sexe: {type: String, required: true}, //TODO: NOT SURE!
     role: {type: Schema.Types.ObjectId, required: false},
-    motdepasse: {type: String, required: true},
+    motdepasse: {type: String, required: true}, //TODO: DONE!
+    photo: {type: String, required: false},
     resetPasswordToken: {type: String},
     resetPasswordExpires: {type: Date},
-    photo: {type: String, required: false},
     access_token: {
         remember_token: {type: String},
         token_type: {type: String},

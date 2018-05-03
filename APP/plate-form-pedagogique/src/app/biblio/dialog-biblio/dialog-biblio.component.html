@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Ajouter ce livre à l'une de vos bibliothèques?</h2>
+  <div mat-dialog-content>
+      <mat-form-field>
+          <input matInput [(ngModel)]="data.popTablette">
+      </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.popTablette">Ok</button>
+</div>
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

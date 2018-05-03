@@ -1,0 +1,31 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: max-content;
+}
+
+.item1 {
+    grid-column: 1 / 2;
+}
+.item2 {
+    grid-column: 2 / 3;
+}
+.item3 {
+    grid-column: 3 / 4;
+}
+
+.padding-top {
+    padding-top: 10pt;
+}
+
+.ajout {
+    position: relative;
+    bottom: 10%;
+    color: white;
+    font-size: 28px;
+    z-index: 100;
+}
+
+.barre-recherche {
+    width: 30%;
+}

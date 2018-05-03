@@ -1,13 +1,15 @@
 <!-- Source : https://www.wunderlist.com/forgotpassword -->
 <div class="errors"  *ngIf="reponseAPI.Code > 1">
-  <div role="alert" class="message">
-    Nous n’avons trouvé aucun compte associé à cette adresse e-mail. Veuillez réessayer ou entrer un autre adresse.
+  <div role="alert" class="message" id="reponseAPI">
+    {{reponseAPI.Message}}
   </div>
 </div>
 
+
 <div class="card forgot-password">
   <div *ngIf="reponseAPI.Code != 1">
-  <form class="auth-form forgot-password">
+  <form class="auth-form forgot-password" name="forgotpasswordForm" novalidate="" #forgotForm="ngForm" (ngSubmit)="onSubmit()">
+
     <div class="row labels">
       <h2>Vous avez oublié votre mot de passe ?</h2>
       <h3>Entrez simplement votre adresse e-mail ci-dessous et nous vous enverrons des instructions.</h3>
@@ -31,16 +33,28 @@
           </g>
       </svg>
       </span>
-      <input type="email" name="email"
+      <!-- <input type="email" name"email" [(ngModel)]="courriel" required /> -->
+      <input type="email" name="email" id="email"
              required autofocus autocomplete
              pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$"
-             title="Veuillez entrer une adresse e-mail valide."
-             placeholder="Adresse e-mail"
-             [(ngModel)]="courriel"/>
+             title="Veuillez entrer une adresse courriel valide."
+             placeholder="Adresse courriel"
+             [(ngModel)]="courriel"
+             #email="ngModel"/>
+
+    </div>
+
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="errors alert alert-danger errors_validation">
+      <div *ngIf="email.errors.required" role="alert" class="message">
+      L'adresse courriel est obligatoire
+      </div>
+      <div *ngIf="!email.errors.valid && !email.errors.required" role="alert" class="message">
+      L'adresse courriel n'est pas une adresse valide.
+      </div>
     </div>
 
     <div class="row submit">
-      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" (click)="forgotpassword()"/>
+      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" [disabled]="!forgotForm.form.valid"/>
     </div>
   </form>
 

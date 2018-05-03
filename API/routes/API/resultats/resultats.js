@@ -3,12 +3,12 @@ var router = express.Router();
 
 var mysql = require('mysql');
 
+
 var con = mysql.createConnection(,{
   host: "35.193.78.254",
   user: "appgestion2h2018",
   password: "appgestion2h2018",
   database: "resultats",
-  multipleStatements: true,
 });
 
 router.get('/evaluations', function(req, res, next) {
@@ -18,8 +18,7 @@ router.get('/evaluations', function(req, res, next) {
         if (err) console.log(err);
 		
 		// query to the database and get the records
-        con.query('SELECT * FROM evaluations', function (err, evaluations) {
-            
+        con.query('SELECT * FROM evaluations', function (err, evaluations) {            
             if (err) console.log(err)
 			console.log(evaluations);
 

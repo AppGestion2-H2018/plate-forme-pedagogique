@@ -1,0 +1,15 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let tablette of tablettes">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{tablette.nom}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <ul>
+      <li *ngFor="let livre of tablette.livres">
+        {{livre}}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,7 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {HttpModule} from '@angular/http';
+import {MatTableModule} from '@angular/material/table';
+
+
 import {
     MatSidenavModule,
     MatToolbarModule,
@@ -16,11 +18,15 @@ import {
     MatDatepickerModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatDialogModule,
+    MatNativeDateModule,
 } from '@angular/material';
 
+import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {AppComponent} from './app.component';
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
@@ -42,19 +48,22 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
-import {FormsModule} from '@angular/forms';
 import {PublicationService} from './publications/publication.service';
+
 import {ResultatService} from './resultats/resultat.service';
 
 import {HttpClientModule} from '@angular/common/http';
-import {BiblioService} from './service/biblio.service';
 
+import {BiblioService} from './service/biblio.service';
 import {BiblioDetailComponent} from './biblio/biblio-detail/biblio-detail.component';
 import {BiblioListeComponent} from './biblio/biblio-liste/biblio-liste.component';
 import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
+import {BiblioRechercheComponent} from './biblio/biblio-recherche/biblio-recherche.component';
+import { DialogBiblioComponent } from './biblio/dialog-biblio/dialog-biblio.component';
+
 import {ListeEvenementsComponent} from './evenement/liste-evenements/liste-evenements.component';
 import {MenuEvenementsComponent} from './evenement/menu-evenements/menu-evenements.component';
-import {BiblioRechercheComponent} from './biblio/biblio-recherche/biblio-recherche.component';
+
 import {AfficherGroupeComponent} from './groupe/afficher-groupe/afficher-groupe.component';
 import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.component';
 import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
@@ -64,21 +73,21 @@ import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.compon
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+
 import { PrincipalEvenementsComponent } from './evenement/principal-evenements/principal-evenements.component';
 import { SchedulerComponent } from './evenement/scheduler/scheduler.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-groupes.component';
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
 import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
-
-
-
+import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
+import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherungroupe.component';
+import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
+import { BiblioAjoutTabletteComponent } from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
 // import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -88,7 +97,6 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         RecupererMotDePasseComponent,
         PrincipalUtilisateursComponent,
         MenuUtilisateursComponent,
-        PrincipalBiblioComponent,
         MenuBiblioComponent,
         MenuPublicationsComponent,
         PrincipalPublicationsComponent,
@@ -101,12 +109,14 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         AjoutPublicationComponent,
         CreerGroupeComponent,
         // AjoutEvenementComponent,
+        PrincipalBiblioComponent,
         BiblioDetailComponent,
         BiblioListeComponent,
+        BiblioRechercheComponent,
+        DialogBiblioComponent,
         AjoutEvenementComponent,
         ListeEvenementsComponent,
         MenuEvenementsComponent,
-        BiblioRechercheComponent,
         AfficherGroupeComponent,
         ModifierGroupeComponent,
         SupprimerGroupeComponent,
@@ -121,6 +131,13 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         PrincipalGroupesComponent,
         ModificationEvenementsComponent,
         AccueilPublicationsComponent,
+        RecherchePublicationsComponent,
+
+
+        AfficherungroupeComponent,
+        BiblioTabletteComponent,
+        BiblioAjoutTabletteComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -137,6 +154,7 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         MatSelectModule,
         MatInputModule,
         MatIconModule,
+        MatNativeDateModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
@@ -144,11 +162,15 @@ import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-eveneme
         AppRoutingModule,
         MatChipsModule,
         MatAutocompleteModule,
+        MatDialogModule,
+        MatTableModule,
+        MatExpansionModule,
     ],
 
     providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,ResultatService],
 
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [DialogBiblioComponent]
 })
 export class AppModule {
 }

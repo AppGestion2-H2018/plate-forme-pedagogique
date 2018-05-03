@@ -1,7 +1,7 @@
-import {Component, OnInit, OnChanges, Input, SimpleChanges} from '@angular/core';
-import {Biblio} from "../../class/biblio";
-import {BiblioService} from "../../service/biblio.service";
+import {Component, OnInit} from '@angular/core';
 import {Livre} from "../../class/livre";
+import {BiblioService} from "../../service/biblio.service";
+import {Tablette} from "../../class/tablette";
 
 @Component({
   selector: 'app-biblio-recherche',
@@ -10,11 +10,28 @@ import {Livre} from "../../class/livre";
 })
 export class BiblioRechercheComponent implements OnInit {
 
-    rechercheParent: string;
+    rechercheData: string;
+    selectedData: Livre;
+    tablettesData: Tablette[];
 
-    constructor() { }
+    constructor(private biblioService: BiblioService) { }
 
     ngOnInit() {
+        this.getTablette();
         console.log('in ngOnInit');
+    }
+
+    inSelectedLivre(event){
+        this.selectedData = event;
+    }
+
+    getTablette(): void {
+        this.biblioService.getTablette()
+            .subscribe(resultat => this.tablettesData = resultat);
+        console.log('in ngOnInit');
+    }
+
+    openDialog() {
+
     }
 }

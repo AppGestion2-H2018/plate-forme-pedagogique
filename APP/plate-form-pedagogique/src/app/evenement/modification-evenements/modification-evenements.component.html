@@ -1,176 +1,105 @@
-<!DOCTYPE html>
-<html>
+    <div class="example-container mat-elevation-z8">
+      <mat-table #tableEvents [dataSource]="events">
 
-<ul class="events">
-  <li *ngFor="let evenement of events" [class.selected]="events === selectedEvent" (click)="onSelect(evenement)" >
-    <span class="badge"></span> {{evenement.text}}
-  </li>
-</ul>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+          <mat-cell *matCellDef="let selectedEvent"> {{selectedEvent._id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="categorie">
+          <mat-header-cell *matHeaderCellDef> Categorie </mat-header-cell>
+
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editCat;">
+              <input [(ngModel)]="selectedEvent.categorie" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #editCat>{{events.categorie}}</ng-template>
+          </mat-cell>
+        </ng-container>
 
 
 
+        <ng-container matColumnDef="dateDebut">
+          <mat-header-cell *matHeaderCellDef> Date de début </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editDateDebut;">
+              <input [(ngModel)]="selectedEvent.start_date" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #editDateDebut><span (click)="onSelected(events)"></span>{{events.start_date}}</ng-template>
+          </mat-cell>
+        </ng-container>
 
-  <div id="form-div">
-    <h2>Modification de l'évènement :  {{selectedEvent.text}}</h2>
-    <div *ngIf="selectedEvent">
 
-    <div>
-      <label class="labels">*Catégorie : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.categorie" required autofocus="autofocus">
-      </div>
+        <ng-container matColumnDef="dateFin">
+          <mat-header-cell *matHeaderCellDef> Date de Fin </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editDateFin;">
+              <input [(ngModel)]="selectedEvent.end_date" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #editDateFin>{{events.end_date}}</ng-template>
+          </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="text">
+        <mat-header-cell *matHeaderCellDef> Texte </mat-header-cell>
+        <mat-cell *matCellDef="let events">
+          <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editText;">
+            <input [(ngModel)]="selectedEvent.text" matInput (keyup.enter)="onEdit(events)" >
+          </mat-form-field>
+          <ng-template #editText>{{events.text}}</ng-template>
+        </mat-cell>
+      </ng-container>
+
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editdescription;">
+              <input [(ngModel)]="selectedEvent.description" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #editdescription>{{events.description}}</ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef> Type d'évènement </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else edittype;">
+              <input [(ngModel)]="selectedEvent.type" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #edittype>{{events.type}}</ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="groupe">
+          <mat-header-cell *matHeaderCellDef> groupe </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editgroupe;">
+              <input [(ngModel)]="selectedEvent.group_id" matInput (keyup.enter)="onEdit(events)" >
+            </mat-form-field>
+            <ng-template #editgroupe>{{events.group_id}}</ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions </mat-header-cell>
+          <mat-cell *matCellDef="let events">
+            <button *ngIf="(selectedEvent && selectedEvent === events);else editButton;" color="warn"  mat-button (click)="onEdit(events)"><i class="material-icons">done</i></button>
+            <ng-template #editButton><button mat-button (click)="onSelected(events)"><i class="material-icons">edit</i></button></ng-template>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
     </div>
 
-    <div>
-      <label class="labels">*Date de début : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.start_date" >
-      </div>
-    </div>
-
-    <div>
-      <label class="labels">*Texte : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.text" >
-      </div>
-    </div>
-      <div>
-      <label class="labels">*Description : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.description" >
-      </div>
-    </div>
-      <div>
-      <label class="labels">*Type : </label>
-      <div class="inputs">
-        <input [(ngModel)]="selectedEvent.type" >
-      </div>
-    </div>
-    </div>
-
-
-      <input class="inputs" type="submit" value="Publier !" id="button-blue">
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<h2>Modification de l'évènement :  {{selectedEvent.text}}</h2>-->
-
-<!--<div *ngIf="selectedEvent">-->
-
-
-  <!--<div class="container">-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Id : </label>-->
-      <!--<div class="col-sm-10">-->
-
-        <!--<input [(ngModel)]="selectedEvent.id" class="form-control" type="text" id="id" name="id"  >-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Catégorie : </label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.categorie"required autofocus="autofocus">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Date de début :  </label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.start_date" >-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Date de fin : </label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.end_date">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>Texte :</label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.text">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>active :</label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.active" >-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>description :</label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.description">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>type : </label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.type" >-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>groupe id :</label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.group_id" >-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<label  class="col-form-label col-sm-2"><span class="required">*</span>admin id :</label>-->
-      <!--<div class="col-sm-10">-->
-        <!--<input [(ngModel)]="selectedEvent.admin_id" >-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div>-->
-
-  <!--</div>-->
-
-
-
-<!--</div>-->
-
-      <!--&lt;!&ndash;<input type="submit" class="btn btn-primary" value="Mettre à jour" >&ndash;&gt;-->
-
-
-
-<!--</html>-->

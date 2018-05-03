@@ -1,6 +1,52 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <h2>Mes groupes </h2>
+<form class="deleteGroupe" id="deleteGroupe" (submit)="deleteGroupe($event)">
+	<div class="form-group row">
+				<label class="col-md-2 required">
+					Supprimer :
+				</label>
+				<input type=text placeholder="Numéro id" class="form-control col-md-10" id="id" name="id">
+	</div>
+	<input type="submit" value="Supprimer">
+</form>
 <ul class="Groupe">
   <li *ngFor="let groupe of groupes">
     <span class="badge">{{groupe.id}}</span> {{groupe.nom}} <button type="button">Modifier</button> <button type="button">Supprimer</button>
   </li>
 </ul>
+
+
+
+<h2>Mes groupes améliorés</h2>
+<ul class="groupe">
+	<li *ngFor="let groupe of groupes"
+		[class.selected]="groupe === selectedGroupe"
+		(click)="onSelect(groupe)">
+		<span class="badge">Groupe : {{groupe.nom}}</span>
+	</li>
+</ul>
+
+<div *ngIf="selectedGroupe">
+	<h2>{{ selectedGroupe.nom }} Info du groupe</h2>
+	<div><span>ID: </span>{{selectedGroupe._id}}</div>
+	<div><span>Nom du groupe: </span>{{selectedGroupe.nom}}</div>
+	<div><span>Super admin: </span>{{selectedGroupe.super_admin}}</div>
+	<div><span>Admin: </span>{{selectedGroupe.admin}}</div>
+	<div><span>Programmes: </span>{{selectedGroupe.programmes}}</div>
+	<div><span>Classe: </span>{{selectedGroupe.classes}}</div>
+	<div><span>Type: </span>{{selectedGroupe.type}}</div>
+	<div><span>Utilisateur: </span>{{selectedGroupe.utilisateur}}</div>
+	<div><span>Blacklist: </span>{{selectedGroupe.blacklist}}</div>
+	<div><button type="button">Supprimer</button></div>
+	<div><button type="button" (click)="updateGroupe(selectedGroupe._id)" >Modifier</button></div>
+</div>
