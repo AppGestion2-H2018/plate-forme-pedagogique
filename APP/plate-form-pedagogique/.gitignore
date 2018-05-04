@@ -5,7 +5,6 @@
 /src/app/app.module.ts
 
 # compiled output
-/dist
 /dist-server
 /tmp
 /out-tsc
