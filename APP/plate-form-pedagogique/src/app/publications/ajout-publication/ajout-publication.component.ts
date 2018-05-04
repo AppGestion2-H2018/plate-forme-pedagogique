@@ -20,12 +20,12 @@ export class AjoutPublicationComponent implements OnInit {
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
     groupeId: string[];
-    utilisateur: 1633263;
+    utilisateur: '1633263';
     utilisateurs: number[];
 
     publication: Publication;
     value: string;
-    values : Array<string> = new Array();
+y
     titre: string;
     contenu: string;
     date_remise: Date;
@@ -40,13 +40,12 @@ export class AjoutPublicationComponent implements OnInit {
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
     }
     popupGroup() {
-        this.groupesUtilisateur = [];
-        /*this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
-            groupe.utilisateur.forEach(utilisateur => {if(utilisateur == this.utilisateur){
-                this.groupesUtilisateur.push(groupe);
-            }
-        }
-        )}});*/
+        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
+            groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
+                    this.groupesUtilisateur.push(groupe);
+                }
+                }
+            )}});
         var popup = document.getElementById('allGroup')
         var liste = document.getElementById('listGroup');
         if(this.groupesUtilisateur.length != 0){
@@ -87,7 +86,7 @@ export class AjoutPublicationComponent implements OnInit {
         this.fichier = filename.split("\\").pop();
 
         //Verification avant
-        this.publication = {"auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
+        this.publication = {"_id": null, "auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
             "fichier":this.fichier, "groupes": this.groupeId};
 
         this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier, this.groupeId).subscribe();
@@ -99,7 +98,7 @@ export class AjoutPublicationComponent implements OnInit {
 
     ngOnInit() {
         this.toutLesGroupes()
-        this.publication = {"auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
+        this.publication = {"_id": null, "auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
             "fichier":'', "groupes": null};
     }
 
