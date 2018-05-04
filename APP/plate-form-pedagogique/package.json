@@ -26,6 +26,8 @@
     "@types/dhtmlxscheduler": "^4.3.36",
     "angular-alert-module": "^1.0.0",
     "core-js": "^2.4.1",
+    "express": "^4.16.3",
+    "path": "^0.12.7",
     "dhtmlx-scheduler": "^4.4.0",
     "octicons": "^7.2.0",
     "rxjs": "^5.5.6",
