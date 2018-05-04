@@ -10,6 +10,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "postinstall": "ng build --aot -prod",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "4.2.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.0",
