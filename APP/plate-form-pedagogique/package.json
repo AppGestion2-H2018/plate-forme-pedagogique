@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node /app/plate-form-pedagogique/server.js",
+    "start": "node /APP/plate-form-pedagogique/server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
