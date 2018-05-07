@@ -9,8 +9,26 @@
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" name="contenu" placeholder="Contenu">
+        <input matInput name="contenu" [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" placeholder="Contenu">
     </mat-form-field>
+    <br>
+
+
+
+    <mat-form-field>
+      <input [(ngModel)]="tag" name="tagInput" matInput [matChipInputFor]="tagList" placeholder="Choisissez vos tags...">
+      <i class="material-icons" matSuffix (click)="addTag()">add</i>
+      <mat-autocomplete #auto="matAutocomplete">
+        <div  *ngFor="let publication of publicationsTags">
+          <mat-option *ngFor="let tag of publication.tags" [value]="tag" onselect="getTags(tag)">
+            <span>{{ tag }}</span>
+          </mat-option>
+        </div>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-chip-list #tagList>
+      <mat-chip *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
+    </mat-chip-list>
     <br>
 
 
@@ -52,6 +70,10 @@
       <ul>
         <p id="listGroup"></p>
         <li *ngFor="let groupe of groupesUtilisateur">
+          <span *ngFor="let BonGroupe of publication.groupes">
+            <mat-checkbox *ngIf="groupe._id == BonGroupe; else autre" [checked]>{{groupe.nom}}</mat-checkbox>
+            <mat-checkbox #autre>{{groupe.nom}}</mat-checkbox>
+          </span>
             <mat-checkbox>{{groupe.nom}}</mat-checkbox>
         </li>
       </ul>
@@ -64,7 +86,7 @@
     <br>
     <mat-form-field>
       <mat-label class="labels">Date de remise :</mat-label><br>
-      <input matInput id="date_remise" class="inputs" type="date" name="date_remise">
+      <input matInput id="date_remise" class="inputs" type="date" name="date_remise" [(ngModel)]="publication.date_remise">
     </mat-form-field>
     <br>
     <input class="inputs" type="submit" value="Publier !" id="button-blue">
