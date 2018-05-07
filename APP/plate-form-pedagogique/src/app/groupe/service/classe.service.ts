@@ -14,7 +14,7 @@ const httpOptions = {
  */
 @Injectable()
 export class ClasseService {
-    private dev = true;
+    private dev = false;
     private url;
 
     /**
@@ -24,9 +24,9 @@ export class ClasseService {
      */
     constructor(private http: HttpClient) {
         if(this.dev){
-            this.url = 'http://localhost:3000/api/groupes/classes/';
+            this.url = 'http://localhost:3000/api/groupes/classes';
         }else{
-            this.url = 'https://api-appgestion2-h18.herokuapp.com/groupes/classes/';
+            this.url = 'https://api-appgestion2-h18.herokuapp.com/api/groupes/classes';
         }
     }
 
@@ -38,7 +38,7 @@ export class ClasseService {
         return this.http.get<Classe[]>(this.url + 'all');
     }*/
     getClasses(): Observable<Classe[]> {
-        return this.http.get<Classe[]>(this.url+'all');
+        return this.http.get<Classe[]>(`${this.url}/all/`);
     }
 
     /**
@@ -46,8 +46,9 @@ export class ClasseService {
      * @param {Classe} newClasse L'élément passé en paramètres
      * @returns {Observable<Object>} Un message de succès ou un message d'erreur
      */
-    addClass(newClasse: Classe) {
-        return this.http.post( this.url, JSON.stringify(newClasse), httpOptions);
+    /** POST: ajout d'un héros */
+    addClasse (classe: Classe): Observable<Classe> {
+        return this.http.post<Classe>(this.url, classe, httpOptions);
     }
 
     /**
@@ -55,8 +56,18 @@ export class ClasseService {
      * @param {Classe} classe Le id de l
      * @returns {Observable<Object>} Un message de succès ou d'erreur
      */
-    deleteClasse(id: String){
-        return this.http.delete<Classe>('{this.url}$(id)', httpOptions);
+    deleteClasse(classe:Classe){
+        const id = typeof classe === 'number' ? classe : classe._id;
+        const url = `${this.url}/delete/${id}`;
+        console.log(url);
+        return this.http.delete<Classe>(url, httpOptions);
+    }
+
+    /** PUT: mise à jour du classes */
+    updateClasse (classe: Classe): Observable<any> {
+        //const id = typeof classe === 'number' ? classe : classe._id;
+        const url = this.url;
+        return this.http.put<Classe>(url, classe, httpOptions);
     }
 
     /**
@@ -65,6 +76,8 @@ export class ClasseService {
      * @returns {Observable<Object>} Un message de succès ou d'erreur
      */
     putClasse(classe : Classe){
-        return this.http.put<Classe>(this.url, JSON.stringify(classe), httpOptions);
+        const id = typeof classe === 'number' ? classe : classe._id;
+        const url = `${this.url}/${id}`;
+        return this.http.put<Classe>(url, httpOptions);
     }
 }
