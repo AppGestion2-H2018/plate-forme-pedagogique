@@ -49,7 +49,9 @@ import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component
 import {ClassesComponent} from './groupe/classes/classes.component';
 
 import {PublicationService} from './publications/publication.service';
-import {EvaluationService} from './resultats/evaluation.service';
+
+import {ResultatService} from './resultats/resultat.service';
+
 import {HttpClientModule} from '@angular/common/http';
 
 import {BiblioService} from './service/biblio.service';
@@ -80,11 +82,11 @@ import { PrincipalGroupesComponent } from './groupe/principal-groupes/principal-
 import { ModificationEvenementsComponent } from './evenement/modification-evenements/modification-evenements.component';
 import { AccueilPublicationsComponent } from './publications/accueil-publications/accueil-publications.component';
 import { EvenementService } from './evenement/evenement.service';
-import { AjoutEvenementService } from './evenement/ajout-evenement/ajout-evenement.service';
 import { RecherchePublicationsComponent } from './publications/recherche-publications/recherche-publications.component';
 import { AfficherungroupeComponent } from './groupe/afficherungroupe/afficherungroupe.component';
 import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablette.component';
-// import { AjoutEvenementComponent } from './evenement/ajout-evenement/ajout-evenement-component';
+import { BiblioAjoutTabletteComponent } from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -133,6 +135,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
 
         AfficherungroupeComponent,
         BiblioTabletteComponent,
+        BiblioAjoutTabletteComponent,
 
     ],
     imports: [
@@ -163,7 +166,7 @@ import { BiblioTabletteComponent } from './biblio/biblio-tablette/biblio-tablett
         MatExpansionModule,
     ],
 
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,AjoutEvenementService,EvaluationService],
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,ResultatService],
 
     bootstrap: [AppComponent],
     entryComponents: [DialogBiblioComponent]

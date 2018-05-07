@@ -159,16 +159,17 @@ router.post('/ajout', function (req, res, next) {
         res.json({"erreur": "Données incorrectes"});
     } else {
         MongoClient.connect(url, function (err, client) {
-            assert.equal(null, err);
-            console.log("Connexion au serveur réussie");
-            const db = client.db(nomBD);
-            db.collection(collection).insertOne(evenement, function (err, result) {
-                if (err) return console.log(err)
-                console.log("Évènement ajouté");
-                res.json(result);
-            })
-            client.close();
-        });
+                assert.equal(null, err);
+                console.log("Connexion au serveur réussie");
+                const db = client.db(nomBD);
+                db.collection('evenements').updateOne({_id: ObjectId.createFromHexString(evenementId)}, {$set: evenement}, function (err, result) {
+                    if (err) return console.log(err)
+                    console.log("Évènement mis à jour");
+                    res.json(result);
+                })
+                client.close();
+            }
+        );
     }
 });
 

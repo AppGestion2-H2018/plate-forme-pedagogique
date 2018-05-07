@@ -1,7 +1,7 @@
 // Définition d’une classe Publication
 export class Publication {
-    //_id: number;
-    auteur: number;
+    _id: number;
+    auteur: string;
     groupes: string[];
     date_publication: Date;
     titre: string;
