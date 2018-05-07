@@ -28,7 +28,7 @@ export class PublicationService {
 
   deletePublication(publication: Publication): Observable<Publication> {
         const id = publication._id;
-        const url = `http://Localhost:3000/api/publications/supprimer/${id}`;   // ajouter l'id à l'URL de base
+        const url = `https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/${id}`;   // ajouter l'id à l'URL de base
         return this.http.delete<Publication>(url, httpOptions);
     }
 }
