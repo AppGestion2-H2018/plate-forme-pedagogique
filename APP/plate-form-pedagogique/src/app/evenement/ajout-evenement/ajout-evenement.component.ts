@@ -4,6 +4,8 @@ import {NgForm} from '@angular/forms';
 import {Event} from '../models/event';
 import { EvenementService } from '../../service/evenement.service'
 
+import {Groupe} from '../../groupe/groupe';
+//import {GroupeService} from '../../groupe/service/groupe.service';
 
 @Component({
     selector: 'app-ajout-evenement',
@@ -13,8 +15,9 @@ import { EvenementService } from '../../service/evenement.service'
 export class AjoutEvenementComponent implements OnInit {
 
     evenementChoisi: Event;
+    groupes: Groupe[];
 
-    constructor(private EvenementService: EvenementService) { }
+    constructor(private EvenementService: EvenementService/*, private groupeService: GroupeService*/) { }
 
     addEvenement(evenement: Event, evenementFormAjout: NgForm) {
 
@@ -29,8 +32,15 @@ export class AjoutEvenementComponent implements OnInit {
         }
     }
 
+
+    getGroupes(): void {
+        this.EvenementService.getGroupes()
+            .subscribe(groupes => this.groupes = groupes);
+    }
+
     ngOnInit() {
 
+        this.getGroupes();
         this.evenementChoisi = new Event();
     }
 

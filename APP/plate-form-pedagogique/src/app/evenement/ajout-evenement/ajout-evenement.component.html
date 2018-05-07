@@ -100,10 +100,6 @@
       </div>
     </div>-->
 
-    <!-- <select class="form-control" formControlName="state">
-          <option *ngFor="let state of states" [value]="state">{{state}}</option>
-      </select> -->
-
     <div>
       <div>
         <label for="type">Type *</label>
@@ -133,9 +129,7 @@
       <mat-form-field>
         <mat-select id="groupe" name="groupe" [(ngModel)]="evenementChoisi.group_id" #groupe="ngModel" required="">
           <mat-option>Veuillez choisir...</mat-option>
-          <mat-option value="1">Option 1</mat-option>
-          <mat-option value="2">Option 2</mat-option>
-          <mat-option value="3">Option 3</mat-option>
+          <mat-option *ngFor="let groupe of groupes" value="{{groupe._id}}">{{groupe.nom}}</mat-option>
         </mat-select>
       </mat-form-field>
 
