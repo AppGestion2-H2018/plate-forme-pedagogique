@@ -1,6 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Tablette} from "../../class/tablette";
+import {FormBuilder, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-dialog-biblio',
@@ -9,20 +10,29 @@ import {Tablette} from "../../class/tablette";
 })
 export class DialogBiblioComponent implements OnInit {
 
-    popTablettes: Tablette[];
 
     constructor(
-        private dialogRef: MatDialogRef<DialogBiblioComponent>,
-        @Inject(MAT_DIALOG_DATA) data) {
+        public dialogRef: MatDialogRef<DialogBiblioComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any){}
 
-        this.popTablettes = data.popUpTablette;
-    }
+
 
     ngOnInit() {
 
     }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
 
     postTablette(){
+
+    }
+
+    save() {
+
+    }
+
+    close() {
 
     }
 }

@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
         });
            
         // query to the database and get the records
-        var moyenne = request.query('SELECT AVG(total) FROM (SELECT SUM(pts) AS total FROM evaluation INNER JOIN etudiant_evaluation ON evaluation.id = evaluation_id WHERE cours_id = ($cours_id) AND etudiant_id = $etudiant_id);', function (err, recordset) {
+        var moyenne = request.query('SELECT AVG(total) FROM (SELECT SUM(note) AS total FROM notes INNER JOIN evaluations ON evaluations.id = notes.evaluation_id INNER JOIN etudiants ON notes.etudiant_id = etudiants.id WHERE evaluation_id = evaluations.id);', function (err, recordset) {
             
             if (err) console.log(err)
 
