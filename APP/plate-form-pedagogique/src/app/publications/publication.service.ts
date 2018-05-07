@@ -15,7 +15,7 @@ export class PublicationService {
   constructor(private http: HttpClient) { }
 
   getPublications(): Observable<Publication[]> {
-      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
+      return this.http.get<Publication[]>('http://Localhost:3000/api/publications/');
   }
 
   getDateRemise(): Observable<Publication[]> {
@@ -26,9 +26,9 @@ export class PublicationService {
       return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/publications/ajouter', JSON.stringify(objpost), httpOptions);
   }
 
-  // deletePublication(publication: Publication | number): Observable<Publication> {
-  //     const id = typeof publication === 'number' ? publication : publication._id;
-  //     const url = `https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/${id}`;   // ajouter l'id à l'URL de base
-  //     return this.http.delete<Publication>(url, httpOptions);
-  // }
+  deletePublication(publication: Publication): Observable<Publication> {
+        const id = publication._id;
+        const url = `http://Localhost:3000/api/publications/supprimer/${id}`;   // ajouter l'id à l'URL de base
+        return this.http.delete<Publication>(url, httpOptions);
+    }
 }
