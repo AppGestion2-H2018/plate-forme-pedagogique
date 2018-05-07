@@ -309,9 +309,9 @@ router.post('/programmes', function(req, res, next) {
  */
 router.get('/programmes/:id', function (req, res, next) {
     var objectId = req.params.id;
-    Programme.findById(objectId,function (err, type){
+    Programme.findById(objectId,function (err, programme){
         if (err) return handleError(err, query);
-        res.json(type);
+        res.json(programme);
     });
 });
 

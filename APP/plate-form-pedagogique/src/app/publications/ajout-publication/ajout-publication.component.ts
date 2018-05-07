@@ -19,22 +19,25 @@ export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
-    groupeId: string[];
     utilisateur: '1633263';
-    utilisateurs: number[];
-
+    utilisateurs: string[];
+    publicationsTags: Publication[];
     publication: Publication;
     value: string;
-y
     titre: string;
     contenu: string;
     date_remise: Date;
     date_publication: Date;
-    tags: string[];
+    tag: string;
     fichier: string;
 
 
     constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
+
+    getPublications(): void {
+        this.publicationService.getPublications()
+            .subscribe(publications => this.publicationsTags = publications);
+    }
 
     toutLesGroupes(){
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
@@ -66,30 +69,35 @@ y
             }
         }
     }
-    publier(){
-        /*var request = document.getElementById('fichier');
-        var fichier =*/
 
-        alert('allo');
+    addTag(){
+        if(this.tag != ""){
+            this.publication.tags.push(this.tag);
+        }
+        this.tag = "";
+    }
+
+    publier(){
+
         if(this.groupesUtilisateur.length != 0){
-            this.groupesUtilisateur.forEach(groupe => this.groupeId.push(groupe._id.toString()));
+            this.groupesUtilisateur.forEach(groupe => this.publication.groupes.push(groupe._id.toString()));
         }
         else {
-            this.groupeId = [];
+            this.publication.groupes = [];
         }
-        this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
-        this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
-        this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
-        this.date_publication = new Date();
+
+
+        this.publication.date_publication = new Date();
         //Manque a decider comment entreposer les docs
         var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
-        this.fichier = filename.split("\\").pop();
+        this.publication.fichier = filename.split("\\").pop();
 
         //Verification avant
-        this.publication = {"_id": null, "auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
-            "fichier":this.fichier, "groupes": this.groupeId};
+        /*this.publication = {"_id": null, "auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
+            "fichier":this.fichier, "groupes": this.groupeId};*/
 
-        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier, this.groupeId).subscribe();
+        //Demande au service!
+        this.publicationService.postPublication(this.publication).subscribe();
         console.log(this.publication);
     }
 
@@ -97,9 +105,13 @@ y
 
 
     ngOnInit() {
-        this.toutLesGroupes()
-        this.publication = {"_id": null, "auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": null};
+        this.getPublications();
+        this.toutLesGroupes();
+        this.groupesUtilisateur = [];
+        this.groupes = [];
+        this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
+            "fichier":'', "groupes": null, tags: []};
+        this.tag = "";
     }
 
 
