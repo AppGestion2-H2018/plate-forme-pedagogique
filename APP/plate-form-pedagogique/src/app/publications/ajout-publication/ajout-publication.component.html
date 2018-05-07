@@ -1,5 +1,5 @@
 <h2>Ajout d'une publication</h2>
-<form  (ngSubmit)="publier()">
+<form  #postFormAjout="ngForm" id="postForm" (ngSubmit)="publier()">
   <div id="form-div">
     <mat-form-field>
         <input matInput [(ngModel)]="publication.titre" #titre="ngModel" id="titre" name="titre" placeholder="Titre" required maxlength="100" minlength="2">
@@ -89,6 +89,6 @@
       <input matInput id="date_remise" class="inputs" type="date" name="date_remise" [(ngModel)]="publication.date_remise">
     </mat-form-field>
     <br>
-    <input class="inputs" type="submit" value="Publier !" id="button-blue">
+    <input class="inputs" type="submit" value="Publier !" id="button-blue" [disabled]="!postFormAjout.form.valid">
   </div>
 </form>
