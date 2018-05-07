@@ -1,7 +1,15 @@
+/*Importation du css du calendrier.*/
 @import '~dhtmlx-scheduler/codebase/dhtmlxscheduler.css';
-:host{
+
+/*CSS pour le calendrier*/
+:host {
     display: block;
     height: 100%;
     position: relative;
     width: 100%;
+}
+
+/* Margin pour la date et le calendrier qui permet de rendre le tout plus beau sur une petite écran.*/
+.dhx_cal_date, .dhx_cal_header, .dhx_cal_data {
+    margin-top: 50px;
 }

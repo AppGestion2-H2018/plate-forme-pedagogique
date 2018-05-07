@@ -166,7 +166,7 @@ import { BiblioAjoutTabletteComponent } from './biblio/biblio-ajout-tablette/bib
         MatExpansionModule,
     ],
 
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,ResultatService],
+    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService, ResultatService],
 
     bootstrap: [AppComponent],
     entryComponents: [DialogBiblioComponent]
