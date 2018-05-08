@@ -3,7 +3,10 @@ var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 var Crypto = require('crypto');
 var nodemailer = require('nodemailer');
+
 const URL_RESET = 'http://localhost:4200/motdepasse-reinitialisation/';
+const MAIL_USER = 'mailbot84@gmail.com';
+const MAIL_PASSWORD = 'bonjourlespoulets';
 
 // Envoie d'un courriel de reinitialisation si l'adresse courriel est valider
 router.post('/sendmail', function (req, res, next) {
@@ -36,17 +39,17 @@ router.post('/sendmail', function (req, res, next) {
           var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'mailbot84@gmail.com',
-              pass: 'bonjourlespoulets'
+              user: MAIL_USER,
+              pass: MAIL_PASSWORD
             }
           });
 
           var urlResetPwd = URL_RESET + token;
           var mailOptions = {
-            from: 'mailbot84@gmail.com',
-            to: 'math.frechette@gmail.com',
+            from: MAIL_USER,
+            to: utilisateur.courriel,
             subject: 'Demande de réinitialisation de mot de passe.',
-            html: '<h2>Plate-forme pédagogique</h2><p>Il semble que vous ayez oublié votre mot de passe. Ne vous inquiétez pas. Vous pouvez le réinitialiser en cliquant sur le lien ci-dessous.</p>' +
+            html: '<h2>Plate-forme pédagogique</h2><p>Bonjour, Il semble que vous ayez oublié votre mot de passe. Ne vous inquiétez pas. Vous pouvez le réinitialiser en cliquant sur le lien ci-dessous.</p>' +
               '<a href="' + urlResetPwd + '">' + urlResetPwd + '</a>'
           };
 
@@ -69,7 +72,41 @@ router.post('/sendmail', function (req, res, next) {
   });
 });
 
-// Afficher le formulaire de récupération du mot de passe
+// Validation du resetPasswordToken
+router.post('/validateResetPasswordToken', function (req, res, next){
+  var objReponse = {'Code' : 9, 'Message':'Un erreur non géré est survenu'};
+  var resetPasswordToken = req.body.resetPasswordToken;
+
+  Utilisateur.findOne({'resetPasswordToken': resetPasswordToken}, function (err, utilisateur) {
+    if (err) return console.error(err);
+
+    if(utilisateur !== null){
+        console.log('Le resetPasswordToken est présent dans la bd');
+
+        var currentDate = new Date();
+        var expirationDate = new Date(utilisateur.resetPasswordExpires);
+        console.log('currentDate : ' + currentDate);
+        console.log('resetPasswordExpires : ' + expirationDate);
+        if(currentDate > utilisateur.resetPasswordExpires){
+            console.log('Le token est expiré');
+            objReponse = {'Code' : 2, 'Message':'Le lien de réinitialisation est expiré. Veuillez refaire une demande.'};
+        }
+        else{
+          console.log('Le token est valide');
+          objReponse = {'Code' : 1, 'Message':'Le lien de réinitialisation est valide'};
+        }
+
+
+    }
+    else{
+      console.log('Le token est invalide');
+        objReponse = {'Code' : 3, 'Message':'Le lien de réinitialisation est invalide. Veuillez refaire une demande.'};
+    }
+
+    console.log('Réponse : ' + objReponse);
+    res.json(objReponse);
+  });
+});
 
 
 

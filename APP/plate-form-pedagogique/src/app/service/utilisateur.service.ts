@@ -47,4 +47,14 @@ export class UtilisateurService {
         return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
     }
 
+    validateResetPasswordToken(resetPasswordToken: string): Observable<ReponseAPI>{
+      var token = {'resetPasswordToken': resetPasswordToken};
+      return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/validateResetPasswordToken', JSON.stringify(token), httpOptions);
+    }
+
+    modifierMotDePasse(password: string){
+      var objPassword = {'new_password' : password};
+      return this.http.post<ReponseAPI>('', JSON.stringify(objPassword), httpOptions);
+    }
+
 }
