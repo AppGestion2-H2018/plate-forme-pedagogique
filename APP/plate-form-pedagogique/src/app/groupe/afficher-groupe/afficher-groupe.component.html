@@ -19,15 +19,8 @@
 	</div>
 	<input type="submit" value="Supprimer">
 </form>
-<ul class="Groupe">
-  <li *ngFor="let groupe of groupes">
-    <span class="badge">{{groupe.id}}</span> {{groupe.nom}} <button type="button">Modifier</button> <button type="button">Supprimer</button>
-  </li>
-</ul>
 
-
-
-<h2>Mes groupes améliorés</h2>
+<h2>Mes groupes</h2>
 <ul class="groupe">
 	<li *ngFor="let groupe of groupes"
 		[class.selected]="groupe === selectedGroupe"
@@ -40,13 +33,15 @@
 	<h2>{{ selectedGroupe.nom }} Info du groupe</h2>
 	<div><span>ID: </span>{{selectedGroupe._id}}</div>
 	<div><span>Nom du groupe: </span>{{selectedGroupe.nom}}</div>
-	<div><span>Super admin: </span>{{selectedGroupe.super_admin}}</div>
-	<div><span>Admin: </span>{{selectedGroupe.admin}}</div>
+	<div><span>Super admin: </span>{{selectedGroupe.super_admins}}</div>
+	<div><span>Admin: </span>{{selectedGroupe.admins}}</div>
 	<div><span>Programmes: </span>{{selectedGroupe.programmes}}</div>
 	<div><span>Classe: </span>{{selectedGroupe.classes}}</div>
-	<div><span>Type: </span>{{selectedGroupe.type}}</div>
-	<div><span>Utilisateur: </span>{{selectedGroupe.utilisateur}}</div>
+	<div><span>Type: </span>{{selectedGroupe.types}}</div>
+	<div><span>Utilisateur: </span>{{selectedGroupe.utilisateurs}}</div>
 	<div><span>Blacklist: </span>{{selectedGroupe.blacklist}}</div>
-	<div><button type="button">Supprimer</button></div>
-	<div><button type="button" (click)="updateGroupe(selectedGroupe._id)" >Modifier</button></div>
+	<div><button type="button"(click)="deleteGroupe(selectedGroupe)">Supprimer</button></div>
+	<div><button type="button" (click)="updateGroupe()" >Modifier</button></div>
 </div>
+
+
