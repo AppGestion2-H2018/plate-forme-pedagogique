@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {Utilisateur} from '../../class/utilisateur';
 import {ReponseLogin} from "../../class/reponseLogin"

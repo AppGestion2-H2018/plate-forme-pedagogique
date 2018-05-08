@@ -19,42 +19,54 @@ export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
-    groupeId: string[];
     utilisateur: '1633263';
-    utilisateurs: number[];
-
+    utilisateurs: string[];
+    publicationsTags: Publication[];
     publication: Publication;
     value: string;
-y
     titre: string;
     contenu: string;
     date_remise: Date;
     date_publication: Date;
-    tags: string[];
+    tag: string;
     fichier: string;
+    popup: boolean;
 
 
     constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
+
+    getPublications(): void {
+        this.publicationService.getPublications()
+            .subscribe(publications => this.publicationsTags = publications);
+    }
 
     toutLesGroupes(){
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
     }
     popupGroup() {
-        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
-            groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
-                    this.groupesUtilisateur.push(groupe);
-                }
-                }
-            )}});
-        var popup = document.getElementById('allGroup')
-        var liste = document.getElementById('listGroup');
-        if(this.groupesUtilisateur.length != 0){
-            liste.innerHTML = '<p>Voici vos groupe: </p>';
+        if(this.popup == false){
+            this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
+                groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
+                        this.groupesUtilisateur.push(groupe);
+                    }
+                    }
+                )}});
+            var popup = document.getElementById('allGroup');
+            var liste = document.getElementById('listGroup');
+            if(this.groupesUtilisateur.length != 0){
+                liste.innerHTML = '<p>Voici vos groupe: </p>';
+            }
+            else {
+                liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
+            }
+            popup.style.display = "block";
+            this.popup = true;
         }
         else {
-            liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
+            var popup = document.getElementById('allGroup');
+            popup.style.display = "block";
         }
-        popup.style.display = "block";
+
 
     }
     closePopupGroup() {
@@ -65,31 +77,33 @@ y
                 popup.style.display = "none";
             }
         }
+        //var checkboxes =
     }
-    publier(){
-        /*var request = document.getElementById('fichier');
-        var fichier =*/
 
-        alert('allo');
+    addTag(){
+        if(this.tag != ""){
+            this.publication.tags.push(this.tag);
+        }
+        this.tag = "";
+    }
+
+    publier(){
+
         if(this.groupesUtilisateur.length != 0){
-            this.groupesUtilisateur.forEach(groupe => this.groupeId.push(groupe._id.toString()));
+            this.groupesUtilisateur.forEach(groupe => this.publication.groupes.push(groupe));
         }
         else {
-            this.groupeId = [];
+            this.publication.groupes = [];
         }
-        this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
-        this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
-        this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
-        this.date_publication = new Date();
+
+
+        this.publication.date_publication = new Date();
         //Manque a decider comment entreposer les docs
         var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
-        this.fichier = filename.split("\\").pop();
+        this.publication.fichier = filename.split("\\").pop();
 
-        //Verification avant
-        this.publication = {"_id": null, "auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
-            "fichier":this.fichier, "groupes": this.groupeId};
-
-        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier, this.groupeId).subscribe();
+        //Demande au service!
+        this.publicationService.postPublication(this.publication).subscribe();
         console.log(this.publication);
     }
 
@@ -97,9 +111,14 @@ y
 
 
     ngOnInit() {
-        this.toutLesGroupes()
-        this.publication = {"_id": null, "auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": null};
+        this.getPublications();
+        this.toutLesGroupes();
+        this.groupesUtilisateur = [];
+        this.groupes = [];
+        this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
+            "fichier":'', "groupes": [], tags: []};
+        this.tag = "";
+        this.popup = false;
     }
 
 

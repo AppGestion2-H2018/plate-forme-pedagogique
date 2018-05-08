@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {EvenementService} from './evenement/evenement.service';
 import {AuthHttpInterceptor} from "./service/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -11,16 +12,18 @@ import {CookieService} from "ngx-cookie-service";
     styleUrls: ['./app.component.css'],
     providers: [EvenementService, UtilisateurService]
 })
+
 export class AppComponent implements OnInit, OnDestroy {
 
-    constructor() {
-
+    constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
         AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
             this.estConnecte = valeurBool;
         });
+        console.log('noOnInit fonctionne !!');
+        console.log(this.route.url);
     }
 
     ngOnDestroy(): void {
@@ -28,7 +31,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     estConnecte = false;
+
     aLesDroitsDacces = true;
+
     title = 'Plate-forme pédagogique H2018';
     tiles = [
         {text: 'One', cols: 3, rows: 1, color: 'lightblue'},

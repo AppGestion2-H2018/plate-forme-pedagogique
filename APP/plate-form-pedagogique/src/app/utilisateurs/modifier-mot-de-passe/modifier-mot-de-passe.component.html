@@ -1,3 +1,67 @@
-<p>
-  resetPasswordToken = {{resetPasswordToken}}
-</p>
+<div class="errors" *ngIf="reponseValidateToken.Code > 1" >
+  <div role="alert" class="message" id="reponseValidateToken">
+    {{reponseValidateToken.Message}}
+  </div>
+  <br/>
+  <div>
+    <span class="link forgot-password">
+      <a routerLink="/motdepasse-oublie">
+        Je veux faire une nouvelle demande de réinitialisation.
+      </a>
+    </span>
+  </div>
+</div>
+
+<div class="card reset-password" *ngIf="reponseValidateToken.Code == 1">
+  <form class="auth-form reset-password" name="resetpasswordForm" novalidate="" #resetForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="row labels">
+      <h2>Nouveau mot de passe</h2>
+      <h3>
+        Il est temps de créer votre nouveau mot de passe.
+      </h3>
+    </div>
+
+    <div class="row password">
+      <input type="password" name="password"
+            required autofocus autocomplete = "off"
+            pattern=".{8,}" minlength="8"
+            title="Votre mot de passe doit inclure au moins 8 caractères et contenir des lettres minuscules et majuscules, des nombres ou des caractères spéciaux (par exemple, !, # ou $)."
+            placeholder="Nouveau mot de passe"
+            [(ngModel)]="password"
+            #form_password="ngModel" />
+    </div>
+
+    <div *ngIf="form_password.invalid && (form_password.dirty || form_password.touched)" class="row errors alert alert-danger errors_validation">
+      <div *ngIf="form_password.errors.required" role="alert" class="message">
+      Le mot de passe est obligatoire
+      </div>
+      <div *ngIf="!form_password.errors.valid && !form_password.errors.required" role="alert" class="message">
+      Mot de passe trop faible.
+      </div>
+    </div>
+
+    <div class="row confirmation">
+      <input type="password" name="confirmation"
+            required autocomplete = "off"
+            pattern=".{8,}" minlength="8"
+            title="Votre mot de passe doit inclure au moins 8 caractères et contenir des lettres minuscules et majuscules, des nombres ou des caractères spéciaux (par exemple, !, # ou $)."
+            placeholder="Confirmez votre nouveau mot de passe"
+            [(ngModel)]="password_confirm"
+            #form_password_confirm="ngModel" />
+    </div>
+
+    <div *ngIf="form_password_confirm.invalid && (form_password_confirm.dirty || form_password_confirm.touched)" class="row errors alert alert-danger errors_validation">
+      <div *ngIf="form_password_confirm.errors.required" role="alert" class="message">
+      Le mot de passe est obligatoire
+      </div>
+      <div *ngIf="!form_password_confirm.errors.valid && !form_password_confirm.errors.required" role="alert" class="message">
+      Mot de passe trop faible.
+      </div>
+    </div>
+
+    <div class="row submit">
+      <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" [disabled]="!resetForm.form.valid"/>
+    </div>
+  </form>
+</div>

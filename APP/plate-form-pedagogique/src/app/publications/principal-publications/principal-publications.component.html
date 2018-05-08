@@ -41,7 +41,7 @@
                     <mat-card-subtitle><span>{{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span> </mat-card-subtitle>
 
                     <mat-card-subtitle>
-                        <p class="alignleft"> Groupe: {{publication.groupe}}</p>
+                        <p class="alignleft"> Groupe:</p><p *ngFor="let groupe of publication.groupes">{{groupe.nom}}</p>
                     </mat-card-subtitle>
                 </mat-card-header>
 
