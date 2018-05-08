@@ -42,11 +42,11 @@ export class GroupeService {
         return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), httpOptions);
     }
 
-	deleteGroupe(groupe : Groupe){
-		const id = typeof groupe === 'string' ? groupe : groupe._id;
-		const url = '${this.groupesAPIUrl}/groupes/${id}';
-		return this.http.delete<Groupe>(url, httpOptions);	
-	}
+    deleteGroupe(groupe : Groupe): Observable<Groupe> {
+        const id = groupe._id;
+        const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupes/delete/' + id;
+        return this.http.delete<Groupe>(url, httpOptions);
+    }
 
     /** UPDATE: modification de un groupe **/
     updateGroupe(groupe : Groupe) {
