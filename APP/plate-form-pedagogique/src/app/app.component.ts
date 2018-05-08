@@ -1,16 +1,33 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UtilisateurService} from './service/utilisateur.service';
 import {FormControl} from '@angular/forms';
-import { EvenementService } from './evenement/evenement.service';
+import {EvenementService} from './evenement/evenement.service';
+import {AuthHttpInterceptor} from "./service/auth.interceptor";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers:[EvenementService,UtilisateurService]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    providers: [EvenementService, UtilisateurService]
 })
-export class AppComponent {
-    estConnecte = true;
+export class AppComponent implements OnInit, OnDestroy {
+
+    constructor() {
+
+    }
+
+    ngOnInit(): void {
+        AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
+            this.estConnecte = valeurBool;
+        });
+    }
+
+    ngOnDestroy(): void {
+        AuthHttpInterceptor.onConnectionChanged.unsubscribe();
+    }
+
+    estConnecte = false;
     aLesDroitsDacces = true;
     title = 'Plate-forme pédagogique H2018';
     tiles = [

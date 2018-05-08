@@ -31,10 +31,11 @@
     "@types/dhtmlxscheduler": "^4.3.36",
     "angular-alert-module": "^1.0.0",
     "core-js": "^2.4.1",
-    "express": "^4.16.3",
-    "path": "^0.12.7",
     "dhtmlx-scheduler": "^4.4.0",
+    "express": "^4.16.3",
+    "ngx-cookie-service": "^1.0.10",
     "octicons": "^7.2.0",
+    "path": "^0.12.7",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

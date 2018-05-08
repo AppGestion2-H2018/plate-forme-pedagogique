@@ -52,7 +52,10 @@ import {PublicationService} from './publications/publication.service';
 
 import {ResultatService} from './resultats/resultat.service';
 
-import {HttpClientModule} from '@angular/common/http';
+import {CookieService} from "ngx-cookie-service";
+import {AuthHttpInterceptor} from "./service/auth.interceptor";
+
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 
 import {BiblioService} from './service/biblio.service';
 import {BiblioDetailComponent} from './biblio/biblio-detail/biblio-detail.component';
@@ -166,7 +169,19 @@ import { BiblioAjoutTabletteComponent } from './biblio/biblio-ajout-tablette/bib
         MatExpansionModule,
     ],
 
-    providers: [UtilisateurService, PublicationService, BiblioService, EvenementService,ResultatService],
+    providers: [
+        UtilisateurService,
+        PublicationService,
+        BiblioService,
+        EvenementService,
+        ResultatService,
+        CookieService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthHttpInterceptor,
+            multi: true
+        }
+    ],
 
     bootstrap: [AppComponent],
     entryComponents: [DialogBiblioComponent]
