@@ -70,10 +70,6 @@
       <ul>
         <p id="listGroup"></p>
         <li *ngFor="let groupe of groupesUtilisateur">
-          <span *ngFor="let BonGroupe of publication.groupes">
-            <mat-checkbox *ngIf="groupe._id == BonGroupe; else autre" [checked]>{{groupe.nom}}</mat-checkbox>
-            <mat-checkbox #autre>{{groupe.nom}}</mat-checkbox>
-          </span>
             <mat-checkbox>{{groupe.nom}}</mat-checkbox>
         </li>
       </ul>

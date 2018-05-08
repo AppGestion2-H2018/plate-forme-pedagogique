@@ -30,6 +30,7 @@ export class AjoutPublicationComponent implements OnInit {
     date_publication: Date;
     tag: string;
     fichier: string;
+    popup: boolean;
 
 
     constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
@@ -43,21 +44,29 @@ export class AjoutPublicationComponent implements OnInit {
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
     }
     popupGroup() {
-        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
-            groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
-                    this.groupesUtilisateur.push(groupe);
-                }
-                }
-            )}});
-        var popup = document.getElementById('allGroup')
-        var liste = document.getElementById('listGroup');
-        if(this.groupesUtilisateur.length != 0){
-            liste.innerHTML = '<p>Voici vos groupe: </p>';
+        if(this.popup == false){
+            this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
+                groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
+                        this.groupesUtilisateur.push(groupe);
+                    }
+                    }
+                )}});
+            var popup = document.getElementById('allGroup');
+            var liste = document.getElementById('listGroup');
+            if(this.groupesUtilisateur.length != 0){
+                liste.innerHTML = '<p>Voici vos groupe: </p>';
+            }
+            else {
+                liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
+            }
+            popup.style.display = "block";
+            this.popup = true;
         }
         else {
-            liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
+            var popup = document.getElementById('allGroup');
+            popup.style.display = "block";
         }
-        popup.style.display = "block";
+
 
     }
     closePopupGroup() {
@@ -68,6 +77,7 @@ export class AjoutPublicationComponent implements OnInit {
                 popup.style.display = "none";
             }
         }
+        //var checkboxes =
     }
 
     addTag(){
@@ -80,7 +90,7 @@ export class AjoutPublicationComponent implements OnInit {
     publier(){
 
         if(this.groupesUtilisateur.length != 0){
-            this.groupesUtilisateur.forEach(groupe => this.publication.groupes.push(groupe._id.toString()));
+            this.groupesUtilisateur.forEach(groupe => this.publication.groupes.push(groupe));
         }
         else {
             this.publication.groupes = [];
@@ -91,10 +101,6 @@ export class AjoutPublicationComponent implements OnInit {
         //Manque a decider comment entreposer les docs
         var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
         this.publication.fichier = filename.split("\\").pop();
-
-        //Verification avant
-        /*this.publication = {"_id": null, "auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
-            "fichier":this.fichier, "groupes": this.groupeId};*/
 
         //Demande au service!
         this.publicationService.postPublication(this.publication).subscribe();
@@ -110,8 +116,9 @@ export class AjoutPublicationComponent implements OnInit {
         this.groupesUtilisateur = [];
         this.groupes = [];
         this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": null, tags: []};
+            "fichier":'', "groupes": [], tags: []};
         this.tag = "";
+        this.popup = false;
     }
 
 
