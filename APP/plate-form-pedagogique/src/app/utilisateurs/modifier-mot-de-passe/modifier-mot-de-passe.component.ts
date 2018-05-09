@@ -14,7 +14,7 @@ export class ModifierMotDePasseComponent implements OnInit {
   resetPasswordToken: string;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
     private utilisateurService:UtilisateurService
   ) { }
 

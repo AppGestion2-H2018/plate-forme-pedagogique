@@ -20,7 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
-            this.estConnecte = valeurBool;
+            //this.estConnecte = valeurBool;
+            this.estConnecte = true;
         });
         console.log('noOnInit fonctionne !!');
         console.log(this.route.url);
