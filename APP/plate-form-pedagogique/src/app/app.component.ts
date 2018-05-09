@@ -15,7 +15,8 @@ import {ActivatedRoute} from '@angular/router';
 
 export class AppComponent implements OnInit, OnDestroy {
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private cookieService: CookieService) {
+        this.estConnecte = cookieService.get('auth_da') !== "null" && cookieService.get('auth_da') !== "";
     }
 
     ngOnInit(): void {
