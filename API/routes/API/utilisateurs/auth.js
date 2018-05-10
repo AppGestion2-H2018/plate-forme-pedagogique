@@ -4,6 +4,7 @@ var Utilisateur = require('../../../models/utilisateur');
 
 const COOKIE_DA_NAME = 'auth_da';
 const COOKIE_TOKEN_NAME = 'auth_token';
+const COOKIE_ID_NAME = 'auth_id';
 
 // Test pour voir que ça fonctionne, à supprimer
 router.get('/', function (req, res, next) {
@@ -378,7 +379,7 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
 
 
             // Ajouter le nouveau token dans les cookies.
-            res = ajouterLesCookiesReussi(res, da, nouveau_token['access_token'].remember_token);
+            res = ajouterLesCookiesReussi(res, da, nouveau_token['access_token'].remember_token, utilisateur['_id']);
 
             reponseRetourner[0] = res;
             reponseRetourner[1] = true;
@@ -397,7 +398,6 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
 GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
     return new Promise(function (resolve, reject) {
         var reponseRetourner = [res, false];
-
         // Voir si daClient et tokenClient sont valide
         // SI cookies valide
         const mesCookies = obtenirLesCookies(req);
@@ -411,6 +411,7 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
 
         const daClient = mesCookies[COOKIE_DA_NAME];
         const tokenClient = mesCookies[COOKIE_TOKEN_NAME];
+        const idClient = mesCookies[COOKIE_ID_NAME];
 
         // Obtenir le token de l'usager dans la BD
         return obtenirTokenUtilisateurBD(daClient).then(function (tokenBD) {
@@ -422,7 +423,7 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
                     //TODO: Faire générer tokens et cookies
                     console.log("Renouvelage des tokens");
                     return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
-                        res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token);
+                        res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token, idClient);
                         console.log("Les cookies sont ajouté");
 
                         reponseRetourner[0] = res;
@@ -520,24 +521,26 @@ function supprimerLesCookies(res) {
  * @param res
  * @param da
  * @param token
+ * @param id
  * @param success
  * @returns {*}
  */
-function ajouterLesCookies(res, da, token, success) {
-    res.header('access-control-expose-headers', 'auth_xsrf_protection,auth_xsrf_success,auth_da,auth_token');
+function ajouterLesCookies(res, da, token, id, success) {
+    res.header('access-control-expose-headers', 'auth_xsrf_protection,auth_xsrf_success,auth_da,auth_token,auth_id');
     res.header('auth_xsrf_protection', 'auth_xsrf_token');
     res.header('auth_xsrf_success', success);
     res.header(COOKIE_DA_NAME, da);
     res.header(COOKIE_TOKEN_NAME, token);
+    res.header(COOKIE_ID_NAME, id);
     return res;
 }
 
-function ajouterLesCookiesReussi(res, da, token) {
-    return ajouterLesCookies(res, da, token, true);
+function ajouterLesCookiesReussi(res, da, token, id) {
+    return ajouterLesCookies(res, da, token, id, true);
 }
 
 function ajouterLesCookiesEchec(res) {
-    return ajouterLesCookies(res, '', '', false);
+    return ajouterLesCookies(res, '', '', '', false);
 }
 
 /**
@@ -553,11 +556,15 @@ function obtenirLesCookies(req) {
         req.headers[COOKIE_DA_NAME] !== "null" &&
         req.headers[COOKIE_TOKEN_NAME] !== undefined &&
         req.headers[COOKIE_TOKEN_NAME] !== null &&
-        req.headers[COOKIE_TOKEN_NAME] !== "null"
+        req.headers[COOKIE_TOKEN_NAME] !== "null" &&
+        req.headers[COOKIE_ID_NAME] !== undefined &&
+        req.headers[COOKIE_ID_NAME] !== null &&
+        req.headers[COOKIE_ID_NAME] !== "null"
     ) {
         reponse = {
             auth_da: req.headers[COOKIE_DA_NAME],
-            auth_token: req.headers[COOKIE_TOKEN_NAME]
+            auth_token: req.headers[COOKIE_TOKEN_NAME],
+            auth_id: req.headers[COOKIE_ID_NAME],
         };
     }
     return reponse;
