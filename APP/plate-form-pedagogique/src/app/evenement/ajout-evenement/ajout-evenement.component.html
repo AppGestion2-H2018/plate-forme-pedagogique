@@ -1,6 +1,6 @@
 <div>
   <div>
-    <h1>Ajouter un Évèvenement</h1>
+    <h1 class="padding-h1">Ajouter un Évèvenement</h1>
   </div>
 </div>
 
@@ -9,17 +9,17 @@
   <form class="well" #evenementFormAjout="ngForm" id="evenementFormAjout" (submit)="addEvenement($event, evenementFormAjout)">
 
     <div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="padding-champs-formulaire">
         <input matInput placeholder="Nom" id="nom" name="nom" class="form-control" [(ngModel)]="evenementChoisi.text" #nom="ngModel" maxlength="255" required>
       </mat-form-field>
 
       <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
            class="alert alert-danger">
 
-        <div *ngIf="nom.errors.required">
+        <div *ngIf="nom.errors.required" class="">
           Le nom est requis.
         </div>
-        <div *ngIf="nom.errors.maxlength">
+        <div *ngIf="nom.errors.maxlength" class="">
           Le nom à un maximum de 255 caractères
         </div>
       </div>
@@ -27,7 +27,7 @@
 
 
     <div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="padding-champs-formulaire">
         <textarea matInput placeholder="Description" name="description" id="description" [(ngModel)]="evenementChoisi.description" #description="ngModel" required></textarea>
       </mat-form-field>
 
@@ -44,7 +44,7 @@
       <div>
         <label for="categorie">Categorie *</label>
       </div>
-      <mat-form-field>
+      <mat-form-field class="padding-champs-formulaire">
         <mat-select id="categorie" name="categorie" [(ngModel)]="evenementChoisi.categorie" #categorie="ngModel" required="">
           <mat-option>Veuillez choisir...</mat-option>
           <mat-option value="1">Option 1</mat-option>
@@ -63,10 +63,10 @@
     </div>
 
     <div>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Date de début" name="date_debut" id="date_debut" [(ngModel)]="evenementChoisi.start_date" #date_debut="ngModel" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+      <mat-form-field class="padding-champs-formulaire">
+        <input matInput [matDatepicker]="date_debut" placeholder="Date de début" name="date_debut" id="date_debut" [(ngModel)]="evenementChoisi.start_date" #date_debut="ngModel" required>
+        <mat-datepicker-toggle matSuffix [for]="date_debut"></mat-datepicker-toggle>
+        <mat-datepicker #date_debut></mat-datepicker>
       </mat-form-field>
 
       <div *ngIf="date_debut.invalid && (date_debut.dirty || date_debut.touched)"
@@ -78,33 +78,27 @@
       </div>
     </div>
 
-    <!--
     <div>
-        <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date de fin" name="date_fin" id="date_fin" [(ngModel)]="evenementChoisi.end_date" #date_fin="ngModel" required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+      <mat-form-field class="padding-champs-formulaire">
+        <input matInput [matDatepicker]="date_fin" placeholder="Date de fin" name="date_fin" id="date_fin" [(ngModel)]="evenementChoisi.end_date" #date_fin="ngModel" required>
+        <mat-datepicker-toggle matSuffix [for]="date_fin"></mat-datepicker-toggle>
+        <mat-datepicker #date_fin></mat-datepicker>
+      </mat-form-field>
 
-        <div *ngIf="date_fin.invalid && (date_fin.dirty || date_fin.touched)"
-             class="alert alert-danger">
+      <div *ngIf="date_fin.invalid && (date_fin.dirty || date_fin.touched)"
+           class="alert alert-danger">
 
-            <div *ngIf="date_fin.errors.required">
-                La date de fin est requise.
-            </div>
+        <div *ngIf="date_fin.errors.required">
+          La date de fin est requise.
         </div>
-
-      <label for="date_fin" class="col-form-label col-sm-2">Date de fin *</label>
-      <div class="col-sm-4">
-        <input type="date" class="form-control" name="date_fin" id="date_fin" [(ngModel)]="evenementChoisi.end_date">
       </div>
-    </div>-->
+    </div>
 
     <div>
       <div>
         <label for="type">Type *</label>
       </div>
-      <mat-form-field>
+      <mat-form-field class="padding-champs-formulaire">
         <mat-select id="type" name="type" [(ngModel)]="evenementChoisi.type" #type="ngModel" required="">
           <mat-option>Veuillez choisir...</mat-option>
           <mat-option value="1">Option 1</mat-option>
@@ -126,7 +120,7 @@
       <div>
         <label for="groupe">Groupe *</label>
       </div>
-      <mat-form-field>
+      <mat-form-field class="padding-champs-formulaire">
         <mat-select id="groupe" name="groupe" [(ngModel)]="evenementChoisi.group_id" #groupe="ngModel" required="">
           <mat-option>Veuillez choisir...</mat-option>
           <mat-option *ngFor="let groupe of groupes" value="{{groupe._id}}">{{groupe.nom}}</mat-option>
@@ -146,7 +140,7 @@
       <div>
         <label for="admin_id">Admin *</label>
       </div>
-      <mat-form-field>
+      <mat-form-field class="padding-champs-formulaire">
         <mat-select id="admin_id" name="admin_id" [(ngModel)]="evenementChoisi.admin_id" #admin_id="ngModel" required="">
           <mat-option>Veuillez choisir...</mat-option>
           <mat-option value="1">Option 1</mat-option>
@@ -164,12 +158,12 @@
       </div>
     </div>
 
-    <div>
+    <div class="padding-champs-formulaire">
       <mat-checkbox name="actif" id="actif" [(ngModel)]="evenementChoisi.active">Actif</mat-checkbox>
     </div>
 
-    <div>
-      <button mat-button>Enregistrer</button>
+    <div class="padding-champs-formulaire">
+      <button type="submit" mat-button>Enregistrer</button>
     </div>
 
   </form >

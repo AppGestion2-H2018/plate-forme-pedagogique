@@ -3,6 +3,8 @@ import {Injectable} from '@angular/core';
 import {Event} from './models/event';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
+import {Groupe} from '../groupe/groupe'
+
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {HandleError} from "./scheduler/services/service-helper";
@@ -102,4 +104,13 @@ export class EvenementService {
             .catch(HandleError);
     }
 
+    /* Ajoute un évènement */
+    addEvenement(newEvenement: Event) {
+        return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout', JSON.stringify(newEvenement), httpOptions);
+    }
+
+    /* va chercher les groupes à partir de l'api */
+    getGroupes(): Observable<Groupe[]> {
+        return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
+    }
 }

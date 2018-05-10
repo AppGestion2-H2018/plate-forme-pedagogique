@@ -17,6 +17,11 @@ var auth = require('./routes/API/utilisateurs/auth');
 var resultatsRouter = require('./routes/API/resultats/resultats');
 var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
+
 var app = express();
 app.use(cors());
 
@@ -56,15 +61,17 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/utilisateurs', utlisateursRouter);
+
+
 /**
- * Permet de catcher toutes les requêtes et de faire du préprocessing avant qu'on laisse la requête continuer.
+ * Permet d'intercepter toutes les requêtes et de faire du préprocessing avant qu'on laisse la requête continuer.
  */
 app.use(function (req, res, next) {
     // Mettre du preprocessing ici
     const fal = false;
     if (fal) {
         GestionCompleteDesCookiesEtDesDonneesDeConnexion(req, res).then(function (multiReponse) {
-
             res = multiReponse[0];
 
             if (multiReponse[1]) {
@@ -73,6 +80,7 @@ app.use(function (req, res, next) {
             } else {
                 // Accès refusé, empêcher l'obtentions des données!
                 res.send();
+                //next();
             }
 
         });
@@ -87,7 +95,6 @@ app.use('/api/evenements', evenementsRouter);
 app.use('/api/groupes', groupesRouter);
 app.use('/api/publications', publicationsRouter);
 app.use('/api/resultats', resultatsRouter);
-app.use('/api/utilisateurs', utlisateursRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
