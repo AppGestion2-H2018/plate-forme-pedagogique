@@ -34,3 +34,17 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+mat-form-field {
+    width: 100%;
+}
+button {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}
+h2 {
+    text-align: center;
+}

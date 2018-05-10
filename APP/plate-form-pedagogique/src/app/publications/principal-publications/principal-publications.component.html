@@ -10,7 +10,7 @@
                 <input matInput [matAutocomplete]="auto" placeholder="Chercher un tag...">
                 <mat-autocomplete #auto="matAutocomplete">
                     <div  *ngFor="let publication of publications">
-                        <mat-option *ngFor="let tag of publication.tags" [value]="tag" onselect="getTags(tag)">
+                        <mat-option *ngFor="let tag of publication.tags" [value]="tag" (click)="getTags(tag)">
                             <span>{{ tag }}</span>
                         </mat-option>
                     </div>

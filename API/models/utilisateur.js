@@ -4,17 +4,17 @@ var Schema = mongoose.Schema;
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
-    da: {type: String, required: true, unique: true}, //TODO: DONE!
-    nom: {type: String, required: true}, //TODO: DONE!
-    prenom: {type: String, required: true}, //TODO: DONE!
-    courriel: {type: String, required: true, unique: true}, //TODO: DONE!
+    da: {type: String, required: true, unique: true}, // TODO : Validation client : Manque le UNIQUE
+    nom: {type: String, required: true}, // TODO : Validation client : OK
+    prenom: {type: String, required: true}, // TODO : Validation client : OK
+    courriel: {type: String, required: true, unique: true}, // TODO : Validation client : Manque le UNIQUE
     datedenaissance: {type: Date, required: true}, //TODO: 3/4 DONE!
-    codepermanent: {type: String, required: true, unique: true}, //TODO: DONE!
-    programme: {type: Schema.Types.ObjectId, required: false},
+    codepermanent: {type: String, required: true, unique: true}, // TODO : Validation client : Manque le UNIQUE
+    programme: {type: Schema.Types.ObjectId, required: false}, //TODO: NOT SURE!
     sexe: {type: String, required: true}, //TODO: NOT SURE!
-    role: {type: Schema.Types.ObjectId, required: false},
-    motdepasse: {type: String, required: true}, //TODO: DONE!
-    photo: {type: String, required: false},
+    role: {type: Schema.Types.ObjectId, required: false}, //TODO: NOT SURE!
+    motdepasse: {type: String, required: true}, // TODO : Validation client : OK ; Manque le cryptage
+    photo: {type: String, required: false}, // TODO : Validation client : À faire
     resetPasswordToken: {type: String},
     resetPasswordExpires: {type: Date},
     access_token: {

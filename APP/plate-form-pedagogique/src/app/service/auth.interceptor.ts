@@ -22,6 +22,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
             setHeaders: {
                 auth_da: this.cookieService.get('auth_da'),
                 auth_token: this.cookieService.get('auth_token'),
+                auth_id: this.cookieService.get('auth_id'),
             }
         });
 
@@ -32,16 +33,19 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                         // Obtiens les nouveaux cookies dans les headers personnalisé
                         const da = event.headers.get('auth_da');
                         const token = event.headers.get('auth_token');
+                        const id = event.headers.get('auth_id');
 
                         // Définie les nouveaux cookies de connexions
                         this.cookieService.set('auth_da', da);
                         this.cookieService.set('auth_token', token);
+                        this.cookieService.set('auth_id', id);
 
                         AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                     } else {
                         // Est déconnecté!
                         this.cookieService.set('auth_da', 'null');
                         this.cookieService.set('auth_token', 'null');
+                        this.cookieService.set('auth_id', 'null');
                         AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                     }
                 }
