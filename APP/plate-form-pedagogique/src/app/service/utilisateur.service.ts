@@ -30,26 +30,26 @@ export class UtilisateurService {
      */
     registerUtilisateur(utilisateur: Utilisateur): Observable<ReponseAPI> {
         console.log(JSON.stringify(utilisateur));
-        return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
+        return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/register/', JSON.stringify(utilisateur), httpOptions);
     }
 
     getUtilisateurLogin(da: string, motdepasse: string): Observable<ReponseLogin> {
 
         var objDa = {'da': da, 'motdepasse': motdepasse};
 
-        return this.http.post<ReponseLogin>('http://localhost:3000/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
+        return this.http.post<ReponseLogin>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
     }
 
 
     sendResetPassword(email: string): Observable<ReponseAPI> {
         var objEmail = {'email': email};
         // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
-        return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
+        return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
     }
 
     validateResetPasswordToken(resetPasswordToken: string): Observable<ReponseAPI>{
       var token = {'resetPasswordToken': resetPasswordToken};
-      return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/validateResetPasswordToken', JSON.stringify(token), httpOptions);
+      return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/validateResetPasswordToken', JSON.stringify(token), httpOptions);
     }
 
     modifierMotDePasse(password: string){
