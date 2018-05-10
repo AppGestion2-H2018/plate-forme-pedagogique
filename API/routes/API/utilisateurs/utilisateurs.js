@@ -6,6 +6,9 @@ router.use('/recuperation', require('./motdepasse'));
 router.use('/auth', require('./auth'));
 router.use('/login', require('./login'));
 router.use('/register', require('./register'));
+router.use('/update', require('./update'));
+router.use('/checkEmailNotTaken', require('./checkEmailNotTaken'));
+router.use('/getone', require('./getone'));
 
 router.get('/', function(req, res, next) {
   //res.send('api Utilisateurs');

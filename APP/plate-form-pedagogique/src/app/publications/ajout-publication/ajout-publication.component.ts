@@ -5,21 +5,23 @@ import {forEach} from "@angular/router/src/utils/collection";
 //import {Groupe} from "../../groupe/afficher-groupe/groupe";
 import {Groupe} from "../../groupe/groupe";
 import {GroupeService} from "../../groupe/service/groupe.service";
+import {CookieService} from "ngx-cookie-service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {isUndefined} from "util";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-ajout-publication',
     templateUrl: './ajout-publication.component.html',
     styleUrls: ['./ajout-publication.component.css'],
-    providers: [GroupeService]
+    providers: [GroupeService, CookieService]
 })
 export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
-    utilisateur: '1633263';
+    utilisateur: string;
     utilisateurs: string[];
     publicationsTags: Publication[];
     publication: Publication;
@@ -31,9 +33,11 @@ export class AjoutPublicationComponent implements OnInit {
     tag: string;
     fichier: string;
     popup: boolean;
+    returnUrl: string;
 
 
-    constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
+    constructor(private publicationService: PublicationService, private groupeService: GroupeService, private cookieService: CookieService,
+                private route: ActivatedRoute, private router: Router) { }
 
     getPublications(): void {
         this.publicationService.getPublications()
@@ -77,14 +81,26 @@ export class AjoutPublicationComponent implements OnInit {
                 popup.style.display = "none";
             }
         }
-        //var checkboxes =
     }
 
     addTag(){
-        if(this.tag != ""){
+        var ajout = true;
+        if(this.tag == ""){
+            ajout = false;
+        }
+        this.publication.tags.forEach(tag =>
+        {
+            if(this.tag == tag){
+                ajout = false;
+            }
+        }
+        );
+
+        if(ajout == true){
             this.publication.tags.push(this.tag);
         }
         this.tag = "";
+        console.log(this.publication.tags)
     }
 
     publier(){
@@ -105,12 +121,15 @@ export class AjoutPublicationComponent implements OnInit {
         //Demande au service!
         this.publicationService.postPublication(this.publication).subscribe();
         console.log(this.publication);
+        this.router.navigateByUrl(this.returnUrl);
+
     }
 
 
 
 
     ngOnInit() {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.getPublications();
         this.toutLesGroupes();
         this.groupesUtilisateur = [];
@@ -119,6 +138,8 @@ export class AjoutPublicationComponent implements OnInit {
             "fichier":'', "groupes": [], tags: []};
         this.tag = "";
         this.popup = false;
+        this.utilisateur = this.cookieService.get('auth_da');
+        console.log(this.utilisateur);
     }
 
 

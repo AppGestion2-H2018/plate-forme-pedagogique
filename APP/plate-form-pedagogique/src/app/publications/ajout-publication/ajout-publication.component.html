@@ -30,35 +30,6 @@
       <mat-chip *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
     </mat-chip-list>
     <br>
-
-
-
-    <!--<div>
-      <div>
-        <label class="labels">Tags: </label>
-        <div class="inputs">
-          <input type="button" class="button" (click)="popup()" value="+">
-        </div>
-      </div>
-
-      a mettre sur des div differents et de faire un display: inline
-
-      DAPHHHHHHHOUNE  MET TES AFFAIRES DE TAGS ICI !!!!!!!!!!!!!!!! pis tu peut effacer se que j ai mit la
-
-      <p id="autreTag"></p>
-      <div id="choixTag" class="popup">
-        <div class="popup-content">
-          <span class="close" (click)="closePopup()">&times;</span>
-          <label class="labels">Entrez un tag : </label>
-          <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
-          <input type="button" class="button" (click)="ajoutTag(); closePopup()" value="Ajouter">
-        </div>
-      </div>
-    </div>
-
-    <div>-->
-
-
 </div>
 
 <input type="button" class="ajout" (click)="popupGroup()" value="Groupes">
@@ -66,13 +37,15 @@
   <div>
     <br>
     <div class="popup" id="allGroup">
-      <span class="close" (click)="closePopupGroup()">&times;</span>
-      <ul>
-        <p id="listGroup"></p>
-        <li *ngFor="let groupe of groupesUtilisateur">
+      <div class="popup-content">
+        <span class="close" (click)="closePopupGroup()">&times;</span>
+        <ul>
+          <p id="listGroup"></p>
+          <li *ngFor="let groupe of groupesUtilisateur">
             <mat-checkbox>{{groupe.nom}}</mat-checkbox>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <br>
     <div>
