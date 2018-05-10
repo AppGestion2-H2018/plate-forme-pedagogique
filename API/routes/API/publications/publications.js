@@ -71,7 +71,8 @@ router.post('/ajouter', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).insertOne(post, function(err, result) {
+            db.collection(collection).insertOne(post, function(err, result)
+            {
                 if (err) return console.log(err)
                 console.log("Objet ajouté");
                 res.json(result);

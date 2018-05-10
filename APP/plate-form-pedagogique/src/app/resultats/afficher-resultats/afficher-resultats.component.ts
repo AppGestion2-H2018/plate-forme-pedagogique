@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evaluation } from '../evaluation';
-import { EvaluationService } from '../evaluation.service';
+import { Note } from '../note';
+import { ResultatService } from '../resultat.service';
 
 @Component({
   selector: 'app-afficher-resultats',
@@ -10,17 +11,25 @@ import { EvaluationService } from '../evaluation.service';
 export class AfficherResultatsComponent implements OnInit {
 
    evaluations: Evaluation[];
+   
+   notes: Note[];
 
-  constructor(private evaluationService: EvaluationService) { }
+  constructor(private resultatService: ResultatService) { }
 
-  getEvaluations(): void {
-    this.evaluationService.getEvaluations()
-        .subscribe(evaluations => this.evaluations = evaluations);
+getEvaluations(): void {
+    this.resultatService.getEvaluations()
+        .subscribe(evaluations => {this.evaluations = evaluations;console.log(this.evaluations);});
+}
+
+getNotes(): void {
+    this.resultatService.getNotes()
+        .subscribe(notes => {this.notes = notes;console.log(this.notes);});
 }
 
 ngOnInit() {
   console.log('in ngOnInit');
   this.getEvaluations();
+  this.getNotes();
 }
 
 

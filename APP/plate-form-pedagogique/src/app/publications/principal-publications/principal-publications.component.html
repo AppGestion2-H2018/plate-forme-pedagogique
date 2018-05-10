@@ -18,16 +18,30 @@
             </mat-form-field>
         </form>
 
+        <!--<form>-->
+            <!--<mat-form-field>-->
+                <!--<input matInput [matAutocomplete]="auto" placeholder="Chercher un groupe...">-->
+                <!--<mat-autocomplete #auto="matAutocomplete">-->
+                    <!--<div >-->
+                        <!--<mat-option *ngFor="let tag of utilisateur.groupes" [value]="tag" onselect="getTags(tag)">-->
+                            <!--<span>{{ tag }}</span>-->
+                        <!--</mat-option>-->
+                    <!--</div>-->
+                <!--</mat-autocomplete>-->
+            <!--</mat-form-field>-->
+        <!--</form>-->
+
         <div *ngFor="let publication of publications">
 
             <mat-card class="example-card">
                 <mat-card-header>
-                    <mat-card-title><span>{{publication.auteur}}</span></mat-card-title>
-
+                    <mat-card-title class="auteur"><span>{{publication.auteur}}</span></mat-card-title>
+                    <button mat-button="" (click)="deletePublication(publication)" class="bouton"><span class=""><i _ngcontent-c1="" class="material-icons">delete</i></span></button>
+                    <mat-card-title><span>{{publication.titre}}</span></mat-card-title>
                     <mat-card-subtitle><span>{{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span> </mat-card-subtitle>
 
                     <mat-card-subtitle>
-                        <p class="alignleft"> Groupe: {{publication.groupe}}</p>
+                        <p class="alignleft"> Groupe:</p><p *ngFor="let groupe of publication.groupes">{{groupe.nom}}</p>
                     </mat-card-subtitle>
                 </mat-card-header>
 

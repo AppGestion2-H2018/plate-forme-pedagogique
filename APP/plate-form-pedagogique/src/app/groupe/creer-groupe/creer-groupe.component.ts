@@ -69,9 +69,11 @@ export class CreerGroupeComponent implements OnInit {
     addGroupe(event: any): void{
         event.preventDefault();
         this.groupeService.addGroupe(this.groupe)
-            .subscribe();
+            .subscribe(groupe => {
+                this.groupes.push(this.groupe);
+            })
+        ;
     }
-
 
     ngOnInit() {
         console.log('in ngOnInit');
