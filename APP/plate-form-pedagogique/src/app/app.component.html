@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar *ngIf="estConnecte" color="primary">
     <button mat-mini-fab (click)="sidenav.toggle()" class="mat-small"><i class="material-icons">menu</i></button>
     <a routerLink="/accueil">
         <button mat-button><i class="material-icons">home</i></button>
@@ -15,6 +15,9 @@
     <a routerLink="/bibliotheque">
         <button mat-button><i class="material-icons">account_balance</i></button>
     </a>
+    <div class="flex-spacer"></div>
+    <app-deconnecter-utilisateur></app-deconnecter-utilisateur>
+
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -29,7 +32,9 @@
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Événements</h3>
-                <p matLine><app-menu-evenements></app-menu-evenements></p>
+                <p matLine>
+                    <app-menu-evenements></app-menu-evenements>
+                </p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -39,17 +44,23 @@
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Résultats scolaires</h3>
-                <p matLine><app-menu-resultats></app-menu-resultats></p>
+                <p matLine>
+                    <app-menu-resultats></app-menu-resultats>
+                </p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Bibliothèque</h3>
-                <p matLine><app-menu-biblio></app-menu-biblio></p>
+                <p matLine>
+                    <app-menu-biblio></app-menu-biblio>
+                </p>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 <h3 matLine>Carte de menu - Utilisateurs</h3>
-                <p matLine><app-menu-utilisateurs></app-menu-utilisateurs></p>
+                <p matLine>
+                    <app-menu-utilisateurs></app-menu-utilisateurs>
+                </p>
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
