@@ -5,6 +5,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 //import {Groupe} from "../../groupe/afficher-groupe/groupe";
 import {Groupe} from "../../groupe/groupe";
 import {GroupeService} from "../../groupe/service/groupe.service";
+import {CookieService} from "ngx-cookie-service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {isUndefined} from "util";
@@ -13,13 +14,13 @@ import {isUndefined} from "util";
     selector: 'app-ajout-publication',
     templateUrl: './ajout-publication.component.html',
     styleUrls: ['./ajout-publication.component.css'],
-    providers: [GroupeService]
+    providers: [GroupeService, CookieService]
 })
 export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
-    utilisateur: '1633263';
+    utilisateur: string;
     utilisateurs: string[];
     publicationsTags: Publication[];
     publication: Publication;
@@ -33,7 +34,7 @@ export class AjoutPublicationComponent implements OnInit {
     popup: boolean;
 
 
-    constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
+    constructor(private publicationService: PublicationService, private groupeService: GroupeService, private cookieService: CookieService) { }
 
     getPublications(): void {
         this.publicationService.getPublications()
@@ -119,6 +120,8 @@ export class AjoutPublicationComponent implements OnInit {
             "fichier":'', "groupes": [], tags: []};
         this.tag = "";
         this.popup = false;
+        this.utilisateur = this.cookieService.get('auth_da');
+        console.log(this.utilisateur);
     }
 
 
