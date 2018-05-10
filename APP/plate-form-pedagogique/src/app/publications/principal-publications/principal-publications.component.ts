@@ -33,6 +33,10 @@ getDateRemise(): void {
         this.publicationService.deletePublication(publication)
             .subscribe(result => this.publications = this.publications.filter(h => h !== publication));
     }
+    getTags(tag: String): void {
+        this.publicationService.getTags(tag)
+            .subscribe(publications => this.publications = publications);
+    }
 
 ngOnInit() {
   console.log('in ngOnInit');
