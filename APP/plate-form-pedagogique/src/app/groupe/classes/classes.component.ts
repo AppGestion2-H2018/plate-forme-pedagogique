@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ClasseService} from '../service/classe.service';
 import {Classe} from "../classe";
 import {FormControl, NgForm} from "@angular/forms";
@@ -17,6 +17,7 @@ export class ClassesComponent implements OnInit {
     classes: Classe[];
     displayedColumns = ['Description','actions'];
     name:any;
+    @Input() userId : string;
     constructor(private classeService: ClasseService) {}
 
     onAdd(tableClasses: MatTable<Classe>, classeFormAjout: NgForm) {
