@@ -12,28 +12,30 @@ import {Tablette} from "../../class/tablette";
 })
 export class BiblioDetailComponent implements OnInit {
 
-    popTablette: string = "Hello World!";
-
     @Input() selectedEnfant: Livre;
+    @Input() tablettes: Tablette[];
+
 
 
     constructor(private dialog: MatDialog) {
 
     }
 
+    ngOnInit(){
+
+    }
+
     openDialog():void   {
         let dialogRef = this.dialog.open(DialogBiblioComponent, {
-            data:{popTablette: this.popTablette}
+            data:{tablettes: this.tablettes}
         });
 
         dialogRef.afterClosed().subscribe(result=>{
             console.log("The dialog was close");
-            this.popTablette = result;
+            this.tablettes = result;
         });
     }
     
 
-    ngOnInit(){
 
-    }
 }
