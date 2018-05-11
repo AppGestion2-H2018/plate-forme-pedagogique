@@ -11,5 +11,31 @@
 
 /* Margin pour la date et le calendrier qui permet de rendre le tout plus beau sur une petite écran.*/
 .dhx_cal_date, .dhx_cal_header, .dhx_cal_data {
-    margin-top: 50px;
+    margin-top: 70px;
+}
+
+.divReussi {
+    background-color: #00c853;
+    height: 60px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.messageConfirmation{
+    font-size: 25px;
+    padding-top: 10px;
+    color: #ffffff;
+}
+
+.divEchec {
+    background-color: #ff0000;
+    height: 60px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.dhx_cal_today_button{
+    margin-top: 40px;
 }
