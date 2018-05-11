@@ -17,3 +17,7 @@ div.navbar-collapse {
 .mat-toolbar a { color:white;}
 
 .mat-toolbar .mat-button { padding-left:0px; padding-right:0px; min-width: 70px; }
+
+.flex-spacer{
+    flex-grow: 1
+}

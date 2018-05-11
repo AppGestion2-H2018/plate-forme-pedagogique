@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-principal-groupes',
@@ -8,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalGroupesComponent implements OnInit {
 
-  constructor() { }
+  userId: string;
+
+  constructor(private cookiService : CookieService) {
+      this.userId = this.cookiService.get("auth_id");
+  }
 
   ngOnInit() {
+
   }
 
 }

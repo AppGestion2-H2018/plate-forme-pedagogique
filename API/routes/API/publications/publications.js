@@ -45,6 +45,22 @@ router.get('/date-de-remise', function(req, res, next) {
     });
 });
 
+router.get('/tag/:tag', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion yeaaaaah!");
+        const db = client.db(dbName);
+        var sort = {date_publication: -1};
+        db.collection(collection).find({"tags":req.params.tag}).sort(sort).limit(5).toArray(function(err, result) {
+            if (err) return console.log(err)
+            console.log(result);
+            res.json(result);
+        })
+
+        client.close();
+    });
+});
+
 router.get('/:id', function(req, res, next){
     MongoClient.connect(url, function(err, client) {
         assert.equal(null, err);

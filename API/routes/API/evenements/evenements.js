@@ -151,6 +151,7 @@ router.put('/:evenementId', function (req, res, next) {
  * Ajoute un événement sous format json.
  * URL : http://localhost:3000/api/evenements/ajout
  */
+
 router.post('/ajout', function (req, res, next) {
     var evenement = req.body;
     console.log(evenement);
@@ -172,6 +173,7 @@ router.post('/ajout', function (req, res, next) {
         );
     }
 });
+
 
 /**
  * Ajoute un événement sous format json.

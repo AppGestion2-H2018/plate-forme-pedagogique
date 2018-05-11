@@ -32,8 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
         AuthHttpInterceptor.onConnectionChanged.unsubscribe();
     }
 
-    estConnecte = false;
-
+    estConnecte = true;
     aLesDroitsDacces = true;
 
     title = 'Plate-forme pédagogique H2018';

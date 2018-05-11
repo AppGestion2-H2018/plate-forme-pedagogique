@@ -17,6 +17,11 @@ var auth = require('./routes/API/utilisateurs/auth');
 var resultatsRouter = require('./routes/API/resultats/resultats');
 var utlisateursRouter = require('./routes/API/utilisateurs/utilisateurs');
 
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
+
 var app = express();
 app.use(cors());
 

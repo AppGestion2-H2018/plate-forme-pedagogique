@@ -1,5 +1,6 @@
 // Définition d'un Utilisateur
 export class Utilisateur {
+    _id: string;
     da: string;
     nom: string;
     prenom: string;

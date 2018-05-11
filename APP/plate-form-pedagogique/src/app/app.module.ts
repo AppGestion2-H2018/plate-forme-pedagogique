@@ -89,6 +89,7 @@ import {RecherchePublicationsComponent} from './publications/recherche-publicati
 import {AfficherungroupeComponent} from './groupe/afficherungroupe/afficherungroupe.component';
 import {BiblioTabletteComponent} from './biblio/biblio-tablette/biblio-tablette.component';
 import {BiblioAjoutTabletteComponent} from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
+import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-utilisateur/deconnecter-utilisateur.component';
 
 @NgModule({
     declarations: [
@@ -139,6 +140,7 @@ import {BiblioAjoutTabletteComponent} from './biblio/biblio-ajout-tablette/bibli
         AfficherungroupeComponent,
         BiblioTabletteComponent,
         BiblioAjoutTabletteComponent,
+        DeconnecterUtilisateurComponent,
 
     ],
     imports: [
