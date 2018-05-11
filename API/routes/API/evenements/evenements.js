@@ -146,35 +146,6 @@ router.put('/:evenementId', function (req, res, next) {
     });
 });
 
-
-/**
- * Ajoute un événement sous format json.
- * URL : http://localhost:3000/api/evenements/ajout
- */
-
-router.post('/ajout', function (req, res, next) {
-    var evenement = req.body;
-    console.log(evenement);
-    if (!evenement.text || (!evenement.description) || (!evenement.categorie) || (!evenement.start_date) || (!evenement.end_date) || (!evenement.type) || (!evenement.admin_id) || (!evenement.active)) {
-        res.status(400);
-        res.json({"erreur": "Données incorrectes"});
-    } else {
-        MongoClient.connect(url, function (err, client) {
-                assert.equal(null, err);
-                console.log("Connexion au serveur réussie");
-                const db = client.db(nomBD);
-                db.collection('evenements').updateOne({_id: ObjectId.createFromHexString(evenementId)}, {$set: evenement}, function (err, result) {
-                    if (err) return console.log(err)
-                    console.log("Évènement mis à jour");
-                    res.json(result);
-                })
-                client.close();
-            }
-        );
-    }
-});
-
-
 /**
  * Ajoute un événement sous format json.
  * URL : http://localhost:3000/api/evenements/ajout
