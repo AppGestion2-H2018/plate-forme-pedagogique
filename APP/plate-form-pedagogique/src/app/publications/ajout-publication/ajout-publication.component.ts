@@ -22,8 +22,8 @@ export class AjoutPublicationComponent implements OnInit {
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
     utilisateur: string;
-    utilisateurs: string[];
-    publicationsTags: Publication[];
+    //utilisateurs: string[];
+    //publicationsTags: Publication[];
     publication: Publication;
     value: string;
     titre: string;
@@ -39,10 +39,10 @@ export class AjoutPublicationComponent implements OnInit {
     constructor(private publicationService: PublicationService, private groupeService: GroupeService, private cookieService: CookieService,
                 private route: ActivatedRoute, private router: Router) { }
 
-    getPublications(): void {
+    /*getPublications(): void {
         this.publicationService.getPublications()
             .subscribe(publications => this.publicationsTags = publications);
-    }
+    }*/
 
     toutLesGroupes(){
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
@@ -130,12 +130,12 @@ export class AjoutPublicationComponent implements OnInit {
 
     ngOnInit() {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.getPublications();
+        //this.getPublications();
         this.toutLesGroupes();
         this.groupesUtilisateur = [];
         this.groupes = [];
         this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": [], tags: []};
+            "fichier":'', "groupes": [], "tags": [], "commentaires": []};
         this.tag = "";
         this.popup = false;
         this.utilisateur = this.cookieService.get('auth_da');

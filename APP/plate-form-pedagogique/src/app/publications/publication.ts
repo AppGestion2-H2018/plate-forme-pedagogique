@@ -10,7 +10,7 @@ export class Publication {
     contenu: string;
     date_remise: Date;
     tags: string[];
-    //commentaire: string;
+    commentaires: string[];
     fichier: string;
   }
   
