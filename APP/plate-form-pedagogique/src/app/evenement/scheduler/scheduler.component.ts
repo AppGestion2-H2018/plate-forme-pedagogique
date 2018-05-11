@@ -23,7 +23,7 @@ export class SchedulerComponent implements OnInit {
     private messageErreurEnregistrement : string = "Un problème technique nous empêche d'effectuer l'enregistrement. Veuillez réessayer plus tard.";
     private messageSuccesEnregistrement : string = "L'enregistrement a été effectué avec succès.";
     private messageErreurModification : string = "Un problème technique nous empêche d'effectuer la modification. Veuillez réessayer plus tard.";
-    private messageSuccesSuppression : string = "La suppression a été effectué avec succès.";
+    private messageSuccesSuppression : string = "La suppression a été effectuée avec succès.";
     private messageErreurSuppression : string = "Un problème technique nous empêche d'effectuer la suppression. Veuillez réessayer plus tard.";
     private messageSuccesModification : string = "La modification a été effectuée avec succès.";
     private messageDefinitionInvalide : string = "La définition est invalide";
