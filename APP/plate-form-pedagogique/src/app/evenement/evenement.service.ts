@@ -18,16 +18,16 @@ const httpOptions = {
 export class EvenementService {
 
     /*Base de donnée en ligne*/
-    private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
-    private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
+    // private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
 
     /*Base de données locale*/
-    // private getEventUrl = 'http://localhost:3000/api/evenements';
-    // private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
-    // private updateEventUrl = 'http://localhost:3000/api/evenements';
-    // private deleteEventUrl = 'http://localhost:3000/api/evenements';
+    private getEventUrl = 'http://localhost:3000/api/evenements';
+    private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+    private updateEventUrl = 'http://localhost:3000/api/evenements';
+    private deleteEventUrl = 'http://localhost:3000/api/evenements';
 
     private menusAPIUrl = 'http://localhost:3000/api/evenements';
 
