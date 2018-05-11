@@ -15,7 +15,7 @@ export class PublicationService {
   constructor(private http: HttpClient) { }
 
   getPublications(): Observable<Publication[]> {
-      return this.http.get<Publication[]>('http://localhost:3000/api/publications/');
+      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
   }
 
   getDateRemise(): Observable<Publication[]> {
@@ -32,6 +32,6 @@ export class PublicationService {
         return this.http.delete<Publication>(url, httpOptions);
     }
     getTags(tag: String): Observable<Publication[]> {
-        return this.http.get<Publication[]>(`http://localhost:3000/api/publications/tag/${tag}`);
+        return this.http.get<Publication[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tag/${tag}`);
     }
 }
