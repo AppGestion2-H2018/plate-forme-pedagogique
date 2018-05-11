@@ -18,16 +18,16 @@ const httpOptions = {
 export class EvenementService {
 
     /*Base de donnée en ligne*/
-    private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
-    private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
-    private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private getEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private addEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements/ajout';
+    // private updateEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
+    // private deleteEventUrl = 'https://api-appgestion2-h18.herokuapp.com/api/evenements';
 
     /*Base de données locale*/
-// private getEventUrl = 'http://localhost:3000/api/evenements';
-// private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
-// private updateEventUrl = 'http://localhost:3000/api/evenements';
-// private deleteEventUrl = 'http://localhost:3000/api/evenements';
+    private getEventUrl = 'http://localhost:3000/api/evenements';
+    private addEventUrl = 'http://localhost:3000/api/evenements/ajout';
+    private updateEventUrl = 'http://localhost:3000/api/evenements';
+    private deleteEventUrl = 'http://localhost:3000/api/evenements';
 
     private menusAPIUrl = 'http://localhost:3000/api/evenements';
 
@@ -65,21 +65,16 @@ export class EvenementService {
 
     /*Insère les données d'un post dans la base de données si elles sont valides*/
     insert(event: Event): Promise<Event> {
-        if (event.description != "") {
-            event.active = true;
-            event.description = event.text;
-            event.categorie = "1";
-            event.type = "Prive";
-            event.group_id = "";
-            event.admin_id = "1";
+        event.active = true;
+        event.description = event.text;
+        event.categorie = "1";
+        event.type = "Prive";
+        event.group_id = "";
+        event.admin_id = "1";
 
-            return this.http.post(this.addEventUrl, event)
-                .toPromise()
-                .catch(HandleError);
-        }
-        else {
-            return null;
-        }
+        return this.http.post(this.addEventUrl, event)
+            .toPromise()
+            .catch(HandleError);
     }
 
     /*Modifie les données dans la base de données*/
