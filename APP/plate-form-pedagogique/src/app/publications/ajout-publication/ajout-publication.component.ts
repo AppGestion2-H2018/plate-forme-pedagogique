@@ -145,7 +145,7 @@ export class AjoutPublicationComponent implements OnInit {
         this.groupesUtilisateur = [];
         this.groupes = [];
         this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": [], "tags": [], "commentaires": []};
+            "fichier":'', "groupes": [], "tags": [], "commentaire": []};
         this.tag = "";
         this.popup = false;
         this.utilisateur = this.cookieService.get('auth_da');

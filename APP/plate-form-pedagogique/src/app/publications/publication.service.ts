@@ -34,4 +34,9 @@ export class PublicationService {
     getTags(tag: String): Observable<Publication[]> {
         return this.http.get<Publication[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tag/${tag}`);
     }
+
+    ajoutCommentaire(publication: Publication) {
+        const id = publication._id;
+        return this.http.put(`https://api-appgestion2-h18.herokuapp.com/api/publications/ajoutCommentaire/${id}`, JSON.stringify(publication), httpOptions);
+      }
 }

@@ -38,6 +38,22 @@ getDateRemise(): void {
             .subscribe(publications => this.publications = publications);
     }
 
+    ajoutCommentaire(publication: Publication): void {
+        this.publicationService.ajoutCommentaire(publication).subscribe(data => {
+            publication._id,
+            publication.titre,
+            publication.auteur,
+            publication.groupes,
+            publication.date_publication,
+            publication.date_remise,
+            publication.contenu,
+            publication.tags,
+            publication.fichier,
+            publication.commentaire
+          });
+     
+        }
+
 ngOnInit() {
   console.log('in ngOnInit');
   this.getPublications();
