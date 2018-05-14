@@ -64,18 +64,23 @@
 
                 </mat-card-content>
 
-                <mat-list-item>
-                    <span>Commentaire(s): {{publication.commentaire}}</span>
-                     <mat-divider></mat-divider>
-                </mat-list-item>
+                <mat-list>
+                    <mat-label>Commentaire(s): </mat-label>
+                    <mat-list-item >
+                        <span>{{publication.commentaire}}</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
 
             </mat-card>
+
             <form  #postFormAjoutCommentaire="ngForm" id="postForm" (ngSubmit)="ajoutCommentaire(publication)">
                 <mat-form-field>
-                        <input [(ngModel)]="publication.commentaire" name="commentaire" matInput placeholder="Ajouter un commentaire">
-                        <i class="material-icons" matSuffix (click)="ajoutCommentaire(publication)">add</i>
+                        <input [(ngModel)]="commentaire" name="commentaire" matInput placeholder="Ajouter un commentaire">
                 </mat-form-field>
-                </form>
+                <input  type="submit" value="Publier" (click)="ajoutCommentaires()">
+            </form>
+            
         </div>
     </ul>
 </div>

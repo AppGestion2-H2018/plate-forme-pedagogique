@@ -14,8 +14,11 @@ export class PublicationService {
 
   constructor(private http: HttpClient) { }
 
+  private ajoutCommentaireUrl = 'http://localhost:3000/api/publications/';
+
   getPublications(): Observable<Publication[]> {
-      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
+      //return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
+      return this.http.get<Publication[]>('http://localhost:3000/api/publications/');
   }
 
   getDateRemise(): Observable<Publication[]> {
@@ -35,8 +38,19 @@ export class PublicationService {
         return this.http.get<Publication[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tag/${tag}`);
     }
 
-    ajoutCommentaire(publication: Publication) {
+      ajoutCommentaire(publication: Publication) {
         const id = publication._id;
-        return this.http.put(`https://api-appgestion2-h18.herokuapp.com/api/publications/ajoutCommentaire/${id}`, JSON.stringify(publication), httpOptions);
-      }
+        let newPublication = new Publication();
+        newPublication.titre = publication.titre,
+        newPublication.auteur = publication.auteur,
+        newPublication.groupes = publication.groupes,
+        newPublication.date_publication = publication.date_publication,
+        newPublication.date_remise = publication.date_remise,
+        newPublication.contenu = publication.contenu,
+        newPublication.tags = publication.tags,
+        newPublication.fichier = publication.fichier,
+        newPublication.commentaire = publication.commentaire
+
+        return this.http.put(`http://localhost:3000/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
+    }
 }

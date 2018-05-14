@@ -135,8 +135,10 @@ router.put('/modifier/:id', function(req, res, next){
 });
 
 // Ajouter un commentaire revient à modifier une publication
-router.put('/ajoutCommentaire/:id', function(req, res, next){
+router.put('/:id', function(req, res, next){
     var commentaire = req.body;
+    delete commentaire['_id'];
+    var id = req.params.id;
     console.log(commentaire);
     if(false) {
         console.log('STATUS: ' + res.statusCode);
@@ -148,7 +150,7 @@ router.put('/ajoutCommentaire/:id', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : commentaire}, function(err, result) {
+            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(id)}, {$set : commentaire}, function(err, result) {
                 if (err) return console.log(err)
                 console.log("objet mis à jour");
                 res.json(result);

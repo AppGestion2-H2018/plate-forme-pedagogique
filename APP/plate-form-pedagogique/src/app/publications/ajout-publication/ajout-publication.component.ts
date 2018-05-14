@@ -26,6 +26,7 @@ export class AjoutPublicationComponent implements OnInit {
     tag: string;
     popup: boolean;
     returnUrl: string;
+    commentaires: string;
 
 
     constructor(private publicationService: PublicationService, private groupeService: GroupeService, private cookieService: CookieService,
@@ -147,6 +148,7 @@ export class AjoutPublicationComponent implements OnInit {
         this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
             "fichier":'', "groupes": [], "tags": [], "commentaire": []};
         this.tag = "";
+        this.commentaires = "";
         this.popup = false;
         this.utilisateur = this.cookieService.get('auth_da');
         console.log(this.utilisateur);
