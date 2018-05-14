@@ -10,17 +10,14 @@ import {UtilisateurService} from "../../service/utilisateur.service";
 })
 export class PrincipalGroupesComponent implements OnInit {
 
-  userId: string;
   utilisateur = new Utilisateur();
 
   constructor(private cookiService : CookieService, private utilisateurService: UtilisateurService) {
-      this.userId = this.cookiService.get("auth_id");
-      this.utilisateur._id = this.userId;
+      this.utilisateur._id = this.cookiService.get("auth_id");
   }
 
   getUtilisateur() : void
   {
-      this.utilisateur._id = this.userId;
       this.utilisateurService.getUtilisateur(this.utilisateur).subscribe(
           data => {
               this.utilisateur = data;
@@ -33,7 +30,6 @@ export class PrincipalGroupesComponent implements OnInit {
 
   ngOnInit() {
     this.getUtilisateur();
-    console.log(this.utilisateur);
   }
 
 
