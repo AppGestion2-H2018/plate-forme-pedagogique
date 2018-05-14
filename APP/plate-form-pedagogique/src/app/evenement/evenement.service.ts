@@ -40,9 +40,9 @@ export class EvenementService {
         return this.http.get<Event[]>('https://api-appgestion2-h18.herokuapp.com/api/evenements/');
     }
 
-<<<<<<< HEAD
-    updateEvent(event : Event) {
-=======
+
+    // updateEvent(event : Event) {
+
     //
     // /** PUT: mise à jour du héros */
     // updateEvent (event: Event): Observable<any> {
@@ -51,7 +51,6 @@ export class EvenementService {
     //     return this.http.put<Event>(url, event, httpOptions);
     // }
     updateEvent(event: Event) {
->>>>>>> fbaee0b8a1f8ed7ca8a28145bd76deb67097cd4a
         console.log(event);
         return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/evenements/' + event._id, JSON.stringify(event), httpOptions);
     }
