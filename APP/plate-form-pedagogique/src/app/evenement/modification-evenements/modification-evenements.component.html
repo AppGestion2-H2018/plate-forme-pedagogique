@@ -1,42 +1,25 @@
     <div id="tableauEvenements" class="example-container mat-elevation-z8">
       <mat-table #tableEvents [dataSource]="events">
 
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-          <mat-cell *matCellDef="let selectedEvent"> {{selectedEvent._id}} </mat-cell>
-        </ng-container>
+        <!--<ng-container matColumnDef="id">-->
+          <!--<mat-header-cell *matHeaderCellDef> # </mat-header-cell>-->
+          <!--<mat-cell *matCellDef="let selectedEvent"> {{selectedEvent._id}} </mat-cell>-->
+        <!--</ng-container>-->
 
         <ng-container matColumnDef="categorie">
           <mat-header-cell *matHeaderCellDef> Categorie </mat-header-cell>
-
           <mat-cell *matCellDef="let events">
-            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editCat;">
-              <input [(ngModel)]="selectedEvent.categorie" matInput (keyup.enter)="onEdit(events)" >
+
+            <form #eventFormEdition="ngForm" id="eventFormEdition" (ngSubmit)="eventFormEdition.form.valid && onEdit(eventFormEdition)">
+
+            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editCat;" class="input-full-width">
+              <input name="selectedEventCategorie" [(ngModel)]="selectedEvent.categorie" matInput required minlength="2" maxlength="50" name="categorieEdition" #categorieEdition="ngModel"  >
+              <mat-error *ngIf="categorieEdition.invalid && (categorieEdition.dirty || categorieEdition.touched) && categorieEdition.hasError('required')">La catégorie est obligatoire.</mat-error>
+              <mat-error *ngIf="categorieEdition.invalid && (categorieEdition.dirty || categorieEdition.touched) && categorieEdition.hasError('minlength')">La catégorie doit contenir au moins 2 caractères.</mat-error>
+              <mat-error *ngIf="categorieEdition.invalid && (categorieEdition.dirty || categorieEdition.touched) && categorieEdition.hasError('maxlength')">La catégorie doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
-            <ng-template #editCat>{{events.categorie}}</ng-template>
-          </mat-cell>
-        </ng-container>
-
-
-
-        <ng-container matColumnDef="dateDebut">
-          <mat-header-cell *matHeaderCellDef> Date de début </mat-header-cell>
-          <mat-cell *matCellDef="let events">
-            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editDateDebut;">
-              <input [(ngModel)]="selectedEvent.start_date" matInput (keyup.enter)="onEdit(events)" >
-            </mat-form-field>
-            <ng-template #editDateDebut><span (click)="onSelected(events)"></span>{{events.start_date}}</ng-template>
-          </mat-cell>
-        </ng-container>
-
-
-        <ng-container matColumnDef="dateFin">
-          <mat-header-cell *matHeaderCellDef> Date de Fin </mat-header-cell>
-          <mat-cell *matCellDef="let events">
-            <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editDateFin;">
-              <input [(ngModel)]="selectedEvent.end_date" matInput (keyup.enter)="onEdit(events)" >
-            </mat-form-field>
-            <ng-template #editDateFin>{{events.end_date}}</ng-template>
+            </form>
+            <ng-template #editCat><span (keyup.enter)="onEdit(events)">{{events.categorie}}</span></ng-template>
           </mat-cell>
         </ng-container>
 
@@ -45,10 +28,15 @@
         <ng-container matColumnDef="text">
         <mat-header-cell *matHeaderCellDef> Texte </mat-header-cell>
         <mat-cell *matCellDef="let events">
-          <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editText;">
-            <input [(ngModel)]="selectedEvent.text" matInput (keyup.enter)="onEdit(events)" >
+          <form #eventFormEditionText="ngForm" id="eventFormEditionText" (ngSubmit)="eventFormEditionText.form.valid && onEdit(eventFormEditionText)">
+          <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editText;"class="input-full-width">
+            <input name="selectedEventTexte" [(ngModel)]="selectedEvent.text" matInput required minlength="2" maxlength="50" name="texteEdition" #texteEdition="ngModel" >
+            <mat-error *ngIf="texteEdition.invalid && (texteEdition.dirty || texteEdition.touched) && texteEdition.hasError('required')">Le texte est obligatoire.</mat-error>
+            <mat-error *ngIf="texteEdition.invalid && (texteEdition.dirty || texteEdition.touched) && texteEdition.hasError('minlength')">Le texte doit contenir au moins 2 caractères.</mat-error>
+            <mat-error *ngIf="texteEdition.invalid && (texteEdition.dirty || texteEdition.touched) && texteEdition.hasError('maxlength')">Le texte doit contenir au maximum 50 caractères.</mat-error>
           </mat-form-field>
-          <ng-template #editText>{{events.text}}</ng-template>
+          <ng-template #editText><span (keyup.enter)="onEdit(events)">{{events.text}}</span></ng-template>
+          </form>
         </mat-cell>
       </ng-container>
 
@@ -56,37 +44,53 @@
         <ng-container matColumnDef="description">
           <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
           <mat-cell *matCellDef="let events">
+            <form #eventFormEditionDesc="ngForm" id="eventFormEditionDesc"  (ngSubmit)="eventFormEditionDesc.form.valid && onEdit(eventFormEditionDesc)">
             <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editdescription;">
-              <input [(ngModel)]="selectedEvent.description" matInput (keyup.enter)="onEdit(events)" >
+              <input [(ngModel)]="selectedEvent.description" matInput required minlength="2" maxlength="50" name="descriptionEdition" #descriptionEdition="ngModel"  >
+              <mat-error *ngIf="descriptionEdition.invalid && (descriptionEdition.dirty || descriptionEdition.touched) && descriptionEdition.hasError('required')">La description est obligatoire.</mat-error>
+              <mat-error *ngIf="descriptionEdition.invalid && (descriptionEdition.dirty || descriptionEdition.touched) && descriptionEdition.hasError('minlength')">La description doit contenir au moins 2 caractères.</mat-error>
+              <mat-error *ngIf="descriptionEdition.invalid && (descriptionEdition.dirty || descriptionEdition.touched) && descriptionEdition.hasError('maxlength')">La description doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
-            <ng-template #editdescription>{{events.description}}</ng-template>
+            <ng-template #editdescription><span (keyup.enter)="onEdit(events)">{{events.description}}</span></ng-template>
+            </form>
           </mat-cell>
         </ng-container>
+
 
         <ng-container matColumnDef="type">
           <mat-header-cell *matHeaderCellDef> Type d'évènement </mat-header-cell>
           <mat-cell *matCellDef="let events">
+            <form #eventFormEditiontype="ngForm" id="eventFormEditiontype"  (ngSubmit)="eventFormEditiontype.form.valid && onEdit(eventFormEditiontype)">
             <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else edittype;">
-              <input [(ngModel)]="selectedEvent.type" matInput (keyup.enter)="onEdit(events)" >
+              <input [(ngModel)]="selectedEvent.type" matInput required minlength="2" maxlength="50" name="typeEdition" #typeEdition="ngModel"   >
+              <mat-error *ngIf="typeEdition.invalid && (typeEdition.dirty || typeEdition.touched) && typeEdition.hasError('required')">Le type est obligatoire.</mat-error>
+              <mat-error *ngIf="typeEdition.invalid && (typeEdition.dirty || typeEdition.touched) && typeEdition.hasError('minlength')">Le type doit être public ou privé.</mat-error>
             </mat-form-field>
-            <ng-template #edittype>{{events.type}}</ng-template>
+            <ng-template #edittype><span (keyup.enter)="onEdit(events)">{{events.type}}</span></ng-template>
+            </form>
           </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="groupe">
           <mat-header-cell *matHeaderCellDef> groupe </mat-header-cell>
           <mat-cell *matCellDef="let events">
+            <form #eventFormEditiongroupe="ngForm" id="eventFormEditiongroupe"  (ngSubmit)="eventFormEditiongroupe.form.valid && onEdit(eventFormEditiongroupe)">
             <mat-form-field *ngIf="(selectedEvent && selectedEvent === events);else editgroupe;">
-              <input [(ngModel)]="selectedEvent.group_id" matInput (keyup.enter)="onEdit(events)" >
+              <input [(ngModel)]="selectedEvent.group_id" matInput  required minlength="2" maxlength="50" name="groupeEdition" #groupeEdition="ngModel"   >
+              <mat-error *ngIf="groupeEdition.invalid && (groupeEdition.dirty || groupeEdition.touched) && groupeEdition.hasError('required')">Le groupe est obligatoire.</mat-error>
+              <mat-error *ngIf="groupeEdition.invalid && (groupeEdition.dirty || groupeEdition.touched) && groupeEdition.hasError('minlength')">Le groupe doit être un nombre.</mat-error>
+              <mat-error *ngIf="groupeEdition.invalid && (groupeEdition.dirty || groupeEdition.touched) && groupeEdition.hasError('maxlength')">La description doit contenir au maximum 3 caractères.</mat-error>
             </mat-form-field>
-            <ng-template #editgroupe>{{events.group_id}}</ng-template>
+            <ng-template #editgroupe><span (keyup.enter)="onEdit(events)">{{events.group_id}}</span></ng-template>
+            </form>
           </mat-cell>
         </ng-container>
+
 
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef>Actions </mat-header-cell>
           <mat-cell *matCellDef="let events">
-            <button *ngIf="(selectedEvent && selectedEvent === events);else editButton;" color="warn"  mat-button (click)="onEdit(events)"><i class="material-icons">done</i></button>
+            <button *ngIf="(selectedEvent && selectedEvent === events);else editButton;" color="warn"  form="eventFormEdition" mat-button (click)="onEdit(events)"><i class="material-icons">done</i></button>
             <ng-template #editButton><button mat-button (click)="onSelected(events)"><i class="material-icons">edit</i></button></ng-template>
 
           </mat-cell>
