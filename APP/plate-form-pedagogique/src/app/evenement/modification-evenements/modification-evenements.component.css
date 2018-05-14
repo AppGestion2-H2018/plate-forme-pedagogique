@@ -89,3 +89,12 @@
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
+
+.inputdate
+{
+    width: 4px;
+}
+
+.mat-form-field-infix{
+    width: 100px;
+}
