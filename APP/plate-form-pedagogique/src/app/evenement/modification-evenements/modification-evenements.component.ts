@@ -16,7 +16,7 @@ export class ModificationEvenementsComponent implements OnInit {
 
   events: Event[];
   selectedEvent: Event;
-  displayedColumns = [ 'categorie','text','description','type','groupe', 'actions'];
+  displayedColumns = [ 'categorie','text','description','type','groupe', 'modification','suppression'];
 
 
   constructor(private evenementService: EvenementService) {
