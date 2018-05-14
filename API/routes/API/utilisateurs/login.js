@@ -9,17 +9,18 @@ router.post('/', function (req, res, next) {
     var da = req.body.da;
     var motdepasse = req.body.motdepasse;
     var objReponse = {'Code':0,'Message':''};
-
-
+    var bcrypt = require('bcrypt');
+    const saltRounds = 10;
     //recheche le da de l'utilisateur dans la base de donner
     Utilisateur.findOne({'da': da}, function (err, utilisateur) {
         if (err) return console.error(err);
 
         //mathieu cette partie permet de hash un mot de passe //todo
         //Ainsi tu peut hash un mot de passe ou autre et après introduire dans la base de donner
-       // bcrypt.genSalt(saltRounds, function (err, salt) {
-          //  bcrypt.hash(motdepasse, salt, function (err, hash) {// le hash est la réponse de l'encryption du mot de passe juste avant
-             //   console.log(hash);
+     //   bcrypt.genSalt(saltRounds, function (err, salt) {
+         //  bcrypt.hash(motdepasse, salt, function (err, hash) {// le hash est la réponse de l'encryption du mot de passe juste avant
+              console.log(hash);
+
                 if (motdepasse == utilisateur.motdepasse) {
 
                     objReponse = {'Code': 1, 'Message': 'La connexion à été effectuée avec succès.'};
@@ -43,12 +44,12 @@ router.post('/', function (req, res, next) {
                     console.log(objReponse);
                     res.json(objReponse);
                 }
-
+  //  });
+//});
 
             });
         });
-   // });
-//});
+
 // Obtenir tous les Utilisateurs
 router.get('/', function (req, res, next) {
     Utilisateur.find({}, {/*_id: 0, da: 1*/}, function (err, utilisateur) {
