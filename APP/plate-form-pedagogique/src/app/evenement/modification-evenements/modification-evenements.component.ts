@@ -16,7 +16,7 @@ export class ModificationEvenementsComponent implements OnInit {
 
   events: Event[];
   selectedEvent: Event;
-  displayedColumns = [ 'categorie','text','description','type','groupe', 'actions'];
+  displayedColumns = [ 'categorie','text','description','type','groupe', 'modification','suppression'];
 
 
   constructor(private evenementService: EvenementService) {
@@ -45,7 +45,10 @@ export class ModificationEvenementsComponent implements OnInit {
         }
     }
 
-
+    onDelete(event: Event|number): void {
+        this.evenementService.removeEvent(event)
+            .subscribe(result => this.events = this.events.filter(h => h !== event));
+    }
 
     ngOnInit() {
         console.log('in ngOnInit');
