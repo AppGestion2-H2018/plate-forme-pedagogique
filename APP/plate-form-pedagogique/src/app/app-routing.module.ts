@@ -10,6 +10,7 @@ import {RecupererMotDePasseComponent} from './utilisateurs/recuperer-mot-de-pass
 import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
 import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-publication.component';
 import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
+import {ModifierMotDePasseComponent} from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -20,9 +21,11 @@ const routes: Routes = [
     { path: 'resultats-scolaires', component: PrincipalResultatsComponent },
     { path: 'accueil', redirectTo: '', pathMatch: 'full' },
     { path: 'motdepasse-oublie', component: RecupererMotDePasseComponent },
-    { path: 'creer-utilisateur', component: CreerUtilisateurComponent },
+    { path: 'utilisateurs/creer', component: CreerUtilisateurComponent },
+    { path: 'utilisateurs/:utilisateurId/modifier', component: CreerUtilisateurComponent }, // Exemple: http://localhost:4200/utilisateurs/5aeb6574db8aa807b08c8602/modifier
     { path: 'publications/ajout', component: AjoutPublicationComponent},
     { path: 'ajout-evenement', component: AjoutEvenementComponent },
+    { path: 'motdepasse-reinitialisation/:resetPasswordToken', component: ModifierMotDePasseComponent },
 ];
 
 @NgModule({

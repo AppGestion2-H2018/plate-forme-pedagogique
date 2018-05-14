@@ -1,13 +1,25 @@
+<!-- Ajout du calendrier et des boutons de contrôle dans la page -->
+<div *ngIf="reussi && afficherMessage">
+    <div class="divReussi"><p class="messageConfirmation">{{message}}</p></div>
+</div>
+<div *ngIf="!reussi && afficherMessage">
+    <div class="divEchec"><p class="messageConfirmation">{{message}}</p></div>
+</div>
 <div #scheduler_here class="dhx_cal_container" style="width: 100%; height:100vh">
-  <div class="dhx_cal_navline">
-    <div class="dhx_cal_prev_button">&nbsp;</div>
-    <div class="dhx_cal_next_button">&nbsp;</div>
-    <div class="dhx_cal_today_button"></div>
-    <div class="dhx_cal_date"></div>
-    <div class="dhx_cal_tab" name="day_tab"></div>
-    <div class="dhx_cal_tab" name="week_tab"></div>
-    <div class="dhx_cal_tab" name="month_tab"></div>
-  </div>
-  <div class="dhx_cal_header"></div>
-  <div class="dhx_cal_data"></div>
+    <!-- Options en haut de page -->
+    <div class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button"></div>
+        <div class="dhx_cal_next_button"></div>
+        <div class="dhx_cal_date .md-display-10"></div>
+        <div class="dhx_cal_tab" name="day_tab"></div>
+        <div class="dhx_cal_tab" name="week_tab"></div>
+        <div class="dhx_cal_tab" name="month_tab"></div>
+        <div class="dhx_cal_today_button"></div>
+    </div>
+
+    <!-- Calendrier -->
+    <div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
+    </div>
 </div>

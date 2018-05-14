@@ -13,3 +13,19 @@
 .item3 {
     grid-column: 3 / 4;
 }
+
+.padding-top {
+    padding-top: 10pt;
+}
+
+.ajout {
+    position: relative;
+    bottom: 10%;
+    color: white;
+    font-size: 28px;
+    z-index: 100;
+}
+
+.barre-recherche {
+    width: 30%;
+}

@@ -4,11 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "postinstall": "ng build --aot -prod",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "4.2.0"
   },
   "private": true,
   "dependencies": {
@@ -24,9 +29,13 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@types/dhtmlxscheduler": "^4.3.36",
+    "angular-alert-module": "^1.0.0",
     "core-js": "^2.4.1",
     "dhtmlx-scheduler": "^4.4.0",
+    "express": "^4.16.3",
+    "ngx-cookie-service": "^1.0.10",
     "octicons": "^7.2.0",
+    "path": "^0.12.7",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

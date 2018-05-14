@@ -1,11 +1,15 @@
-<h1 mat-dialog-title>Ajouter ce livre à l'une de vos bibliothèques?</h1>
-  <mat-dialog-content>
-    <input [(ngModel)]="newTablette.nom" id="newTablette" name="newTablette" placeholder="Créer une bibliothèque" (change)="postTablette()">
-  </mat-dialog-content>
-<div class="biblio">
-  <mat-dialog-content>
-    <ul>
-      <li>Test</li>
+<h2 mat-dialog-title>Ajouter ce livre à l'une de vos bibliothèques?</h2>
+  <div mat-dialog-content>
+      <mat-form-field>
+          <input matInput [(ngModel)]="data.tablettes[0].nom">
+      </mat-form-field>
+  </div>
+    <ul class="biblio">
+        <li *ngFor="let tablette of data.tablettes" (click)="onSelect(tablette)">
+            {{tablette.nom}}
+        </li>
     </ul>
-  </mat-dialog-content>
-</div>
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

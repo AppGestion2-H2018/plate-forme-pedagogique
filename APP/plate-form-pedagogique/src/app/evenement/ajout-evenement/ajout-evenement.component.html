@@ -1,104 +1,170 @@
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1>Ajouter un Évèvenement</h1>
+<div>
+  <div>
+    <h1 class="padding-h1">Ajouter un Évèvenement</h1>
+  </div>
+</div>
+
+<div>
+
+  <form class="well" #evenementFormAjout="ngForm" id="evenementFormAjout" (submit)="addEvenement($event, evenementFormAjout)">
+
+    <div>
+      <mat-form-field class="padding-champs-formulaire">
+        <input matInput placeholder="Nom" id="nom" name="nom" class="form-control" [(ngModel)]="evenementChoisi.text" #nom="ngModel" maxlength="255" required>
+      </mat-form-field>
+
+      <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nom.errors.required" class="">
+          Le nom est requis.
+        </div>
+        <div *ngIf="nom.errors.maxlength" class="">
+          Le nom à un maximum de 255 caractères
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section>
-  <div>
-    <form method="POST" action="">
 
-      <div class="form-group row">
-        <label for="nom" class="col-form-label col-sm-2">*Nom : </label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="nom" id="nom" maxlength="255" value="">
+    <div>
+      <mat-form-field class="padding-champs-formulaire">
+        <textarea matInput placeholder="Description" name="description" id="description" [(ngModel)]="evenementChoisi.description" #description="ngModel" required></textarea>
+      </mat-form-field>
+
+      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="description.errors.required">
+          La description est requise.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="description" class="col-form-label col-sm-2">*Description : </label>
-        <div class="col-sm-4">
-          <textarea name="description" id="description"></textarea>
+    <div>
+      <div>
+        <label for="categorie">Categorie *</label>
+      </div>
+      <mat-form-field class="padding-champs-formulaire">
+        <mat-select id="categorie" name="categorie" [(ngModel)]="evenementChoisi.categorie" #categorie="ngModel" required="">
+          <mat-option>Veuillez choisir...</mat-option>
+          <mat-option value="1">Option 1</mat-option>
+          <mat-option value="2">Option 2</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="categorie.errors.required">
+          La categorie est requise.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="categorie" class="col-form-label col-sm-2">*Categorie : </label>
-        <div class="col-sm-4">
-          <select id="categorie" name="categorie" size="nbelementsaffiches" class="form-control">
+    <div>
+      <mat-form-field class="padding-champs-formulaire">
+        <input matInput [matDatepicker]="date_debut" placeholder="Date de début" name="date_debut" id="date_debut" [(ngModel)]="evenementChoisi.start_date" #date_debut="ngModel" required>
+        <mat-datepicker-toggle matSuffix [for]="date_debut"></mat-datepicker-toggle>
+        <mat-datepicker #date_debut></mat-datepicker>
+      </mat-form-field>
 
-            <option value="" selected>Veuillez choisir...</option>
+      <div *ngIf="date_debut.invalid && (date_debut.dirty || date_debut.touched)"
+           class="alert alert-danger">
 
-            <option value="1"> categorie1</option>
-            <option value="2"> categorie2</option>
-            <option value="3"> categorie3</option>
-
-          </select>
+        <div *ngIf="date_debut.errors.required">
+          La date de début est requise.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="date_debut" class="col-form-label col-sm-2">*Date de début : </label>
-        <div class="col-sm-4">
-          <input type="date" class="form-control" name="date_debut" id="date_debut">
+    <div>
+      <mat-form-field class="padding-champs-formulaire">
+        <input matInput [matDatepicker]="date_fin" placeholder="Date de fin" name="date_fin" id="date_fin" [(ngModel)]="evenementChoisi.end_date" #date_fin="ngModel" required>
+        <mat-datepicker-toggle matSuffix [for]="date_fin"></mat-datepicker-toggle>
+        <mat-datepicker #date_fin></mat-datepicker>
+      </mat-form-field>
+
+      <div *ngIf="date_fin.invalid && (date_fin.dirty || date_fin.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="date_fin.errors.required">
+          La date de fin est requise.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="date_fin" class="col-form-label col-sm-2">*Date de fin : </label>
-        <div class="col-sm-4">
-          <input type="date" class="form-control" name="date_fin" id="date_fin">
+    <div>
+      <div>
+        <label for="type">Type *</label>
+      </div>
+      <mat-form-field class="padding-champs-formulaire">
+        <mat-select id="type" name="type" [(ngModel)]="evenementChoisi.type" #type="ngModel" required="">
+          <mat-option>Veuillez choisir...</mat-option>
+          <mat-option value="1">Option 1</mat-option>
+          <mat-option value="2">Option 2</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="type.invalid && (type.dirty || type.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="type.errors.required">
+          Le type est requis.
         </div>
       </div>
+    </div>
 
-      <!--
-      <div class="form-group row">
-          <label for="date_creation" class="col-form-label col-sm-2">Date de création : </label>
-          <div class="col-sm-4">
-              <input type="date" class="form-control" name="date_creation" id="date_creation">
-          </div>
+    <div>
+      <div>
+        <label for="groupe">Groupe *</label>
       </div>
-      -->
+      <mat-form-field class="padding-champs-formulaire">
+        <mat-select id="groupe" name="groupe" [(ngModel)]="evenementChoisi.group_id" #groupe="ngModel" required="">
+          <mat-option>Veuillez choisir...</mat-option>
+          <mat-option *ngFor="let groupe of groupes" value="{{groupe._id}}">{{groupe.nom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group row">
-        <label for="publique" class="col-form-label col-sm-2">*Publique : </label>
-        <div class="col-sm-4">
-          <input type="checkbox" class="form-control" name="publique" id="publique">
+      <div *ngIf="groupe.invalid && (groupe.dirty || groupe.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="groupe.errors.required">
+          Le groupe est requis.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="groupe" class="col-form-label col-sm-2">*Groupe : </label>
-        <div class="col-sm-4">
+    <div>
+      <div>
+        <label for="admin_id">Admin *</label>
+      </div>
+      <mat-form-field class="padding-champs-formulaire">
+        <mat-select id="admin_id" name="admin_id" [(ngModel)]="evenementChoisi.admin_id" #admin_id="ngModel" required="">
+          <mat-option>Veuillez choisir...</mat-option>
+          <mat-option value="1">Option 1</mat-option>
+          <mat-option value="2">Option 2</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          <select id="groupe" name="groupe" size="nbelementsaffiches" class="form-control">
+      <div *ngIf="admin_id.invalid && (admin_id.dirty || admin_id.touched)"
+           class="alert alert-danger">
 
-            <option value="" selected>Veuillez choisir...</option>
-
-            <option value="1"> groupe1</option>
-            <option value="2"> groupe2</option>
-            <option value="3"> groupe3</option>
-
-          </select>
+        <div *ngIf="admin_id.errors.required">
+          L'admin est requis.
         </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="actif" class="col-form-label col-sm-2">*Actif : </label>
-        <div class="col-sm-4">
-          <input type="checkbox" class="form-control" name="actif" id="actif">
-        </div>
-      </div>
+    <div class="padding-champs-formulaire">
+      <mat-checkbox name="actif" id="actif" [(ngModel)]="evenementChoisi.active">Actif</mat-checkbox>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-sm-8">
-          <input type="submit" class="btn btn-primary" value="Enregistrer">
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
+    <div class="padding-champs-formulaire">
+      <button type="submit" mat-button>Enregistrer</button>
+    </div>
+
+  </form >
+</div>

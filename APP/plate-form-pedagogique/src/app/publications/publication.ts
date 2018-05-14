@@ -1,14 +1,16 @@
 // Définition d’une classe Publication
+import {Groupe} from "../groupe/groupe";
+
 export class Publication {
-    //id: number;
-    auteur: number;
-    groupes: string[];
+    _id: string;
+    auteur: string;
+    groupes: Groupe[];
     date_publication: Date;
     titre: string;
     contenu: string;
     date_remise: Date;
-    //tags: string;
-    //commentaire: string;
+    tags: string[];
+    commentaire: string[];
     fichier: string;
   }
   

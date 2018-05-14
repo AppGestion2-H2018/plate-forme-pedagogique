@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Créer un nouvel utilisateur</mat-card-title>
+    <mat-card-title>{{titreDeLaPage}}</mat-card-title>
     <mat-card-content>
 
         <div class="errors"  *ngIf="reponseAPI.Code > 1">
@@ -16,15 +16,17 @@
             <br>
         </div>
 
-        <form (submit)="register($event)">
+        <form #utilisateurFormAjout="ngForm" id="utilisateurFormAjout" (submit)="save($event, utilisateurFormAjout)">
 
+            <!-- DA -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.da" required minlength="2" maxlength="50" #da="ngModel" name="utilisateur.da" placeholder="Numéro de DA">
-                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('required')">Le da est obligatoire.</mat-error>
-                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('minlength')">Le da doit contenir au moins 2 caractères.</mat-error>
-                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('maxlength')">Le da doit contenir au maximum 50 caractères.</mat-error>
+                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('required')">Le DA est obligatoire.</mat-error>
+                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('minlength')">Le DA doit contenir au moins 2 caractères.</mat-error>
+                <mat-error *ngIf="da.invalid && (da.dirty || da.touched) && da.hasError('maxlength')">Le DA doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
+            <!-- Nom -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.nom" required minlength="2" maxlength="50" #nom="ngModel" name="utilisateur.nom" placeholder="Nom">
                 <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom est obligatoire.</mat-error>
@@ -32,13 +34,15 @@
                 <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
+            <!-- Prénom -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.prenom" required minlength="2" maxlength="50" #prenom="ngModel" name="utilisateur.prenom" placeholder="Prénom">
-                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('required')">Le prenom est obligatoire.</mat-error>
-                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('minlength')">Le prenom doit contenir au moins 2 caractères.</mat-error>
-                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('maxlength')">Le prenom doit contenir au maximum 50 caractères.</mat-error>
+                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('required')">Le prénom est obligatoire.</mat-error>
+                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('minlength')">Le prénom doit contenir au moins 2 caractères.</mat-error>
+                <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched) && prenom.hasError('maxlength')">Le prénom doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
+            <!-- Courriel -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.courriel" required minlength="5" pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$" #courriel="ngModel" name="utilisateur.courriel" placeholder="Courriel">
                 <mat-error *ngIf="courriel.invalid && (courriel.dirty || courriel.touched) && courriel.hasError('required')">Le courriel est obligatoire.</mat-error>
@@ -46,15 +50,7 @@
                 <mat-error *ngIf="courriel.invalid && (courriel.dirty || courriel.touched) && !courriel.hasError('minlength') && courriel.hasError('pattern')">Le courriel doit respecter le format traditionnel d'un courriel.</mat-error>
             </mat-form-field>
 
-
-            <!--TODO: Faire fonctionner le champ date -->
-            <!--&lt;!&ndash;<mat-form-field>&ndash;&gt;-->
-            <!--<input type="date" [(ngModel)]="utilisateur.datedenaissance" required #datedenaissance="ngModel" name="utilisateur.datedenaissance"-->
-                   <!--placeholder="Date de naissance">-->
-            <!--<mat-error *ngIf="datedenaissance.invalid && (datedenaissance.dirty || datedenaissance.touched) && datedenaissance.hasError('required')">La date de naissance est obligatoire.</mat-error>-->
-            <!--<mat-error *ngIf="datedenaissance.invalid && (datedenaissance.dirty || datedenaissance.touched) && datedenaissance.hasError('type')">La date de naissance doit être de type "date"</mat-error>-->
-            <!--&lt;!&ndash;</mat-form-field>&ndash;&gt;-->
-
+            <!-- Date de naissance -->
             <mat-form-field>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="utilisateur.datedenaissance" required #datedenaissance="ngModel" name="utilisateur.datedenaissance" placeholder="Date de naissance">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -63,6 +59,7 @@
                 <!--<mat-error *ngIf="datedenaissance.invalid && (datedenaissance.dirty || datedenaissance.touched) && datedenaissance.hasError('type')">La date de naissance doit être de type "date"</mat-error>-->
             </mat-form-field>
 
+            <!-- Code permanent -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.codepermanent" required minlength="2" maxlength="50" #codepermanent="ngModel" name="utilisateur.codepermanent"
                        placeholder="Code permanent">
@@ -71,7 +68,7 @@
                 <mat-error *ngIf="codepermanent.invalid && (codepermanent.dirty || codepermanent.touched) && codepermanent.hasError('maxlength')">Le code permanent doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
-            <!--TODO: Ajouter une liste des programmes-->
+            <!-- TODO: Ajouter une liste des programmes -->
             <mat-form-field>
                 <input matInput [(ngModel)]="utilisateur.programme" name="utilisateur.programme" placeholder="Programme (Doit être un ObjectID) Ex: 5ae24fa820405a42f8e78724">
             </mat-form-field>
@@ -82,24 +79,29 @@
                 <mat-error *ngIf="sexe.invalid && (sexe.dirty || sexe.touched) && sexe.hasError('required')">Le sexe est obligatoire.</mat-error>
             </mat-radio-group>
 
-            <!--TODO: Ajouter une liste des roles-->
             <mat-form-field>
-                <input matInput [(ngModel)]="utilisateur.role" name="utilisateur.role" placeholder="Rôle (Doit être un ObjectID) Ex: 5ae24fa820405a42f8e78724">
+                <mat-select [(ngModel)]="utilisateur.role" name="utilisateur.role" placeholder="Rôle">
+                    <mat-option *ngFor="let type of types" [value]="type._id">
+                        {{ type.nom }}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
+            <!-- Mot de passe -->
             <mat-form-field>
                 <input type="password" matInput [(ngModel)]="utilisateur.motdepasse" required minlength="5" maxlength="100" #password="ngModel" name="utilisateur.motdepasse"
                        placeholder="Mot de passe">
                 <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.hasError('required')">Le mot de passe est obligatoire.</mat-error>
-                <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.hasError('minlength')">Le mot de passe doit contenir au moins 2 caractères.</mat-error>
+                <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.hasError('minlength')">Le mot de passe doit contenir au moins 5 caractères.</mat-error>
                 <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.hasError('maxlength')">Le mot de passe doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
+            <!-- Photo -->
             <mat-form-field>
-                <input type="password" matInput [(ngModel)]="utilisateur.photo" name="utilisateur.photo" placeholder="Photo">
+                <input matInput [(ngModel)]="utilisateur.photo" #photo="ngModel" name="utilisateur.photo" placeholder="URL de la photo">
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Inscrire</button>
+            <button mat-raised-button color="primary">{{titreDuBoutonEnregistrement}}</button>
 
             <!-- Temporaire -->
             <h3>Object ID de test: 5ae24fa820405a42f8e78724</h3>

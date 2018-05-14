@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {Tablette} from "../../class/tablette";
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {FormBuilder, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-dialog-biblio',
@@ -8,11 +10,29 @@ import {Tablette} from "../../class/tablette";
 })
 export class DialogBiblioComponent implements OnInit {
 
-    newTablette: Tablette;
 
-    constructor() { }
+    constructor(
+        public dialogRef: MatDialogRef<DialogBiblioComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any){}
+
+
 
     ngOnInit() {
+
+    }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
+    postTablette(){
+
+    }
+
+    save() {
+
+    }
+
+    close() {
 
     }
 }

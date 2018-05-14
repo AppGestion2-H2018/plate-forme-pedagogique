@@ -1,15 +1,15 @@
-<ul class="livres">
-  <li *ngFor="let tablette of tablettes" (click)="openTablette(tablette)">
-    <mat-card class="example-card">
-      <mat-grid-list cols="1" rowHeight="50px">
-        <mat-grid-tile>
-          <mat-card-subtitle>
-            <p style="text-align:left;">
-              {{tablette.nom}}
-            </p>
-          </mat-card-subtitle>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </li>
-</ul>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let tablette of tablettes">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{tablette.nom}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <ul>
+      <li *ngFor="let livre of tablette.livres">
+        {{livre}}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

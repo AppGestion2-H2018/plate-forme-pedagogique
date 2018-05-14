@@ -11,24 +11,17 @@ import { ReponseAPI } from '../../class/reponseAPI';
 export class RecupererMotDePasseComponent implements OnInit {
   reponseAPI: ReponseAPI;
   courriel: string;
-  code: number;
-  test: boolean;
-
 
   constructor(private utilisateurService:UtilisateurService, private ref: ApplicationRef) { }
 
   // Envoi du courriel de réinitialisation du mot de passe
-  forgotpassword():void{
+  onSubmit():void{
     // Appelle la fonction d'envoi de courriel du server
-    // this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
     this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
   }
 
   ngOnInit() {
     this.reponseAPI =  {'Code' : 0, 'Message':'aucune réponse'};
-    console.log(this.reponseAPI);
-    this.code = 0;
-    this.test = true;
   }
 
 }

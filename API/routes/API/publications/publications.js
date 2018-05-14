@@ -45,6 +45,22 @@ router.get('/date-de-remise', function(req, res, next) {
     });
 });
 
+router.get('/tag/:tag', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion yeaaaaah!");
+        const db = client.db(dbName);
+        var sort = {date_publication: -1};
+        db.collection(collection).find({"tags":req.params.tag}).sort(sort).limit(5).toArray(function(err, result) {
+            if (err) return console.log(err)
+            console.log(result);
+            res.json(result);
+        })
+
+        client.close();
+    });
+});
+
 router.get('/:id', function(req, res, next){
     MongoClient.connect(url, function(err, client) {
         assert.equal(null, err);
@@ -71,7 +87,8 @@ router.post('/ajouter', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).insertOne(post, function(err, result) {
+            db.collection(collection).insertOne(post, function(err, result)
+            {
                 if (err) return console.log(err)
                 console.log("Objet ajouté");
                 res.json(result);
@@ -107,6 +124,33 @@ router.put('/modifier/:id', function(req, res, next){
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
             db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : task}, function(err, result) {
+                if (err) return console.log(err)
+                console.log("objet mis à jour");
+                res.json(result);
+            })
+
+            client.close();
+        });
+    }
+});
+
+// Ajouter un commentaire revient à modifier une publication
+router.put('/:id', function(req, res, next){
+    var commentaire = req.body;
+    delete commentaire['_id'];
+    var id = req.params.id;
+    console.log(commentaire);
+    if(false) {
+        console.log('STATUS: ' + res.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        res.status(400);
+        res.json({"erreur" : "Données incorrectes"});
+    } else {
+        MongoClient.connect(url, function(err, client) {
+            assert.equal(null, err);
+            console.log("Connexion au serveur réussie");
+            const db = client.db(dbName);
+            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(id)}, {$set : commentaire}, function(err, result) {
                 if (err) return console.log(err)
                 console.log("objet mis à jour");
                 res.json(result);

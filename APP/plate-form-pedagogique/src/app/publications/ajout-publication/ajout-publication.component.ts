@@ -5,49 +5,57 @@ import {forEach} from "@angular/router/src/utils/collection";
 //import {Groupe} from "../../groupe/afficher-groupe/groupe";
 import {Groupe} from "../../groupe/groupe";
 import {GroupeService} from "../../groupe/service/groupe.service";
+import {CookieService} from "ngx-cookie-service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {isUndefined} from "util";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-ajout-publication',
     templateUrl: './ajout-publication.component.html',
     styleUrls: ['./ajout-publication.component.css'],
-    providers: [GroupeService]
+    providers: [GroupeService, CookieService]
 })
 export class AjoutPublicationComponent implements OnInit {
 
     groupes: Groupe[];
     groupesUtilisateur: Groupe[];
-    groupeId: string[];
-    utilisateur: 1633263;
-    utilisateurs: number[];
-
+    utilisateur: string;
     publication: Publication;
-    value: string;
-    values : Array<string> = new Array();
-    titre: string;
-    contenu: string;
-    date_remise: Date;
-    date_publication: Date;
-    tags: string[];
-    fichier: string;
+    tag: string;
+    popup: boolean;
+    returnUrl: string;
+    commentaires: string;
 
 
-    constructor(private publicationService: PublicationService, private groupeService: GroupeService) { }
+    constructor(private publicationService: PublicationService, private groupeService: GroupeService, private cookieService: CookieService,
+                private route: ActivatedRoute, private router: Router) { }
 
+
+    /*
+    Fonction qui vas chercher tous les groupes.
+    Elle est appeler a l inition de la page
+     */
     toutLesGroupes(){
         this.groupeService.getGroupes().subscribe(groupes => this.groupes = groupes);
     }
+
+    /*
+    Fonction qui fait apparaitre le popup de choix de groupe.
+    Appeler quand on clique sur le bouton "groupes"
+     */
     popupGroup() {
-        this.groupesUtilisateur = [];
-        /*this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateur)){
-            groupe.utilisateur.forEach(utilisateur => {if(utilisateur == this.utilisateur){
-                this.groupesUtilisateur.push(groupe);
-            }
-        }
-        )}});*/
-        var popup = document.getElementById('allGroup')
+        //Vas chercher tous les groupes dont l utilisateur fait parti
+        this.groupes.forEach(groupe => {if(!isUndefined(groupe.utilisateurs)){
+            groupe.utilisateurs.forEach(utilisateur => {if(utilisateur.da == this.utilisateur){
+                    this.groupesUtilisateur.push(groupe);
+                }
+                }
+            )}});
+        console.log(this.groupes);
+        console.log(this.groupesUtilisateur);
+        var popup = document.getElementById('allGroup');
         var liste = document.getElementById('listGroup');
         if(this.groupesUtilisateur.length != 0){
             liste.innerHTML = '<p>Voici vos groupe: </p>';
@@ -55,52 +63,95 @@ export class AjoutPublicationComponent implements OnInit {
         else {
             liste.innerHTML = '<p>Vous n\'avez aucun groupe a choisir.</p>';
         }
+        //rend le popup visible
         popup.style.display = "block";
+        this.popup = true;
+
 
     }
+    //fonction pour fermer le popup des groupes
+    //Appeler quand on clique sur le "x" ou bien a coter du popup
     closePopupGroup() {
         var popup = document.getElementById('allGroup');
         popup.style.display = "none";
         window.onclick = function(event) {
             if (event.target == popup) {
+                //rend le popup invisible
                 popup.style.display = "none";
             }
         }
     }
-    publier(){
-        /*var request = document.getElementById('fichier');
-        var fichier =*/
 
-        alert('allo');
-        if(this.groupesUtilisateur.length != 0){
-            this.groupesUtilisateur.forEach(groupe => this.groupeId.push(groupe._id.toString()));
+    /*
+    Fonction qui ajoute un tag au tableau de tous les tags
+    appeler quand on pese sur le petit plus des tags
+    */
+    addTag(){
+        var ajout = true;
+        //On ne veut pas que le tag soit vide
+        if(this.tag == ""){
+            ajout = false;
         }
-        else {
-            this.groupeId = [];
+        //on ne veut pas que le tag soit comme un des autres tags
+        this.publication.tags.forEach(tag =>
+        {
+            if(this.tag == tag){
+                ajout = false;
+            }
         }
-        this.titre = ((document.getElementById("titre") as HTMLInputElement).value);
-        this.contenu = ((document.getElementById("contenu") as HTMLInputElement).value);
-        this.date_remise = new Date((document.getElementById("date_remise") as HTMLInputElement).value);
-        this.date_publication = new Date();
-        //Manque a decider comment entreposer les docs
-        var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
-        this.fichier = filename.split("\\").pop();
+        );
 
-        //Verification avant
-        this.publication = {"auteur":this.utilisateur,"titre": this.titre, "contenu": this.contenu, "date_remise": this.date_remise,"date_publication":this.date_publication,
-            "fichier":this.fichier, "groupes": this.groupeId};
-
-        this.publicationService.postPublication(this.utilisateur, this.titre, this.contenu, this.date_remise, this.date_publication, this.fichier, this.groupeId).subscribe();
-        console.log(this.publication);
+        if(ajout == true){
+            this.publication.tags.push(this.tag);
+        }
+        this.tag = "";
+        console.log(this.publication.tags)
     }
 
+    /*
+    Fonction qui permet la publication du post
+    Appeler quand on clique sur le bouton publier ou sur un "enter"
+     */
+    publier(){
 
+        //transfert tous les groupes choisis dans la bonne variable de classe
+        if(this.groupesUtilisateur.length != 0){
+            this.groupesUtilisateur.forEach(groupe => this.publication.groupes.push(groupe));
+        }
+        else {
+            this.publication.groupes = [];
+        }
 
+        //met la date du moment comme date de publication
+        this.publication.date_publication = new Date();
+        //Manque a decider comment entreposer les docs
+        var filename = ((document.getElementById("fichier") as HTMLInputElement).value);
+        this.publication.fichier = filename.split("\\").pop();
 
+        //Demande au service!
+        this.publicationService.postPublication(this.publication).subscribe();
+        console.log(this.publication);
+
+        // retour a la page precedente un fois la publication reussi.
+        this.router.navigateByUrl(this.returnUrl);
+
+    }
+
+    /*
+    Fonction appeler a l initialisation de la page et qui initialise toutes les variables
+     */
     ngOnInit() {
-        this.toutLesGroupes()
-        this.publication = {"auteur":null,"titre": '', "contenu": '', "date_remise": null,"date_publication":null,
-            "fichier":'', "groupes": null};
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.toutLesGroupes();
+        this.groupesUtilisateur = [];
+        this.groupes = [];
+        this.publication = {"_id": undefined, "auteur":"Ordi","titre": '', "contenu": '', "date_remise": null,"date_publication":null,
+            "fichier":'', "groupes": [], "tags": [], "commentaire": []};
+        this.tag = "";
+        this.commentaires = "";
+        this.popup = false;
+        this.utilisateur = this.cookieService.get('auth_da');
+        console.log(this.utilisateur);
     }
 
 

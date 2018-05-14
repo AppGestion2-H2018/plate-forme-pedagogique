@@ -1,5 +1,5 @@
-<h2>Ajout d une publication</h2>
-<form  (ngSubmit)="publier()">
+<h2>Ajout d'une publication</h2>
+<form  #postFormAjout="ngForm" id="postForm" (ngSubmit)="publier()">
   <div id="form-div">
     <mat-form-field>
         <input matInput [(ngModel)]="publication.titre" #titre="ngModel" id="titre" name="titre" placeholder="Titre" required maxlength="100" minlength="2">
@@ -9,38 +9,27 @@
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" name="contenu" placeholder="Contenu">
+        <input matInput name="contenu" [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" placeholder="Contenu">
     </mat-form-field>
     <br>
 
 
 
-    <!--<div>
-      <div>
-        <label class="labels">Tags: </label>
-        <div class="inputs">
-          <input type="button" class="button" (click)="popup()" value="+">
+    <mat-form-field>
+      <input [(ngModel)]="tag" name="tagInput" matInput [matChipInputFor]="tagList" placeholder="Choisissez vos tags...">
+      <i class="material-icons" matSuffix (click)="addTag()">add</i>
+      <mat-autocomplete #auto="matAutocomplete">
+        <div  *ngFor="let publication of publicationsTags">
+          <mat-option *ngFor="let tag of publication.tags" [value]="tag" onselect="getTags(tag)">
+            <span>{{ tag }}</span>
+          </mat-option>
         </div>
-      </div>
-
-      a mettre sur des div differents et de faire un display: inline
-
-      DAPHHHHHHHOUNE  MET TES AFFAIRES DE TAGS ICI !!!!!!!!!!!!!!!! pis tu peut effacer se que j ai mit la
-
-      <p id="autreTag"></p>
-      <div id="choixTag" class="popup">
-        <div class="popup-content">
-          <span class="close" (click)="closePopup()">&times;</span>
-          <label class="labels">Entrez un tag : </label>
-          <input autofocus class="inputs" [(ngModel)]="value" name="tags" placeholder="Entrez votre tag" maxlength="50" id="texteTag">
-          <input type="button" class="button" (click)="ajoutTag(); closePopup()" value="Ajouter">
-        </div>
-      </div>
-    </div>
-
-    <div>-->
-
-
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-chip-list #tagList>
+      <mat-chip *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
+    </mat-chip-list>
+    <br>
 </div>
 
 <input type="button" class="ajout" (click)="popupGroup()" value="Groupes">
@@ -48,13 +37,15 @@
   <div>
     <br>
     <div class="popup" id="allGroup">
-      <span class="close" (click)="closePopupGroup()">&times;</span>
-      <ul>
-        <p id="listGroup"></p>
-        <li *ngFor="let groupe of groupesUtilisateur">
+      <div class="popup-content">
+        <span class="close" (click)="closePopupGroup()">&times;</span>
+        <ul>
+          <p id="listGroup"></p>
+          <li *ngFor="let groupe of groupesUtilisateur">
             <mat-checkbox>{{groupe.nom}}</mat-checkbox>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <br>
     <div>
@@ -64,9 +55,9 @@
     <br>
     <mat-form-field>
       <mat-label class="labels">Date de remise :</mat-label><br>
-      <input matInput id="date_remise" class="inputs" type="date" name="date_remise">
+      <input matInput id="date_remise" class="inputs" type="date" name="date_remise" [(ngModel)]="publication.date_remise">
     </mat-form-field>
     <br>
-    <input class="inputs" type="submit" value="Publier !" id="button-blue">
+    <input class="inputs" type="submit" value="Publier !" id="button-blue" [disabled]="!postFormAjout.form.valid">
   </div>
 </form>
