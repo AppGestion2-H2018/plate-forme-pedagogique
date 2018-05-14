@@ -45,7 +45,10 @@ export class ModificationEvenementsComponent implements OnInit {
         }
     }
 
-
+    onDelete(event: Event|number): void {
+        this.evenementService.removeEvent(event)
+            .subscribe(result => this.events = this.events.filter(h => h !== event));
+    }
 
     ngOnInit() {
         console.log('in ngOnInit');

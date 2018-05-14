@@ -92,6 +92,9 @@
           <mat-cell *matCellDef="let events">
             <button *ngIf="(selectedEvent && selectedEvent === events);else editButton;" color="warn"  form="eventFormEdition" mat-button (click)="onEdit(events)"><i class="material-icons">done</i></button>
             <ng-template #editButton><button mat-button (click)="onSelected(events)"><i class="material-icons">edit</i></button></ng-template>
+            <form (ngSubmit)="onDelete(events)">
+              <button mat-button ><i class="material-icons">delete</i></button>
+            </form>
 
           </mat-cell>
         </ng-container>
