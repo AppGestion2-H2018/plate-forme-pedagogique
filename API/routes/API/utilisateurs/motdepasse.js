@@ -3,7 +3,6 @@ var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 var Crypto = require('crypto');
 var nodemailer = require('nodemailer');
-var bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
 const URL_RESET = 'http://localhost:4200/motdepasse-reinitialisation/';
