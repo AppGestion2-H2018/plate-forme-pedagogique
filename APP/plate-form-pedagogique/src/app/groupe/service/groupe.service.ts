@@ -6,6 +6,7 @@ import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
+import {Utilisateur} from '../../class/utilisateur';
 
 const httpOptions = { 
 	headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -55,9 +56,12 @@ export class GroupeService {
         return this.http.put<Classe>("https://api-appgestion2-h18.herokuapp.com/api/groupes", groupe, httpOptions);
     }
 
-    // getUtilisateurs(): Observable<Utilisateurs[]> {
-    //     return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
-    // }
+    /**Obtenir tous les Utilisateurs **/
+    getUtilisateurs(): Observable<Utilisateur[]> {
+        return this.http.get<Utilisateur[]>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/auth/all');
+    }
+
+
 
 }
 

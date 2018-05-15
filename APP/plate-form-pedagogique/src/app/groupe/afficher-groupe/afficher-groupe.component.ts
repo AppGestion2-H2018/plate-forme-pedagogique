@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Groupe} from "../groupe";
 import {Classe} from "../classe";
+import {Type} from "../type";
+import {Programme} from "../programme";
+import {Utilisateur} from '../../class/utilisateur';
 import {GroupeService} from '../service/groupe.service';
 import {ClasseService} from '../service/classe.service';
 import {NgForm} from "@angular/forms";
@@ -14,13 +17,22 @@ import {MatTable} from "@angular/material";
 })
 export class AfficherGroupeComponent implements OnInit {
 
+    //Groupe
     selectedGroupe: Groupe;
     newGroupe : Groupe;
     groupes: Groupe[];
 
+    //Classe
     classes: Classe[];
-    selectedClasse: Classe;
-    newClasse : Classe;
+
+    //Type
+    types: Type[];
+
+    //Programme
+    programmes: Programme[];
+
+    //Utilisateur
+    utilisateurs: Utilisateur[];
 
     displayedColumns = ['Description','actions'];
     name:any;
@@ -35,6 +47,21 @@ export class AfficherGroupeComponent implements OnInit {
     getClasses(): void {
         this.groupeService.getClasses()
             .subscribe(classes => this.classes = classes);
+    }
+
+    getTypes(): void {
+        this.groupeService.getTypes()
+            .subscribe(types => this.types = types);
+    }
+
+    getProgrammes(): void {
+        this.groupeService.getProgrammes()
+            .subscribe(programmes => this.programmes = programmes);
+    }
+
+    getUtilisateurs(): void {
+        this.groupeService.getUtilisateurs()
+            .subscribe(utilisateurs => this.utilisateurs = utilisateurs);
     }
 
     // getClasses(): void {
@@ -66,8 +93,15 @@ export class AfficherGroupeComponent implements OnInit {
 
         this.getClasses();
         console.log('in ngOnInit');
-        this.newClasse = new Classe();
-        this.newClasse.nom = '';
+
+        this.getTypes();
+        console.log('in ngOnInit');
+
+        this.getProgrammes();
+        console.log('in ngOnInit');
+
+        this.getUtilisateurs();
+        console.log('in ngOnInit');
     }
   
 }

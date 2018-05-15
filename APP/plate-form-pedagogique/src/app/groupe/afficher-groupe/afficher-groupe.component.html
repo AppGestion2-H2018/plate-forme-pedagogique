@@ -127,6 +127,31 @@
 					</mat-select>
 					</mat-form-field>
 
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editProgramme;" >
+						<mat-select [(ngModel)]="selectedGroupe.programmes" name="programme">
+							<mat-option *ngFor="let programme of programmes" [value]="programme._id" >
+								{{ programme._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editType;" >
+						<mat-select [(ngModel)]="selectedGroupe.types" name="type">
+							<mat-option *ngFor="let type of types" [value]="type._id" >
+								{{ type._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editUtilisateur;" >
+						<mat-select [(ngModel)]="selectedGroupe.utilisateurs" name="utilisateur">
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
 				</form>
 				<ng-template #editNom>
 					<h2 id="nom" (click)="onSelected(groupe)">{{groupe.nom}}</h2>
@@ -155,6 +180,18 @@
 
 				<ng-template #editClasse>
 					<span  id="classe" (click)="onSelected(groupe)"> Classe : {{groupe.classes}}</span>
+				</ng-template>
+
+				<ng-template #editProgramme>
+					<span  id="programme" (click)="onSelected(groupe)"> Programme : {{groupe.programmes}}</span>
+				</ng-template>
+
+				<ng-template #editType>
+					<span  id="type" (click)="onSelected(groupe)"> Type : {{groupe.types}}</span>
+				</ng-template>
+
+				<ng-template #editUtilisateur>
+					<span  id="utilisateur" (click)="onSelected(groupe)"> Utilisateurs : {{groupe.utilisateur}}</span>
 				</ng-template>
 
 			</mat-cell>
