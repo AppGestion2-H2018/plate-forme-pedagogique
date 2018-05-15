@@ -20,7 +20,7 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
  * Les règles sont écrites ici
  */
 var schema = new Schema({
-    nom: {type: String, required: true, minlength: 3, maxLength:100} //Requis, entre 3 et 100 caractères
+    nom: {type: String, required: true, minlength: 3, maxlength:100} //Requis, entre 3 et 100 caractères
 });
 
 //appliquer le plugin de la clé unique au modèle

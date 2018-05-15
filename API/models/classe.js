@@ -23,7 +23,7 @@ var idValidator = require('mongoose-id-validator');
  * Les règles sont écrites ici
  */
 var schema = new Schema({
-    nom: {type: String, required: true, minlength: 3, maxLength:100}, //Requis, entre 3 et 100 caractères
+    nom: {type: String, required: true, minlength: 3, maxlength:100}, //Requis, entre 3 et 100 caractères
     no_groupe: {type: String, required: true}, //Requis
     debut: {type: Date, required: true}, //Requis
     fin: {type: Date, required: true}, //Requis
