@@ -1,34 +1,43 @@
-
 /**
- * Module de routes API créé par Jean-Sébastien Lemelin
+ * Routes pour l'équipe groupes
+ * Danny Dugas, Nicolas Paquet, Andy Chartier, Jean-Sébastien Lemelin
+ * @author Jean-Sébastien Lemelin
+ */
+/**
+ * Appeler les paquets
  * @type {*|createApplication}
  */
 var express = require('express');
 var router = express.Router();
+/**
+ * Déclaration des modèles avec lesquels les routes travaillent
+ * @reference http://mongoosejs.com/docs/models.html
+ * @reference http://mongoosejs.com/docs/queries.html
+ */
 var Groupe = require('../../../models/groupe');
-var Utilisateur = require('../../../models/utilisateur');
 var Programme = require('../../../models/programme');
 var Type = require('../../../models/type');
 var Classe = require('../../../models/classe');
 
-/**************************************** GESTION DES GROUPES *****************************/
+/*********************************************** GESTION DES GROUPES **************************************************/
+
 /**
  * afficher tous les groupes
  */
 router.get('/all', function (req, res, next) {
-    Groupe.find(function (err, groupe){
-        if (err) return handleError(err, query);
-        res.json(groupe);
+    Groupe.find(function (err, groupes){
+        if (err) return handleError(err, query);//Si erreur retourne une erreur
+        res.json(groupes);//S'il se rend il revoie les groupes en JSON
     });
 });
 
 /**
  * Enregistrer un groupe
  */
-router.post('/', function(req, res, next) {
-    var newGroup = req.body;
+router.post('/', function(req, res) {
+    var newGroup = req.body; //Récupère le contenu du corps de la requête préformattée en JSON
 
-    //CRÉER L'OBJET AVEC LES ÉLÉMENTS OBLIGATOIRES
+    /***********************  CRÉER L'OBJET groupe AVEC LES ÉLÉMENTS OBLIGATOIRES ****************/
     var groupe = new Groupe({
         proprietaire: newGroup.proprietaire,
         nom: newGroup.nom,
@@ -36,6 +45,8 @@ router.post('/', function(req, res, next) {
         est_publique: newGroup.est_publique,
         commenter: newGroup.commenter,
     });
+    /************************** FIN CRÉER L'OBJET groupe AVEC LES ÉLÉMENTS OBLIGATOIRES ***********/
+    /***********************  CRÉER L'OBJET groupe AVEC LES ÉLÉMENTS OPTIONNELS *******************/
     //Creer une description s'il y en a une
     if(newGroup.description !== null){
         groupe.description = newGroup.description;
@@ -80,27 +91,29 @@ router.post('/', function(req, res, next) {
     if (newGroup.blacklist !== null) {
         groupe.blacklist = newGroup.blacklist;
     }
+    /*********************** FIN CRÉER L'OBJET groupe AVEC LES ÉLÉMENTS OPTIONNELS ****************/
 
+    //Procéder à la sauvegarde
     groupe.save(function (err, result) {
-        if (err) return res.status(500).send(err);
-        res.send(result);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        res.send(result); //Un résultat avec codes de succès sera renvoyé
     });
-    //});
-
-
 });
 
 /**
  * Trouver un groupe par son id
  */
-router.get('/:id', function (req, res, next) {
+router.get('/:id', function (req, res) {
+    //Obtenir le id passé en paramètre
     var objectId = req.params.id;
+
+    //Trouver par Id (Fonction mongoose)
     Groupe.findById(objectId,function(err,groupe){
-        if (err) return res.status(500).send(err);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(groupe == null){
-            return res.send({"code":0,"message":"Le groupe n'existe pas"});
+            return res.send({"code":0,"message":"Le groupe n'existe pas"});// Si rien trouvé, renvoyer une erreur
         }
-        return res.send(groupe);
+        return res.send(groupe);//Le groupe est envoyé en format JSON
     });
 });
 
@@ -110,11 +123,11 @@ router.get('/:id', function (req, res, next) {
 router.put('/', function (req, res, next) {
     var objet = req.body;
     Groupe.findByIdAndUpdate(objet._id,objet,{new:true},function(err,groupe){
-        if (err) return res.status(500).send(err);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(groupe == null){
-            return res.send({"code":0,"message":"Le groupe n'existe pas"});
+            return res.send({"code":0,"message":"Le groupe n'existe pas"});// Si rien trouvé, renvoyer une erreur 0
         }
-        return res.send(groupe);
+        return res.send(groupe);//Le groupe modifié est envoyé en format JSON
     });
 });
 
@@ -124,11 +137,11 @@ router.put('/', function (req, res, next) {
 router.delete('/delete/:idGroupe', function (req, res, next) {
     var idGroupe = req.params.idGroupe;
     Groupe.remove({'_id': idGroupe}, function(err, result) {
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(result.n == 0){
-            res.json({code:0,message:'Ce groupe n\'existe pas'});
+            res.json({code:0,message:'Ce groupe n\'existe pas'});// Si rien trouvé, renvoyer une erreur 0
         }else{
-            res.json({code:1,message:'Le groupe a été effacé'});
+            res.json({code:1,message:'Le groupe a été effacé'}); // Si le groupe a été effacé, renvoyer un message code 1
         }
     });
 });
@@ -139,28 +152,28 @@ router.delete('/delete/:idGroupe', function (req, res, next) {
 router.purge('/es-tusurtabarnik', function (req, res, next) {
 
     Groupe.remove({}, function(err, result) {
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(result.n == 0){
-            res.json({code:0,message:'Il n\'y avait aucun document dans la collection'});
+            res.json({code:0,message:'Il n\'y avait aucun document dans la collection'});// Si rien trouvé, renvoyer une erreur 0
         }else{
-            res.json({code:1,message:'La collection a été enlevée'});
+            res.json({code:1,message:'La collection a été enlevée'}); //Si la collection a été vidée, renvoyer de le code 1
         }
     });
 });
-/************************************* FIN GESTION DES GROUPES *****************************/
+/************************************************ FIN GESTION DES GROUPES *********************************************/
 
-/**************************************** GESTION DES TYPES **********************************/
+/*************************************************** GESTION DES TYPES ************************************************/
 
 /**
  * afficher tous les types
  */
 router.get('/types/all', function (req, res, next) {
     Type.find(function (err, types){
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query); //Mongoose renvera une erreur si le modèle n'est pas respecté
         if(types == null){
-            return res.send({"code":0,"message":"Il n'y a pas de types"});
+            return res.send({"code":0,"message":"Il n'y a pas de types"}); // Si rien trouvé, renvoyer une erreur 0
         }
-        res.json(types);
+        res.json(types); //Le tableau de types est envoyé en format JSON
     });
 });
 
@@ -170,27 +183,30 @@ router.get('/types/all', function (req, res, next) {
 router.get('/types/:id', function (req, res, next) {
     var objectId = req.params.id;
     Type.findById(objectId,function (err, type){
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query); //Mongoose renvera une erreur si le modèle n'est pas respecté
         if(type== null){
-            return res.send({"code":0,"message":"Le type n'existe pas"});
+            return res.send({"code":0,"message":"Le type n'existe pas"}); // Si rien trouvé, renvoyer une erreur 0
         }
-        res.json(type);
+        res.json(type);//Le type est envoyé en format JSON
     });
 });
-/************************************ FIN GESTION DES TYPES *****************************/
+/************************************************* FIN GESTION DES TYPES **********************************************/
 
-/**************************************** GESTION DES CLASSES **********************************/
+/************************************************** GESTION DES CLASSES ***********************************************/
 
 /**
  * afficher tous les classes
  */
 router.get('/classes/all', function (req, res, next) {
-    Classe.find(function (err, groupe){
-        if (err) return handleError(err, query);
-        res.json(groupe);
+    Classe.find(function (err, classe){
+        if (err) return handleError(err, query); // pb de connection ou avec le modèke
+        res.json(classe); //Un tableau de classes est envoyé en format JSON
     });
 });
 
+/**
+ * Créer une classe
+ */
 router.post('/classes', function(req, res, next) {
     var newClasse = req.body;
 
@@ -208,8 +224,8 @@ router.post('/classes', function(req, res, next) {
     }
     //Enregistrer la classe
     classe.save(function (err, result) {
-        if (err) return res.status(500).send(err);
-        res.send(result);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        res.json(classe); //Si la classe a été créée, renvoyer la classe
     });
 });
 
@@ -219,8 +235,11 @@ router.post('/classes', function(req, res, next) {
 router.get('/classes/:id', function (req, res, next) {
     var objectId = req.params.id;
     Classe.findById(objectId,function (err, classe){
-        if (err) return handleError(err, query);
-        res.json(classe);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        if(classe== null){
+            return res.send({"code":0,"message":"La classe n'existe pas"}); // Si rien trouvé, renvoyer une erreur 0
+        }
+        res.json(classe); //Renvoi la classe recherchée
     });
 });
 
@@ -230,11 +249,11 @@ router.get('/classes/:id', function (req, res, next) {
 router.put('/classes', function (req, res, next) {
     var objet = req.body;
     Classe.findByIdAndUpdate(objet._id,objet,{new:true},function(err,classe){
-        if (err) return res.status(500).send(err);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(classe == null){
-            return res.send({"code":0,"message":"La classe n'existe pas"});
+            return res.send({"code":0,"message":"La classe n'existe pas"}); // Si rien trouvé, renvoyer une erreur 0
         }
-        return res.send(classe);
+        return res.send(classe);//Renvoi la classe modifiée
     });
 });
 
@@ -244,11 +263,11 @@ router.put('/classes', function (req, res, next) {
 router.delete('/classes/delete/:idClasse', function (req, res, next) {
     var idClasse = req.params.idClasse;
     Classe.remove({'_id': idClasse}, function(err, result) {
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(result.n == 0){
-            res.json({code:0,message:'Cette classe n\'existe pas' });
+            res.json({code:0,message:'Cette classe n\'existe pas' }); // Si rien trouvé, renvoyer une erreur 0
         }else{
-            res.json({code:1,message:'La classe a été enlevée'});
+            res.json({code:1,message:'La classe a été enlevée'});  //Si la classe est enlevée, renvoyer de le code 1
         }
     });
 });
@@ -259,26 +278,26 @@ router.delete('/classes/delete/:idClasse', function (req, res, next) {
 router.purge('/classes/es-tusurtabarnik', function (req, res, next) {
 
     Classe.remove({}, function(err, result) {
-        if (err) return handleError(err, query);
-        if(result.n == 0){
-            res.json({code:0,message:'Il n\'y avait aucun document dans la collection'});
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
+            if(result.n == 0){
+                res.json({code:0,message:'Il n\'y avait aucun document dans la collection'}); // Si rien trouvé, renvoyer une erreur 0
             }else{
-                res.json({code:1,message:'La collection a été enlevée'});
+                    res.json({code:1,message:'La collection a été enlevée'}); //Si la collection a été vidée, renvoyer de le code 1
             }
         });
     });
 
-/************************************ FIN GESTION DES CLASSES *****************************/
+/************************************************ FIN GESTION DES CLASSES *********************************************/
 
-/**************************************** GESTION DES PROGRAMMES **********************************/
+/************************************************ GESTION DES PROGRAMMES **********************************************/
 
 /**
  * afficher tous les programmes
  */
 router.get('/programmes/all', function (req, res, next) {
-    Programme.find(function (err, groupe){
-        if (err) return handleError(err, query);
-        res.json(groupe);
+    Programme.find(function (err, groupes){
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        res.json(groupes); //Renvoyer un tableau de groupes
     });
 });
 
@@ -299,8 +318,8 @@ router.post('/programmes', function(req, res, next) {
     }
     //Enregistrer la programme
     programme.save(function (err, result) {
-        if (err) return res.status(500).send(err);
-        res.send(result);
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        res.json({code:1,message:'Le programme a été créé'}); //Si le programme a été sauvé, renvoyer de le code 1
     });
 });
 
@@ -310,7 +329,7 @@ router.post('/programmes', function(req, res, next) {
 router.get('/programmes/:id', function (req, res, next) {
     var objectId = req.params.id;
     Programme.findById(objectId,function (err, programme){
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         res.json(programme);
     });
 });
@@ -323,7 +342,7 @@ router.put('/programmes', function (req, res, next) {
     Programme.findByIdAndUpdate(objet._id,objet,{new:true},function(err,programme){
         if (err) return res.status(500).send(err);
         if(programme == null){
-            return res.send({"code":0,"message":"La programme n'existe pas"});
+            return res.send({"code":0,"message":"La programme n'existe pas"});// Si rien trouvé, renvoyer une erreur 0
         }
         return res.send(programme);
     });
@@ -335,9 +354,9 @@ router.put('/programmes', function (req, res, next) {
 router.delete('/programmes/delete/:idProgramme', function (req, res, next) {
     var idProgramme = req.params.idProgramme;
     Programme.remove({'_id': idProgramme}, function(err, result) {
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(result.n == 0){
-            res.json({code:0,message:'Ce programme n\'existe pas' });
+            res.json({code:0,message:'Ce programme n\'existe pas' }); // Si rien trouvé, renvoyer une erreur 0
         }else{
             res.json({code:1,message:'La programme a été enlevé'});
         }
@@ -350,15 +369,15 @@ router.delete('/programmes/delete/:idProgramme', function (req, res, next) {
 router.purge('/programmes/es-tusurtabarnik', function (req, res, next) {
 
     Programme.remove({}, function(err, result) {
-        if (err) return handleError(err, query);
+        if (err) return handleError(err, query);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(result.n == 0){
-            res.json({code:0,message:'Il n\'y avait aucun document dans la collection'});
+            res.json({code:0,message:'Il n\'y avait aucun document dans la collection'}); // Si rien trouvé, renvoyer une erreur 0
         }else{
             res.json({code:1,message:'La collection a été enlevée'});
         }
     });
 });
 
-/************************************ FIN GESTION DES PROGRAMMES *****************************/
+/************************************************ FIN GESTION DES PROGRAMMES ******************************************/
 
 module.exports = router;
