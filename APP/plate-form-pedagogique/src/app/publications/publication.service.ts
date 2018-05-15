@@ -21,6 +21,13 @@ export class PublicationService {
       return this.http.get<Publication[]>('http://localhost:3000/api/publications/');
   }
 
+  getPublicationParId(id: String): Observable<Publication[]> {
+        console.log('publication :' + id );
+
+        // return this.http.get<Publication[]>(`http://localhost:3000/api/publications/${id}`);
+        return this.http.get<Publication[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/${id}`);
+  }
+
   getDateRemise(): Observable<Publication[]> {
     return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/date-de-remise');
   }
@@ -53,4 +60,16 @@ export class PublicationService {
 
         return this.http.put(`http://localhost:3000/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
     }
+
+    updatePublication(publication: Publication) {
+        const id = publication._id;
+        const url = `https://api-appgestion2-h18.herokuapp.com/api/publications/${id}`;// ajouter l'id à l'URL de base
+        // const url = `http://localhost:3000/api/publications/${id}`;// ajouter l'id à l'URL de base
+        //Retourne à l'accueil apres avoir envoyer l'information à la BD
+        // this.router.navigate(['/']);     //Methode Rapide mais doit reloader la page pour voir les changement
+        window.location.href = "/";//Methode Lente mais pas besoin de reload la page pour voir les changements.
+
+        return this.http.put<Publication>(url, JSON.stringify(publication) ,httpOptions);
+    }
+
 }

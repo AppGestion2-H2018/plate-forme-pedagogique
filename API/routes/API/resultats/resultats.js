@@ -5,8 +5,8 @@ var mysql = require('mysql');
 
 // Carine Croteau : La ligne #7 ne compile pas et fait planter le système en entier.
 // Obligatoire : Corriger avant de décommenter et redéployer sur GitHub
-/*
-var con = mysql.createConnection(,{
+
+var con = mysql.createConnection({
   host: "35.193.78.254",
   user: "appgestion2h2018",
   password: "appgestion2h2018",
@@ -50,7 +50,7 @@ router.get('/notes', function(req, res, next) {
 		
 	});
 });
-*/
+
 
 module.exports = router;
 
