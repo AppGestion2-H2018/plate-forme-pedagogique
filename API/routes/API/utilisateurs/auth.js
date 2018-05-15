@@ -420,17 +420,22 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
                 // Comparer les tokens
                 if (comparerCleTokens(tokenBD, tokenClient)) {
                     // Si valide, créer nouveaux tokens et les envoyers au client et BD.
-                    //TODO: Faire générer tokens et cookies
-                    console.log("Renouvelage des tokens");
-                    return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
-                        res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token, idClient);
-                        console.log("Les cookies sont ajouté");
 
-                        reponseRetourner[0] = res;
-                        reponseRetourner[1] = true;
-                        resolve(reponseRetourner);
-                    });
+                    // ON NE VA PAS RENOUVELLER LES TOKENS SI ILS SONT VALIDE
+                    // console.log("Renouvelage des tokens");
+                    // return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
+                    //     res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token, idClient);
+                    //     console.log("Les cookies sont ajouté");
+                    //
+                    //     reponseRetourner[0] = res;
+                    //     reponseRetourner[1] = true;
+                    //     resolve(reponseRetourner);
+                    // });
 
+                    res = ajouterLesCookiesReussi(res, daClient, tokenClient, idClient);
+                    reponseRetourner[0] = res;
+                    reponseRetourner[1] = true;
+                    resolve(reponseRetourner);
 
                 } else {
                     console.log("La comparaison des 2 tokens à échoué");
