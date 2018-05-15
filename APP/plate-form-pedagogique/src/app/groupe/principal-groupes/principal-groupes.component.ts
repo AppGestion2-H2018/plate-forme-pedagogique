@@ -19,13 +19,14 @@ export class PrincipalGroupesComponent implements OnInit {
 
     getUtilisateur(): void {
         this.utilisateurService.getUtilisateur(this.utilisateur).subscribe(
-            data => {
-                this.utilisateur = data;
+            utilisateur => {
+                this.utilisateur = utilisateur;
             },
             error => {
                 console.error(error);
             }
         );
+        console.log(this.utilisateur);
     }
 
     ngOnInit() {
