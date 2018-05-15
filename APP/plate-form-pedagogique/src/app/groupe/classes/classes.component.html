@@ -1,4 +1,4 @@
-<h1>Lister, modififie, ajouter ou supprimer une classe</h1>
+<h1>Lister, modifier, ajouter ou supprimer une classe</h1>
 <form #classeFormAjout="ngForm" id="classeFormAjout" (ngSubmit)="onAdd(tableClasses, classeFormAjout);">
     <mat-form-field class="input-full-width">
         <input type="text" name="nom" required minlength="2" maxlength="50" [(ngModel)]="newClasse.nom" matInput #nom="ngModel" placeholder="Nouvelle classe">

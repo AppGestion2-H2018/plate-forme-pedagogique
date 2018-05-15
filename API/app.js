@@ -39,7 +39,7 @@ const options = {
     socketTimeoutMS: 30000,
     reconnectTries: Number.MAX_VALUE, // N'arrête pas de cesser de se connecter
     reconnectInterval: 500, // Se reconnecte après 500 ms
-    poolSize: 10, // Maintien près de 10 connections en parallèle
+    poolSize: 10, // Maintient près de 10 connections en parallèle
     // S'il y a une erreur, il renvoi un message aulieu de tenter de se reconnecter
     bufferMaxEntries: 0,
     dbName: 'plate-forme-pedagogique' //Quel nom de base de donnée
