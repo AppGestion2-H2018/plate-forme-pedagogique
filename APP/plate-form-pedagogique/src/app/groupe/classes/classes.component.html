@@ -1,3 +1,4 @@
+<h1>Lister, modififie, ajouter ou supprimer une classe</h1>
 <form #classeFormAjout="ngForm" id="classeFormAjout" (ngSubmit)="onAdd(tableClasses, classeFormAjout);">
     <mat-form-field class="input-full-width">
         <input type="text" name="nom" required minlength="2" maxlength="50" [(ngModel)]="newClasse.nom" matInput #nom="ngModel" placeholder="Nouvelle classe">
@@ -8,12 +9,13 @@
     </mat-form-field>
 
 </form>
-<div>Da:{{utilisateur._id }} - {{utilisateur.nom}}</div>
+<!--<div>Id: {{utilisateur._id }} - {{utilisateur.nom}}</div>-->
 <!--<ul>
     <li *ngFor="let classe of classes; let i = index">
         {{i}} {{classe.nom}}
     </li>
 </ul>-->
+
 <div class="example-container mat-elevation-z8">
     <mat-table #tableClasses [dataSource]="classes" matSort>
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ClasseService} from '../service/classe.service';
 import {Classe} from "../classe";
 import {FormControl, NgForm} from "@angular/forms";
@@ -12,25 +12,22 @@ import {Utilisateur} from "../../class/utilisateur";
     providers: [ClasseService]
 })
 export class ClassesComponent implements OnInit {
+    node : Node;
     selectedClasse: Classe;
     newClasse : Classe;
     classes: Classe[];
     displayedColumns = ['Description','actions'];
     name:any;
-    @Input() userId : string;
     @Input() utilisateur : Utilisateur;
 
     constructor(private classeService: ClasseService) {
-
     }
 
     onAdd(tableClasses: MatTable<Classe>, classeFormAjout: NgForm) {
-        console.log("123");
-        console.log(classeFormAjout);
-        console.log("456");
         this.newClasse.no_groupe = "1";
-        this.newClasse.debut = new Date("2018-01-16T00:00:00.000Z");
-        this.newClasse.fin = new Date("2018-04-16T00:00:00.000Z");
+        this.newClasse.debut = new Date();
+        this.newClasse.fin = new Date();
+        this.newClasse.fin.setDate(this.newClasse.fin.getDate() + 90);
         if(classeFormAjout.valid) {
             this.classeService.addClasse(this.newClasse)
                 .subscribe(classe  => { this.classes.push(classe); classeFormAjout.resetForm(); tableClasses.renderRows();});
@@ -55,7 +52,6 @@ export class ClassesComponent implements OnInit {
                 .subscribe(() => this.selectedClasse = null);
         }
     }
-
 
   ngOnInit() {
       this.getClasses();

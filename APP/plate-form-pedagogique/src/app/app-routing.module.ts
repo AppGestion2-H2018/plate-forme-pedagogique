@@ -11,13 +11,25 @@ import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-
 import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-publication.component';
 import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
 import {ModifierMotDePasseComponent} from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
+import {ClassesComponent} from "./groupe/classes/classes.component";
+import {CreerGroupeComponent} from "./groupe/creer-groupe/creer-groupe.component";
+import {AfficherGroupeComponent} from "./groupe/afficher-groupe/afficher-groupe.component";
+import {ModifierGroupeComponent} from "./groupe/modifier-groupe/modifier-groupe.component";
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
     { path: 'publications', component: PrincipalPublicationsComponent },
     { path: 'evenements', component: PrincipalEvenementsComponent },
     { path: 'bibliotheque', component: PrincipalBiblioComponent },
-    { path: 'groupes', component: PrincipalGroupesComponent },
+    { path: 'groupes', component : PrincipalGroupesComponent,
+        children : [
+            { path : 'classes', component : ClassesComponent},
+            { path : 'creer-groupe', component : CreerGroupeComponent},
+            { path : 'afficher-groupe', component : AfficherGroupeComponent},
+            { path : 'modifier-groupe', component : ModifierGroupeComponent},
+        ]
+    },
+/*{ path: 'groupes/classes', component : ClassesComponent},*/
     { path: 'resultats-scolaires', component: PrincipalResultatsComponent },
     { path: 'accueil', redirectTo: '', pathMatch: 'full' },
     { path: 'motdepasse-oublie', component: RecupererMotDePasseComponent },
