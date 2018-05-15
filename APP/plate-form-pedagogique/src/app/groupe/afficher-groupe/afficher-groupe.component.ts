@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Groupe} from "../groupe"
+import {Groupe} from "../groupe";
+import {Classe} from "../classe";
 import {GroupeService} from '../service/groupe.service';
+import {ClasseService} from '../service/classe.service';
+import {NgForm} from "@angular/forms";
+import {MatTable} from "@angular/material";
 
 @Component({
   selector: 'app-afficher-groupe',
@@ -9,23 +13,61 @@ import {GroupeService} from '../service/groupe.service';
     providers: [GroupeService]
 })
 export class AfficherGroupeComponent implements OnInit {
-    groupes: Groupe[];
-    selectedGroupe: Groupe;
-  constructor(private groupeService : GroupeService) {
-      this.groupeService.getGroupes()
-          .subscribe(groupes => {this.groupes = groupes;});
-  }
-    deleteGroupe(groupe : Groupe) {
-        console.log(groupe);
-        this.groupeService.deleteGroupe(groupe).subscribe(result => this.groupes = this.groupes.filter(g => g !== groupe));
-    }
-  //result => this.groupes = this.groupes.filter(g => g._id !== id)
-  ngOnInit() {
-      this.groupeService.getGroupes();
-  }
 
-    onSelect(groupe: Groupe): void {
+    selectedGroupe: Groupe;
+    newGroupe : Groupe;
+    groupes: Groupe[];
+
+    classes: Classe[];
+    selectedClasse: Classe;
+    newClasse : Classe;
+
+    displayedColumns = ['Description','actions'];
+    name:any;
+
+    constructor(private groupeService: GroupeService) { }
+
+    getGroupes(): void {
+        this.groupeService.getGroupes()
+            .subscribe(groupes => this.groupes = groupes);
+    }
+
+    getClasses(): void {
+        this.groupeService.getClasses()
+            .subscribe(classes => this.classes = classes);
+    }
+
+    // getClasses(): void {
+    //     this.groupeService.getClasses()
+    //         .subscribe(groupes => this.g = groupes);
+    // }
+    //
+
+    onDelete(groupe: Groupe): void {
+        this.groupeService.deleteGroupe(groupe)
+            .subscribe(result => this.groupes= this.groupes.filter(c => c !== groupe));
+    }
+    onSelected(groupe: Groupe): void {
         this.selectedGroupe = groupe;
+    }
+
+    onEdit(groupeFormEdition: NgForm): void {
+        if(groupeFormEdition.valid) {
+            this.groupeService.updateGroupe(this.selectedGroupe)
+                .subscribe(() => this.selectedGroupe = null);
+        }
+    }
+
+    ngOnInit() {
+        this.getGroupes();
+        console.log('in ngOnInit');
+        this.newGroupe = new Groupe();
+        this.newGroupe.nom = '';
+
+        this.getClasses();
+        console.log('in ngOnInit');
+        this.newClasse = new Classe();
+        this.newClasse.nom = '';
     }
   
 }
