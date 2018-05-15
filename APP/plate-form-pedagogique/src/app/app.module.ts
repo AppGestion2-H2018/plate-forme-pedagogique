@@ -23,7 +23,7 @@ import {
     MatNativeDateModule,
 } from '@angular/material';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
@@ -173,6 +173,7 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         MatDialogModule,
         MatTableModule,
         MatExpansionModule,
+        ReactiveFormsModule,
     ],
     providers: [
         UtilisateurService,

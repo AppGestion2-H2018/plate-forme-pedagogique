@@ -41,8 +41,13 @@ export class PublicationService {
         const url = `https://api-appgestion2-h18.herokuapp.com/api/publications/supprimer/${id}`;   // ajouter l'id à l'URL de base
         return this.http.delete<Publication>(url, httpOptions);
     }
-    getTags(tag: String): Observable<Publication[]> {
+
+    getPublicationsParTags(tag: String): Observable<Publication[]> {
         return this.http.get<Publication[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tag/${tag}`);
+    }
+
+    getTags(): Observable<String[]>{
+        return this.http.get<String[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tags`);
     }
 
       ajoutCommentaire(publication: Publication) {

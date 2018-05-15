@@ -16,6 +16,7 @@ export class PrincipalPublicationsComponent implements OnInit {
   publication: Publication;
   myControl = new FormControl();
   commentaire: string;
+  tags: String[];
 
   filteredOptions: Observable<any[]>;
 
@@ -35,9 +36,15 @@ getDateRemise(): void {
         this.publicationService.deletePublication(publication)
             .subscribe(result => this.publications = this.publications.filter(h => h !== publication));
     }
-    getTags(tag: String): void {
-        this.publicationService.getTags(tag)
+
+    getPublicationsParTags(tag: String): void {
+        this.publicationService.getPublicationsParTags(tag)
             .subscribe(publications => this.publications = publications);
+    }
+
+    getTags(): void {
+        this.publicationService.getTags()
+            .subscribe(tags => this.tags = tags);
     }
 
     // Ne fonctionne pas
@@ -79,6 +86,7 @@ getDateRemise(): void {
 ngOnInit() {
   console.log('in ngOnInit');
   this.getPublications();
+  this.getTags();
   this.commentaire = "";
   }
 }

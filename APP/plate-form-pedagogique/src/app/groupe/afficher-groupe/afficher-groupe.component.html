@@ -20,41 +20,8 @@
 	</div>
 	<input type="submit" value="Supprimer">
 </form>
-
+<br><br>
 <h2>Mes groupes</h2>
-<ul class="groupe">
-	<li *ngFor="let groupe of groupes"
-		[class.selected]="groupe === selectedGroupe"
-		(click)="onSelect(groupe)">
-		<span class="badge">Groupe : {{groupe.nom}}</span>
-	</li>
-</ul>
-
-<div *ngIf="selectedGroupe">
-	<h2>{{ selectedGroupe.nom }} Info du groupe</h2>
-	<div><span>ID: </span>{{selectedGroupe._id}}</div>
-	<div><span>Nom du groupe: </span>{{selectedGroupe.nom}}</div>
-	<div><span>Super admin: </span>{{selectedGroupe.super_admins}}</div>
-	<div><span>Admin: </span>{{selectedGroupe.admins}}</div>
-	<div><span>Programmes: </span>{{selectedGroupe.programmes}}</div>
-	<div><span>Groupe: </span>{{selectedGroupe.groupes}}</div>
-	<div><span>Type: </span>{{selectedGroupe.types}}</div>
-	<div><span>Utilisateur: </span>{{selectedGroupe.utilisateurs}}</div>
-	<div><span>Blacklist: </span>{{selectedGroupe.blacklist}}</div>
-	<div><button type="button"(click)="deleteGroupe(selectedGroupe)">Supprimer</button></div>
-	<div><button type="button" (click)="updateGroupe()" >Modifier</button></div>
-</div>
-<!--<ul>
-    <li *ngFor="let groupe of groupes; let i = index">
-        {{i}} {{groupe.nom}}
-    </li>
-</ul>-->
-
-<!--<ul>
-    <li *ngFor="let classe of classes; let i = index">
-        {{i}} {{classe.nom}}
-    </li>
-</ul>-->
 <div class="example-container mat-elevation-z8">
 	<mat-table #tableGroupes [dataSource]="groupes" matSort>
 
@@ -120,12 +87,63 @@
 
 
 					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editClasse;" >
-					<mat-select [(ngModel)]="selectedGroupe.classes" name="classe">
+					<mat-select  placeholder="Classe" [(ngModel)]="selectedGroupe.classes" name="classe">
 						<mat-option *ngFor="let classe of classes" [value]="classe._id" >
 							{{ classe._id }}
 						</mat-option>
 					</mat-select>
 					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editProgramme;" >
+						<mat-select placeholder="Programme" [(ngModel)]="selectedGroupe.programmes" name="programme">
+							<mat-option *ngFor="let programme of programmes" [value]="programme._id" >
+								{{ programme._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editType;" >
+						<mat-select  placeholder="Type" [(ngModel)]="selectedGroupe.types" name="type">
+							<mat-option *ngFor="let type of types" [value]="type._id" >
+								{{ type._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editUtilisateur;" >
+						<mat-select  placeholder="Utilisateur" [(ngModel)]="selectedGroupe.utilisateurs" name="utilisateur" [formControl]="utilisateurform" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editAdmin;" >
+						<mat-select  placeholder="Admin" [(ngModel)]="selectedGroupe.admins" name="admin" [formControl]="utilisateurform" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editSuperadmin;" >
+						<mat-select  placeholder="Super Admin" [(ngModel)]="selectedGroupe.super_admins" name="superadmin" [formControl]="utilisateurform" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editBlacklist;" >
+						<mat-select  placeholder="Black list" [(ngModel)]="selectedGroupe.blacklist" name="superadmin" [formControl]="utilisateurform" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
 
 				</form>
 				<ng-template #editNom>
@@ -139,22 +157,56 @@
 
 				<ng-template #editFin>
 					<span (click)="onSelected(groupe)"> Date échéance : {{groupe.date_fin | date:'dd/MM/yyyy'}}</span>
+					<p></p>
 				</ng-template>
 
 				<ng-template #editActif>
 					<span  id="actif"(click)="onSelected(groupe)"> Actif : {{groupe.actif}}</span>
+					<p></p>
 				</ng-template>
 
 				<ng-template #editPublique>
 				<span  id="publique" (click)="onSelected(groupe)"> Publique : {{groupe.est_publique}}</span>
+					<p></p>
 				</ng-template>
 
 				<ng-template #editCommenter>
 					<span  id="commenter" (click)="onSelected(groupe)"> Commentaire autorisé : {{groupe.commenter}}</span>
+					<p></p>
 				</ng-template>
 
 				<ng-template #editClasse>
 					<span  id="classe" (click)="onSelected(groupe)"> Classe : {{groupe.classes}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editProgramme>
+					<span  id="programme" (click)="onSelected(groupe)"> Programme : {{groupe.programmes}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editType>
+					<span  id="type" (click)="onSelected(groupe)"> Type : {{groupe.types}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editUtilisateur>
+					<span  id="utilisateur" (click)="onSelected(groupe)"> Utilisateurs : {{groupe.utilisateurs}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editAdmin>
+					<span  id="admin" (click)="onSelected(groupe)"> Administrateur : {{groupe.admins}}</span>
+				</ng-template>
+
+				<ng-template #editSuperadmin>
+					<span  id="superadmin" (click)="onSelected(groupe)"> Super admin: {{groupe.super_admins}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editBlacklist>
+					<span  id="blacklist" (click)="onSelected(groupe)"> Black list: {{groupe.blacklist}}</span>
+					<p></p>
 				</ng-template>
 
 			</mat-cell>
@@ -171,12 +223,6 @@
 				</ng-template>
 				<form (ngSubmit)="onDelete(groupe)">
 					<button mat-button ><i class="material-icons">delete</i></button>
-				</form>
-				<form>
-					<button mat-button ><i class="material-icons">people</i></button>
-				</form>
-				<form>
-					<button mat-button ><i class="material-icons">ajout</i></button>
 				</form>
 			</mat-cell>
 		</ng-container>
