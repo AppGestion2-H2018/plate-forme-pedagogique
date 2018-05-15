@@ -6,8 +6,9 @@ import {Programme} from "../programme";
 import {Utilisateur} from '../../class/utilisateur';
 import {GroupeService} from '../service/groupe.service';
 import {ClasseService} from '../service/classe.service';
-import {NgForm} from "@angular/forms";
+import {FormControl, NgForm} from "@angular/forms";
 import {MatTable} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-afficher-groupe',
@@ -16,6 +17,7 @@ import {MatTable} from "@angular/material";
     providers: [GroupeService]
 })
 export class AfficherGroupeComponent implements OnInit {
+
 
     //Groupe
     selectedGroupe: Groupe;
@@ -32,6 +34,7 @@ export class AfficherGroupeComponent implements OnInit {
     programmes: Programme[];
 
     //Utilisateur
+    utilisateurform = new FormControl(); // Permet la sélection multiple. https://stackblitz.com/angular/pbbvrgkxmjn?file=app%2Fselect-multiple-example.ts et https://stackoverflow.com/questions/43220348/cant-bind-to-formcontrol-since-it-isnt-a-known-property-of-input-angular
     utilisateurs: Utilisateur[];
 
     displayedColumns = ['Description','actions'];
