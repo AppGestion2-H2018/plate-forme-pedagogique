@@ -1,3 +1,68 @@
-<p>
-  modification-publication works!
-</p>
+<form #postFormAjout="ngForm" id="postForm" (ngSubmit)="modifier()">
+  <div class="publications box">
+    <ul class="publications">
+
+      <div *ngFor="let publication of publications">
+
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title class="auteur"><span>{{publication.auteur}}</span></mat-card-title>
+
+            <mat-card-title>
+                        <span>
+                              <mat-form-field>
+                            <input matInput [(ngModel)]="publication.titre" value={{publication.titre}}
+                                   #titre="ngModel" id="titre" name="titre" placeholder="Titre" required
+                                   maxlength="100" minlength="2">
+                              </mat-form-field>
+                        </span>
+            </mat-card-title>
+
+
+            <mat-card-subtitle>
+                            <span>
+                                {{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}
+                            </span>
+            </mat-card-subtitle>
+
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>
+                        <span>
+                             <mat-form-field>
+
+                                  <input matInput name="contenu" [(ngModel)]="publication.contenu" #contenu="ngModel" id="contenu" value={{publication.contenu}} placeholder="Contenu">
+                            </mat-form-field>
+                        </span>
+            </p>
+
+            <span>
+                             <mat-form-field>
+                                    <input matInput id="date_remise" #date_remise="ngModel" class="inputs" type="date" value= "{{publication.date_remise}}" placeholder="Date de Remise" name="date_remise" [(ngModel)]="publication.date_remise">
+                                </mat-form-field>
+                        </span>
+
+            <!--Marche pas encore (Insecure)
+             <span>
+                    <label class="labels">Choix de fichier :</label><br><br>
+                            <input id="fichier" value="{{publication.fichier}}" class="inputs" type="file" name="fichier" [(ngModel)]="publication.fichier">
+                      </span>-->
+
+            <mat-chip-list>
+              <label>Tags: </label>
+              <mat-chip *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
+            </mat-chip-list>
+            <br>
+            <input class="inputs" type="submit" value="Modifier" id="button-blue" [disabled]="!postFormAjout.form.valid">
+          </mat-card-content>
+          <mat-card-footer>
+
+          </mat-card-footer>
+        </mat-card>
+
+      </div>
+    </ul>
+  </div>
+
+</form>
