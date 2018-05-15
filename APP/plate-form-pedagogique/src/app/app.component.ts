@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(private route: ActivatedRoute, private cookieService: CookieService, private router: Router) {
         this.estConnecte = cookieService.get('auth_da') !== "null" && cookieService.get('auth_da') !== "";
-        //this.estConnecte = true;
     }
 
     ngOnInit(): void {
