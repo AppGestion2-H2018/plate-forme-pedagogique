@@ -61,6 +61,43 @@ router.get('/tag/:tag', function(req, res, next) {
     });
 });
 
+router.get('/tags', function(req, res, next) {
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion yeaaaaah!");
+        const db = client.db(dbName);
+        var tagsPresent;
+        db.collection(collection).find({}, {tags:1,_id:0}).toArray(function(err, result) {
+            if (err){
+                return console.log(err);
+            }
+            console.log(result);
+            result.forEach(function(publication) {
+                publication = Object.entries(publication);// Met les publication en tableaux
+                var tagEstPresent = false;
+                publication[8][1].forEach(function(tag) { //Publication[8][1] = Tags
+                    console.log(tag)
+                    if(tagsPresent == undefined){
+                        tagsPresent = [tag];
+                    }else{
+                        tagsPresent.forEach(function(element){
+                            if(element === tag) {
+                                tagEstPresent = true;
+                            }
+                        });
+                        if(!tagEstPresent){
+                            tagsPresent.push(tag);
+                        }
+                        tagEstPresent = false;
+                    }
+                });
+            });
+            res.json(tagsPresent);
+        });
+        client.close();
+    });
+});
+
 router.get('/:id', function(req, res, next){
     MongoClient.connect(url, function(err, client) {
         assert.equal(null, err);

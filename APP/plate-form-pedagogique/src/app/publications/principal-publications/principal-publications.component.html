@@ -9,11 +9,9 @@
             <mat-form-field>
                 <input matInput [matAutocomplete]="auto" placeholder="Chercher un tag...">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <div  *ngFor="let publication of publications">
-                        <mat-option *ngFor="let tag of publication.tags" [value]="tag" (click)="getTags(tag)">
-                            <span>{{ tag }}</span>
-                        </mat-option>
-                    </div>
+                    <mat-option *ngFor="let tag of tags" [value]="tag" (click)="getPublicationsParTags(tag)">
+                        <span >{{ tag }}</span>
+                    </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
         </form>
