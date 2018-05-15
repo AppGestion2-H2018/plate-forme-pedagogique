@@ -10,7 +10,10 @@ import { ReponseAPI } from '../../class/reponseAPI';
 })
 export class ModifierMotDePasseComponent implements OnInit {
   reponseValidateToken: ReponseAPI;
+  reponseAPI: ReponseAPI;
   samePassword: boolean;
+  password: string;
+  password_confirm: string;
   resetPasswordToken: string;
 
   constructor(
@@ -20,8 +23,14 @@ export class ModifierMotDePasseComponent implements OnInit {
 
   // Envoi du courriel de réinitialisation du mot de passe
   onSubmit():void{
-    // Appelle la fonction d'envoi de courriel du server
-    //this.utilisateurService.sendResetPassword(this.courriel).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
+    // Valide si les deux mots de passe sont identiques.
+    if(this.password != this.password_confirm){
+      this.samePassword = false;
+    }
+    else{
+      this.samePassword = true;
+      this.utilisateurService.modifierMotDePasse(this.password, this.resetPasswordToken).subscribe(reponseAPI => this.reponseAPI = reponseAPI);
+    }
   }
 
   // Vérifie si le token est toujours valide
@@ -33,6 +42,8 @@ export class ModifierMotDePasseComponent implements OnInit {
     this.resetPasswordToken = this.route.snapshot.paramMap.get('resetPasswordToken');
     this.validerToken();
     this.reponseValidateToken =  {'Code' : 0, 'Message':'aucune réponse'};
+    this.reponseAPI =  {'Code' : 0, 'Message':'aucune réponse'};
+    this.samePassword = true;
   }
 
 

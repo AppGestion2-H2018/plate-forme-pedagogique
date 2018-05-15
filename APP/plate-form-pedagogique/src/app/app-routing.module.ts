@@ -11,6 +11,7 @@ import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-
 import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-publication.component';
 import {AjoutEvenementComponent} from './evenement/ajout-evenement/ajout-evenement.component';
 import {ModifierMotDePasseComponent} from './utilisateurs/modifier-mot-de-passe/modifier-mot-de-passe.component';
+import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: 'publications/ajout', component: AjoutPublicationComponent},
     { path: 'ajout-evenement', component: AjoutEvenementComponent },
     { path: 'motdepasse-reinitialisation/:resetPasswordToken', component: ModifierMotDePasseComponent },
+    { path: 'connexion', component: ConnecterUtilisateurComponent },
 ];
 
 @NgModule({

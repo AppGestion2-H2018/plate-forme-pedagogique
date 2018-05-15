@@ -12,7 +12,9 @@
   </div>
 </div>
 
-<div class="card reset-password" *ngIf="reponseValidateToken.Code == 1">
+<div class="card reset-password">
+  <div *ngIf="reponseValidateToken.Code == 1 && reponseAPI.code != 1">
+
   <form class="auth-form reset-password" name="resetpasswordForm" novalidate="" #resetForm="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="row labels">
@@ -44,19 +46,15 @@
     <div class="row confirmation">
       <input type="password" name="confirmation"
             required autocomplete = "off"
-            pattern=".{8,}" minlength="8"
             title="Votre mot de passe doit inclure au moins 8 caractères et contenir des lettres minuscules et majuscules, des nombres ou des caractères spéciaux (par exemple, !, # ou $)."
             placeholder="Confirmez votre nouveau mot de passe"
             [(ngModel)]="password_confirm"
             #form_password_confirm="ngModel" />
     </div>
 
-    <div *ngIf="form_password_confirm.invalid && (form_password_confirm.dirty || form_password_confirm.touched)" class="row errors alert alert-danger errors_validation">
-      <div *ngIf="form_password_confirm.errors.required" role="alert" class="message">
-      Le mot de passe est obligatoire
-      </div>
-      <div *ngIf="!form_password_confirm.errors.valid && !form_password_confirm.errors.required" role="alert" class="message">
-      Mot de passe trop faible.
+    <div *ngIf="!this.samePassword" class="row errors alert alert-danger errors_validation">
+      <div role="alert" class="message">
+      Les deux mots de passe ne correspondent pas
       </div>
     </div>
 
@@ -64,4 +62,17 @@
       <input type="submit" class="button big blue" value="Réinitialiser le mot de passe" [disabled]="!resetForm.form.valid"/>
     </div>
   </form>
+</div>
+{{reponseAPI.Code}}{{reponseValidateToken.Code}}
+  <div class="auth-form forgot-password-success" *ngIf="reponseAPI.Code == 1">
+    <div class="row labels">
+      <h2>Réinitialiser le mot de passe</h2>
+      <h3>Votre mot de passe a été réinitialisé avec succès.</h3>
+    </div>
+    <span class="link forgot-password">
+      <a routerLink="/connexion">
+     Retour à l'écran de connexion
+      </a>
+   </span>
+  </div>
 </div>
