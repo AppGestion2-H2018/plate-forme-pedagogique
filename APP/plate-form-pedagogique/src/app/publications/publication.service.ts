@@ -47,7 +47,7 @@ export class PublicationService {
     }
 
     getTags(): Observable<String[]>{
-        return this.http.get<String[]>(`http://localhost:3000/api/publications/tags`);
+        return this.http.get<String[]>(`https://api-appgestion2-h18.herokuapp.com/api/publications/tags`);
     }
 
       ajoutCommentaire(publication: Publication) {
