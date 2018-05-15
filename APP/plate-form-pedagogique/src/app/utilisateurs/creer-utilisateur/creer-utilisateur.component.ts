@@ -42,6 +42,7 @@ export class CreerUtilisateurComponent implements OnInit {
     }
 
     ngOnInit() {
+
         this.reponseAPI = {'Code': 0, 'Message': 'Aucun message'};
         this.getTypes();
 

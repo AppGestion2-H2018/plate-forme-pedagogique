@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
+import {Utilisateur} from "../../class/utilisateur";
+import {UtilisateurService} from "../../service/utilisateur.service";
 
 @Component({
   selector: 'app-principal-groupes',
@@ -8,14 +10,28 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class PrincipalGroupesComponent implements OnInit {
 
-  userId: string;
+  utilisateur = new Utilisateur();
 
-  constructor(private cookiService : CookieService) {
-      this.userId = this.cookiService.get("auth_id");
+  constructor(private cookiService : CookieService, private utilisateurService: UtilisateurService) {
+      this.utilisateur._id = this.cookiService.get("auth_id");
+  }
+
+  getUtilisateur() : void
+  {
+      this.utilisateurService.getUtilisateur(this.utilisateur).subscribe(
+          data => {
+              this.utilisateur = data;
+          },
+          error => {
+              console.error(error);
+          }
+      );
   }
 
   ngOnInit() {
-
+    this.getUtilisateur();
   }
+
+
 
 }

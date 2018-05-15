@@ -62,13 +62,25 @@
                         <mat-chip  *ngFor="let tag of publication.tags">{{tag}}</mat-chip>
                     </mat-chip-list>
 
-                    Commentaire(s): {{publication.commentaire}}
                 </mat-card-content>
 
-                <mat-card-footer>
+                <mat-list>
+                    <mat-label>Commentaire(s): </mat-label>
+                    <mat-list-item >
+                        <span>{{publication.commentaire}}</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
 
-                </mat-card-footer>
             </mat-card>
+
+            <form  #postFormAjoutCommentaire="ngForm" id="postForm" (ngSubmit)="ajoutCommentaire(publication)">
+                <mat-form-field>
+                        <input [(ngModel)]="commentaire" name="commentaire" matInput placeholder="Ajouter un commentaire">
+                </mat-form-field>
+                <input  type="submit" value="Publier" (click)="ajoutCommentaires()">
+            </form>
+            
         </div>
     </ul>
 </div>

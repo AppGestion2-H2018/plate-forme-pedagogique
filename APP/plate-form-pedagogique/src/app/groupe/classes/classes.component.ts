@@ -3,7 +3,7 @@ import {ClasseService} from '../service/classe.service';
 import {Classe} from "../classe";
 import {FormControl, NgForm} from "@angular/forms";
 import {MatTable} from "@angular/material";
-import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
+import {Utilisateur} from "../../class/utilisateur";
 
 @Component({
   selector: 'app-classes',
@@ -18,7 +18,11 @@ export class ClassesComponent implements OnInit {
     displayedColumns = ['Description','actions'];
     name:any;
     @Input() userId : string;
-    constructor(private classeService: ClasseService) {}
+    @Input() utilisateur : Utilisateur;
+
+    constructor(private classeService: ClasseService) {
+
+    }
 
     onAdd(tableClasses: MatTable<Classe>, classeFormAjout: NgForm) {
         console.log("123");
@@ -44,7 +48,7 @@ export class ClassesComponent implements OnInit {
     onSelected(classe: Classe): void {
         this.selectedClasse = classe;
     }
-    
+
     onEdit(classeFormEdition: NgForm): void {
         if(classeFormEdition.valid) {
             this.classeService.updateClasse(this.selectedClasse)
@@ -52,9 +56,9 @@ export class ClassesComponent implements OnInit {
         }
     }
 
+
   ngOnInit() {
       this.getClasses();
-      console.log('in ngOnInit');
       this.newClasse = new Classe();
       this.newClasse.nom = '';
   }

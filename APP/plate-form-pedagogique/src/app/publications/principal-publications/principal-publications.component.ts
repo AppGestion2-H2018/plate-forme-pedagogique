@@ -13,7 +13,9 @@ import { catchError, map, tap,startWith, switchMap, debounceTime, distinctUntilC
 export class PrincipalPublicationsComponent implements OnInit {
 
   publications: Publication[];
+  publication: Publication;
   myControl = new FormControl();
+  commentaire: string;
 
   filteredOptions: Observable<any[]>;
 
@@ -38,9 +40,46 @@ getDateRemise(): void {
             .subscribe(publications => this.publications = publications);
     }
 
+    // Ne fonctionne pas
+    ajoutCommentaires(){
+        this.publication.commentaire.forEach(commentaire =>
+            {
+                this.publication.commentaire.push(this.commentaire);
+            }
+        );
+    }
+
+    ajoutCommentaire(publication: Publication) {
+        var _publication:Publication = {
+            _id:publication._id,
+            titre:publication.titre,
+            auteur:publication.auteur,
+            groupes:publication.groupes,
+            date_publication:publication.date_publication,
+            date_remise:publication.date_remise,
+            contenu:publication.contenu,
+            tags:publication.tags,
+            fichier:publication.fichier,
+            commentaire:publication.commentaire
+        };
+
+        this.publicationService.ajoutCommentaire(_publication).subscribe(data => {
+            publication.titre,
+            publication.auteur,
+            publication.groupes,
+            publication.date_publication,
+            publication.date_remise,
+            publication.contenu,
+            publication.tags,
+            publication.fichier,
+            publication.commentaire
+        })
+     }
+
 ngOnInit() {
   console.log('in ngOnInit');
   this.getPublications();
+  this.commentaire = "";
   }
 }
 

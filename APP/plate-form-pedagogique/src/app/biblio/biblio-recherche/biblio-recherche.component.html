@@ -13,7 +13,16 @@
         <p *ngIf="tablettesData == null">Vous n'avez aucune bibliothèque.</p>
         <app-biblio-tablette *ngIf="tablettesData != null" [tablettes]="tablettesData"></app-biblio-tablette>
         <div class="padding-top">
-            <button class="ajout alignright" mat-fab (click)="openDialog()">+</button>
+            <form #tabletteFormAjout="ngForm" id="tabletteFormAjout" (ngSubmit)="postTablette(tabletteFormAjout)">
+                <mat-form-field class="input-full-width">
+                    <input type="text" name="nom" id="nom" [(ngModel)]="newTablette.nom" required minlength="2" maxlength="50" #nom="ngModel" matInput placeholder="Nouvelle bibliothèque">
+                    <button matSuffix mat-icon-button type="submit"><i class="material-icons">add</i></button>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom est obligatoire.</mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+                </mat-form-field>
+
+            </form>
         </div>
     </div>
 </div>
