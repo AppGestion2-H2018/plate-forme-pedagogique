@@ -70,3 +70,17 @@ body, input[text], button {
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
+
+#selectedGroupeNom, #selectedGroupeGroupe{
+    clear:both;
+}
+.mat-column-actions {
+    flex: 0 0 100px;
+}
+#nom, #groupe{
+    font-weight: bold;
+}
+
+.example-full-width {
+    width: 100%;
+}
