@@ -64,9 +64,12 @@ router.get('/tag/:tag', function(req, res, next) {
 router.get('/:id', function(req, res, next){
     MongoClient.connect(url, function(err, client) {
         assert.equal(null, err);
-        console.log("Connexion au serveur réussie");
+        console.log("Connexion à l'id réussi.");
         const db = client.db(dbName);
-        db.collection(collection).findOne({_id: ObjectId.createFromHexString(req.params.id)}, function(err, result) {
+        var sort = {date_publication: -1};
+        var requete = {_id: 1, auteur: 1, date_publication: 1, date_remise: 1, titre: 1, contenu: 1, tags: 1, commentaire: 1, fichier: 1};
+        db.collection(collection).find({_id: ObjectId.createFromHexString(req.params.id)}, requete).sort(sort).limit(1).toArray(function(err, result) {
+            //db.collection(collection).find({_id: ObjectId.createFromHexString(req.params.id)}, requete).limit(1).toArray(function(err, result) {
             if (err) return console.log(err)
             console.log(result);
             res.json(result);
@@ -136,29 +139,27 @@ router.put('/modifier/:id', function(req, res, next){
 
 // Ajouter un commentaire revient à modifier une publication
 router.put('/:id', function(req, res, next){
-    var commentaire = req.body;
-    delete commentaire['_id'];
-    var id = req.params.id;
-    console.log(commentaire);
-    if(false) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.status(400);
-        res.json({"erreur" : "Données incorrectes"});
-    } else {
-        MongoClient.connect(url, function(err, client) {
-            assert.equal(null, err);
-            console.log("Connexion au serveur réussie");
-            const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(id)}, {$set : commentaire}, function(err, result) {
-                if (err) return console.log(err)
-                console.log("objet mis à jour");
-                res.json(result);
-            })
+    console.log("Mise à jour de la publicatiooooooooon")
+    var post = req.body;
+    console.log("nani")
+    delete post['_id'];
+    console.log(post);
+    console.log("publicationID" + post);
 
-            client.close();
-        });
-    }
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        console.log("Connexion au serveur réussie");
+        const db = client.db(dbName);
+
+        db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)},{$set: post} , function (err, result) {
+
+            if (err) return console.log(err)
+            console.log("objet mis à jour");
+            res.json(result);
+        })
+
+        client.close();
+    });
 });
 
 module.exports = router;

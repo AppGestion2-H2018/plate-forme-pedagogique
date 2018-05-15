@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import {EvenementService} from './evenement/evenement.service';
 import {AuthHttpInterceptor} from "./service/auth.interceptor";
 import {CookieService} from "ngx-cookie-service";
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router, UrlSegment} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -15,17 +15,21 @@ import {ActivatedRoute} from '@angular/router';
 
 export class AppComponent implements OnInit, OnDestroy {
 
-    constructor(private route: ActivatedRoute, private cookieService: CookieService) {
-        this.estConnecte = true; //cookieService.get('auth_da') !== "null" && cookieService.get('auth_da') !== "";
+
+    constructor(private route: ActivatedRoute, private cookieService: CookieService, private router: Router) {
+        this.estConnecte = cookieService.get('auth_da') !== "null" && cookieService.get('auth_da') !== "";
+        //this.estConnecte = true;
     }
 
     ngOnInit(): void {
         AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
-            //this.estConnecte = valeurBool;
-            this.estConnecte = true;
+            this.estConnecte = valeurBool;
         });
-        console.log('noOnInit fonctionne !!');
-        console.log(this.route.url);
+        console.log("test Router");
+        console.log(this.router);
+
+        console.log('test ActivatedRoute');
+        console.log(this.route);
     }
 
     ngOnDestroy(): void {

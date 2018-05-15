@@ -4,6 +4,7 @@ var Utilisateur = require('../../../models/utilisateur');
 var Crypto = require('crypto');
 var nodemailer = require('nodemailer');
 
+const SALT_ROUNDS = 10;
 const URL_RESET = 'http://localhost:4200/motdepasse-reinitialisation/';
 const MAIL_USER = 'mailbot84@gmail.com';
 const MAIL_PASSWORD = 'bonjourlespoulets';
@@ -87,7 +88,7 @@ router.post('/validateResetPasswordToken', function (req, res, next){
         var expirationDate = new Date(utilisateur.resetPasswordExpires);
         console.log('currentDate : ' + currentDate);
         console.log('resetPasswordExpires : ' + expirationDate);
-        if(currentDate > utilisateur.resetPasswordExpires){
+        if(currentDate > expirationDate){
             console.log('Le token est expiré');
             objReponse = {'Code' : 2, 'Message':'Le lien de réinitialisation est expiré. Veuillez refaire une demande.'};
         }
@@ -111,10 +112,37 @@ router.post('/validateResetPasswordToken', function (req, res, next){
 
 
 // Modification du mot de passe
-router.patch('/:id', function(req, res, next){
-  var idUser = req.params.id;
+router.post('/resetPassword', function(req, res, next){
+  var objReponse = {'Code' : 9, 'Message':'Un erreur non géré est survenu'};
+  var password = req.body.new_password;
+  var resetPasswordToken = req.body.resetPasswordToken;
 
-  // TODO : save password in db
+  Utilisateur.findOne({'resetPasswordToken': resetPasswordToken}, function (err, utilisateur) {
+      if (err) return console.error(err);
+
+      if(utilisateur !== null){
+          // Change la valeur de passwordExpires à maintenant pour empêcher de refaire une réinitialisation avec le même token
+          var passwordExpires = new Date();
+          bcrypt.genSalt(SALT_ROUNDS, function (err, salt) {
+            bcrypt.hash(password, salt, function (err, hashedPassword) {
+              // Save new password
+              utilisateur.set({ motdepasse: hashedPassword, resetPasswordExpires: passwordExpires});
+              utilisateur.save(function (err, updatedUtilisateur){
+                if (err) return console.error(err);
+                console.log('Mot de passe réinitialiser');
+              });
+            });
+          });
+
+          objReponse = {'Code' : 1, 'Message':'Le mot de passe a été réinitialisé avec succès'};
+      }
+      else{
+          objReponse = {'Code' : 2, 'Message':'Nous n\'avons trouvé aucun compte associé à cette demande. Veuillez réessayer.'};
+      }
+
+      console.log('Réponse : ' + objReponse);
+      res.json(objReponse);
+  });
 });
 
 module.exports = router;

@@ -1,7 +1,28 @@
-<h1>Groupes </h1>
+<h1>Groupes Bienvenue {{utilisateur.role}}</h1>
+<router-outlet></router-outlet>
 
-<app-afficher-groupe></app-afficher-groupe>
-<app-creer-groupe></app-creer-groupe>
-<app-classes [utilisateur]="utilisateur"></app-classes>
-
+<!--<app-afficher-groupe></app-afficher-groupe>
+<app-creer-groupe></app-creer-groupe>-->
+<!--<app-classes [utilisateur]="utilisateur"></app-classes>-->
+<!--Si l'usager est un employé de service ou un enseignant -->
+<div *ngIf="utilisateur.role == '5ad8f8169ffc3f12f70c3500' || utilisateur.role == '5ad8f81e9ffc3f12f70c3501'">
+    <a routerLink="classes" >
+        <button class = "col-12">Créer une classe</button>
+    </a>
+</div>
+<div>
+    <a routerLink="creer-groupe" >
+        <button class = "col-12">Créer un groupe</button>
+    </a>
+</div>
+<div>
+    <a routerLink="afficher-groupe" >
+        <button class = "col-12">Afficher les groupes</button>
+    </a>
+</div>
+<div>
+    <a routerLink="modifier-groupe" >
+        <button class = "col-12">Modifier un groupe</button>
+    </a>
+</div>
 

@@ -11,11 +11,13 @@ const httpOptions = {
 	headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
+
+
 @Injectable()
 
 export class GroupeService {
-	
-	private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
+
+    private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
 	private groupesAPIUrlLocal = 'http://localhost:3000/api';
 	
     constructor(private http: HttpClient) {
@@ -35,7 +37,7 @@ export class GroupeService {
     }
 
     getClasses(): Observable<Classe[]> {
-        return this.http.get<Classe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/classes/all');
+        return this.http.get<Classe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/classes/all/');
     }
 
     addGroupe(newGroupe: Groupe) {
@@ -49,10 +51,13 @@ export class GroupeService {
     }
 
     /** UPDATE: modification de un groupe **/
-    updateGroupe(groupe : Groupe) {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/groupes/'+ groupe._id , JSON.stringify(groupe), httpOptions);
+    updateGroupe(groupe : Groupe): Observable<any> {
+        return this.http.put<Classe>("https://api-appgestion2-h18.herokuapp.com/api/groupes", groupe, httpOptions);
     }
+
+    // getUtilisateurs(): Observable<Utilisateurs[]> {
+    //     return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
+    // }
+
 }
 
