@@ -36,9 +36,9 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                         const id = event.headers.get('auth_id');
 
                         // Définie les nouveaux cookies de connexions
-                        this.cookieService.set('auth_da', da);
-                        this.cookieService.set('auth_token', token);
-                        this.cookieService.set('auth_id', id);
+                        this.cookieService.set('auth_da', da, 30, "/");
+                        this.cookieService.set('auth_token', token, 30, "/");
+                        this.cookieService.set('auth_id', id, 30, "/");
 
                         AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                     } else {

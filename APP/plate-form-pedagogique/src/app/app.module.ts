@@ -49,6 +49,8 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
+import {ModificationPublicationComponent} from './publications/modification-publication/modification-publication.component';
+
 import {PublicationService} from './publications/publication.service';
 
 import {ResultatService} from './resultats/resultat.service';
@@ -111,6 +113,7 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         CreerGroupeComponent,
         ClassesComponent,
         AjoutPublicationComponent,
+        ModificationPublicationComponent,
         CreerGroupeComponent,
         // AjoutEvenementComponent,
         PrincipalBiblioComponent,
