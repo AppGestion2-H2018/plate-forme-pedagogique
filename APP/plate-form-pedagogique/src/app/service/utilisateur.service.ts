@@ -15,6 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class UtilisateurService {
+
     url = "http://localhost:3000";
    // url = "https://api-appgestion2-h18.herokuapp.com";
 
@@ -30,20 +31,48 @@ export class UtilisateurService {
         return this.http.post<ReponseLogin>(this.url + '/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
     }
 
+
+    // ***************************************************************************
+    // ***************** RÉCUPÉRATION DE MOT DE PASSE ****************************
+    // ***************************************************************************
+
+    /**
+     * Envoie une demande de réinitialisation du mot de passe
+     * Par : Mathieu Fréchette
+     *
+     * @param string email
+     * @returns {Observable<ReponseAPI>}
+     */
     sendResetPassword(email: string): Observable<ReponseAPI> {
         var objEmail = {'email': email};
-        // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
+        // return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
         return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/sendmail', JSON.stringify(objEmail), httpOptions);
     }
 
+    /**
+     * Vérifie si le token de Validation est toujours valide
+     * Par : Mathieu Fréchette
+     *
+     * @param string resetPasswordToken
+     * @returns {Observable<ReponseAPI>}
+     */
     validateResetPasswordToken(resetPasswordToken: string): Observable<ReponseAPI> {
         var token = {'resetPasswordToken': resetPasswordToken};
+        //return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/validateResetPasswordToken', JSON.stringify(token), httpOptions);
         return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/validateResetPasswordToken', JSON.stringify(token), httpOptions);
     }
 
-    modifierMotDePasse(password: string) {
-        var objPassword = {'new_password': password};
-        return this.http.post<ReponseAPI>('', JSON.stringify(objPassword), httpOptions);
+    /**
+     * Modifie le mot de passe de l'usager
+     * Par : Mathieu Fréchette
+     *
+     * @param string resetPasswordToken
+     * @returns {Observable<ReponseAPI>}
+     */
+    modifierMotDePasse(password: string, resetPasswordToken: string): Observable<ReponseAPI> {
+        var objNewPassword = {'new_password': password, 'resetPasswordToken':resetPasswordToken};
+        // return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/resetPassword', JSON.stringify(objNewPassword), httpOptions);
+        return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/resetPassword', JSON.stringify(objNewPassword), httpOptions);
     }
 
 

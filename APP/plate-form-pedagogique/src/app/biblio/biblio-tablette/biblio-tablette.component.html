@@ -6,6 +6,8 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
+    <p *ngIf="tablette.livres == null">Cette bibliothèque est vide.</p>
+
     <ul>
       <li *ngFor="let livre of tablette.livres">
         {{livre}}

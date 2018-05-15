@@ -15,6 +15,7 @@ import {ClassesComponent} from "./groupe/classes/classes.component";
 import {CreerGroupeComponent} from "./groupe/creer-groupe/creer-groupe.component";
 import {AfficherGroupeComponent} from "./groupe/afficher-groupe/afficher-groupe.component";
 import {ModifierGroupeComponent} from "./groupe/modifier-groupe/modifier-groupe.component";
+import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'publications/ajout', component: AjoutPublicationComponent},
     { path: 'ajout-evenement', component: AjoutEvenementComponent },
     { path: 'motdepasse-reinitialisation/:resetPasswordToken', component: ModifierMotDePasseComponent },
+    { path: 'connexion', component: ConnecterUtilisateurComponent },
 ];
 
 @NgModule({

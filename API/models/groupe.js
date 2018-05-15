@@ -7,7 +7,7 @@ var idValidator = require('mongoose-id-validator');
 var schema = new Schema({
     proprietaire:{type:Schema.Types.ObjectId, ref: 'utilisateur', required: true},
     nom: {type: String, required: true, minlength: 3, maxlength:100},
-    description: {type: String, required: false, minlength: 3, maxlength:100},
+    description: {type: String, required: false, maxlength:100},
     date_fin: {type: Date, required: false},
     actif: {type: Boolean, required:true},
     est_publique: {type: Boolean, required: true},
