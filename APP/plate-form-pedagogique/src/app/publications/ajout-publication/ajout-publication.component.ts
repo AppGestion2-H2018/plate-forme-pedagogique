@@ -151,6 +151,7 @@ export class AjoutPublicationComponent implements OnInit {
         this.commentaires = "";
         this.popup = false;
         this.utilisateur = this.cookieService.get('auth_da');
+        this.publication.auteur = this.utilisateur;
         console.log(this.utilisateur);
     }
 

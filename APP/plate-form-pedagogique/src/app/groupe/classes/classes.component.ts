@@ -1,26 +1,32 @@
+///<reference path="../../../../node_modules/ngx-cookie-service/cookie-service/cookie.service.d.ts"/>
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {ClasseService} from '../service/classe.service';
 import {Classe} from "../classe";
 import {FormControl, NgForm} from "@angular/forms";
 import {MatTable} from "@angular/material";
 import {Utilisateur} from "../../class/utilisateur";
+import {PrincipalGroupesComponent} from "../principal-groupes/principal-groupes.component";
+import {UtilisateurService} from "../../service/utilisateur.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-classes',
-  templateUrl: './classes.component.html',
-  styleUrls: ['./classes.component.css'],
+    templateUrl: './classes.component.html',
+    styleUrls: ['./classes.component.css'],
     providers: [ClasseService]
 })
-export class ClassesComponent implements OnInit {
-    node : Node;
+export class ClassesComponent extends PrincipalGroupesComponent implements OnInit{
     selectedClasse: Classe;
     newClasse : Classe;
     classes: Classe[];
     displayedColumns = ['Description','actions'];
-    name:any;
+
     @Input() utilisateur : Utilisateur;
 
-    constructor(private classeService: ClasseService) {
+    constructor(private classeService : ClasseService,
+                protected cookieService: CookieService,
+                protected utilisateurService: UtilisateurService){
+        super(cookieService, utilisateurService);
     }
 
     onAdd(tableClasses: MatTable<Classe>, classeFormAjout: NgForm) {
@@ -57,6 +63,7 @@ export class ClassesComponent implements OnInit {
       this.getClasses();
       this.newClasse = new Classe();
       this.newClasse.nom = '';
+      this.getUtilisateur();
   }
 
 }

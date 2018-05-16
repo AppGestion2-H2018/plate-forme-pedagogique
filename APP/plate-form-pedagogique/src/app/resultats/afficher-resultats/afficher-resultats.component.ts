@@ -15,7 +15,7 @@ export class AfficherResultatsComponent implements OnInit {
    notes: Note[];
 
   constructor(private resultatService: ResultatService) { }
-
+/*
 getEvaluations(): void {
     this.resultatService.getEvaluations()
         .subscribe(evaluations => {this.evaluations = evaluations;console.log(this.evaluations);});
@@ -25,12 +25,10 @@ getNotes(): void {
     this.resultatService.getNotes()
         .subscribe(notes => {this.notes = notes;console.log(this.notes);});
 }
-
+*/
 ngOnInit() {
-  console.log('in ngOnInit');
-  this.getEvaluations();
-  this.getNotes();
+  //this.getEvaluations();
+  //this.getNotes();
 }
-
 
 }

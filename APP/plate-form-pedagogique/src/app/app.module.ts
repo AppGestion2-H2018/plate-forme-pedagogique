@@ -75,9 +75,10 @@ import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.
 import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
 
 import {AfficherResultatsComponent} from './resultats/afficher-resultats/afficher-resultats.component';
-import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.component';
+import {GestionGrilleComponent} from './resultats/gestion-grille/gestion-grille.component';
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
+import {ModifierEvaluationComponent} from './resultats/modifier-evaluation/modifier-evaluation.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 
 import {PrincipalEvenementsComponent} from './evenement/principal-evenements/principal-evenements.component';
@@ -128,8 +129,9 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         ModifierGroupeComponent,
         SupprimerGroupeComponent,
         AfficherResultatsComponent,
-        AjoutGrilleComponent,
+        GestionGrilleComponent,
         AjoutNotesComponent,
+        ModifierEvaluationComponent,
         MenuResultatsComponent,
         PrincipalResultatsComponent,
         PrincipalEvenementsComponent,

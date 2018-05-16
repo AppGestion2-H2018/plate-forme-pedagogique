@@ -1,0 +1,111 @@
+<h1>Bonjour professeur #9</h1>
+<h2>Gestion de vos grilles d'évaluations</h2>
+
+<div class="row">
+    <div class="col-15">
+        <label for="cours_id">Cours</label>
+    </div>
+    <div class="col-25">
+        <select class="cours" id="cours_id" name="cours_id" required>
+            <option value="" [class.selected]="null" (click)="onChangeCours(null)">Veuillez choisir un cours</option>
+            <option *ngFor="let cour of cours" [class.selected]="cour === selectedCours" [(ngValue)]="cour.id" (click)="onChangeCours(cour)">
+                {{cour.nom}}
+            </option>
+        </select>
+    </div>
+</div>
+
+<div *ngIf="selectedCours == null">
+    <div class="row">
+        <div class="col-15">
+            <label for="groupe_disabled">Groupe</label>
+        </div>
+        <div class="col-25">
+            <select class="" id="groupe_disabled" name="" disabled required>
+                <option value="">Aucun cours sélectionné</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div *ngIf="selectedCours != null">
+    <div class="row">
+        <div class="col-15">
+            <label for="groupe_id">Groupe</label>
+        </div>
+        <div class="col-25">
+            <select class="groupe" id="groupe_id" name="groupe_id" required>
+                <option value="" [class.selected]="null" (click)="onChangeGroupe(null)">Veuillez choisir un groupe</option>
+                <option *ngFor="let groupe of groupes" [class.selected]="groupe === selectedGroupe" [(ngValue)]="groupe.id"
+                        (click)="onChangeGroupe(groupe)">Groupe {{groupe.numero}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedGroupe == null">
+    <div class="row">
+        <div class="col-15">
+            <label>Grille d'évaluation</label>
+        </div>
+        <div class="col-75">
+            <label>Veuillez choisir un cours et un groupe.</label>
+        </div>
+    </div>
+</div>
+<div *ngIf="selectedGroupe != null">
+    <div *ngIf="evaluations == null">
+        <div class="row">
+            <div class="col-15">
+                <label>Grille d'évaluation</label>
+            </div>
+            <div class="col-75">
+                <label>Cette grille est vide.</label>
+                <button type="button" (click)="ajoutGrilleevaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="evaluations != null">
+        <div class="row">
+            <div class="col-15">
+                <label>Grille d'évaluation</label>
+            </div>
+            <div class="col-75">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Catégorie</th>
+                        <th>Commentaire</th>
+                        <th>Poids évaluation</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let evaluation of evaluations">
+                        <td>{{evaluation.nom}}</td>
+                        <td>{{evaluation.categorie_id}}</td>
+                        <td>{{evaluation.commentaire}}</td>
+                        <td>{{evaluation.poids_evaluation}}</td>
+                        <td>
+                            <button type="button" (click)="modifierEvaluation(evaluation.id)">Modifier</button>
+                        </td>
+                        <td>
+                            <button type="button" (click)="deleteEvaluation(evaluation.id)">Supprimer</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-15">
+                    <label>Ajout évaluation</label>
+                </div>
+                <div class="col-75">
+                    <label><button type="button" (click)="ajoutEvaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
