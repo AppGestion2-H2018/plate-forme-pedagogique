@@ -5,6 +5,10 @@ import {PrincipalPublicationsComponent} from './publications/principal-publicati
 import {PrincipalEvenementsComponent} from './evenement/principal-evenements/principal-evenements.component';
 import {PrincipalBiblioComponent} from './biblio/principal-biblio/principal-biblio.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
+import {AfficherResultatsComponent} from './resultats/afficher-resultats/afficher-resultats.component';
+import {GestionGrilleComponent} from './resultats/gestion-grille/gestion-grille.component';
+import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
+import {ModifierEvaluationComponent} from './resultats/modifier-evaluation/modifier-evaluation.component';
 import {PrincipalGroupesComponent} from './groupe/principal-groupes/principal-groupes.component';
 import {RecupererMotDePasseComponent} from './utilisateurs/recuperer-mot-de-passe/recuperer-mot-de-passe.component';
 import {CreerUtilisateurComponent} from './utilisateurs/creer-utilisateur/creer-utilisateur.component';
@@ -32,7 +36,15 @@ const routes: Routes = [
         ]
     },
 /*{ path: 'groupes/classes', component : ClassesComponent},*/
-    { path: 'resultats-scolaires', component: PrincipalResultatsComponent },
+    {
+        path: 'resultats-scolaires', component: PrincipalResultatsComponent,
+        children: [
+            {path: 'modifier-evaluation', component: ModifierEvaluationComponent},
+            {path: 'gestion-grille', component: GestionGrilleComponent},
+            {path: 'ajout-notes', component: AjoutNotesComponent},
+            {path: 'afficher-resultats', component: AfficherResultatsComponent},
+        ]
+    },
     { path: 'accueil', redirectTo: '', pathMatch: 'full' },
     { path: 'motdepasse-oublie', component: RecupererMotDePasseComponent },
     { path: 'utilisateurs/creer', component: CreerUtilisateurComponent },

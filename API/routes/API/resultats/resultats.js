@@ -23,7 +23,7 @@ router.get('/enseignant/:id', function (req, res) {
     // connect to your database
 
     // query to the database and get the records
-    con.query('SELECT * FROM enseignants WHERE id = ' + enseignant_id, function (err, enseignant) {
+    con.query('SELECT * FROM enseignants WHERE id = ?', enseignant_id, function (err, enseignant) {
         if (err) console.log(err);
         console.log(enseignant);
 
@@ -43,7 +43,7 @@ router.get('/evaluations/:id', function (req, res) {
     var grilleevaluation_id = req.params.id;
 
     // query to the database and get the records
-    con.query('SELECT * FROM evaluations WHERE grilleevaluation_id = ' + grilleevaluation_id, function (err, evaluations) {
+    con.query('SELECT * FROM evaluations WHERE grilleevaluation_id = ?', grilleevaluation_id, function (err, evaluations) {
         if (err) console.log(err);
         console.log(evaluations);
 
@@ -85,7 +85,7 @@ router.get('/cours/:id', function (req, res) {
     var objectId = req.params.id;
 
     // query to the database and get the records
-    con.query('SELECT distinct cours.id, nom FROM cours INNER JOIN grilleevaluation on cours_id = cours.id WHERE enseignant_id = ' + objectId, function (err, cours) {
+    con.query('SELECT distinct cours.id, nom FROM cours INNER JOIN grilleevaluation on cours_id = cours.id WHERE enseignant_id = ?', objectId, function (err, cours) {
         if (err) console.log(err);
         console.log(cours);
 
@@ -104,7 +104,7 @@ router.get('/groupe/:id', function (req, res) {
     var objectId = req.params.id;
 
     // query to the database and get the records
-    con.query('SELECT distinct numero, id, cours_id FROM groupe WHERE cours_id = ' + objectId, function (err, groupe) {
+    con.query('SELECT distinct numero, id, cours_id FROM groupe WHERE cours_id = ?', objectId, function (err, groupe) {
         if (err) console.log(err);
         console.log(groupe);
 
@@ -120,13 +120,13 @@ router.get('/groupe/:id', function (req, res) {
 /**
  * Supprime une évaluation
  */
-router.delete('/evaluations/:id', function (req, res, next) {
+router.delete('/evaluations/:id', function (req, res) {
     var evaluation_id = req.params.id;
 
     console.log(req.body);
-    con.query('DELETE FROM evaluations WHERE id=' + evaluation_id, function (error) {
+    con.query('DELETE FROM evaluations WHERE id=?', evaluation_id, function (error, results) {
         if (error) throw error;
-        res.end('Record has been deleted!');
+        res.end(JSON.stringify(results));
     });
 
 });
@@ -134,15 +134,24 @@ router.delete('/evaluations/:id', function (req, res, next) {
 /**
  * Ajoute une grille d'évaluation
  */
-router.post('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (req, res, next) {
+router.post('/grilleevaluation/ajouter/:enseignant_id/:cours_id/:groupe_id', function (req, res) {
     var enseignant_id = req.params.enseignant_id;
     var cours_id = req.params.cours_id;
     var groupe_id = req.params.groupe_id;
 
-    console.log(req.body);
-    con.query('INSERT INTO grilleevaluation (enseignant_id, cours_id, groupe_id) VALUES ('+ enseignant_id + ',' + cours_id + ',' + groupe_id + ')', function (error) {
+    con.query('INSERT INTO grilleevaluation (enseignant_id, cours_id, groupe_id) VALUES (?,?,?)', enseignant_id, cours_id, groupe_id, function (error, results) {
         if (error) throw error;
-        res.end('La grille d\'évaluation à été ajouter!');
+        res.end(JSON.stringify(results));
+    });
+});
+
+/**
+ * Modification d'une évaluation
+ */
+router.put('/evaluation', function (req, res) {
+    con.query('UPDATE `evaluations` SET `nom`=?,`commentaire`=?,`categorie_id`=?, `poids_evaluation`=? where `id`=?', [req.body.nom, req.body.commentaire, req.body.categorie_id, req.body.poids_evaluation, req.body.id], function (error, results) {
+        if (error) throw error;
+        res.end(JSON.stringify(results));
     });
 });
 

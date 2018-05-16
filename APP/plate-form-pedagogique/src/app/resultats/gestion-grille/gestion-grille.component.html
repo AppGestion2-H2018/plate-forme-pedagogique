@@ -48,12 +48,23 @@
         <div class="col-15">
             <label>Grille d'évaluation</label>
         </div>
-        <div class="col-25">
-            <label>Aucune évaluation disponible.</label>
+        <div class="col-75">
+            <label>Veuillez choisir un cours et un groupe.</label>
         </div>
     </div>
 </div>
 <div *ngIf="selectedGroupe != null">
+    <div *ngIf="evaluations == null">
+        <div class="row">
+            <div class="col-15">
+                <label>Grille d'évaluation</label>
+            </div>
+            <div class="col-75">
+                <label>Cette grille est vide.</label>
+                <button type="button" (click)="ajoutGrilleevaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button>
+            </div>
+        </div>
+    </div>
     <div *ngIf="evaluations != null">
         <div class="row">
             <div class="col-15">
@@ -87,16 +98,13 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div *ngIf="evaluations == null">
-        <div class="row">
-            <div class="col-15">
-                <label>Grille d'évaluation</label>
-            </div>
-            <div class="col-25">
-                <label>Cette grille est vide.</label>
-                <button type="button" (click)="ajoutGrilleevaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button>
+            <div class="row">
+                <div class="col-15">
+                    <label>Ajout évaluation</label>
+                </div>
+                <div class="col-75">
+                    <label><button type="button" (click)="ajoutEvaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button></label>
+                </div>
             </div>
         </div>
     </div>

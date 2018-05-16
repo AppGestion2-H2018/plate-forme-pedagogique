@@ -7,19 +7,18 @@ import {Grilleevaluation} from "../grilleevaluation";
 import {Evaluation} from "../evaluation";
 
 @Component({
-    selector: 'app-ajout-grille',
-    templateUrl: './ajout-grille.component.html',
-    styleUrls: ['./ajout-grille.component.css'],
+    selector: 'app-gestion-grille',
+    templateUrl: './gestion-grille.component.html',
+    styleUrls: ['./gestion-grille.component.css'],
     providers: [ResultatService]
 })
-export class AjoutGrilleComponent implements OnInit {
+export class GestionGrilleComponent implements OnInit {
     cours: Cours[];
     groupes: Groupe[];
     grilleevaluation: Grilleevaluation;
     evaluations: Evaluation[];
     selectedCours: Cours;
     selectedGroupe: Groupe;
-    test: Object;
 
     constructor(private resultatService: ResultatService) {
         this.resultatService.getCours(9)
@@ -59,7 +58,7 @@ export class AjoutGrilleComponent implements OnInit {
             this.selectedGroupe = groupe;
             this.evaluations = null;
             this.grilleevaluation = null;
-            this.resultatService.getGrilleevaluations(9, groupe.id, groupe.cours_id)
+            this.resultatService.getGrilleevaluations(9, groupe.cours_id, groupe.id)
                 .subscribe(value => {
                         this.grilleevaluation = value;
                     },
@@ -68,7 +67,7 @@ export class AjoutGrilleComponent implements OnInit {
                         if (this.grilleevaluation[0]) {
                             this.resultatService.getEvaluations(this.grilleevaluation[0].id)
                                 .subscribe(evaluation => {
-                                        if (evaluation != null) {
+                                        if (evaluation != null && evaluation.length > 0) {
                                             this.evaluations = evaluation;
                                         }
                                     }
@@ -83,22 +82,40 @@ export class AjoutGrilleComponent implements OnInit {
         }
     }
 
-    ajoutGrilleevaluation(enseignant_id:number,cours_id:number, groupe_id:number) {
-        this.resultatService.ajoutGrilleevaluation(enseignant_id, cours_id, groupe_id );
+    ajoutGrilleevaluation(enseignant_id: number, cours_id: number, groupe_id: number) {
         console.log("Adding grille evaluation for teacher #" + enseignant_id + " for class #" + cours_id + " and groupe #" + groupe_id);
-
+        this.resultatService.ajoutGrilleevaluation(enseignant_id, cours_id, groupe_id)
+            .subscribe(
+                value => {
+                    // show an alert to tell the user if grille evaluation was created or not
+                    console.log(value);
+                },
+                error => console.log(error)
+            );
     }
 
     deleteEvaluation(evaluation_id: number) {
-        this.resultatService.supprimerEvaluation(evaluation_id);
         console.log("Deleting evaluation #" + evaluation_id);
-
-    }
+        this.resultatService.supprimerEvaluation(evaluation_id)
+            .subscribe(
+                value => {
+                    // show an alert to tell the user if grille evaluation was created or not
+                    console.log(value);
+                },
+                error => console.log(error)
+            );
+    };
 
     modifierEvaluation(evaluation_id: number) {
-        this.resultatService.modifierGrilleevaluation(evaluation_id);
         console.log("Modifying evaluation #" + evaluation_id);
-
+        this.resultatService.modifierEvaluation(evaluation_id)
+            .subscribe(
+                value => {
+                    // show an alert to tell the user if grille evaluation was created or not
+                    console.log(value);
+                },
+                error => console.log(error)
+            );
     }
 
 }

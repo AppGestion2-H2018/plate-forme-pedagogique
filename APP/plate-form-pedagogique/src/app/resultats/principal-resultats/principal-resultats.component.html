@@ -1,2 +1,36 @@
-<h1>Résultats scolaires</h1><br><br>
-<app-ajout-grille></app-ajout-grille><br><br>
+<h1>Résultats scolaires</h1>
+
+<div class="row">
+    <div class="col-35">
+        <label>Gestion des grilles d'évaluations d'un professeur</label>
+    </div>
+    <div class="col-15">
+        <a routerLink="gestion-grille" >
+            <button class = "col-12">Gestion grille</button>
+        </a>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-35">
+        <label>Ajouter une note</label>
+    </div>
+    <div class="col-15">
+        <a routerLink="ajout-notes" >
+            <button class = "col-12">Ajout notes</button>
+        </a>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-35">
+        <label>Afficher les résultats d'un étudiant</label>
+    </div>
+    <div class="col-15">
+        <a routerLink="afficher-resultats" >
+            <button class = "col-12">Afficher resultats</button>
+        </a>
+    </div>
+</div>
+<br><br><br><br>
+<router-outlet></router-outlet>
