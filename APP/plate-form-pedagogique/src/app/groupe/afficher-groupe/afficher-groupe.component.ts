@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Groupe} from "../groupe";
 import {Classe} from "../classe";
 import {Type} from "../type";
@@ -9,20 +9,26 @@ import {ClasseService} from '../service/classe.service';
 import {FormControl, NgForm} from "@angular/forms";
 import {MatTable} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from "ngx-cookie-service";
+import {UtilisateurService} from "../../service/utilisateur.service";
+import {PrincipalGroupesComponent} from "../principal-groupes/principal-groupes.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-afficher-groupe',
   templateUrl: './afficher-groupe.component.html',
   styleUrls: ['./afficher-groupe.component.css'],
-    providers: [GroupeService]
+    providers: [GroupeService, FormsModule]
 })
-export class AfficherGroupeComponent implements OnInit {
+export class AfficherGroupeComponent extends PrincipalGroupesComponent implements OnInit {
 
 
     //Groupe
     selectedGroupe: Groupe;
     newGroupe : Groupe;
     groupes: Groupe[];
+
+    afficherGroupe: Groupe;
 
     //Classe
     classes: Classe[];
@@ -35,13 +41,28 @@ export class AfficherGroupeComponent implements OnInit {
 
     //Utilisateur
     utilisateurform = new FormControl(); // Permet la sélection multiple. https://stackblitz.com/angular/pbbvrgkxmjn?file=app%2Fselect-multiple-example.ts et https://stackoverflow.com/questions/43220348/cant-bind-to-formcontrol-since-it-isnt-a-known-property-of-input-angular
+    @Input() utilisateur: Utilisateur;
     utilisateurs: Utilisateur[];
 
     displayedColumns = ['Description','actions'];
     name:any;
 
-    constructor(private groupeService: GroupeService) { }
-
+    constructor(protected groupeService: GroupeService, protected cookieService: CookieService,
+                protected utilisateurService: UtilisateurService, protected router: Router) {
+    super(cookieService, utilisateurService)
+}
+    // showGroupe() {
+    //     this.router.navigate(['/groupes/classes']);
+    // }
+    getGroupeActif(){
+        return this.afficherGroupe;
+    };
+    showGroupe(groupe: Groupe) {
+        const id = groupe._id;
+        this.afficherGroupe = groupe;
+        console.log(this.afficherGroupe.nom);
+        this.router.navigate(['/groupes/afficherungroupe/' + id]);
+    }
     getGroupes(): void {
         this.groupeService.getGroupes()
             .subscribe(groupes => this.groupes = groupes);
@@ -69,9 +90,9 @@ export class AfficherGroupeComponent implements OnInit {
 
     // getClasses(): void {
     //     this.groupeService.getClasses()
-    //         .subscribe(groupes => this.g = groupes);
+    //         .subscribe(groupes => this.classes = groupes);
     // }
-    //
+
 
     onDelete(groupe: Groupe): void {
         this.groupeService.deleteGroupe(groupe)
@@ -105,6 +126,10 @@ export class AfficherGroupeComponent implements OnInit {
 
         this.getUtilisateurs();
         console.log('in ngOnInit');
+
+        this.getUtilisateur();
+        console.log(this.selectedGroupe);
+
     }
   
 }

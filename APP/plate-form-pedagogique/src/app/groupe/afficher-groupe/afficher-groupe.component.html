@@ -10,7 +10,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<h2>Mes groupes </h2>
+<h2>Mes groupes {{utilisateur._id}} </h2>
 <form class="deleteGroupe" id="deleteGroupe" (submit)="deleteGroupe($event)">
 	<div class="form-group row">
 				<label class="col-md-2 required">
@@ -216,20 +216,26 @@
 			<mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
 			<mat-cell *matCellDef="let groupe" class="boutonsAction">
 				<button *ngIf="(selectedGroupe && selectedGroupe === groupe);else editButton;" color="primary" form="groupeFormEdition" mat-button><i class="material-icons">done</i></button>
+				<div *ngIf="groupe.proprietaire == utilisateur._id">
 				<ng-template #editButton>
+
 					<form (ngSubmit)="onSelected(groupe)">
-						<button mat-button><i class="material-icons">edit</i></button>
+								<button  mat-button><i class="material-icons">edit</i></button>
 					</form>
 				</ng-template>
-				<form (ngSubmit)="onDelete(groupe)">
+				<form  (ngSubmit)="onDelete(groupe)">
 					<button mat-button ><i class="material-icons">delete</i></button>
+				</form>
+				</div>
+				<form (ngSubmit)="showGroupe(groupe)" >
+					<button mat-button><i class="material-icons">Afficher</i></button>
 				</form>
 			</mat-cell>
 		</ng-container>
 
 		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
+		<!--*ngIf="utilisateurId == null"-->
 	</mat-table>
 </div>
 
