@@ -1,5 +1,13 @@
-.required:before
+.required:after
 {
     content: "*";
     color: red;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.input-height{
+    padding-top : 10px;
 }
