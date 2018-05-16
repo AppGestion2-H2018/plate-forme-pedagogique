@@ -59,6 +59,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                     // Utilisateur non authentifié!
                     // redirection vers la page de login
                     // ou faire autre chose....
+                    this.cookieService.deleteAll();
                     this.cookieService.set('auth_da', 'null', 0, "/");
                     this.cookieService.set('auth_token', 'null', 0, "/");
                     this.cookieService.set('auth_id', 'null', 0, "/");

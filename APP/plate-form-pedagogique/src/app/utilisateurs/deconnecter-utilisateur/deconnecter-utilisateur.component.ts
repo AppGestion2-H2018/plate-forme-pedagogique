@@ -16,6 +16,7 @@ export class DeconnecterUtilisateurComponent implements OnInit {
 
     onClick(): void {
         console.info("Déconnection!");
+        this.cookieService.deleteAll();
         this.cookieService.set('auth_token', 'null');
         this.cookieService.set('auth_da', 'null');
         this.cookieService.set('auth_id', 'null');
