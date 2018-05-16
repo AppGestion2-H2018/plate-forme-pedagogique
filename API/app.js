@@ -68,6 +68,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
 app.use('/api/utilisateurs', utlisateursRouter);
 
 
@@ -96,7 +97,6 @@ app.use(function (req, res, next) {
     }
 });
 
-app.use('/', indexRouter);
 app.use('/api/bibliotheque', bibliothequeRouter);
 app.use('/api/evenements', evenementsRouter);
 app.use('/api/groupes', groupesRouter);
