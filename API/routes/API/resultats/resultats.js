@@ -1,9 +1,9 @@
-let express = require('express');
-let router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-let mysql = require('mysql');
+var mysql = require('mysql');
 
-let con = mysql.createConnection({
+var con = mysql.createConnection({
     host: "35.193.78.254",
     user: "appgestion2h2018",
     password: "appgestion2h2018",
@@ -19,7 +19,7 @@ con.connect(function (err) {
  * Trouver un enseignant
  */
 router.get('/enseignant/:id', function (req, res) {
-    let enseignant_id = req.params.id;
+    var enseignant_id = req.params.id;
     // connect to your database
 
     // query to the database and get the records
@@ -40,7 +40,7 @@ router.get('/enseignant/:id', function (req, res) {
  * Trouver les évaluations d'une grille d'évaluation
  */
 router.get('/evaluations/:id', function (req, res) {
-    let grilleevaluation_id = req.params.id;
+    var grilleevaluation_id = req.params.id;
 
     // query to the database and get the records
     con.query('SELECT * FROM evaluations WHERE grilleevaluation_id = ' + grilleevaluation_id, function (err, evaluations) {
@@ -60,9 +60,9 @@ router.get('/evaluations/:id', function (req, res) {
  * Trouver les grilles d'évaluations d'un profeseur selon le cours et le groupe
  */
 router.get('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (req, res) {
-    let enseignant_id = req.params.enseignant_id;
-    let cours_id = req.params.cours_id;
-    let groupe_id = req.params.groupe_id;
+    var enseignant_id = req.params.enseignant_id;
+    var cours_id = req.params.cours_id;
+    var groupe_id = req.params.groupe_id;
 
     // query to the database and get the records
     con.query('SELECT * FROM grilleevaluation WHERE enseignant_id = ' + enseignant_id + ' AND cours_id = ' + cours_id + ' AND groupe_id = ' + groupe_id, function (err, grilleevaluation) {
@@ -82,7 +82,7 @@ router.get('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (re
  * Trouver les cours d'un professeur
  */
 router.get('/cours/:id', function (req, res) {
-    let objectId = req.params.id;
+    var objectId = req.params.id;
 
     // query to the database and get the records
     con.query('SELECT distinct cours.id, nom FROM cours INNER JOIN grilleevaluation on cours_id = cours.id WHERE enseignant_id = ' + objectId, function (err, cours) {
@@ -101,7 +101,7 @@ router.get('/cours/:id', function (req, res) {
  * Trouver les groupes d'un cours
  */
 router.get('/groupe/:id', function (req, res) {
-    let objectId = req.params.id;
+    var objectId = req.params.id;
 
     // query to the database and get the records
     con.query('SELECT distinct numero, id, cours_id FROM groupe WHERE cours_id = ' + objectId, function (err, groupe) {
@@ -121,7 +121,7 @@ router.get('/groupe/:id', function (req, res) {
  * Supprime une évaluation
  */
 router.delete('/evaluations/:id', function (req, res, next) {
-    let evaluation_id = req.params.id;
+    var evaluation_id = req.params.id;
 
     console.log(req.body);
     con.query('DELETE FROM evaluations WHERE id=' + evaluation_id, function (error) {
@@ -135,9 +135,9 @@ router.delete('/evaluations/:id', function (req, res, next) {
  * Ajoute une grille d'évaluation
  */
 router.post('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (req, res, next) {
-    let enseignant_id = req.params.enseignant_id;
-    let cours_id = req.params.cours_id;
-    let groupe_id = req.params.groupe_id;
+    var enseignant_id = req.params.enseignant_id;
+    var cours_id = req.params.cours_id;
+    var groupe_id = req.params.groupe_id;
 
     console.log(req.body);
     con.query('INSERT INTO grilleevaluation (enseignant_id, cours_id, groupe_id) VALUES ('+ enseignant_id + ',' + cours_id + ',' + groupe_id + ')', function (error) {
