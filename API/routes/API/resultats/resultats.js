@@ -10,13 +10,20 @@ var con = mysql.createConnection({
     database: "resultats"
 });
 
+/*
+Création des routes initiales: William Houle
+Ajout des routes supplémentaires: Francis Gagnon
+Amélioration: Francis Gagnon
+Aidé par: William Houle
+*/
+
 //Tentative de connection initiale (Pour empècher le double handshake)
 con.connect(function (err) {
     if (err) console.log(err);
 });
 
 /**
- * Trouver un enseignant
+ * Trouver un enseignant [Par: Francis Gagnon]
  */
 router.get('/enseignant/:id', function (req, res) {
     var enseignant_id = req.params.id;
@@ -37,13 +44,13 @@ router.get('/enseignant/:id', function (req, res) {
 });
 
 /**
- * Trouver les évaluations d'une grille d'évaluation
+ * Trouver les évaluations d'une grille d'évaluation [Par: Francis Gagnon]
  */
 router.get('/evaluations/:id', function (req, res) {
     var grilleevaluation_id = req.params.id;
 
     // query to the database and get the records
-    con.query('SELECT * FROM evaluations WHERE grilleevaluation_id = ?', grilleevaluation_id, function (err, evaluations) {
+    con.query('SELECT evaluations.id, evaluations.nom, commentaire, categorie.nom AS categorie, poids_evaluation FROM evaluations INNER JOIN categorie ON categorie_id = categorie.id WHERE grilleevaluation_id = ?', grilleevaluation_id, function (err, evaluations) {
         if (err) console.log(err);
         console.log(evaluations);
 
@@ -57,7 +64,7 @@ router.get('/evaluations/:id', function (req, res) {
 });
 
 /**
- * Trouver les grilles d'évaluations d'un profeseur selon le cours et le groupe
+ * Trouver les grilles d'évaluations d'un profeseur selon le cours et le groupe [Par: Francis Gagnon]
  */
 router.get('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (req, res) {
     var enseignant_id = req.params.enseignant_id;
@@ -79,7 +86,7 @@ router.get('/grilleevaluation/:enseignant_id/:cours_id/:groupe_id', function (re
 });
 
 /**
- * Trouver les cours d'un professeur
+ * Trouver les cours d'un professeur [Par: Francis Gagnon]
  */
 router.get('/cours/:id', function (req, res) {
     var objectId = req.params.id;
@@ -98,7 +105,7 @@ router.get('/cours/:id', function (req, res) {
 });
 
 /**
- * Trouver les groupes d'un cours
+ * Trouver les groupes d'un cours [Par: Francis Gagnon]
  */
 router.get('/groupe/:id', function (req, res) {
     var objectId = req.params.id;
@@ -118,7 +125,7 @@ router.get('/groupe/:id', function (req, res) {
 });
 
 /**
- * Supprime une évaluation
+ * Supprime une évaluation [Par: Francis Gagnon]
  */
 router.delete('/evaluations/:id', function (req, res) {
     var evaluation_id = req.params.id;
@@ -132,7 +139,7 @@ router.delete('/evaluations/:id', function (req, res) {
 });
 
 /**
- * Ajoute une grille d'évaluation
+ * Ajoute une grille d'évaluation [Par: Francis Gagnon]
  */
 router.post('/grilleevaluation/ajouter/:enseignant_id/:cours_id/:groupe_id', function (req, res) {
     var enseignant_id = req.params.enseignant_id;
@@ -141,17 +148,29 @@ router.post('/grilleevaluation/ajouter/:enseignant_id/:cours_id/:groupe_id', fun
 
     con.query('INSERT INTO grilleevaluation (enseignant_id, cours_id, groupe_id) VALUES (?,?,?)', enseignant_id, cours_id, groupe_id, function (error, results) {
         if (error) throw error;
-        res.end(JSON.stringify(results));
+        res.end('ok');
     });
 });
 
 /**
- * Modification d'une évaluation
+ * Ajoute une évaluation [Par: Francis Gagnon]
  */
-router.put('/evaluation', function (req, res) {
-    con.query('UPDATE `evaluations` SET `nom`=?,`commentaire`=?,`categorie_id`=?, `poids_evaluation`=? where `id`=?', [req.body.nom, req.body.commentaire, req.body.categorie_id, req.body.poids_evaluation, req.body.id], function (error, results) {
+router.post('/evaluation/', function (req, res) {
+    var body = req.body.params;
+    console.log(body);
+    con.query('INSERT INTO evaluations (grilleevaluation_id, nom, commentaire, categorie_id, poids_evaluation) VALUES (?,?,?,?,?)', req.params.grilleevaluation_id, req.params.nom, req.params.commentaire, req.params.categorie_id, req.params.poids_evaluation, function (error, results) {
         if (error) throw error;
-        res.end(JSON.stringify(results));
+        res.end('ok');
+    });
+});
+
+/**
+ * Modification d'une évaluation [Par: William Houle]
+ */
+router.put('/evaluations/modifier/:id/:nom', function(req, res, next){
+    con.query('UPDATE evaluations SET nom = "' + req.params.nom + '" WHERE id=' + req.params.id + ';', function(error, result, fields) {
+        if (error) throw error;
+        res.json(result);
     });
 });
 
