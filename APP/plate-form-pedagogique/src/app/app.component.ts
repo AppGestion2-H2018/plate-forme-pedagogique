@@ -15,14 +15,14 @@ import {ActivatedRoute, Router, UrlSegment} from '@angular/router';
 
 export class AppComponent implements OnInit, OnDestroy {
 
+
     constructor(private route: ActivatedRoute, private cookieService: CookieService, private router: Router) {
         this.estConnecte = cookieService.get('auth_da') !== "null" && cookieService.get('auth_da') !== "";
-        this.estConnecte = true;
     }
 
     ngOnInit(): void {
         AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
-            //this.estConnecte = valeurBool;
+            this.estConnecte = valeurBool;
         });
         console.log("test Router");
         console.log(this.router);

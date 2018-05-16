@@ -6,6 +6,7 @@ import {Tablette} from "../class/tablette";
 import { of } from 'rxjs/observable/of';
 import {ReponseAPI} from "../class/reponseAPI";
 import {Utilisateur} from "../class/utilisateur";
+import {Livre} from "../class/livre";
 
 const httpOptions = {headers: new HttpHeaders({ 'Content-type': 'application/json'})};
 
@@ -31,11 +32,9 @@ export class BiblioService {
         console.log(JSON.stringify(tablette));
         return this.http.post<Tablette>(this.biblioAPIurl + '/ajouter', tablette, httpOptions);
     }
-    //Modifier
-    putTablette(tablette: Tablette): Observable<Tablette> {
-        console.log(JSON.stringify(tablette));
-        return this.http.post<Tablette>(this.biblioAPIurl + '/ajouter', tablette, httpOptions);
+    //Modifier (Ajoute un livre à une tablette)
+    putTablette(tablette: Tablette, livre: Livre): Observable<Tablette> {
+        return this.http.post<Tablette>(this.biblioAPIurl + '/tablette', tablette, httpOptions);
     }
-
 }
 

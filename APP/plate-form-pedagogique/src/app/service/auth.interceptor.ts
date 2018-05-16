@@ -36,16 +36,16 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                         const id = event.headers.get('auth_id');
 
                         // Définie les nouveaux cookies de connexions
-                        this.cookieService.set('auth_da', da);
-                        this.cookieService.set('auth_token', token);
-                        this.cookieService.set('auth_id', id);
+                        this.cookieService.set('auth_da', da, 30, "/");
+                        this.cookieService.set('auth_token', token, 30, "/");
+                        this.cookieService.set('auth_id', id, 30, "/");
 
                         AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                     } else {
                         // Est déconnecté!
-                        this.cookieService.set('auth_da', 'null');
-                        this.cookieService.set('auth_token', 'null');
-                        this.cookieService.set('auth_id', 'null');
+                        this.cookieService.set('auth_da', 'null', 0, "/");
+                        this.cookieService.set('auth_token', 'null', 0, "/");
+                        this.cookieService.set('auth_id', 'null', 0, "/");
                         AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                     }
                 }
@@ -56,9 +56,23 @@ export class AuthHttpInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401) {
+                    // Utilisateur non authentifié!
                     // redirection vers la page de login
                     // ou faire autre chose....
-                    console.log("PAS AUTORISÉ!");
+                    this.cookieService.set('auth_da', 'null', 0, "/");
+                    this.cookieService.set('auth_token', 'null', 0, "/");
+                    this.cookieService.set('auth_id', 'null', 0, "/");
+                    AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
+                    alert("Vous n'êtes pas authentifié!");
+                    console.info("PAS AUTHENTIFIÉ !");
+                } else if (err.status === 403) {
+                    // Accès refusé
+                    console.info("ACCÈS REFUSÉ!");
+                    // this.cookieService.set('auth_da', 'null', 0, "/");
+                    // this.cookieService.set('auth_token', 'null', 0, "/");
+                    // this.cookieService.set('auth_id', 'null', 0, "/");
+                    alert("Accès refusé par le serveur!");
+                    AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                 }
             }
         });

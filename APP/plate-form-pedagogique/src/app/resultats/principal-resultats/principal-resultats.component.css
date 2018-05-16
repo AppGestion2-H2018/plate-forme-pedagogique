@@ -1,0 +1,23 @@
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-15 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-35 {
+    float: left;
+    width: 35%;
+    margin-top: 6px;
+}

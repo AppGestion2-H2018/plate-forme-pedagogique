@@ -16,8 +16,8 @@ const httpOptions = {
 @Injectable()
 export class UtilisateurService {
 
-    url = "http://localhost:3000";
-   // url = "https://api-appgestion2-h18.herokuapp.com";
+      url = "http://localhost:3000";
+      //url = "https://api-appgestion2-h18.herokuapp.com";
 
     constructor(private http: HttpClient) {
         console.log('User Service Initialized...');
@@ -28,7 +28,7 @@ export class UtilisateurService {
 
         var objDa = {'da': da, 'motdepasse': motdepasse};
 
-        return this.http.post<ReponseLogin>(this.url + '/api/utilisateurs/login/', JSON.stringify(objDa), httpOptions);
+        return this.http.post<ReponseLogin>(`${this.url}/api/utilisateurs/login/`, JSON.stringify(objDa), httpOptions);
     }
 
 
@@ -111,11 +111,11 @@ export class UtilisateurService {
      * @returns {Observable<Utilisateur>}
      */
     getUtilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
-        return this.http.post<Utilisateur>(this.url+'/api/utilisateurs/getone', JSON.stringify(utilisateur), httpOptions);
+        return this.http.post<Utilisateur>(`${this.url}/api/utilisateurs/getone/`, JSON.stringify(utilisateur), httpOptions);
     }
 
     checkEmailNotTaken(courriel: string, utilisateurId: string) {
-        return this.http.post(this.url + '/api/utilisateurs/checkEmailNotTaken', {
+        return this.http.post(`${this.url}/api/utilisateurs/checkEmailNotTaken/`, {
             courriel,
             utilisateurId
         });

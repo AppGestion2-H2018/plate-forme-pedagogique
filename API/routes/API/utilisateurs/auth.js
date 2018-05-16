@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Utilisateur = require('../../../models/utilisateur');
 
+var mongoose = require('mongoose');
+
 const COOKIE_DA_NAME = 'auth_da';
 const COOKIE_TOKEN_NAME = 'auth_token';
 const COOKIE_ID_NAME = 'auth_id';
@@ -22,193 +24,6 @@ router.get('/all', function (req, res, next) {
         res.json(utilisateur);
     });
 });
-
-
-// ROUTES PRINCIPALES POUR LA GESTION DES TOKENS AVEC LES COOKIES
-
-// Nouvelle connexion
-router.get('/login/:id', function (req, res, next) {
-
-    nouvelleConnexionBD(req.params.id).then(function (jsonConnexion) {
-        res = ajouterLesCookies(res, DA, jsonConnexion.access_token.remember_token);
-        res.json(jsonConnexion);
-    });
-});
-
-// Tester si il est toujours bien connecté
-router.get('/is', function (req, res, next) {
-
-});
-
-// Ajoute les cookies de connexion au client.
-router.get('/obtenir', function (req, res, next) {
-    res = ajouterLesCookies(res, 1234567, genererAccessToken().access_token.remember_token);
-    res.send("Cookies ajouter!")
-});
-
-// Affiche les cookies actuelle du client
-router.get('/afficher', function (req, res, next) {
-    res.json(obtenirLesCookies(req));
-});
-
-// Supprime les tokens dans les cookies
-router.get('/supprimer', function (req, res, next) {
-    res = supprimerLesCookies(res);
-    res.send("Cookies supprimer!");
-});
-
-// Obtient les informations de l'usager avec les informations du POST (ou des variables de session) et non grâce à l'URL.
-/**
- * @deprecated
- */
-router.get('/moncompte', function (req, res, next) {
-    // Informations à retourner
-    var reponse = {"default": "default"};
-
-    // Obtient l'information du Token du client
-    var Token = req.headers.token;
-
-    // Obtient l'ID de l'utilisateur actuelle.
-    var DA = req.headers.da;
-
-    // Effectue la recherche...
-    Utilisateur.find({da: {$eq: DA}, 'access_token.remember_token': {$eq: Token}}, {}, function (err, utilisateur) {
-        if (err) {
-            console.log("erreur : " + err.toString());
-            reponse = {"message": "Une erreur est survenue"};
-        } else {
-            // Vérifier si il y a une réponse et une valeur seulement.
-            if (utilisateur == null || utilisateur.length === 0) {
-                reponse = {"message": "Aucun utilisateur de trouvé..."};
-            }
-            else if (!verificationAccessToken(utilisateur)) // Vérifier si le Token est toujours valide
-            {
-                reponse = {"message": "La connection n'est plus valide, redirection vers la page de connection!"};
-            }
-            else {
-
-                // Générer et donner le nouveau token
-                var nouveau_token = genererAccessToken();
-
-                reponse = utilisateur;
-
-                reponse = ajouterTokenDansJson(reponse, nouveau_token);
-
-                Utilisateur.update({_id: utilisateur[0]['_id']}, {
-                        $set: {
-                            access_token:
-                                {
-                                    remember_token: nouveau_token['access_token'].remember_token,
-                                    token_type: nouveau_token['access_token'].token_type,
-                                    expires_in: nouveau_token['access_token'].expires_in,
-                                    created_at: nouveau_token['access_token'].created_at
-                                }
-                        }
-                    },
-                    function (err, raw) {
-                        if (err) {
-                            console.log("Error log: " + err);
-                        } else {
-                            console.log("Token updated : " + raw);
-                        }
-                    }
-                );
-            }
-
-
-            // Renvoie l'information
-            res.json(reponse);
-        }
-    });
-});
-
-// Ajouter un nouvelle utilisateur
-// SEULEMENT POUR FAIRE DES TESTS, À RETIRER PLLUS TARD
-router.post('/ajouter', function (req, res, next) {
-    var infoUtilisateur = {
-        da: 1111111,
-        nom: "Delaroche",
-        prenom: "Caillou",
-        courriel: "delaroche.caillou@carrefour.cegepvicto.ca",
-        datedenaissance: Date.parse("1999-03-12"),
-        codepermanent: "DELC12039905",
-        programme: 4,
-        sexe: "masculin",
-        role: 2,
-        motdepasse: "cailloualamaison",
-        photo: ""
-    };
-    var utilisateur = new Utilisateur(infoUtilisateur);
-
-    utilisateur.save(function (err, utilisateurFinal) {
-        if (err) return res.send("Une erreur est survenue...");
-        res.json(utilisateurFinal);
-    });
-});
-
-// Renouvle le token du compte demandé
-router.get('/login/:da', function (req, res, next) {
-    var reponse = {"default": "default"};
-
-    Utilisateur.find({da: {$eq: req.params.da}}, function (err, utilisateur) {
-        if (err) return console.error(err);
-
-        // Générer et donner le nouveau token
-        var nouveau_token = genererAccessToken();
-
-        reponse = utilisateur;
-
-        reponse = ajouterTokenDansJson(reponse, nouveau_token);
-
-        Utilisateur.update({_id: utilisateur[0]['_id']}, {
-                $set: {
-                    access_token:
-                        {
-                            remember_token: nouveau_token['access_token'].remember_token,
-                            token_type: nouveau_token['access_token'].token_type,
-                            expires_in: nouveau_token['access_token'].expires_in,
-                            created_at: nouveau_token['access_token'].created_at
-                        }
-                }
-            },
-            function (err, raw) {
-                if (err) {
-                    console.log("Error log: " + err);
-                } else {
-                    console.log("Token updated : " + raw);
-                }
-            }
-        );
-
-        res.json(reponse);
-    });
-});
-
-//Renouvelle mon token
-/**
- * @deprecated
- */
-router.get('/renouvelle', function (req, res, next) {
-    // Obtient le token
-    var oldToken = req.headers.token;
-    // Obtient le DA
-    var DA = req.headers.da;
-
-    obtenirTokenUtilisateurBD(DA).then(function (token) {
-        res.json(token);
-
-        //TODO: Updater la BD avec des nouveaux token
-    });
-});
-
-// Obtient les informations de l'usager avec son DA
-router.get('/:da', function (req, res, next) {
-    Utilisateur.find({da: {$eq: req.params.da}}, function (err, utilisateur) {
-        if (err) return console.error(err);
-        res.json(utilisateur);
-    });
-});
-
 
 module.exports = router;
 
@@ -306,10 +121,13 @@ function secondesEnJours(secondes) {
     return Math.floor(((secondes / 60) / 60) / 24);
 }
 
-function obtenirTokenUtilisateurBD(DA) {
+function obtenirTokenUtilisateurBD(ID, DA) {
     // Effectue la recherche...
     return new Promise(function (resolve, reject) {
-        Utilisateur.findOne({da: {$eq: DA}}, {_id: false, "access_token": true}, function (err, utilisateurToken) {
+        Utilisateur.findOne({da: {$eq: DA}, _id: {$eq: ID}}, {
+            _id: false,
+            "access_token": true
+        }, function (err, utilisateurToken) {
             var reponse = null;
             if (err) {
                 reponse = null;
@@ -343,7 +161,7 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
         // Cela inclu le DA
         if (da === undefined || da === null) {
             console.log("Aucun DA");
-            resolve(reponseRetourner);
+            return resolve(reponseRetourner);
         }
 
         Utilisateur.findOne({da: {$eq: da}}, function (err, utilisateur) {
@@ -352,7 +170,7 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
             // Regarder si il a trouvé quelqu'un
             if (utilisateur === null || utilisateur.length === 0) {
                 console.log("Aucun utilisateur de trouvé");
-                resolve(reponseRetourner);
+                return resolve(reponseRetourner);
             }
 
             // Générer les nouveaux tokens
@@ -384,7 +202,7 @@ GestionCompleteDesNouveauxLogin = function (req, res, da) {
             reponseRetourner[0] = res;
             reponseRetourner[1] = true;
 
-            resolve(reponseRetourner);
+            return resolve(reponseRetourner);
         });
     });
 };
@@ -404,9 +222,10 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
         if (mesCookies == null) {
             console.log("J'ai pas de cookies");
             res = ajouterLesCookiesEchec(res);
+            res.status(401);
             reponseRetourner[0] = res;
             reponseRetourner[1] = false;
-            resolve(reponseRetourner);
+            return resolve(reponseRetourner);
         }
 
         const daClient = mesCookies[COOKIE_DA_NAME];
@@ -414,23 +233,28 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
         const idClient = mesCookies[COOKIE_ID_NAME];
 
         // Obtenir le token de l'usager dans la BD
-        return obtenirTokenUtilisateurBD(daClient).then(function (tokenBD) {
+        return obtenirTokenUtilisateurBD(idClient, daClient).then(function (tokenBD) {
             // Le vieux token est toujours valide ?
             if (verificationAccessToken(tokenBD)) {
                 // Comparer les tokens
                 if (comparerCleTokens(tokenBD, tokenClient)) {
                     // Si valide, créer nouveaux tokens et les envoyers au client et BD.
-                    //TODO: Faire générer tokens et cookies
-                    console.log("Renouvelage des tokens");
-                    return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
-                        res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token, idClient);
-                        console.log("Les cookies sont ajouté");
 
-                        reponseRetourner[0] = res;
-                        reponseRetourner[1] = true;
-                        resolve(reponseRetourner);
-                    });
+                    // ON NE VA PAS RENOUVELLER LES TOKENS SI ILS SONT VALIDE
+                    // console.log("Renouvelage des tokens");
+                    // return nouvelleConnexionBD(daClient).then(function (nouveau_token) {
+                    //     res = ajouterLesCookiesReussi(res, daClient, nouveau_token['access_token'].remember_token, idClient);
+                    //     console.log("Les cookies sont ajouté");
+                    //
+                    //     reponseRetourner[0] = res;
+                    //     reponseRetourner[1] = true;
+                    //     resolve(reponseRetourner);
+                    // });
 
+                    res = ajouterLesCookiesReussi(res, daClient, tokenClient, idClient);
+                    reponseRetourner[0] = res;
+                    reponseRetourner[1] = true;
+                    return resolve(reponseRetourner);
 
                 } else {
                     console.log("La comparaison des 2 tokens à échoué");
@@ -438,9 +262,10 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
                     res = supprimerLesCookies(res);
                     res = ajouterLesCookiesEchec(res);
                     // TODO: Retirer tokens de la BD
+                    res.status(401);
                     reponseRetourner[0] = res;
                     reponseRetourner[1] = false;
-                    resolve(reponseRetourner);
+                    return resolve(reponseRetourner);
                 }
             } else {
                 console.log("Les tokens de la BD sont invalide");
@@ -448,9 +273,10 @@ GestionCompleteDesCookiesEtDesDonneesDeConnexion = function (req, res) {
                 res = supprimerLesCookies(res);
                 res = ajouterLesCookiesEchec(res);
                 // TODO: Retirer tokens de la BD
+                res.status(401);
                 reponseRetourner[0] = res;
                 reponseRetourner[1] = false;
-                resolve(reponseRetourner);
+                return resolve(reponseRetourner);
             }
         });
 
@@ -551,21 +377,22 @@ function ajouterLesCookiesEchec(res) {
 function obtenirLesCookies(req) {
     var reponse = null;
     if (req.headers !== undefined &&
-        req.headers[COOKIE_DA_NAME] !== undefined &&
-        req.headers[COOKIE_DA_NAME] !== null &&
-        req.headers[COOKIE_DA_NAME] !== "null" &&
-        req.headers[COOKIE_TOKEN_NAME] !== undefined &&
-        req.headers[COOKIE_TOKEN_NAME] !== null &&
-        req.headers[COOKIE_TOKEN_NAME] !== "null" &&
-        req.headers[COOKIE_ID_NAME] !== undefined &&
-        req.headers[COOKIE_ID_NAME] !== null &&
-        req.headers[COOKIE_ID_NAME] !== "null"
+        stringCookiesValidation(req.headers[COOKIE_DA_NAME]) &&
+        stringCookiesValidation(req.headers[COOKIE_TOKEN_NAME]) &&
+        stringCookiesValidation(req.headers[COOKIE_ID_NAME])
     ) {
-        reponse = {
-            auth_da: req.headers[COOKIE_DA_NAME],
-            auth_token: req.headers[COOKIE_TOKEN_NAME],
-            auth_id: req.headers[COOKIE_ID_NAME],
-        };
+
+        if (mongoose.Types.ObjectId.isValid(req.headers[COOKIE_ID_NAME])) {
+            reponse = {
+                auth_da: req.headers[COOKIE_DA_NAME],
+                auth_token: req.headers[COOKIE_TOKEN_NAME],
+                auth_id: req.headers[COOKIE_ID_NAME]
+            };
+        }
     }
     return reponse;
+}
+
+function stringCookiesValidation(value) {
+    return value !== undefined && value !== null && value !== "null";
 }

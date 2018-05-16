@@ -12,24 +12,26 @@ export class PrincipalGroupesComponent implements OnInit {
 
     utilisateur = new Utilisateur();
 
-    constructor(private cookiService: CookieService,
-                private utilisateurService: UtilisateurService) {
-        this.utilisateur._id = this.cookiService.get("auth_id");
+    constructor(protected cookieService: CookieService,
+                protected utilisateurService: UtilisateurService) {
+        this.utilisateur._id = this.cookieService.get("auth_id");
     }
 
     getUtilisateur(): void {
         this.utilisateurService.getUtilisateur(this.utilisateur).subscribe(
-            data => {
-                this.utilisateur = data;
+            utilisateur => {
+                this.utilisateur = utilisateur;
             },
             error => {
                 console.error(error);
             }
         );
+        console.log(this.utilisateur);
     }
 
     ngOnInit() {
         this.getUtilisateur();
+        console.log(this.utilisateur);
     }
 
 

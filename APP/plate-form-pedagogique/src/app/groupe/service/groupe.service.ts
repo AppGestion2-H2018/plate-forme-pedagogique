@@ -6,7 +6,8 @@ import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
-import {Utilisateur} from "../../class/utilisateur";
+import {Utilisateur} from '../../class/utilisateur';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const httpOptions = { 
 	headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,8 +16,8 @@ const httpOptions = {
 @Injectable()
 
 export class GroupeService {
-	
-	private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
+
+    private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
 	private groupesAPIUrlLocal = 'http://localhost:3000/api';
 	
     constructor(private http: HttpClient) {
