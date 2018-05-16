@@ -92,7 +92,6 @@ import {EvenementService} from './evenement/evenement.service';
 import {RecherchePublicationsComponent} from './publications/recherche-publications/recherche-publications.component';
 import {AfficherungroupeComponent} from './groupe/afficherungroupe/afficherungroupe.component';
 import {BiblioTabletteComponent} from './biblio/biblio-tablette/biblio-tablette.component';
-import {BiblioAjoutTabletteComponent} from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
 import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-utilisateur/deconnecter-utilisateur.component';
 
 @NgModule({
@@ -145,7 +144,6 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
 
         AfficherungroupeComponent,
         BiblioTabletteComponent,
-        BiblioAjoutTabletteComponent,
         DeconnecterUtilisateurComponent,
 
     ],

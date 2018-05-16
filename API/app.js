@@ -77,7 +77,7 @@ app.use('/api/utilisateurs', utlisateursRouter);
  */
 app.use(function (req, res, next) {
     // Mettre du preprocessing ici
-    const fal = true;
+    const fal = true; 
     if (fal) {
         GestionCompleteDesCookiesEtDesDonneesDeConnexion(req, res).then(function (multiReponse) {
             res = multiReponse[0];

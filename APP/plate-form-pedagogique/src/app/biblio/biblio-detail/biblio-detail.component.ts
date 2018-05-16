@@ -12,27 +12,34 @@ import {Tablette} from "../../class/tablette";
 })
 export class BiblioDetailComponent implements OnInit {
 
+    //Prend les infos de la classe parent en entré.
     @Input() selectedEnfant: Livre;
     @Input() tablettes: Tablette[];
 
+    nomNouvelletablette: String;
 
 
+    //MatDialog sert au pop-up
     constructor(private dialog: MatDialog) {
 
     }
+
 
     ngOnInit(){
 
     }
 
+    //Lance le pop-up d'asjout de livre à un bibliothèque sur clique du bouton (+) .
     openDialog():void   {
         let dialogRef = this.dialog.open(DialogBiblioComponent, {
-            data:{tablettes: this.tablettes}
+            data:{tablettes: this.tablettes,
+                nomNouvelletablette: this.nomNouvelletablette}
         });
 
+        //Sort du pop-up avec la tablette choisie.
         dialogRef.afterClosed().subscribe(result=>{
             console.log("The dialog was close");
-            this.tablettes = result;
+            this.nomNouvelletablette = result;
         });
     }
     

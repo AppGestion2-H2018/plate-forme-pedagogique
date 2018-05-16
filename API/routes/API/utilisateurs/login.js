@@ -8,20 +8,27 @@ router.post('/', function (req, res, next) {
     var reponse = '';
     var da = req.body.da;
     var motdepasse = req.body.motdepasse;
+    //varaible qui son utiliser pour encrypter les mots de passe
     var objReponse = {'Code':0,'Message':''};
   //  var bcrypt = require('bcrypt');
- //   const saltRounds = 10;
+  //  const saltRounds = 10;
+
     //recheche le da de l'utilisateur dans la base de donner
     Utilisateur.findOne({'da': da}, function (err, utilisateur) {
         if (err) return console.error(err);
 
-        //mathieu cette partie permet de hash un mot de passe //todo
-        //Ainsi tu peut hash un mot de passe ou autre et après introduire dans la base de donner
-     //  bcrypt.genSalt(saltRounds, function (err, salt) {
-        //   bcrypt.hash(motdepasse, salt, function (err, hash) {// le hash est la réponse de l'encryption du mot de passe juste avant
-         //     console.log(hash);
 
-                if (motdepasse == utilisateur.motdepasse) {
+        //Ainsi tu peut hash un mot de passe ou autre et après introduire dans la base de donner
+       // bcrypt.genSalt(saltRounds, function (err, salt) {
+       //     bcrypt.hash(motdepasse, salt, function (err, hash) {// le hash est la réponse de l'encryption du mot de passe juste avant
+       //        console.log(hash);
+       //            //compare avec les la base de donner le mots de passe en encryptant de nouveau
+       //         bcrypt.compare(motdepasse, hash).then(function(value1) {
+       //            console.log(value1);
+       //             bcrypt.compare(utilisateur.motdepasse, hash).then(function(value2) {
+
+
+                if (motdepasse == utilisateur.motdepasse ) {
 
                     objReponse = {'Code': 1, 'Message': 'La connexion à été effectuée avec succès.'};
                     GestionCompleteDesNouveauxLogin(req, res, da).then(function (multiResultat) {
@@ -44,12 +51,12 @@ router.post('/', function (req, res, next) {
                     console.log(objReponse);
                     res.json(objReponse);
                 }
-//    });
+   });
+ });
+//     });
+//             });
+//         });
 // });
-
-            });
-        });
-
 // Obtenir tous les Utilisateurs
 router.get('/', function (req, res, next) {
     Utilisateur.find({}, {/*_id: 0, da: 1*/}, function (err, utilisateur) {

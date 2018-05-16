@@ -15,8 +15,6 @@ export class DialogBiblioComponent implements OnInit {
         public dialogRef: MatDialogRef<DialogBiblioComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any){}
 
-
-
     ngOnInit() {
 
     }

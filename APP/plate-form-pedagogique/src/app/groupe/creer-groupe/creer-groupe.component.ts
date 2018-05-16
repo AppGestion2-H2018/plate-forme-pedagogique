@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GroupeService} from '../service/groupe.service';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {Groupe} from '../groupe';
@@ -6,6 +6,8 @@ import {Type} from '../type';
 import {Programme} from '../programme';
 import {Classe} from "../classe";
 import {Utilisateur} from "../../class/utilisateur";
+import {CookieService} from "ngx-cookie-service";
+import {PrincipalGroupesComponent} from "../principal-groupes/principal-groupes.component";
 
 @Component({
     selector: 'app-creer-groupe',
@@ -13,33 +15,17 @@ import {Utilisateur} from "../../class/utilisateur";
     styleUrls: ['./creer-groupe.component.css'],
     providers: [GroupeService]
 })
-export class CreerGroupeComponent implements OnInit {
+export class CreerGroupeComponent extends PrincipalGroupesComponent implements OnInit {
 
     groupes: Groupe[];
     types: Type[];
     classes: Classe[];
     programmes: Programme[];
     utilisateurs: Utilisateur[];
-    // groupe : Groupe;
-    groupe = {
-        _id:"",
-        proprietaire:"5acd550bd2d9763634a93f6f",
-        nom:"",
-        actif:false,
-        est_publique:false,
-        description:"",
-        commenter:false,
-        date_fin: new Date(""),
-        super_admins:[],
-        admins:[],
-        programmes:[],
-        classes:[],
-        types:[],
-        utilisateurs:[],
-        blacklist:[],
-    }
+    @Input() utilisateur: Utilisateur;
+    groupe : Groupe;
 
-    constructor(private groupeService: GroupeService, private utilisateurService: UtilisateurService) {}
+    constructor(private groupeService: GroupeService, protected utilisateurService: UtilisateurService, protected cookieService : CookieService) {super(cookieService, utilisateurService)}
 
     getGroupes(): void {
         this.groupeService.getGroupes()
@@ -61,27 +47,32 @@ export class CreerGroupeComponent implements OnInit {
             .subscribe(classes => this.classes = classes);
     }
 
-    // getUtilisateurs(): void{
-    //     this.utilisateurService.getUtilisateurLogin()
-    //         .subscribe(utilisateurs=>this.utilisateurs=utilisateurs);
-    // }
+    getUtilisateurs(): void{
+        this.groupeService.getUtilisateurs()
+            .subscribe(utilisateurs=>this.utilisateurs=utilisateurs);
+    }
 
     addGroupe(event: any): void{
         event.preventDefault();
         this.groupeService.addGroupe(this.groupe)
             .subscribe(groupe => {
                 this.groupes.push(this.groupe);
+                this.groupe = new Groupe();
+                this.groupe.proprietaire = "5acd550bd2d9763634a93f6f";
             })
         ;
     }
 
     ngOnInit() {
         console.log('in ngOnInit');
+        this.groupe = new Groupe();
+        this.groupe.proprietaire = "5acd550bd2d9763634a93f6f";
+        this.getUtilisateurs();
         this.getGroupes();
         this.getTypes();
         this.getProgrammes();
         this.getClasses();
-        // this.getUtilisateurs();
+        this.getUtilisateur();
     }
 
 }

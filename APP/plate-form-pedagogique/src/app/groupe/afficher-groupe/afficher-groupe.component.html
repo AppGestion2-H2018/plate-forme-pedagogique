@@ -1,6 +1,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	  xmlns="http://www.w3.org/1999/html">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -64,7 +65,8 @@
 					</mat-form-field>
 
 					<br>
-					<mat-radio-group *ngIf="(selectedGroupe && selectedGroupe === groupe);else editActif;">
+					<mat-radio-group class="radio" *ngIf="(selectedGroupe && selectedGroupe === groupe);else editActif;">
+						<p>Actif :</p>
 						<input type="radio" name="inactif" [(ngModel)]="selectedGroupe.actif" value="false" >
 						Inactif
 						<input type="radio" name="actif" [(ngModel)]="selectedGroupe.actif" value="true">
@@ -72,19 +74,22 @@
 					</mat-radio-group>
 					<br>
 					<mat-radio-group *ngIf="(selectedGroupe && selectedGroupe === groupe);else editPublique;">
+						<p></p>
+						<p>Publique :</p>
 						<input type="radio" name="prive" [(ngModel)]="selectedGroupe.est_publique" value="false">
 						Privé
 						<input type="radio" name="publique" [(ngModel)]="selectedGroupe.est_publique" value="true">
 						Publique
 					</mat-radio-group>
-					<br>
+					<br><br>
 					<mat-radio-group *ngIf="(selectedGroupe && selectedGroupe === groupe);else editCommenter;">
+						<p>Commentaire :</p>
 						<input type="radio" name="nonCommenter" [(ngModel)]="selectedGroupe.commenter" value="false">
-						Commentaire non autorisé
+						Non autorisé
 						<input type="radio" name="commenter" [(ngModel)]="selectedGroupe.commenter" value="true">
-						Commentaire autorisé
+						Autorisé
 					</mat-radio-group>
-
+					<br>
 
 					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editClasse;" >
 					<mat-select  placeholder="Classe" [(ngModel)]="selectedGroupe.classes" name="classe">
@@ -121,7 +126,7 @@
 
 
 					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editAdmin;" >
-						<mat-select  placeholder="Admin" [(ngModel)]="selectedGroupe.admins" name="admin" [formControl]="utilisateurform" multiple>
+						<mat-select  placeholder="Admin" [(ngModel)]="selectedGroupe.admins" name="admin" [formControl]="utilisateurformAdmin" multiple>
 							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
 								{{ utilisateur._id }}
 							</mat-option>
@@ -129,7 +134,7 @@
 					</mat-form-field>
 
 					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editSuperadmin;" >
-						<mat-select  placeholder="Super Admin" [(ngModel)]="selectedGroupe.super_admins" name="superadmin" [formControl]="utilisateurform" multiple>
+						<mat-select  placeholder="Super Admin" [(ngModel)]="selectedGroupe.super_admins" name="superadmin" [formControl]="utilisateurformSuperAdmin" multiple>
 							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
 								{{ utilisateur._id }}
 							</mat-option>
@@ -137,7 +142,7 @@
 					</mat-form-field>
 
 					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editBlacklist;" >
-						<mat-select  placeholder="Black list" [(ngModel)]="selectedGroupe.blacklist" name="superadmin" [formControl]="utilisateurform" multiple>
+						<mat-select  placeholder="Black list" [(ngModel)]="selectedGroupe.blacklist" name="blacklist" [formControl]="utilisateurformBlacklist" multiple>
 							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
 								{{ utilisateur._id }}
 							</mat-option>
@@ -162,12 +167,10 @@
 
 				<ng-template #editActif>
 					<span  id="actif"(click)="onSelected(groupe)"> Actif : {{groupe.actif}}</span>
-					<p></p>
 				</ng-template>
 
 				<ng-template #editPublique>
 				<span  id="publique" (click)="onSelected(groupe)"> Publique : {{groupe.est_publique}}</span>
-					<p></p>
 				</ng-template>
 
 				<ng-template #editCommenter>
@@ -197,6 +200,7 @@
 
 				<ng-template #editAdmin>
 					<span  id="admin" (click)="onSelected(groupe)"> Administrateur : {{groupe.admins}}</span>
+					<p></p>
 				</ng-template>
 
 				<ng-template #editSuperadmin>
@@ -209,6 +213,10 @@
 					<p></p>
 				</ng-template>
 
+				<!--<ng-template>-->
+					<!--<span  id="test" (click)="onSelected(groupe)"> Nombre utilisateur: {{groupe.count(utilisateurs)}}</span>-->
+					<!--<p></p>-->
+				<!--</ng-template>-->
 			</mat-cell>
 		</ng-container>
 

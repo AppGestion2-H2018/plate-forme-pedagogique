@@ -25,6 +25,7 @@ export class BiblioRechercheComponent implements OnInit {
         this.newTablette.nom = '';
     }
 
+    //Output
     inSelectedLivre(event){
         this.selectedData = event;
     }

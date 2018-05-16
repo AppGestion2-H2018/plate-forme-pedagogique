@@ -54,14 +54,14 @@ export class ResultatService {
 
     //Ajout d'une d'évaluation
     //Todo~Get the body
-    ajoutEvaluation(cours_id:number, groupe_id:number) {
-        return this.http.post<Evaluation>(this.url + 'evaluations/', null);
+    ajouterEvaluation(evaluation:Evaluation) {
+        return this.http.post<Evaluation>(this.url + 'evaluations/' + evaluation.grilleevaluation_id + '/' + evaluation.nom + '/' + evaluation.commentaire + '/' + evaluation.categorie_id + '/' + evaluation.poids_evaluation, null);
     }
 
     //Modification d'une d'évaluation
     //Todo~Get the body
-    modifierEvaluation(id:number) {
-        return this.http.put<Evaluation>(this.url + 'evaluations/',null);
+    modifierEvaluation(evaluation:Evaluation) {
+        return this.http.put(this.url + 'evaluations/modifier/' + evaluation.id + '/' + "Modifier!", null);
     }
 
 }

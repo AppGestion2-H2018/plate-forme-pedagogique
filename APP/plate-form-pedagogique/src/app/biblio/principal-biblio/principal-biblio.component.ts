@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Livre} from "../../class/livre";
 
 @Component({
   selector: 'app-principal-biblio',

@@ -2,9 +2,11 @@
     <input [(ngModel)]="rechercheData" id="recherche" name="recherche" matInput placeholder="Rechercher">
 </mat-form-field>
 <div class="wrapper">
+    <!-- Prend le terme de recherche "rechercheData"" et reprend le livre sélectionné "inSelectedLivre" de l'enfant "biblio-liste" et le rend disponible à tous. -->
     <div class="item1" *ngIf="rechercheData != null && rechercheData != ''">
         <app-biblio-liste [rechercheEnfant]="rechercheData" (selectedOutputEvent)="inSelectedLivre($event)"></app-biblio-liste>
     </div>
+    <!-- Prend le livre sélectionné "selectedData" et la liste des tablettes "tablettesData et le passe à l'enfant "biblio-detail" -->
     <div class="item2" *ngIf="selectedData != null && rechercheData != null && rechercheData != ''">
         <app-biblio-detail [selectedEnfant]="selectedData" [tablettes]="tablettesData"></app-biblio-detail>
     </div>

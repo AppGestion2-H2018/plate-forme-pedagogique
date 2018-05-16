@@ -42,7 +42,15 @@ export class AfficherGroupeComponent extends PrincipalGroupesComponent implement
     //Utilisateur
     utilisateurform = new FormControl(); // Permet la sélection multiple. https://stackblitz.com/angular/pbbvrgkxmjn?file=app%2Fselect-multiple-example.ts et https://stackoverflow.com/questions/43220348/cant-bind-to-formcontrol-since-it-isnt-a-known-property-of-input-angular
     @Input() utilisateur: Utilisateur;
+
     utilisateurs: Utilisateur[];
+
+    // Form control.Permettant la sélection multiple dans une drop down list.
+    // https://stackblitz.com/angular/pbbvrgkxmjn?file=app%2Fselect-multiple-example.ts et
+    // https://stackoverflow.com/questions/43220348/cant-bind-to-formcontrol-since-it-isnt-a-known-property-of-input-angular
+    utilisateurformAdmin = new FormControl();
+    utilisateurformSuperAdmin = new FormControl();
+    utilisateurformBlacklist= new FormControl();
 
     displayedColumns = ['Description','actions'];
     name:any;
