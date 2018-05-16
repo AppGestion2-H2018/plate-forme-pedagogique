@@ -77,7 +77,7 @@ app.use('/api/utilisateurs', utlisateursRouter);
  */
 app.use(function (req, res, next) {
     // Mettre du preprocessing ici
-    const fal = true;
+    const fal = false; // Carine Croteau : Je dois désactiver cette fonction puisqu'elle empêche l'accès à l'API et complique le débogage des collaborateurs
     if (fal) {
         GestionCompleteDesCookiesEtDesDonneesDeConnexion(req, res).then(function (multiReponse) {
             res = multiReponse[0];
