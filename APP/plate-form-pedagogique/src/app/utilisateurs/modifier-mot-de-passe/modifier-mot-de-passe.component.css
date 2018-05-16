@@ -50,7 +50,6 @@
  display:-moz-box;
  display:-webkit-flex;
  display:-ms-flexbox;
- display:box;
  display:flex;
 }
 .auth-form .row.name input,.auth-form .row.email input,.auth-form .row.password input,.auth-form .row.confirmation input {
