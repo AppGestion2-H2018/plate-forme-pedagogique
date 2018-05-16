@@ -57,7 +57,7 @@ export class GroupeService {
         return this.http.put<Classe>("https://api-appgestion2-h18.herokuapp.com/api/groupes", groupe, httpOptions);
     }
 
-    /**Obtenir tous les Utilisateurs **/
+    /** GET : Obtenir tous les utilisateurs **/
     getUtilisateurs(): Observable<Utilisateur[]> {
         return this.http.get<Utilisateur[]>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/auth/all');
     }
