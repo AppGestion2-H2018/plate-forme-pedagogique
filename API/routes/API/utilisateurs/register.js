@@ -19,8 +19,8 @@ router.post('/', function (req, res, next) {
     var objReponse;
     var codeErreur = 9;
     var message = "";
-   // var bcrypt = require('bcrypt');
- //   const saltRounds = 10;
+    var bcrypt = require('bcrypt');
+    const saltRounds = 10;
     var nouvelUtilisateur = new Utilisateur(req.body);
 
     // *******************************************************
@@ -110,14 +110,14 @@ router.post('/', function (req, res, next) {
         if (message === "") {
 
             // //fonction pour encrypter en bycrypt
-            // bcrypt.genSalt(saltRounds, function (err, salt) {
-            //     bcrypt.hash(nouvelUtilisateur.motdepasse, salt, function (err, hash) {
-            //         //le mot de passe encrypter du nouvelle utilisateur
-            //         nouvelUtilisateur.motdepasse = hash;
-            //         console.log(nouvelUtilisateur.motdepasse);
-            //
-            //     });
-            // });
+            bcrypt.genSalt(saltRounds, function (err, salt) {
+                bcrypt.hash(nouvelUtilisateur.motdepasse, salt, function (err, hash) {
+                    //le mot de passe encrypter du nouvelle utilisateur
+                    nouvelUtilisateur.motdepasse = hash;
+                    console.log(nouvelUtilisateur.motdepasse);
+
+                });
+            });
 
                 nouvelUtilisateur.save(function (err) {
                 if (err) return res.send(err);
