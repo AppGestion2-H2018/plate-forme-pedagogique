@@ -1,13 +1,17 @@
+<!--Prend le livre choisi et affiche les données séparément-->
 <div class="livres" *ngIf="selectedEnfant">
     <mat-card class="example-card">
     <div class="wrapper">
         <div class="item1">
+            <!--Image "thumbnail"-->
             <img src = {{selectedEnfant.volumeInfo.imageLinks.thumbnail}}><br>
             <span>
+                <!--Liens-->
                 <a href="{{selectedEnfant.volumeInfo.previewLink}}">Aperçu</a>
                 <a href="{{selectedEnfant.volumeInfo.infoLink}}">Informations</a>
             </span>
         </div>
+        <!--Infos-->
         <div class="item2">
             <h1>{{selectedEnfant.volumeInfo.title}}</h1><br>
             <h2>{{selectedEnfant.volumeInfo.subtitle}}</h2>
@@ -23,10 +27,10 @@
             <h3>Nombre de pages: {{selectedEnfant.volumeInfo.pageCount}}</h3>
             <h3>Langue: "{{selectedEnfant.volumeInfo.language}}"</h3>
             <div>
+                <!--Lance le pop-up-->
                 <button class="ajout alignright" mat-fab (click)="openDialog()">+</button>
             </div>
         </div>
     </div>
-
     </mat-card>
 </div>
