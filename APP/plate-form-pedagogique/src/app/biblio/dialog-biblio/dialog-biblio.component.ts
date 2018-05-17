@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NgForm} from "@angular/forms";
+import {BiblioService} from "../../service/biblio.service";
+import {Tablette} from "../../class/tablette";
 
 
 @Component({
@@ -10,27 +12,32 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class DialogBiblioComponent implements OnInit {
 
+    tablettesData: Tablette[];
+    newTablette: Tablette;
 
     constructor(
+        private biblioService: BiblioService,
         public dialogRef: MatDialogRef<DialogBiblioComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any){}
 
     ngOnInit() {
-
-    }
-    onNoClick(): void {
-        this.dialogRef.close();
+        this.newTablette = new Tablette;
+        this.newTablette.nom = '';
     }
 
-    postTablette(){
 
+    onSelect(tablette: Tablette): void {
+        this.dialogRef.close(tablette);
     }
 
-    save() {
-
-    }
-
-    close() {
-
+    postTablette(tabletteFormAjout: NgForm) {
+        if(tabletteFormAjout.valid) {
+            if(this.newTablette.nom != null && this.newTablette.nom != '') {
+                if(this.newTablette.nom.length >= 2 && this.newTablette.nom.length <= 50) {
+                    this.biblioService.postTablette(this.newTablette)
+                        .subscribe(tablette  => { this.tablettesData.push(tablette); tabletteFormAjout.resetForm()});
+                }
+            }
+        }
     }
 }

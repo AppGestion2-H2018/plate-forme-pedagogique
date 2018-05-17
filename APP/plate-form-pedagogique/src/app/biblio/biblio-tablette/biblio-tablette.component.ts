@@ -15,8 +15,4 @@ export class BiblioTabletteComponent implements OnInit {
     ngOnInit() {
 
     }
-
-    openTablette(){
-
-    }
 }

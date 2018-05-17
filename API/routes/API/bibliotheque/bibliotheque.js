@@ -61,9 +61,8 @@ router.post('/ajouter', function(req, res, next){
  * URL : http://localhost:3000/api/bibliotheque/tablette/:id
  */
 router.put('/tablette/:id', function(req, res, next){
-    var livre = req.body;
-    console.log(livre.volumeInfo.title);
-    if(!livre.id) {
+    var tablette = req.body;
+    if(!tablette.nom) {
         res.status(400);
         res.json({"erreur" : "Données incorrectes"});
     } else {
@@ -71,12 +70,11 @@ router.put('/tablette/:id', function(req, res, next){
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : livre}, function(err, result) {
+            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : tablette}, function(err, result) {
                 if (err) return console.log(err)
                 console.log("Tablette mis à jour");
                 res.json(result);
             })
-
             client.close();
         });
     }

@@ -2,7 +2,7 @@
 import {Livre} from "./livre";
 
 export class Tablette {
-    id: number;
+    id: string;
     user: string;
     nom: string;
     livres: Livre[];
