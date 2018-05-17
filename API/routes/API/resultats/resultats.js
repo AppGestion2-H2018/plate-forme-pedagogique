@@ -17,7 +17,7 @@ Amélioration: Francis Gagnon
 Aidé par: William Houle
 */
 
-//Tentative de connection initiale (Pour empècher le double handshake)
+//Tentative de connection initiale (Pour ne pas avoir de double handshake)
 con.connect(function (err) {
     if (err) console.log(err);
 });

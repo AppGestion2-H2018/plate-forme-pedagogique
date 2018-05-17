@@ -16,8 +16,8 @@ const httpOptions = {
 @Injectable()
 export class UtilisateurService {
 
-      url = "http://localhost:3000";
-      //url = "https://api-appgestion2-h18.herokuapp.com";
+      //url = "http://localhost:3000";
+      url = "https://api-appgestion2-h18.herokuapp.com";
 
     constructor(private http: HttpClient) {
         console.log('User Service Initialized...');
