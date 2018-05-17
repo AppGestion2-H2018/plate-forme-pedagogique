@@ -27,11 +27,12 @@ export class GroupeService {
     }
 
     getTypes(): Observable<Type[]> {
-        return this.http.get<Type[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/types/all');
+        console.log('Les types fonctionnenent');
+        return this.http.get<Type[]>('http://localhost:3000/api/groupes/types/all');
     }
 
     getProgrammes(): Observable<Programme[]> {
-        return this.http.get<Programme[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/programmes/all');
+        return this.http.get<Programme[]>('http://localhost:3000/api/groupes/programmes/all');
     }
 
     getClasses(): Observable<Classe[]> {

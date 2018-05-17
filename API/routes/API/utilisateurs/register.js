@@ -104,6 +104,7 @@ router.post('/', function (req, res, next) {
         // ********************************************************
 
         if (message === "") {
+
             nouvelUtilisateur.save(function (err) {
                 if (err) return res.send(err);
 
@@ -112,6 +113,7 @@ router.post('/', function (req, res, next) {
                 objReponse = {'Code': codeErreur, 'Message': message};
                 res.json(objReponse);
             });
+
         } else {
             objReponse = {'Code': codeErreur, 'Message': message};
             res.json(objReponse);

@@ -75,8 +75,6 @@ export class UtilisateurService {
     /**
      * Rechercher un utilisateur.
      *
-     * TODO: Vérifier si ça fonctionne lorsque l'API sera fonctionnelle
-     *
      * @param {Utilisateur} utilisateur
      * @returns {Observable<Utilisateur>}
      */
@@ -89,14 +87,5 @@ export class UtilisateurService {
             courriel,
             utilisateurId
         });
-    }
-
-    /**
-     * Va chercher une liste des types.
-     *
-     * @returns {Observable<Type[]>}
-     */
-    getTypes(): Observable<Type[]> {
-        return this.http.get<Type[]>('http://localhost:3000/api/groupes/types/all');
     }
 }
