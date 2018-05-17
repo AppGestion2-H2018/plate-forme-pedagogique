@@ -48,12 +48,9 @@ getDateRemise(): void {
     }
 
     // Ne fonctionne pas
-    ajoutCommentaires(){
-        this.publication.commentaire.forEach(commentaire =>
-            {
-                this.publication.commentaire.push(this.commentaire);
-            }
-        );
+    ajoutCommentaires(publication: Publication){
+        this.publication = publication;
+        this.publication.commentaire.push(this.commentaire);
     }
 
     ajoutCommentaire(publication: Publication) {

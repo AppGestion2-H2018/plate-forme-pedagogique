@@ -17,8 +17,8 @@ export class PublicationService {
   private ajoutCommentaireUrl = 'http://localhost:3000/api/publications/';
 
   getPublications(): Observable<Publication[]> {
-      //return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
-      return this.http.get<Publication[]>('http://localhost:3000/api/publications/');
+      return this.http.get<Publication[]>('https://api-appgestion2-h18.herokuapp.com/api/publications/');
+      //return this.http.get<Publication[]>('http://localhost:3000/api/publications/');
   }
 
   getPublicationParId(id: String): Observable<Publication[]> {
@@ -63,7 +63,8 @@ export class PublicationService {
         newPublication.fichier = publication.fichier,
         newPublication.commentaire = publication.commentaire
 
-        return this.http.put(`http://localhost:3000/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
+        return this.http.put(`https://api-appgestion2-h18.herokuapp.com/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
+        //return this.http.put(`http://localhost:3000/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
     }
 
     updatePublication(publication: Publication) {
