@@ -24,31 +24,55 @@ export class GroupeService {
 
     }
 
+    /**
+     * Permet de récupérer la liste de toutes les utilisateurs existants à partir de l'API.
+     * * @Autheur : Danny Dugas
+     * */
     getUtilisateurs(): Observable<Utilisateur[]> {
         // return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
         return this.http.get<Utilisateur[]>('http://localhost:3000/api/utilisateurs/auth/all');
     }
 
+    /**
+     * Permet de récupérer la liste de tous les groupes existants à partir de l'API.
+     * * @Autheur : Danny Dugas
+     * */
     getGroupes(): Observable<Groupe[]> {
         // return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
         return this.http.get<Groupe[]>('http://localhost:3000/api/groupes/all');
     }
 
+    /**
+     * Permet de récupérer la liste des types existants à partir de l'API.
+     * * @Autheur : Danny Dugas
+     * */
     getTypes(): Observable<Type[]> {
         // return this.http.get<Type[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/types/all');
         return this.http.get<Type[]>('http://localhost:3000/api/groupes/types/all');
     }
 
+    /**
+     * Permet de récupérer la liste de tous les programmes existants à partir de l'API.
+     * * @Autheur : Danny Dugas
+     * */
     getProgrammes(): Observable<Programme[]> {
         // return this.http.get<Programme[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/programmes/all');
         return this.http.get<Programme[]>('http://localhost:3000/api/groupes/programmes/all');
     }
 
+    /**
+     * Permet de récupérer la liste de toutes les classes existantes à partir de l'API.
+     * * @Autheur : Danny Dugas
+     * */
     getClasses(): Observable<Classe[]> {
         // return this.http.get<Classe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/classes/all');
         return this.http.get<Classe[]>('http://localhost:3000/api/groupes/classes/all');
     }
 
+    /**
+     * Permet d'ajouter un groupe.
+     * * @Autheur : Danny Dugas
+     * */
     addGroupe(newGroupe: Groupe) {
         // return this.http.post('https://api-appgestion2-h18.herokuapp.com/api/groupes/', JSON.stringify(newGroupe), httpOptions);
         return this.http.post('http://localhost:3000/api/groupes/', JSON.stringify(newGroupe), httpOptions);
