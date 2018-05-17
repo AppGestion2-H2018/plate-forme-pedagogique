@@ -38,7 +38,7 @@ export class BiblioService {
     //Modifier (Ajoute un livre à une tablette)
     putTablette (tablette: Tablette): Observable<Tablette> {
         const id = tablette._id;
-        const url = `${this.biblioAPIurl}/tablette/${id}`;   // ajouter l'id à l'URL de base
+        const url = `${this.biblioAPIurl}/tablette/`;   // ajouter l'id à l'URL de base
         return this.http.put<Tablette>(url, tablette, httpOptions);
     }
 }
