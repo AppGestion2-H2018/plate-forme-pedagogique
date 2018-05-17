@@ -8,6 +8,9 @@ import {Classe} from "../classe";
 import {Utilisateur} from "../../class/utilisateur";
 import {CookieService} from "ngx-cookie-service";
 import {PrincipalGroupesComponent} from "../principal-groupes/principal-groupes.component";
+import {Form} from "@angular/forms";
+import { NgForm } from '@angular/forms';
+
 
 @Component({
     selector: 'app-creer-groupe',
@@ -23,9 +26,11 @@ export class CreerGroupeComponent extends PrincipalGroupesComponent implements O
     programmes: Programme[];
     utilisateurs: Utilisateur[];
     @Input() utilisateur: Utilisateur;
-    groupe : Groupe;
+    groupe: Groupe;
 
-    constructor(private groupeService: GroupeService, protected utilisateurService: UtilisateurService, protected cookieService : CookieService) {super(cookieService, utilisateurService)}
+    constructor(private groupeService: GroupeService, protected utilisateurService: UtilisateurService, protected cookieService: CookieService) {
+        super(cookieService, utilisateurService)
+    }
 
     /**
      * Permet de joindre la liste de tous les groupes existants, récupérée par le service, à un objet 'groupes'.
@@ -67,21 +72,31 @@ export class CreerGroupeComponent extends PrincipalGroupesComponent implements O
      * Permet de joindre la liste de toutes les utilisateurs existants
      * * @Autheur : Danny Dugas
      * */
-    getUtilisateurs(): void{
+    getUtilisateurs(): void {
         this.groupeService.getUtilisateurs()
-            .subscribe(utilisateurs=>this.utilisateurs=utilisateurs);
+            .subscribe(utilisateurs => this.utilisateurs = utilisateurs);
     }
 
     /**
-     * Permet d'ajouter un groupe, et remet le formulaire à blanc.
+     * Permet de filtrer les doublons pour les administrateurs et super-administrateurs.
+     * Ajoute le groupe à la liste de groupes et remet le formulaire à blanc.
      * Définie la variable "Propriétaire" comme étant l'utilisateur connecté.
      * * @Autheur : Danny Dugas
+     * * @Source : https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
      * */
-    addGroupe(event: any): void{
+    addGroupe(event: any, ajoutGroupe: NgForm): void {
         event.preventDefault();
+        if(this.groupe.super_admins!==undefined && this.groupe.super_admins!==null){
+            this.groupe.super_admins = this.groupe.super_admins.filter(function (item, pos, self) {return self.indexOf(item) == pos;});
+        }
+        if(this.groupe.admins!==undefined && this.groupe.admins!==null){
+            this.groupe.admins = this.groupe.admins.filter(function (item, pos, self) {return self.indexOf(item) == pos;});
+        }
         this.groupeService.addGroupe(this.groupe)
             .subscribe(groupe => {
                 this.groupes.push(this.groupe);
+                this.groupe = new Groupe();
+                ajoutGroupe.resetForm();
                 this.groupe = new Groupe();
                 this.groupe.proprietaire = this.utilisateur._id;
             })

@@ -13,29 +13,32 @@
 <div class="container-fluid col-md-12">
     <mat-card>
         <h1>Formulaire d'ajout de groupe</h1>
-        <form class="ajoutGroupe" id="ajoutGroupe" (ngSubmit)="addGroupe($event)">
+        <form class="ajoutGroupe" id="ajoutGroupe" name="ajoutGroupe" #ajoutGroupe="ngForm" (ngSubmit)="addGroupe($event, ajoutGroupe)">
 
             <h2>Informations générales</h2>
 
             <!--//////////////////////////////////////////////////////-->
             <!--//                  NOM                             //-->
             <!--//////////////////////////////////////////////////////-->
+            <div class="required">
 
-            <mat-form-field class="input-full-width">
-                <input matInput [(ngModel)]="groupe.nom" required minlength="3" maxlength="100" #nom="ngModel"
-                       name="groupe.nom" placeholder="Nom du groupe">
-                <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom du
-                    groupe est requis.
-                </mat-error>
-                <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom du
-                    groupe doit
-                    contenir au moins 3 caractères.
-                </mat-error>
-                <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom du
-                    groupe doit
-                    contenir au maximum 100 caractères.
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="input-full-width ">
+                    <input matInput [(ngModel)]="groupe.nom" required minlength="3" maxlength="100" #nom="ngModel"
+                           name="groupe.nom" placeholder="Nom du groupe">
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom du
+                        groupe est requis.
+                    </mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom du
+                        groupe doit
+                        contenir au moins 3 caractères.
+                    </mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom du
+                        groupe doit
+                        contenir au maximum 100 caractères.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
 
             <!--//////////////////////////////////////////////////////-->
             <!--//                  DESCRIPTION                     //-->
@@ -69,7 +72,7 @@
             <!--//                  ACTIF                           //-->
             <!--//////////////////////////////////////////////////////-->
 
-            <div class="input-height">
+            <div class="input-height required">
                 <mat-radio-group [(ngModel)]="groupe.actif" required #actif="ngModel" name="groupe.actif">
                     <mat-radio-button value="true">Actif</mat-radio-button>
                     <mat-radio-button value="false">Inactif</mat-radio-button>
@@ -85,7 +88,7 @@
             <!--//                  PUBLIC                          //-->
             <!--//////////////////////////////////////////////////////-->
 
-            <div class="input-height">
+            <div class="input-height required">
                 <mat-radio-group [(ngModel)]="groupe.est_publique" required #publique="ngModel"
                                  name="groupe.est_publique">
                     <mat-radio-button value="true">Publique</mat-radio-button>
@@ -102,7 +105,7 @@
             <!--//                  COMMENTAIRE                     //-->
             <!--//////////////////////////////////////////////////////-->
 
-            <div class="input-height">
+            <div class="input-height required">
                 <mat-radio-group [(ngModel)]="groupe.commenter" required #commenter="ngModel" name="groupe.commenter">
                     <mat-radio-button value="true">Avec commentaire(s)</mat-radio-button>
                     <mat-radio-button value="false">Sans commentaire</mat-radio-button>
@@ -135,7 +138,9 @@
             <mat-form-field class="input-full-width">
                 <mat-select placeholder="Classes" [(ngModel)]="groupe.classes" multiple id="groupe.classes"
                             name="groupe.classes">
-                    <mat-option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}, groupe : {{classe.no_groupe}}</mat-option>
+                    <mat-option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}, groupe :
+                        {{classe.no_groupe}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -180,79 +185,8 @@
                         <ng-container *ngFor="let programme of programmes">
                             <mat-optgroup *ngIf="programme.id==programmeSelected" [label]="programme.nom">
                                 <ng-container *ngFor="let utilisateur of utilisateurs">
-                                    <mat-option *ngIf="utilisateur.programme==programmeSelected" value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
-                                    </mat-option>
-                                </ng-container>
-                            </mat-optgroup>
-                        </ng-container>
-                    </ng-container>
-
-                    <!------------>
-                    <!--//CLASSE-->
-                    <!------------>
-                    <ng-container *ngFor="let classeSelected of groupe.classes">
-                        <ng-container *ngFor="let classe of classes">
-                            <mat-optgroup *ngIf="classe._id==classeSelected"
-                                          [label]="classe.nom + ', groupe : ' + classe.no_groupe">
-                                <ng-container *ngFor="let utilisateurID of classe.utilisateurs">
-                                    <ng-container *ngFor="let utilisateur of utilisateurs">
-                                        <mat-option
-                                                *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
+                                    <mat-option *ngIf="utilisateur.programme==programmeSelected"
                                                 value="{{utilisateur._id}}">
-                                            {{utilisateur.prenom}}, {{utilisateur.nom}}
-                                        </mat-option>
-                                    </ng-container>
-                                </ng-container>
-                            </mat-optgroup>
-                        </ng-container>
-                    </ng-container>
-                    <!---------->
-                    <!--//TYPE-->
-                    <!---------->
-                    <ng-container *ngFor="let typeSelected of groupe.types">
-                        <ng-container *ngFor="let type of types">
-                            <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
-                                <ng-container *ngFor="let utilisateur of utilisateurs">
-                                    <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
-                                    </mat-option>
-                                </ng-container>
-                            </mat-optgroup>
-                        </ng-container>
-                    </ng-container>
-
-                    <!---------->
-                    <!--//USER-->
-                    <!---------->
-                    <mat-optgroup label="Utilisateurs">
-                    <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
-                        <ng-container *ngFor="let utilisateur of utilisateurs">
-                                <mat-option *ngIf="utilisateur._id==utilisateurSelected">
-                                    {{utilisateur.prenom}}, {{utilisateur.nom}}
-                                </mat-option>
-                        </ng-container>
-                    </ng-container>
-                    </mat-optgroup>
-                </mat-select>
-            </mat-form-field>
-
-            <!--//////////////////////////////////////////////////////-->
-            <!--//                  ADMINISTRATEUR                  //-->
-            <!--//////////////////////////////////////////////////////-->
-
-            <mat-form-field class="input-full-width">
-                <mat-select placeholder="Administrateur(s)" [(ngModel)]="groupe.admins" multiple
-                            id="groupe.admins" name="groupe.admins">
-
-                    <!--------------->
-                    <!--//PROGRAMME-->
-                    <!--------------->
-                    <ng-container *ngFor="let programmeSelected of groupe.programmes">
-                        <ng-container *ngFor="let programme of programmes">
-                            <mat-optgroup *ngIf="programme.id==programmeSelected" [label]="programme.nom">
-                                <ng-container *ngFor="let utilisateur of utilisateurs">
-                                    <mat-option *ngIf="utilisateur.programme==programmeSelected" value="{{utilisateur._id}}">
                                         {{utilisateur.prenom}}, {{utilisateur.nom}}
                                     </mat-option>
                                 </ng-container>
@@ -300,7 +234,80 @@
                     <mat-optgroup label="Utilisateurs">
                         <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
                             <ng-container *ngFor="let utilisateur of utilisateurs">
-                                <mat-option *ngIf="utilisateur._id==utilisateurSelected">
+                                <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
+                                    {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                </mat-option>
+                            </ng-container>
+                        </ng-container>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  ADMINISTRATEUR                  //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Administrateur(s)" [(ngModel)]="groupe.admins" multiple
+                            id="groupe.admins" name="groupe.admins">
+
+                    <!--------------->
+                    <!--//PROGRAMME-->
+                    <!--------------->
+                    <ng-container *ngFor="let programmeSelected of groupe.programmes">
+                        <ng-container *ngFor="let programme of programmes">
+                            <mat-optgroup *ngIf="programme.id==programmeSelected" [label]="programme.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.programme==programmeSelected"
+                                                value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!------------>
+                    <!--//CLASSE-->
+                    <!------------>
+                    <ng-container *ngFor="let classeSelected of groupe.classes">
+                        <ng-container *ngFor="let classe of classes">
+                            <mat-optgroup *ngIf="classe._id==classeSelected"
+                                          [label]="classe.nom + ', groupe : ' + classe.no_groupe">
+                                <ng-container *ngFor="let utilisateurID of classe.utilisateurs">
+                                    <ng-container *ngFor="let utilisateur of utilisateurs">
+                                        <mat-option
+                                                *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
+                                                value="{{utilisateur._id}}">
+                                            {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                        </mat-option>
+                                    </ng-container>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+                    <!---------->
+                    <!--//TYPE-->
+                    <!---------->
+                    <ng-container *ngFor="let typeSelected of groupe.types">
+                        <ng-container *ngFor="let type of types">
+                            <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!---------->
+                    <!--//USER-->
+                    <!---------->
+                    <mat-optgroup label="Utilisateurs">
+                        <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
+                            <ng-container *ngFor="let utilisateur of utilisateurs">
+                                <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
                                     {{utilisateur.prenom}}, {{utilisateur.nom}}
                                 </mat-option>
                             </ng-container>
