@@ -28,6 +28,7 @@ export class CreerGroupeComponent extends PrincipalGroupesComponent implements O
     @Input() utilisateur: Utilisateur;
     groupe: Groupe;
     messageSucces:string;
+    minDate = new Date(Date.now());
 
     constructor(private groupeService: GroupeService, protected utilisateurService: UtilisateurService, protected cookieService: CookieService) {
         super(cookieService, utilisateurService)

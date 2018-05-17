@@ -11,6 +11,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <div class="container-fluid col-md-12">
+    <div *ngIf="messageSucces" class="alert alert-success" role="alert">
+        {{messageSucces}}
+    </div>
     <mat-card>
         <h1>Formulaire d'ajout de groupe</h1>
         <form class="ajoutGroupe" id="ajoutGroupe" name="ajoutGroupe" #ajoutGroupe="ngForm" (ngSubmit)="addGroupe($event, ajoutGroupe)">
@@ -59,11 +62,20 @@
             <!--//                  DATE DE FERMETURE               //-->
             <!--//////////////////////////////////////////////////////-->
 
+            <!--<mat-form-field>-->
+                <!--<input matInput [matDatepicker]="picker" [(ngModel)]="groupe.date_fin" name="groupe.date_fin"-->
+                       <!--placeholder="Date de fermeture">-->
+                <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+                <!--<mat-datepicker #picker></mat-datepicker>-->
+            <!--</mat-form-field>-->
+
             <mat-form-field>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="groupe.date_fin" name="groupe.date_fin"
-                       placeholder="Date de fermeture">
+                       [min]="minDate"  placeholder="Date de fermeture" #dateFermeture="ngModel">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <!--<mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('min')">Le date de fermeture doit être supérieure à la date du jour.-->
+                <!--</mat-error>-->
             </mat-form-field>
             <mat-divider></mat-divider>
             <br>
@@ -91,7 +103,7 @@
             <div class="input-height required">
                 <mat-radio-group [(ngModel)]="groupe.est_publique" required #publique="ngModel"
                                  name="groupe.est_publique">
-                    <mat-radio-button value="true">Publique</mat-radio-button>
+                    <mat-radio-button value="true">Public</mat-radio-button>
                     <mat-radio-button value="false">Privé</mat-radio-button>
                     <mat-error
                             *ngIf="publique.invalid && (publique.dirty || publique.touched) && publique.hasError('required')">
@@ -316,10 +328,8 @@
                 </mat-select>
             </mat-form-field>
 
-            <input type="submit" value="Créer le groupe">
-            <div *ngIf="messageSucces" class="alert alert-success" role="alert">
-                {{messageSucces}}
-            </div>
+            <input type="submit" class="btn" value="Créer le groupe">
+
         </form>
     </mat-card>
 </div>
