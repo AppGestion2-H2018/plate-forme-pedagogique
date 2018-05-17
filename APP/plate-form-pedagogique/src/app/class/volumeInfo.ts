@@ -3,7 +3,7 @@ import {Author} from "./author";
 // Définition de la class
 export class VolumeInfo {
 
-    id: string;
+    _id: string;
     title: string;
     subtitle: string;
     authors: Author[];

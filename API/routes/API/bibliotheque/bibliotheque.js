@@ -62,15 +62,20 @@ router.post('/ajouter', function(req, res, next){
  */
 router.put('/tablette/:id', function(req, res, next){
     var tablette = req.body;
+    var updatedTablette = {};
     if(!tablette.nom) {
         res.status(400);
         res.json({"erreur" : "Données incorrectes"});
     } else {
+        updatedTablette.nom = tablette.nom;
+        updatedTablette.livres = tablette.livres;
+        updatedTablette.user = tablette.user;
+        console.log(updatedTablette);
         MongoClient.connect(url, function(err, client) {
             assert.equal(null, err);
             console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : tablette}, function(err, result) {
+            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : updatedTablette}, function(err, result) {
                 if (err) return console.log(err)
                 console.log("Tablette mis à jour");
                 res.json(result);
