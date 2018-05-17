@@ -10,9 +10,10 @@ export class BiblioTabletteComponent implements OnInit {
 
     @Input() tablettes: Tablette[];
 
+
     constructor() { }
 
     ngOnInit() {
-
+        console.log(this.tablettes[3].livres[0].volumeInfo.title);
     }
 }

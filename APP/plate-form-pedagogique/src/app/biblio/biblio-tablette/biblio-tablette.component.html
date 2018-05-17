@@ -1,17 +1,20 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let tablette of tablettes">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{tablette.nom}}
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+    <mat-expansion-panel *ngFor="let tablette of tablettes">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{tablette.nom}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <div *ngIf="tablette.livres == null">Cette bibliothèque est vide.
-      <ul>
-      <li *ngFor="let livre of tablette.livres">
-        {{livre.volumeInfo.title}}
-      </li>
-    </ul>
-    </div>
-  </mat-expansion-panel>
+        <div *ngIf="tablette.livres != null">
+            <ul>
+                <li *ngFor="let livre of tablette.livres">
+                    <div *ngIf="livre.hasOwnProperty('volumeInfo');">
+                        {{livre.volumeInfo.title}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </mat-expansion-panel>
+
 </mat-accordion>

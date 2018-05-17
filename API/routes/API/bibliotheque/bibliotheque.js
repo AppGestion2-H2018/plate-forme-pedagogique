@@ -4,7 +4,7 @@
 var dbName = 'plate-forme-pedagogique';
 var collection = 'bibliotheques';
 var config = require('../../../config');
-var Biblio = require('../../../models/bibliotheque');
+var Tablette = require('../../../models/tablette');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const url = config.database.uri;
@@ -61,8 +61,9 @@ router.post('/ajouter', function(req, res, next){
  * Ajoute un livre à une tablette
  * URL : http://localhost:3000/api/bibliotheque/tablette/:id
  */
-/*router.put('/tablette/:id', function(req, res, next){
+router.put('/tablette/', function(req, res){
     var tablette = req.body;
+    var id = tablette._id;
     var updatedTablette = {};
     if(!tablette.nom) {
         res.status(400);
@@ -71,33 +72,33 @@ router.post('/ajouter', function(req, res, next){
         updatedTablette.nom = tablette.nom;
         updatedTablette.livres = tablette.livres;
         updatedTablette.user = tablette.user;
-        console.log(updatedTablette);
         MongoClient.connect(url, function(err, client) {
             assert.equal(null, err);
-            console.log("Connexion au serveur réussie");
+            //console.log("Connexion au serveur réussie");
             const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : updatedTablette}, function(err, result) {
-                if (err) return console.log(err)
-                console.log("Tablette mis à jour");
-                res.json(result);
+            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(id)}, {$set : updatedTablette}, function(err, result) {
+                if (err) return res.json(err);
+                //console.log("Tablette mis à jour");
+                res.json(updatedTablette);
             })
             client.close();
         });
     }
-});*/
+});
 /**
  * Modifier une biblio par son id
  */
-router.put('/', function (req, res) {
+/*router.put('/', function (req, res) {
     var objet = req.body;
-    Biblio.findByIdAndUpdate(objet._id,objet,{new:true},function(err,biblio){
+    Tablette.findByIdAndUpdate(objet._id,objet,{new:true},function(err,tablette){
         if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
         if(groupe == null){
             return res.send({"code":0,"message":"Le groupe n'existe pas"});// Si rien trouvé, renvoyer une erreur 0
         }
-        return res.send(biblio);//Le groupe modifié est envoyé en format JSON
+        console.log("Tablette mis à jour");
+        return res.send(tablette);//Le groupe modifié est envoyé en format JSON
     });
-});
+});*/
 
 /**
  * Supprime une tablette ***NON UTILISÉE***
