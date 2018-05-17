@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Utilisateur} from '../class/utilisateur';
-import {Type} from '../class/type';
 import {HttpClient, HttpClientModule, HttpClientXsrfModule, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
@@ -16,11 +15,11 @@ const httpOptions = {
 @Injectable()
 export class UtilisateurService {
 
-      url = "http://localhost:3000";
-      //url = "https://api-appgestion2-h18.herokuapp.com";
+    //url = "http://localhost:3000";
+    url = 'https://api-appgestion2-h18.herokuapp.com';
 
     constructor(private http: HttpClient) {
-        console.log('User Service Initialized...');
+
     }
 
 
@@ -70,7 +69,7 @@ export class UtilisateurService {
      * @returns {Observable<ReponseAPI>}
      */
     modifierMotDePasse(password: string, resetPasswordToken: string): Observable<ReponseAPI> {
-        var objNewPassword = {'new_password': password, 'resetPasswordToken':resetPasswordToken};
+        var objNewPassword = {'new_password': password, 'resetPasswordToken': resetPasswordToken};
         // return this.http.post<ReponseAPI>('http://localhost:3000/api/utilisateurs/recuperation/resetPassword', JSON.stringify(objNewPassword), httpOptions);
         return this.http.post<ReponseAPI>('http://api-appgestion2-h18.herokuapp.com/api/utilisateurs/recuperation/resetPassword', JSON.stringify(objNewPassword), httpOptions);
     }
@@ -105,8 +104,6 @@ export class UtilisateurService {
     /**
      * Rechercher un utilisateur.
      *
-     * TODO: Vérifier si ça fonctionne lorsque l'API sera fonctionnelle
-     *
      * @param {Utilisateur} utilisateur
      * @returns {Observable<Utilisateur>}
      */
@@ -119,14 +116,5 @@ export class UtilisateurService {
             courriel,
             utilisateurId
         });
-    }
-
-    /**
-     * Va chercher une liste des types.
-     *
-     * @returns {Observable<Type[]>}
-     */
-    getTypes(): Observable<Type[]> {
-        return this.http.get<Type[]>('http://localhost:3000/api/groupes/types/all');
     }
 }

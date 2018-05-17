@@ -9,7 +9,7 @@ export class Utilisateur {
     codepermanent: string;
     programme: string;  // TODO : ObjectID
     sexe: string;
-    role: string;  // TODO : ObjectID
+    type: string;  // TODO : ObjectID
     motdepasse: string;
     photo: string;
 }

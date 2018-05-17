@@ -3,8 +3,13 @@
 <div class="resultats"> 
     <ul class="resultats">
         <li *ngFor="let evaluation of evaluations">
-          <h2>{{evaluation.nom}}</h2>
-		  <!--Moyenne: {{evaluation.moyenne}}-->
-    </li>
+		<form name= "ModificationEvaluation" (ngSubmit)="modificationEvaluation(evaluation.id,evaluation.nom)">
+		<input type="hidden" [(ngModel)]="evaluation.id" name="EvaluationID" value="{{evaluation.id}}">
+			<input class="form-control" [(ngModel)]="evaluation.nom" name="EvaluationNom" placeholder="{{evaluation.nom}}" required>
+			
+			<input type="submit" value="Modifier">
+		  </form>
+		  <input type="button" (click)="supprimerEvaluation(evaluation.id,evaluation.nom)" value="Supprimer"/>
+		</li>
   </ul>
 </div>

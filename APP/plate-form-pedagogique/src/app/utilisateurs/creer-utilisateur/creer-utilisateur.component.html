@@ -79,12 +79,14 @@
                 <mat-error *ngIf="sexe.invalid && (sexe.dirty || sexe.touched) && sexe.hasError('required')">Le sexe est obligatoire.</mat-error>
             </mat-radio-group>
 
+            <!-- Rôle -->
             <mat-form-field>
-                <mat-select [(ngModel)]="utilisateur.role" name="utilisateur.role" placeholder="Rôle">
+                <mat-select [(ngModel)]="utilisateur.type" #role="ngModel" name="utilisateur.type" placeholder="Type">
                     <mat-option *ngFor="let type of types" [value]="type._id">
                         {{ type.nom }}
                     </mat-option>
                 </mat-select>
+                <!--<mat-error *ngIf="type.invalid && (type.dirty || type.touched) && type.hasError('required')">Le type est obligatoire.</mat-error>-->
             </mat-form-field>
 
             <!-- Mot de passe -->

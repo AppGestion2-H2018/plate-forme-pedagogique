@@ -1,30 +1,39 @@
 import {Component, OnInit} from '@angular/core';
+
 import {UtilisateurService} from '../../service/utilisateur.service';
+import {GroupeService} from '../../groupe/service/groupe.service';
+
 import {ActivatedRoute, Params} from '@angular/router';
 import {Utilisateur} from '../../class/utilisateur';
 import {ReponseAPI} from '../../class/reponseAPI';
 import {NgForm} from '@angular/forms';
 import {ValidateEmailNotTaken} from '../../validators/async-email-not-taken.validator';
+
 import {Type} from '../../class/type';
+import {Programme} from '../../class/programme';
 
 @Component({
     selector: 'app-creer-utilisateur',
     templateUrl: './creer-utilisateur.component.html',
-    styleUrls: ['./creer-utilisateur.component.css']
+    styleUrls: ['./creer-utilisateur.component.css'],
+    providers: [UtilisateurService, GroupeService]
 })
+
 export class CreerUtilisateurComponent implements OnInit {
 
     reponseAPI: ReponseAPI;
 
     utilisateur = new Utilisateur();
+
     types: Type[];
+    programmes: Programme[];
 
     editMode = false;
 
     titreDeLaPage: string;
     titreDuBoutonEnregistrement: string;
 
-    constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute) {
+    constructor(private groupeService: GroupeService, private utilisateurService: UtilisateurService, private route: ActivatedRoute) {
 
     }
 
@@ -45,6 +54,7 @@ export class CreerUtilisateurComponent implements OnInit {
 
         this.reponseAPI = {'Code': 0, 'Message': 'Aucun message'};
         this.getTypes();
+        this.getProgrammes();
 
         this.route.params.subscribe(
             (params: Params) => {
@@ -76,7 +86,12 @@ export class CreerUtilisateurComponent implements OnInit {
     }
 
     getTypes(): void {
-        this.utilisateurService.getTypes()
+        this.groupeService.getTypes()
             .subscribe(types => this.types = types);
+    }
+
+    getProgrammes(): void {
+        this.groupeService.getProgrammes()
+            .subscribe(programmes => this.programmes = programmes);
     }
 }

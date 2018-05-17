@@ -63,5 +63,11 @@ export class ResultatService {
     modifierEvaluation(evaluation:Evaluation) {
         return this.http.put(this.url + 'evaluations/modifier/' + evaluation.id + '/' + "Modifier!", null);
     }
+	
+	//Modification d'une d'évaluation (alt)
+    //Todo~Get the body
+    modificationEvaluation(id: number, nom: string) {
+   return this.http.put(this.url + 'evaluations/modifier/' + id + '/' + nom,null);
+}
 
 }

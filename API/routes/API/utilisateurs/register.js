@@ -115,11 +115,10 @@ router.post('/', function (req, res, next) {
                     //le mot de passe encrypter du nouvelle utilisateur
                     nouvelUtilisateur.motdepasse = hash;
                     console.log(nouvelUtilisateur.motdepasse);
-
                 });
             });
 
-                nouvelUtilisateur.save(function (err) {
+            nouvelUtilisateur.save(function (err) {
                 if (err) return res.send(err);
 
                 codeErreur = 1;
@@ -127,6 +126,7 @@ router.post('/', function (req, res, next) {
                 objReponse = {'Code': codeErreur, 'Message': message};
                 res.json(objReponse);
             });
+
         } else {
             objReponse = {'Code': codeErreur, 'Message': message};
             res.json(objReponse);

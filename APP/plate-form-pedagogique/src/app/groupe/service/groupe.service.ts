@@ -5,12 +5,12 @@ import {Observable} from 'rxjs/Observable';
 import {Groupe} from '../groupe';
 import {Type} from '../type';
 import {Programme} from '../programme';
-import {Classe} from "../classe";
+import {Classe} from '../classe';
 import {Utilisateur} from '../../class/utilisateur';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-const httpOptions = { 
-	headers: new HttpHeaders({'Content-Type': 'application/json'})
+const httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
@@ -18,17 +18,18 @@ const httpOptions = {
 export class GroupeService {
 
     private groupesAPIUrl = 'https://api-appgestion2-h18.herokuapp.com/api';
-	private groupesAPIUrlLocal = 'http://localhost:3000/api';
-	
+    private groupesAPIUrlLocal = 'http://localhost:3000/api';
+
     constructor(private http: HttpClient) {
 
     }
-    getGroupe(id): Observable<Groupe[]>{
+
+    getGroupe(id): Observable<Groupe[]> {
         return this.http.get<Groupe[]>('http://localhost:3000/api/groupes/' + id);
     }
 
     /**
-     * Permet de récupérer la liste de toutes les utilisateurs existants à partir de l'API.
+     * Permet de récupérer la liste de tous les utilisateurs existants à partir de l'API.
      * * @Autheur : Danny Dugas
      * */
     getUtilisateurs(): Observable<Utilisateur[]> {
@@ -81,7 +82,7 @@ export class GroupeService {
         return this.http.post('http://localhost:3000/api/groupes/', JSON.stringify(newGroupe), httpOptions);
     }
 
-    deleteGroupe(groupe : Groupe): Observable<Groupe> {
+    deleteGroupe(groupe: Groupe): Observable<Groupe> {
         const id = groupe._id;
         // const url = 'https://api-appgestion2-h18.herokuapp.com/api/groupes/delete/' + id;
         const url = 'http://localhost:3000/api/groupes/delete/' + id;
@@ -89,11 +90,11 @@ export class GroupeService {
     }
 
     /** UPDATE: modification de un groupe **/
-    updateGroupe(groupe : Groupe) {
+    updateGroupe(groupe: Groupe) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         // return this.http.put('https://api-appgestion2-h18.herokuapp.com/api/groupes/'+ groupe._id , JSON.stringify(groupe), httpOptions);
-        return this.http.put('http://localhost:3000/api/groupes/'+ groupe._id , JSON.stringify(groupe), httpOptions);
+        return this.http.put('http://localhost:3000/api/groupes/' + groupe._id, JSON.stringify(groupe), httpOptions);
     }
 }
 

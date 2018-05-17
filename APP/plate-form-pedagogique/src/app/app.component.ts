@@ -24,10 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
         AuthHttpInterceptor.onConnectionChanged.subscribe(valeurBool => {
             this.estConnecte = valeurBool;
         });
-        console.log("test Router");
         console.log(this.router);
-
-        console.log('test ActivatedRoute');
         console.log(this.route);
     }
 
