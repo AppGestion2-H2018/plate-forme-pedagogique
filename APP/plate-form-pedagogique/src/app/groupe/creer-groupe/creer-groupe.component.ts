@@ -27,6 +27,7 @@ export class CreerGroupeComponent extends PrincipalGroupesComponent implements O
     utilisateurs: Utilisateur[];
     @Input() utilisateur: Utilisateur;
     groupe: Groupe;
+    messageSucces:string;
 
     constructor(private groupeService: GroupeService, protected utilisateurService: UtilisateurService, protected cookieService: CookieService) {
         super(cookieService, utilisateurService)
@@ -99,8 +100,8 @@ export class CreerGroupeComponent extends PrincipalGroupesComponent implements O
                 ajoutGroupe.resetForm();
                 this.groupe = new Groupe();
                 this.groupe.proprietaire = this.utilisateur._id;
-            })
-        ;
+            });
+        this.messageSucces = "Groupe enregistré avec succès!";
     }
 
     /**

@@ -163,7 +163,7 @@
                 <mat-select placeholder="Utilisateurs" [(ngModel)]="groupe.utilisateurs" multiple
                             id="groupe.utilisateurs" name="groupe.types">
                     <mat-option *ngFor="let utilisateur of utilisateurs" value="{{utilisateur._id}}">
-                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                        {{utilisateur.prenom}} {{utilisateur.nom}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -187,7 +187,7 @@
                                 <ng-container *ngFor="let utilisateur of utilisateurs">
                                     <mat-option *ngIf="utilisateur.programme==programmeSelected"
                                                 value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
                                     </mat-option>
                                 </ng-container>
                             </mat-optgroup>
@@ -206,7 +206,7 @@
                                         <mat-option
                                                 *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
                                                 value="{{utilisateur._id}}">
-                                            {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                            {{utilisateur.prenom}} {{utilisateur.nom}}
                                         </mat-option>
                                     </ng-container>
                                 </ng-container>
@@ -221,7 +221,7 @@
                             <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
                                 <ng-container *ngFor="let utilisateur of utilisateurs">
                                     <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
                                     </mat-option>
                                 </ng-container>
                             </mat-optgroup>
@@ -235,7 +235,7 @@
                         <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
                             <ng-container *ngFor="let utilisateur of utilisateurs">
                                 <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
-                                    {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                    {{utilisateur.prenom}} {{utilisateur.nom}}
                                 </mat-option>
                             </ng-container>
                         </ng-container>
@@ -260,7 +260,7 @@
                                 <ng-container *ngFor="let utilisateur of utilisateurs">
                                     <mat-option *ngIf="utilisateur.programme==programmeSelected"
                                                 value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
                                     </mat-option>
                                 </ng-container>
                             </mat-optgroup>
@@ -279,7 +279,7 @@
                                         <mat-option
                                                 *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
                                                 value="{{utilisateur._id}}">
-                                            {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                            {{utilisateur.prenom}} {{utilisateur.nom}}
                                         </mat-option>
                                     </ng-container>
                                 </ng-container>
@@ -294,7 +294,7 @@
                             <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
                                 <ng-container *ngFor="let utilisateur of utilisateurs">
                                     <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
-                                        {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
                                     </mat-option>
                                 </ng-container>
                             </mat-optgroup>
@@ -308,7 +308,7 @@
                         <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
                             <ng-container *ngFor="let utilisateur of utilisateurs">
                                 <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
-                                    {{utilisateur.prenom}}, {{utilisateur.nom}}
+                                    {{utilisateur.prenom}} {{utilisateur.nom}}
                                 </mat-option>
                             </ng-container>
                         </ng-container>
@@ -317,6 +317,9 @@
             </mat-form-field>
 
             <input type="submit" value="Créer le groupe">
+            <div *ngIf="messageSucces" class="alert alert-success" role="alert">
+                {{messageSucces}}
+            </div>
         </form>
     </mat-card>
 </div>

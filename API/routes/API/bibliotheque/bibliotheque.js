@@ -4,6 +4,7 @@
 var dbName = 'plate-forme-pedagogique';
 var collection = 'bibliotheques';
 var config = require('../../../config');
+var Biblio = require('../../../models/bibliotheque');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const url = config.database.uri;
@@ -60,7 +61,7 @@ router.post('/ajouter', function(req, res, next){
  * Ajoute un livre à une tablette
  * URL : http://localhost:3000/api/bibliotheque/tablette/:id
  */
-router.put('/tablette/:id', function(req, res, next){
+/*router.put('/tablette/:id', function(req, res, next){
     var tablette = req.body;
     if(!tablette.nom) {
         res.status(400);
@@ -78,6 +79,19 @@ router.put('/tablette/:id', function(req, res, next){
             client.close();
         });
     }
+});*/
+/**
+ * Modifier une biblio par son id
+ */
+router.put('/', function (req, res) {
+    var objet = req.body;
+    Biblio.findByIdAndUpdate(objet._id,objet,{new:true},function(err,biblio){
+        if (err) return res.status(500).send(err);//Mongoose renvera une erreur si le modèle n'est pas respecté
+        if(groupe == null){
+            return res.send({"code":0,"message":"Le groupe n'existe pas"});// Si rien trouvé, renvoyer une erreur 0
+        }
+        return res.send(biblio);//Le groupe modifié est envoyé en format JSON
+    });
 });
 
 /**
