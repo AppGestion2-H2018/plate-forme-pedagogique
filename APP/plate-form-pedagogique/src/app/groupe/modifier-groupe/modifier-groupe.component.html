@@ -11,135 +11,135 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <div class="container-fluid col-md-6">
-  <h1>Formulaire de modification</h1>
-  <form class="modifierGroupe" id="modifierGroupe">
+    <h1>Formulaire de modification</h1>
+    <form class="modifierGroupe" id="modifierGroupe">
 
 
-    <h2>Informations générales</h2>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Nom :
-      </label>
-      <input type="text" placeholder="Nom du groupe" autofocus class="form-control col-md-10" id="nom" name="nom">
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Description :
-      </label>
-      <textarea placeholder="Description" class="form-control col-md-10" id="description" name="description"
-                form="modifierGroupe" style="resize:none"></textarea>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Date de fermeture du groupe :
-      </label>
-      <input type="date" class="form-control col-md-10" id="dateFermeture" name="dateFermeture">
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Actif :
-      </label>
-      <div class="col-md-10">
-        <input type="checkbox" name="actif" value="true" name="actif"><br>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Public :
-      </label>
-      <div class="col-md-10">
-        <input type="checkbox" name="public" value="true" name="public"><br>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Section commentaires :
-      </label>
-      <div class="col-md-10">
-        <input type="checkbox" value="true" name="commentaire"><br>
-      </div>
-    </div>
+        <h2>Informations générales</h2>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Nom :
+            </label>
+            <input type="text" placeholder="Nom du groupe" autofocus class="form-control col-md-10" id="nom" name="nom">
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Description :
+            </label>
+            <textarea placeholder="Description" class="form-control col-md-10" id="description" name="description"
+                      form="modifierGroupe" style="resize:none"></textarea>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Date de fermeture du groupe :
+            </label>
+            <input type="date" class="form-control col-md-10" id="dateFermeture" name="dateFermeture">
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Actif :
+            </label>
+            <div class="col-md-10">
+                <input type="checkbox" name="actif" value="true" name="actif"><br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Public :
+            </label>
+            <div class="col-md-10">
+                <input type="checkbox" name="public" value="true" name="public"><br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Section commentaires :
+            </label>
+            <div class="col-md-10">
+                <input type="checkbox" value="true" name="commentaire"><br>
+            </div>
+        </div>
 
-    <h2>Administration</h2>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Super administrateur :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="super_admin" name="super_admin">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Administrateur :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="admin" name="admin">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
+        <h2>Administration</h2>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Super administrateur :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="super_admin" name="super_admin">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Administrateur :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="admin" name="admin">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
 
-    <h2>Utilisateurs</h2>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Programmes :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="programmes" name="programmes">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Classe :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="classes" name="classes">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Type :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="type" name="type">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2">
-        Utilisateurs :
-      </label>
-      <div class="col-md-10">
-        <select multiple class="form-control" id="utilisateur" name="utilisateur">
-          <option>Paul Houde</option>
-          <option>Ginette Reno</option>
-          <option>Hélène Bourgeois</option>
-          <option>Madonna Dion</option>
-        </select>
-      </div>
-    </div>
-  </form>
+        <h2>Utilisateurs</h2>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Programmes :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="programmes" name="programmes">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Classe :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="classes" name="classes">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Type :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="type" name="type">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2">
+                Utilisateurs :
+            </label>
+            <div class="col-md-10">
+                <select multiple class="form-control" id="utilisateur" name="utilisateur">
+                    <option>Paul Houde</option>
+                    <option>Ginette Reno</option>
+                    <option>Hélène Bourgeois</option>
+                    <option>Madonna Dion</option>
+                </select>
+            </div>
+        </div>
+    </form>
 </div>

@@ -153,27 +153,6 @@ router.delete('/supprimer/:id', function(req, res, next){
     });
 });
 
-router.put('/modifier/:id', function(req, res, next){
-    var task = req.body;
-    if(false) {
-        res.status(400);
-        res.json({"erreur" : "Données incorrectes"});
-    } else {
-        MongoClient.connect(url, function(err, client) {
-            assert.equal(null, err);
-            console.log("Connexion au serveur réussie");
-            const db = client.db(dbName);
-            db.collection(collection).updateOne({_id: ObjectId.createFromHexString(req.params.id)}, {$set : task}, function(err, result) {
-                if (err) return console.log(err)
-                console.log("objet mis à jour");
-                res.json(result);
-            })
-
-            client.close();
-        });
-    }
-});
-
 // Ajouter un commentaire revient à modifier une publication
 router.put('/:id', function(req, res, next){
     console.log("Mise à jour de la publicatiooooooooon")

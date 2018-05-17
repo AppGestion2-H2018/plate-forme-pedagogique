@@ -1,3 +1,62 @@
-<p>
-  afficherungroupe works!
-</p>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      xmlns="http://www.w3.org/1999/html">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<ng-container *ngFor="let groupe of groupes">
+    <mat-card *ngIf=" groupe._id == id">
+        <mat-card-title>
+            <h1>{{groupe.nom}}</h1>
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{groupe.description}}
+        </mat-card-subtitle>
+        <mat-card-content>
+
+            <ng-container *ngFor="let utilisateur of utilisateurs">
+                <p *ngIf="utilisateur._id == groupe.proprietaire"> Propriétaire : {{utilisateur.prenom}} {{utilisateur.nom}}</p>
+            </ng-container>
+
+            <ng-container *ngFor="let utilisateur of utilisateurs">
+                <ng-container *ngFor="let admin of groupe.admins">
+                    <p *ngIf="utilisateur._id == admin"> Admin : {{utilisateur.prenom}} {{utilisateur.nom}}</p>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngFor="let utilisateur of utilisateurs">
+                <ng-container *ngFor="let groupeUtilisateur of groupe.utilisateurs">
+                    <p *ngIf="utilisateur._id == groupeUtilisateur"> Utilisateur : {{utilisateur.prenom}} {{utilisateur.nom}}</p>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngFor="let type of types">
+                <ng-container *ngFor="let groupeType of groupe.types">
+                    <p *ngIf="type._id  == groupeType"> Type : {{type.nom}} </p>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngFor="let classe of classes">
+                <ng-container *ngFor="let groupeClasse of groupe.classes">
+                    <p *ngIf="classe._id  == groupeClasse"> Classe : {{classe.nom}} </p>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngFor="let programme of programmes">
+                <ng-container *ngFor="let groupeProgramme of groupe.programmes">
+                    <p *ngIf="programme._id  == groupeProgramme"> Programme : {{programme.nom}} </p>
+                </ng-container>
+            </ng-container>
+
+            <p>Date de fin: {{groupe.date_fin}}</p>
+
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+

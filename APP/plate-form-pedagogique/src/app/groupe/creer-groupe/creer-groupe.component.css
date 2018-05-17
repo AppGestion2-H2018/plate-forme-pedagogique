@@ -3,3 +3,13 @@
     content: "*";
     color: red;
 }
+
+.input-full-width {
+    width: 100%;
+}
+
+.input-height{
+    margin-top : 15px;
+    margin-bottom : 15px;
+}
+

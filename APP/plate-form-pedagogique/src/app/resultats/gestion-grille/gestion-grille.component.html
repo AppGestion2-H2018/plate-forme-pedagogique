@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="selectedCours != null">
     <div class="row">
         <div class="col-15">
@@ -85,11 +86,11 @@
                     <tbody>
                     <tr *ngFor="let evaluation of evaluations">
                         <td>{{evaluation.nom}}</td>
-                        <td>{{evaluation.categorie_id}}</td>
+                        <td>{{evaluation.categorie}}</td>
                         <td>{{evaluation.commentaire}}</td>
                         <td>{{evaluation.poids_evaluation}}</td>
                         <td>
-                            <button type="button" (click)="modifierEvaluation(evaluation.id)">Modifier</button>
+                            <button type="button" (click)="modifierEvaluation(evaluation)">Modifier</button>
                         </td>
                         <td>
                             <button type="button" (click)="deleteEvaluation(evaluation.id)">Supprimer</button>
@@ -103,9 +104,15 @@
                     <label>Ajout évaluation</label>
                 </div>
                 <div class="col-75">
-                    <label><button type="button" (click)="ajoutEvaluation(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button></label>
+                    <div *ngIf="evaluations[0].grilleevaluation_id != null">
+                        <label><button type="button" (click)="ajoutEvaluation(evaluations[0].grilleevaluation_id)">Ajouter une évaluation</button></label>
+                    </div>
+                    <div *ngIf="evaluations[0].grilleevaluation_id == null">
+                        <label><button type="button" (click)="ajoutEvaluationSansGrille(9, selectedGroupe.cours_id, selectedGroupe.id)">Ajouter une évaluation</button></label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
