@@ -63,7 +63,7 @@ export class PublicationService {
         newPublication.fichier = publication.fichier,
         newPublication.commentaire = publication.commentaire
 
-        return this.http.put(`https://api-appgestion2-h18.herokuapp.com/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
+        return this.http.put<Publication>(`https://api-appgestion2-h18.herokuapp.com/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
         //return this.http.put(`http://localhost:3000/api/publications/${id}`, JSON.stringify(newPublication), httpOptions);
     }
 

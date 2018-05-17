@@ -47,12 +47,13 @@ getDateRemise(): void {
             .subscribe(tags => this.tags = tags);
     }
 
-    // Ne fonctionne pas
+    // Ajout des commentaires dans une publication
     ajoutCommentaires(publication: Publication){
         this.publication = publication;
         this.publication.commentaire.push(this.commentaire);
     }
 
+    // Modification de la publication
     ajoutCommentaire(publication: Publication) {
         var _publication:Publication = {
             _id:publication._id,
