@@ -19,6 +19,7 @@ export class GestionGrilleComponent implements OnInit {
     evaluations: Evaluation[];
     selectedCours: Cours;
     selectedGroupe: Groupe;
+    evaluationTemp: Evaluation;
 
     constructor(private resultatService: ResultatService) {
         this.resultatService.getCours(9)
@@ -82,8 +83,31 @@ export class GestionGrilleComponent implements OnInit {
         }
     }
 
-    ajoutGrilleevaluation(enseignant_id: number, cours_id: number, groupe_id: number) {
-        console.log("Adding grille evaluation for teacher #" + enseignant_id + " for class #" + cours_id + " and groupe #" + groupe_id);
+    //Ajout d'une nouvelle évaluation
+    //Todo: Mettre les données d'un formulaire au lieux d'être hardcoded
+    ajoutEvaluation(grilleevaluation_id: number) {
+        this.evaluationTemp.grilleevaluation_id = grilleevaluation_id;
+        this.evaluationTemp.nom = "Ajout Hardcoded";
+        this.evaluationTemp.commentaire = "Ajout Hardcoded";
+        this.evaluationTemp.categorie_id = 1;
+        this.evaluationTemp.poids_evaluation = 10;
+        console.log(this.evaluationTemp);
+
+        console.log("Adding evaluation for grille évaluation #" + grilleevaluation_id);
+        this.resultatService.ajouterEvaluation(this.evaluationTemp)
+            .subscribe(
+                value => {
+                    // show an alert to tell the user if grille evaluation was created or not
+                    console.log(value);
+                },
+                error => console.log(error)
+            );
+    }
+
+    //Ajout d'une nouvelle évaluation sans grille
+    //Todo: Mettre les données d'un formulaire au lieux d'être hardcoded
+    ajoutEvaluationSansGrille(enseignant_id: number, cours_id: number, groupe_id: number) {
+        console.log("Adding evaluation for teacher #" + enseignant_id + " for class #" + cours_id + " and groupe #" + groupe_id);
         this.resultatService.ajoutGrilleevaluation(enseignant_id, cours_id, groupe_id)
             .subscribe(
                 value => {
@@ -94,28 +118,43 @@ export class GestionGrilleComponent implements OnInit {
             );
     }
 
+    //Suppression d'une évaluation
+    //Popup aide par: William Houle
     deleteEvaluation(evaluation_id: number) {
         console.log("Deleting evaluation #" + evaluation_id);
+        var ans = confirm("Voulez-vous vraiment supprimer cette évaluation?");
+        if(ans){
         this.resultatService.supprimerEvaluation(evaluation_id)
             .subscribe(
                 value => {
                     // show an alert to tell the user if grille evaluation was created or not
                     console.log(value);
                 },
-                error => console.log(error)
+                error => console.log(error),
+                () => this.onChangeGroupe(this.selectedGroupe)
             );
+        }
     };
 
-    modifierEvaluation(evaluation_id: number) {
-        console.log("Modifying evaluation #" + evaluation_id);
-        this.resultatService.modifierEvaluation(evaluation_id)
-            .subscribe(
-                value => {
-                    // show an alert to tell the user if grille evaluation was created or not
-                    console.log(value);
-                },
-                error => console.log(error)
-            );
+
+    //Modification d'une évaluation
+    //Aide: William Houle
+    //Todo: Mettre les données d'un formulaire au lieux d'être hardcoded
+    modifierEvaluation(evaluation:Evaluation) {
+        var ans = confirm("Voulez-vous vraiment modifier cette évaluation?");
+        if(ans){
+            this.resultatService.modifierEvaluation(evaluation)
+                .subscribe(
+                    value => {
+                        // show an alert to tell the user if grille evaluation was created or not
+                        console.log(value);
+                    },
+                    error => console.log(error),
+                    () => this.onChangeGroupe(this.selectedGroupe)
+
+                );
+
+        }
     }
 
 }

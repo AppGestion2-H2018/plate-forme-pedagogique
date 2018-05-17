@@ -21,6 +21,7 @@ import {CreerGroupeComponent} from "./groupe/creer-groupe/creer-groupe.component
 import {AfficherGroupeComponent} from "./groupe/afficher-groupe/afficher-groupe.component";
 import {ModifierGroupeComponent} from "./groupe/modifier-groupe/modifier-groupe.component";
 import {ConnecterUtilisateurComponent} from './utilisateurs/connecter-utilisateur/connecter-utilisateur.component';
+import {AfficherungroupeComponent} from "./groupe/afficherungroupe/afficherungroupe.component"
 
 const routes: Routes = [
     { path: '', component: AccueilComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
             { path : 'creer-groupe', component : CreerGroupeComponent},
             { path : 'afficher-groupe', component : AfficherGroupeComponent},
             { path : 'modifier-groupe', component : ModifierGroupeComponent},
+            { path : 'afficherungroupe/:id', component: AfficherungroupeComponent},
         ]
     },
 /*{ path: 'groupes/classes', component : ClassesComponent},*/

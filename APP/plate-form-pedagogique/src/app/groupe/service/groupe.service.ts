@@ -23,6 +23,9 @@ export class GroupeService {
     constructor(private http: HttpClient) {
 
     }
+    getGroupe(id): Observable<Groupe[]>{
+        return this.http.get<Groupe[]>('http://localhost:3000/api/groupes/' + id);
+    }
 
     /**
      * Permet de récupérer la liste de toutes les utilisateurs existants à partir de l'API.
@@ -38,8 +41,8 @@ export class GroupeService {
      * * @Autheur : Danny Dugas
      * */
     getGroupes(): Observable<Groupe[]> {
-        // return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
         return this.http.get<Groupe[]>('http://localhost:3000/api/groupes/all');
+        // return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
     }
 
     /**
