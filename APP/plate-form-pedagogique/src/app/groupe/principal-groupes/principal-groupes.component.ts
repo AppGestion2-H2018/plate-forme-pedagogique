@@ -1,21 +1,38 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
+import {Utilisateur} from "../../class/utilisateur";
+import {UtilisateurService} from "../../service/utilisateur.service";
 
 @Component({
-  selector: 'app-principal-groupes',
-  templateUrl: './principal-groupes.component.html',
-  styleUrls: ['./principal-groupes.component.css']
+    selector: 'app-principal-groupes',
+    templateUrl: './principal-groupes.component.html',
+    styleUrls: ['./principal-groupes.component.css']
 })
 export class PrincipalGroupesComponent implements OnInit {
 
-  userId: string;
+    utilisateur = new Utilisateur();
 
-  constructor(private cookiService : CookieService) {
-      this.userId = this.cookiService.get("auth_id");
-  }
+    constructor(protected cookieService: CookieService,
+                protected utilisateurService: UtilisateurService) {
+        this.utilisateur._id = this.cookieService.get("auth_id");
+    }
 
-  ngOnInit() {
+    getUtilisateur(): void {
+        this.utilisateurService.getUtilisateur(this.utilisateur).subscribe(
+            utilisateur => {
+                this.utilisateur = utilisateur;
+            },
+            error => {
+                console.error(error);
+            }
+        );
+        console.log(this.utilisateur);
+    }
 
-  }
+    ngOnInit() {
+        this.getUtilisateur();
+        console.log(this.utilisateur);
+    }
+
 
 }

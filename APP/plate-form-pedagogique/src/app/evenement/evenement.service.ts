@@ -40,6 +40,9 @@ export class EvenementService {
         return this.http.get<Event[]>('https://api-appgestion2-h18.herokuapp.com/api/evenements/');
     }
 
+
+    // updateEvent(event : Event) {
+
     //
     // /** PUT: mise à jour du héros */
     // updateEvent (event: Event): Observable<any> {
@@ -107,5 +110,14 @@ export class EvenementService {
     /* va chercher les groupes à partir de l'api */
     getGroupes(): Observable<Groupe[]> {
         return this.http.get<Groupe[]>('https://api-appgestion2-h18.herokuapp.com/api/groupes/all');
+    }
+
+
+    /*Supprime les données dans la base de données (Jessica)*/
+    removeEvent(event: Event | number): Observable<Event>  {
+        const id = typeof event === 'number' ? event : event._id;
+        const url = `${this.deleteEventUrl}/${id}`;   // ajouter l'id à l'URL de base
+
+        return this.http.delete<Event>(url, httpOptions);
     }
 }

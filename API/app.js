@@ -26,27 +26,34 @@ var app = express();
 app.use(cors());
 
 /************************************************** MONGOOSE *********************************************************/
+/**
+ * l'option de connection inité par l'équipe groupes
+ * Danny Dugas, Nicolas Paquet, Andy Chartier, Jean-Sébastien Lemelin
+ * @author Jean-Sébastien Lemelin
+ * @reference http://mongoosejs.com/docs/guide.html
+ * @reference http://mongoosejs.com/docs/connections.html
+ */
 const options = {
-    autoIndex: false, // Don't build indexes
-    keepAlive: 30000,
+    autoIndex: false, // Ne pas bâtir des index
+    keepAlive: 30000, //Durée de la connexion
     socketTimeoutMS: 30000,
-    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-    reconnectInterval: 500, // Reconnect every 500ms
-    poolSize: 10, // Maintain up to 10 socket connections
-    // If not connected, return errors immediately rather than waiting for reconnect
+    reconnectTries: Number.MAX_VALUE, // N'arrête pas de cesser de se connecter
+    reconnectInterval: 500, // Se reconnecte après 500 ms
+    poolSize: 10, // Maintient près de 10 connections en parallèle
+    // S'il y a une erreur, il renvoi un message aulieu de tenter de se reconnecter
     bufferMaxEntries: 0,
     dbName: 'plate-forme-pedagogique' //Quel nom de base de donnée
 };
-//Set up default mongoose connection
-mongoose.connect(config.database.uri, options); //Connection string commune
+//Mise en place de la connection de base
+mongoose.connect(config.database.uri, options); //On va chercher la CONNECTION STRING dans config.js
 
-// Get Mongoose to use the global promise library
+// Dire à Mongoose d'utiliser la PROMISE globale
 mongoose.Promise = global.Promise;
 
-//Get the default connection
+//Obtenir la connection de base par db
 var db = mongoose.connection;
 
-//Bind connection to error event (to get notification of connection errors)
+//Lier l'erreur de connection à un message d'erreur
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 /*********************************************** FIN MONGOOSE ********************************************************/
@@ -61,6 +68,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
 app.use('/api/utilisateurs', utlisateursRouter);
 
 
@@ -69,7 +77,7 @@ app.use('/api/utilisateurs', utlisateursRouter);
  */
 app.use(function (req, res, next) {
     // Mettre du preprocessing ici
-    const fal = false;
+    const fal = true; 
     if (fal) {
         GestionCompleteDesCookiesEtDesDonneesDeConnexion(req, res).then(function (multiReponse) {
             res = multiReponse[0];
@@ -89,7 +97,6 @@ app.use(function (req, res, next) {
     }
 });
 
-app.use('/', indexRouter);
 app.use('/api/bibliotheque', bibliothequeRouter);
 app.use('/api/evenements', evenementsRouter);
 app.use('/api/groupes', groupesRouter);

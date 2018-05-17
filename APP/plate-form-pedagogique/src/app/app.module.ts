@@ -4,6 +4,7 @@ import {HttpModule} from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
 
 
+
 import {
     MatSidenavModule,
     MatToolbarModule,
@@ -22,7 +23,7 @@ import {
     MatNativeDateModule,
 } from '@angular/material';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
@@ -48,6 +49,8 @@ import {AjoutPublicationComponent} from './publications/ajout-publication/ajout-
 import {CreerGroupeComponent} from './groupe/creer-groupe/creer-groupe.component';
 import {ClassesComponent} from './groupe/classes/classes.component';
 
+import {ModificationPublicationComponent} from './publications/modification-publication/modification-publication.component';
+
 import {PublicationService} from './publications/publication.service';
 
 import {ResultatService} from './resultats/resultat.service';
@@ -72,9 +75,10 @@ import {ModifierGroupeComponent} from './groupe/modifier-groupe/modifier-groupe.
 import {SupprimerGroupeComponent} from './groupe/supprimer-groupe/supprimer-groupe.component';
 
 import {AfficherResultatsComponent} from './resultats/afficher-resultats/afficher-resultats.component';
-import {AjoutGrilleComponent} from './resultats/ajout-grille/ajout-grille.component';
+import {GestionGrilleComponent} from './resultats/gestion-grille/gestion-grille.component';
 import {AjoutNotesComponent} from './resultats/ajout-notes/ajout-notes.component';
 import {MenuResultatsComponent} from './resultats/menu-resultats/menu-resultats.component';
+import {ModifierEvaluationComponent} from './resultats/modifier-evaluation/modifier-evaluation.component';
 import {PrincipalResultatsComponent} from './resultats/principal-resultats/principal-resultats.component';
 
 import {PrincipalEvenementsComponent} from './evenement/principal-evenements/principal-evenements.component';
@@ -88,7 +92,6 @@ import {EvenementService} from './evenement/evenement.service';
 import {RecherchePublicationsComponent} from './publications/recherche-publications/recherche-publications.component';
 import {AfficherungroupeComponent} from './groupe/afficherungroupe/afficherungroupe.component';
 import {BiblioTabletteComponent} from './biblio/biblio-tablette/biblio-tablette.component';
-import {BiblioAjoutTabletteComponent} from './biblio/biblio-ajout-tablette/biblio-ajout-tablette.component';
 import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-utilisateur/deconnecter-utilisateur.component';
 
 @NgModule({
@@ -110,6 +113,7 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         CreerGroupeComponent,
         ClassesComponent,
         AjoutPublicationComponent,
+        ModificationPublicationComponent,
         CreerGroupeComponent,
         // AjoutEvenementComponent,
         PrincipalBiblioComponent,
@@ -124,8 +128,9 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         ModifierGroupeComponent,
         SupprimerGroupeComponent,
         AfficherResultatsComponent,
-        AjoutGrilleComponent,
+        GestionGrilleComponent,
         AjoutNotesComponent,
+        ModifierEvaluationComponent,
         MenuResultatsComponent,
         PrincipalResultatsComponent,
         PrincipalEvenementsComponent,
@@ -139,7 +144,6 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
 
         AfficherungroupeComponent,
         BiblioTabletteComponent,
-        BiblioAjoutTabletteComponent,
         DeconnecterUtilisateurComponent,
 
     ],
@@ -169,6 +173,7 @@ import { DeconnecterUtilisateurComponent } from './utilisateurs/deconnecter-util
         MatDialogModule,
         MatTableModule,
         MatExpansionModule,
+        ReactiveFormsModule,
     ],
     providers: [
         UtilisateurService,

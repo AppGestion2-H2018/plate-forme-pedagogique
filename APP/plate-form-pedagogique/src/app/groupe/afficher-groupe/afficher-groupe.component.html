@@ -1,5 +1,7 @@
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	  xmlns="http://www.w3.org/1999/html">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -9,7 +11,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<h2>Mes groupes </h2>
+<h2>Mes groupes {{utilisateur._id}} </h2>
 <form class="deleteGroupe" id="deleteGroupe" (submit)="deleteGroupe($event)">
 	<div class="form-group row">
 				<label class="col-md-2 required">
@@ -19,29 +21,230 @@
 	</div>
 	<input type="submit" value="Supprimer">
 </form>
-
+<br><br>
 <h2>Mes groupes</h2>
-<ul class="groupe">
-	<li *ngFor="let groupe of groupes"
-		[class.selected]="groupe === selectedGroupe"
-		(click)="onSelect(groupe)">
-		<span class="badge">Groupe : {{groupe.nom}}</span>
-	</li>
-</ul>
+<div class="example-container mat-elevation-z8">
+	<mat-table #tableGroupes [dataSource]="groupes" matSort>
 
-<div *ngIf="selectedGroupe">
-	<h2>{{ selectedGroupe.nom }} Info du groupe</h2>
-	<div><span>ID: </span>{{selectedGroupe._id}}</div>
-	<div><span>Nom du groupe: </span>{{selectedGroupe.nom}}</div>
-	<div><span>Super admin: </span>{{selectedGroupe.super_admins}}</div>
-	<div><span>Admin: </span>{{selectedGroupe.admins}}</div>
-	<div><span>Programmes: </span>{{selectedGroupe.programmes}}</div>
-	<div><span>Classe: </span>{{selectedGroupe.classes}}</div>
-	<div><span>Type: </span>{{selectedGroupe.types}}</div>
-	<div><span>Utilisateur: </span>{{selectedGroupe.utilisateurs}}</div>
-	<div><span>Blacklist: </span>{{selectedGroupe.blacklist}}</div>
-	<div><button type="button"(click)="deleteGroupe(selectedGroupe)">Supprimer</button></div>
-	<div><button type="button" (click)="updateGroupe()" >Modifier</button></div>
+		<ng-container matColumnDef="Description">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+			<mat-cell *matCellDef="let groupe">
+				<form #groupeFormEdition="ngForm" id="groupeFormEdition" (ngSubmit)="groupeFormEdition.form.valid && onEdit(groupeFormEdition)">
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editNom;" class="input-full-width">
+						<input name="selectedGroupeNom"
+							   id="selectedGroupeNom"
+							   [(ngModel)]="selectedGroupe.nom"
+							   matInput required minlength="2"
+							   maxlength="50" name="nomEdition"
+							   #nomEdition="ngModel"
+							   placeholder="Nom du groupe">
+						<mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) &&
+                        nomEdition.hasError('required')">Le nom est obligatoire.</mat-error>
+						<mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) &&
+                        nomEdition.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+						<mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) &&
+                        nomEdition.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editDescription;" class="example-full-width">
+						<textarea
+								name="selectedGroupeDescription"
+								id="selectedGroupeDescription"
+								[(ngModel)]="selectedGroupe.description"
+								#descriptionEdition="ngModel"
+								matInput placeholder="Description du groupe"></textarea>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editFin;">
+					<input name="selectedGroupeFin"
+					placeholder="Date de la fin du groupe"
+					matInput [matDatepicker]="myDatepicker"
+					[(ngModel)]="selectedGroupe.date_fin" (click)="onEdit(groupe)" >
+					<mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+					<mat-datepicker #myDatepicker></mat-datepicker>
+					</mat-form-field>
+
+					<br>
+					<mat-radio-group class="radio" *ngIf="(selectedGroupe && selectedGroupe === groupe);else editActif;">
+						<p>Actif :</p>
+						<input type="radio" name="inactif" [(ngModel)]="selectedGroupe.actif" value="false" >
+						Inactif
+						<input type="radio" name="actif" [(ngModel)]="selectedGroupe.actif" value="true">
+						Actif
+					</mat-radio-group>
+					<br>
+					<mat-radio-group *ngIf="(selectedGroupe && selectedGroupe === groupe);else editPublique;">
+						<p></p>
+						<p>Publique :</p>
+						<input type="radio" name="prive" [(ngModel)]="selectedGroupe.est_publique" value="false">
+						Privé
+						<input type="radio" name="publique" [(ngModel)]="selectedGroupe.est_publique" value="true">
+						Publique
+					</mat-radio-group>
+					<br><br>
+					<mat-radio-group *ngIf="(selectedGroupe && selectedGroupe === groupe);else editCommenter;">
+						<p>Commentaire :</p>
+						<input type="radio" name="nonCommenter" [(ngModel)]="selectedGroupe.commenter" value="false">
+						Non autorisé
+						<input type="radio" name="commenter" [(ngModel)]="selectedGroupe.commenter" value="true">
+						Autorisé
+					</mat-radio-group>
+					<br>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editClasse;" >
+					<mat-select  placeholder="Classe" [(ngModel)]="selectedGroupe.classes" name="classe">
+						<mat-option *ngFor="let classe of classes" [value]="classe._id" >
+							{{ classe._id }}
+						</mat-option>
+					</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editProgramme;" >
+						<mat-select placeholder="Programme" [(ngModel)]="selectedGroupe.programmes" name="programme">
+							<mat-option *ngFor="let programme of programmes" [value]="programme._id" >
+								{{ programme._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editType;" >
+						<mat-select  placeholder="Type" [(ngModel)]="selectedGroupe.types" name="type">
+							<mat-option *ngFor="let type of types" [value]="type._id" >
+								{{ type._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editUtilisateur;" >
+						<mat-select  placeholder="Utilisateur" [(ngModel)]="selectedGroupe.utilisateurs" name="utilisateur" [formControl]="utilisateurform" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editAdmin;" >
+						<mat-select  placeholder="Admin" [(ngModel)]="selectedGroupe.admins" name="admin" [formControl]="utilisateurformAdmin" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editSuperadmin;" >
+						<mat-select  placeholder="Super Admin" [(ngModel)]="selectedGroupe.super_admins" name="superadmin" [formControl]="utilisateurformSuperAdmin" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field *ngIf="(selectedGroupe && selectedGroupe === groupe);else editBlacklist;" >
+						<mat-select  placeholder="Black list" [(ngModel)]="selectedGroupe.blacklist" name="blacklist" [formControl]="utilisateurformBlacklist" multiple>
+							<mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur._id" >
+								{{ utilisateur._id }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+
+				</form>
+				<ng-template #editNom>
+					<h2 id="nom" (click)="onSelected(groupe)">{{groupe.nom}}</h2>
+				</ng-template>
+
+				<ng-template #editDescription>
+					<span id="description" (click)="onSelected(groupe)"> Description : {{groupe.description}}  </span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editFin>
+					<span (click)="onSelected(groupe)"> Date échéance : {{groupe.date_fin | date:'dd/MM/yyyy'}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editActif>
+					<span  id="actif"(click)="onSelected(groupe)"> Actif : {{groupe.actif}}</span>
+				</ng-template>
+
+				<ng-template #editPublique>
+				<span  id="publique" (click)="onSelected(groupe)"> Publique : {{groupe.est_publique}}</span>
+				</ng-template>
+
+				<ng-template #editCommenter>
+					<span  id="commenter" (click)="onSelected(groupe)"> Commentaire autorisé : {{groupe.commenter}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editClasse>
+					<span  id="classe" (click)="onSelected(groupe)"> Classe : {{groupe.classes}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editProgramme>
+					<span  id="programme" (click)="onSelected(groupe)"> Programme : {{groupe.programmes}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editType>
+					<span  id="type" (click)="onSelected(groupe)"> Type : {{groupe.types}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editUtilisateur>
+					<span  id="utilisateur" (click)="onSelected(groupe)"> Utilisateurs : {{groupe.utilisateurs}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editAdmin>
+					<span  id="admin" (click)="onSelected(groupe)"> Administrateur : {{groupe.admins}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editSuperadmin>
+					<span  id="superadmin" (click)="onSelected(groupe)"> Super admin: {{groupe.super_admins}}</span>
+					<p></p>
+				</ng-template>
+
+				<ng-template #editBlacklist>
+					<span  id="blacklist" (click)="onSelected(groupe)"> Black list: {{groupe.blacklist}}</span>
+					<p></p>
+				</ng-template>
+
+				<!--<ng-template>-->
+					<!--<span  id="test" (click)="onSelected(groupe)"> Nombre utilisateur: {{groupe.count(utilisateurs)}}</span>-->
+					<!--<p></p>-->
+				<!--</ng-template>-->
+			</mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="actions">
+			<mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+			<mat-cell *matCellDef="let groupe" class="boutonsAction">
+				<button *ngIf="(selectedGroupe && selectedGroupe === groupe);else editButton;" color="primary" form="groupeFormEdition" mat-button><i class="material-icons">done</i></button>
+				<div *ngIf="groupe.proprietaire == utilisateur._id">
+				<ng-template #editButton>
+
+					<form (ngSubmit)="onSelected(groupe)">
+								<button  mat-button><i class="material-icons">edit</i></button>
+					</form>
+				</ng-template>
+				<form  (ngSubmit)="onDelete(groupe)">
+					<button mat-button ><i class="material-icons">delete</i></button>
+				</form>
+				</div>
+				<form (ngSubmit)="showGroupe(groupe)" >
+					<button mat-button>Afficher</button>
+				</form>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		<!--*ngIf="utilisateurId == null"-->
+	</mat-table>
 </div>
 
 

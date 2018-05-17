@@ -22,6 +22,7 @@ export class RecupererMotDePasseComponent implements OnInit {
 
   ngOnInit() {
     this.reponseAPI =  {'Code' : 0, 'Message':'aucune réponse'};
+    console.log('mot de passe oublé');
   }
 
 }

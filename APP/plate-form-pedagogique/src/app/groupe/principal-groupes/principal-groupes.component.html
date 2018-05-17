@@ -1,6 +1,38 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
 <h1>Groupes </h1>
+<h2>Bienvenue {{utilisateur.prenom}}</h2>
+<router-outlet></router-outlet>
 
-<app-afficher-groupe></app-afficher-groupe>
-<app-creer-groupe></app-creer-groupe>
-<app-classes [userId]="userId"></app-classes>
+<!--<app-afficher-groupe></app-afficher-groupe>
+<app-creer-groupe></app-creer-groupe>-->
+<!--<app-classes [utilisateur]="utilisateur"></app-classes>-->
+<!--Si l'usager est un employé de service ou un enseignant -->
 
+<div class="row justify-content-md-center">
+    <div class="offset-button" *ngIf="utilisateur.role == '5ad8f8169ffc3f12f70c3500' || utilisateur.role == '5ad8f81e9ffc3f12f70c3501'">
+        <a routerLink="classes">
+            <button class="col-12 btn ">Créer une classe</button>
+        </a>
+    </div>
+    <div class="offset-button">
+        <a routerLink="creer-groupe">
+            <button class="col-12 btn ">Créer un groupe</button>
+        </a>
+    </div>
+    <div class="offset-button">
+        <a routerLink="afficher-groupe">
+            <button class="col-12 btn ">Afficher les groupes</button>
+        </a>
+    </div>
+</div>

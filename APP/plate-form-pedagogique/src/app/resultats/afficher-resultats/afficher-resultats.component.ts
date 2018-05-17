@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Evaluation } from '../evaluation';
 import { Note } from '../note';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultatService } from '../resultat.service';
 
 @Component({
@@ -11,26 +13,44 @@ import { ResultatService } from '../resultat.service';
 export class AfficherResultatsComponent implements OnInit {
 
    evaluations: Evaluation[];
-   
-   notes: Note[];
 
   constructor(private resultatService: ResultatService) { }
 
 getEvaluations(): void {
-    this.resultatService.getEvaluations()
+    this.resultatService.getEvaluations(1)
         .subscribe(evaluations => {this.evaluations = evaluations;console.log(this.evaluations);});
 }
 
-getNotes(): void {
-    this.resultatService.getNotes()
-        .subscribe(notes => {this.notes = notes;console.log(this.notes);});
+
+
+supprimerEvaluation(id : number, nom: string) {
+
+   var ans = confirm("Voulez-vous vraiment supprimer l'évaluation portant le nom " + nom + "?");
+   if(ans){
+     this.resultatService.supprimerEvaluation(id)
+	 .subscribe(data => {this.resultatService.getEvaluations(1)},
+	  error => console.log(error),
+	  ()=> this.getEvaluations()
+	  
+	  );
+   }
+}
+
+modificationEvaluation(id: number, nom: string) {
+var ans = confirm("Voulez-vous vraiment modifier cette évaluation?");
+   if(ans){
+      this.resultatService.modificationEvaluation(id, nom)
+	  .subscribe(data => {this.resultatService.getEvaluations(1)},
+	  error => console.log(error),
+	  ()=> this.getEvaluations()
+	  
+	  );
+	  
+	}
 }
 
 ngOnInit() {
   console.log('in ngOnInit');
   this.getEvaluations();
-  this.getNotes();
 }
-
-
 }

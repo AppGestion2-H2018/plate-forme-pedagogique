@@ -15,10 +15,12 @@ Les codes d'erreurs:
  * Créer un utilisateur
  */
 router.post('/', function (req, res, next) {
+    console.info("TEST");
     var objReponse;
     var codeErreur = 9;
     var message = "";
-
+    var bcrypt = require('bcrypt');
+    const saltRounds = 10;
     var nouvelUtilisateur = new Utilisateur(req.body);
 
     // *******************************************************
@@ -79,6 +81,7 @@ router.post('/', function (req, res, next) {
     Utilisateur.find({$or: [{'da': nouvelUtilisateur.da}, {'courriel': nouvelUtilisateur.courriel}, {'codepermanent': nouvelUtilisateur.codepermanent}]}, function (err, utilisateursBD) {
         if (err) return console.error(err);
 
+
         utilisateursBD.forEach(function (utilisateurBD) {
             // Validation du DA
             if (nouvelUtilisateur.da && nouvelUtilisateur.da === utilisateurBD.da) {
@@ -103,7 +106,17 @@ router.post('/', function (req, res, next) {
         // ************************ RÉPONSE ***********************
         // ********************************************************
 
+
         if (message === "") {
+
+            // //fonction pour encrypter en bycrypt
+            bcrypt.genSalt(saltRounds, function (err, salt) {
+                bcrypt.hash(nouvelUtilisateur.motdepasse, salt, function (err, hash) {
+                    //le mot de passe encrypter du nouvelle utilisateur
+                    nouvelUtilisateur.motdepasse = hash;
+                    console.log(nouvelUtilisateur.motdepasse);
+                });
+            });
 
             nouvelUtilisateur.save(function (err) {
                 if (err) return res.send(err);

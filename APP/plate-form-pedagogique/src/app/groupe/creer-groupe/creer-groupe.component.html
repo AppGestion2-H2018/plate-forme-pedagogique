@@ -11,179 +11,336 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <div class="container-fluid col-md-12">
+    <mat-card>
+        <h1>Formulaire d'ajout de groupe</h1>
+        <form class="ajoutGroupe" id="ajoutGroupe" name="ajoutGroupe" #ajoutGroupe="ngForm" (ngSubmit)="addGroupe($event, ajoutGroupe)">
 
-    <h1>Formulaire d'ajout de groupe</h1>
-    <form class="ajoutGroupe" id="ajoutGroupe" (submit)="addGroupe($event)">
+            <h2>Informations générales</h2>
 
-        <h2>Informations générales</h2>
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  NOM                             //-->
+            <!--//////////////////////////////////////////////////////-->
+            <div class="required">
 
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  NOM                             //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2 required">
-                Nom :
-            </label>
-            <input type=text [(ngModel)]="groupe.nom" placeholder="Nom du groupe" autofocus
-                   class="form-control col-md-10" id="nom" name="nom" ng-minlength="2">
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  DESCRIPTION                     //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Description :
-            </label>
-            <textarea [(ngModel)]="groupe.description" placeholder="Description" class="form-control col-md-10"
-                      id="description" name="description"
-                      form="ajoutGroupe" style="resize:none"></textarea>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  DATE DE FERMETURE               //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Date de fermeture du groupe :
-            </label>
-            <input type="datetime-local" [(ngModel)]="groupe.date_fin" class="form-control col-md-10" id="dateFermeture"
-                   name="dateFermeture">
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  ACTIF                           //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2 required">
-                Actif :
-            </label>
-            <div class="col-md-10">
-                <input type=checkbox [(ngModel)]="groupe.actif" name="actif" value="true" name="actif"><br>
+                <mat-form-field class="input-full-width ">
+                    <input matInput [(ngModel)]="groupe.nom" required minlength="3" maxlength="100" #nom="ngModel"
+                           name="groupe.nom" placeholder="Nom du groupe">
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom du
+                        groupe est requis.
+                    </mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom du
+                        groupe doit
+                        contenir au moins 3 caractères.
+                    </mat-error>
+                    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom du
+                        groupe doit
+                        contenir au maximum 100 caractères.
+                    </mat-error>
+                </mat-form-field>
             </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  PUBLIC                          //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2 required">
-                Public :
-            </label>
-            <div class="col-md-10">
-                <input type=checkbox [(ngModel)]="groupe.est_publique" name="public" value="true" name="public"><br>
-            </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  COMMENTAIRE                     //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2 required">
-                Section commentaires :
-            </label>
-            <div class="col-md-10">
-                <input type=checkbox [(ngModel)]="groupe.commenter" value="true" name="commentaire"><br>
-            </div>
-        </div>
 
-        <h2>Utilisateurs</h2>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  PROGRAMMES                      //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Programmes :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.programmes" id="programmes" name="programmes">
-                    <option *ngFor="let programme of programmes" value="{{programme._id}}">{{programme.nom}}</option>
-                </select>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  DESCRIPTION                     //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <textarea matInput [(ngModel)]="groupe.description" maxlength="100" #description="ngModel"
+                          name="groupe.description"
+                          placeholder="Description, à qui s'adresse le groupe. Quel en est le but?">
+                <mat-error
+                        *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('maxlength')">La description doit
+                    contenir au maximum 100 caractères.
+                </mat-error>
+                </textarea>
+            </mat-form-field>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  DATE DE FERMETURE               //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="groupe.date_fin" name="groupe.date_fin"
+                       placeholder="Date de fermeture">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-divider></mat-divider>
+            <br>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  ACTIF                           //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <div class="input-height required">
+                <mat-radio-group [(ngModel)]="groupe.actif" required #actif="ngModel" name="groupe.actif">
+                    <mat-radio-button value="true">Actif</mat-radio-button>
+                    <mat-radio-button value="false">Inactif</mat-radio-button>
+                    <mat-error *ngIf="actif.invalid && (actif.dirty || actif.touched) && actif.hasError('required')">Le
+                        statut d'activité est obligatoire.
+                    </mat-error>
+                </mat-radio-group>
+                <mat-divider></mat-divider>
             </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  CLASSES                         //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Classe :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.classes" id="classes" name="classes">
-                    <option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}, groupe
+
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  PUBLIC                          //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <div class="input-height required">
+                <mat-radio-group [(ngModel)]="groupe.est_publique" required #publique="ngModel"
+                                 name="groupe.est_publique">
+                    <mat-radio-button value="true">Publique</mat-radio-button>
+                    <mat-radio-button value="false">Privé</mat-radio-button>
+                    <mat-error
+                            *ngIf="publique.invalid && (publique.dirty || publique.touched) && publique.hasError('required')">
+                        Le statut de visibilité est obligatoire.
+                    </mat-error>
+                </mat-radio-group>
+                <mat-divider></mat-divider>
+            </div>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  COMMENTAIRE                     //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <div class="input-height required">
+                <mat-radio-group [(ngModel)]="groupe.commenter" required #commenter="ngModel" name="groupe.commenter">
+                    <mat-radio-button value="true">Avec commentaire(s)</mat-radio-button>
+                    <mat-radio-button value="false">Sans commentaire</mat-radio-button>
+                    <mat-error
+                            *ngIf="commenter.invalid && (commenter.dirty || commenter.touched) && commenter.hasError('required')">
+                        Le choix d'une possibilité de commenter est obligatoire.
+                    </mat-error>
+                </mat-radio-group>
+                <mat-divider></mat-divider>
+            </div>
+
+            <h2>Utilisateurs</h2>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  PROGRAMMES                      //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Programmes" [(ngModel)]="groupe.programmes" multiple id="groupe.programmes"
+                            name="groupe.programmes">
+                    <mat-option *ngFor="let programme of programmes" value="{{programme._id}}">{{programme.nom}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  CLASSES                         //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Classes" [(ngModel)]="groupe.classes" multiple id="groupe.classes"
+                            name="groupe.classes">
+                    <mat-option *ngFor="let classe of classes" value="{{classe._id}}">{{classe.nom}}, groupe :
                         {{classe.no_groupe}}
-                    </option>
-                </select>
-            </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  TYPES                           //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Type :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.types" id="types" name="types">
-                    <option *ngFor="let type of types" value="{{type._id}}">{{type.nom}}</option>
-                </select>
-            </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  UTILISATEURS                    //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Utilisateurs :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.utilisateurs" id="utilisateur"
-                        name="utilisateur">
-                    <option>Paul Houde</option>
-                    <option>Ginette Reno</option>
-                    <option>Hélène Bourgeois</option>
-                    <option>Madonna Dion</option>
-                </select>
-            </div>
-        </div>
-        <h2>Administration</h2>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  SUPER ADMINISTRATEUR            //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Super administrateur :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.super_admins" id="super_admin"
-                        name="super_admin">
-                    <option>Paul Houde</option>
-                    <option>Ginette Reno</option>
-                    <option>Hélène Bourgeois</option>
-                    <option>Madonna Dion</option>
-                </select>
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  TYPES                           //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Types" [(ngModel)]="groupe.types" multiple id="groupe.types"
+                            name="groupe.types">
+                    <mat-option *ngFor="let type of types" value="{{type._id}}">{{type.nom}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  UTILISATEURS                    //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Utilisateurs" [(ngModel)]="groupe.utilisateurs" multiple
+                            id="groupe.utilisateurs" name="groupe.types">
+                    <mat-option *ngFor="let utilisateur of utilisateurs" value="{{utilisateur._id}}">
+                        {{utilisateur.prenom}} {{utilisateur.nom}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <h2>Administration</h2>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  SUPER ADMINISTRATEUR            //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Super-Administrateur(s)" [(ngModel)]="groupe.super_admins" multiple
+                            id="groupe.super_admins" name="groupe.super_admins">
+
+                    <!--------------->
+                    <!--//PROGRAMME-->
+                    <!--------------->
+                    <ng-container *ngFor="let programmeSelected of groupe.programmes">
+                        <ng-container *ngFor="let programme of programmes">
+                            <mat-optgroup *ngIf="programme.id==programmeSelected" [label]="programme.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.programme==programmeSelected"
+                                                value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!------------>
+                    <!--//CLASSE-->
+                    <!------------>
+                    <ng-container *ngFor="let classeSelected of groupe.classes">
+                        <ng-container *ngFor="let classe of classes">
+                            <mat-optgroup *ngIf="classe._id==classeSelected"
+                                          [label]="classe.nom + ', groupe : ' + classe.no_groupe">
+                                <ng-container *ngFor="let utilisateurID of classe.utilisateurs">
+                                    <ng-container *ngFor="let utilisateur of utilisateurs">
+                                        <mat-option
+                                                *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
+                                                value="{{utilisateur._id}}">
+                                            {{utilisateur.prenom}} {{utilisateur.nom}}
+                                        </mat-option>
+                                    </ng-container>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+                    <!---------->
+                    <!--//TYPE-->
+                    <!---------->
+                    <ng-container *ngFor="let typeSelected of groupe.types">
+                        <ng-container *ngFor="let type of types">
+                            <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!---------->
+                    <!--//USER-->
+                    <!---------->
+                    <mat-optgroup label="Utilisateurs">
+                        <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
+                            <ng-container *ngFor="let utilisateur of utilisateurs">
+                                <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
+                                    {{utilisateur.prenom}} {{utilisateur.nom}}
+                                </mat-option>
+                            </ng-container>
+                        </ng-container>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+
+            <!--//////////////////////////////////////////////////////-->
+            <!--//                  ADMINISTRATEUR                  //-->
+            <!--//////////////////////////////////////////////////////-->
+
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Administrateur(s)" [(ngModel)]="groupe.admins" multiple
+                            id="groupe.admins" name="groupe.admins">
+
+                    <!--------------->
+                    <!--//PROGRAMME-->
+                    <!--------------->
+                    <ng-container *ngFor="let programmeSelected of groupe.programmes">
+                        <ng-container *ngFor="let programme of programmes">
+                            <mat-optgroup *ngIf="programme.id==programmeSelected" [label]="programme.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.programme==programmeSelected"
+                                                value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!------------>
+                    <!--//CLASSE-->
+                    <!------------>
+                    <ng-container *ngFor="let classeSelected of groupe.classes">
+                        <ng-container *ngFor="let classe of classes">
+                            <mat-optgroup *ngIf="classe._id==classeSelected"
+                                          [label]="classe.nom + ', groupe : ' + classe.no_groupe">
+                                <ng-container *ngFor="let utilisateurID of classe.utilisateurs">
+                                    <ng-container *ngFor="let utilisateur of utilisateurs">
+                                        <mat-option
+                                                *ngIf="classe.utilisateurs.length>0 && utilisateur._id == utilisateurID"
+                                                value="{{utilisateur._id}}">
+                                            {{utilisateur.prenom}} {{utilisateur.nom}}
+                                        </mat-option>
+                                    </ng-container>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+                    <!---------->
+                    <!--//TYPE-->
+                    <!---------->
+                    <ng-container *ngFor="let typeSelected of groupe.types">
+                        <ng-container *ngFor="let type of types">
+                            <mat-optgroup *ngIf="type._id==typeSelected" [label]="type.nom">
+                                <ng-container *ngFor="let utilisateur of utilisateurs">
+                                    <mat-option *ngIf="utilisateur.role==typeSelected" value="{{utilisateur._id}}">
+                                        {{utilisateur.prenom}} {{utilisateur.nom}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-optgroup>
+                        </ng-container>
+                    </ng-container>
+
+                    <!---------->
+                    <!--//USER-->
+                    <!---------->
+                    <mat-optgroup label="Utilisateurs">
+                        <ng-container *ngFor="let utilisateurSelected of groupe.utilisateurs">
+                            <ng-container *ngFor="let utilisateur of utilisateurs">
+                                <mat-option *ngIf="utilisateur._id==utilisateurSelected" value="{{utilisateur._id}}">
+                                    {{utilisateur.prenom}} {{utilisateur.nom}}
+                                </mat-option>
+                            </ng-container>
+                        </ng-container>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+
+            <input type="submit" value="Créer le groupe">
+            <div *ngIf="messageSucces" class="alert alert-success" role="alert">
+                {{messageSucces}}
             </div>
-        </div>
-        <!--//////////////////////////////////////////////////////-->
-        <!--//                  ADMINISTRATEUR                  //-->
-        <!--//////////////////////////////////////////////////////-->
-        <div class="form-group row">
-            <label class="col-md-2">
-                Administrateur :
-            </label>
-            <div class="col-md-10">
-                <select multiple class="form-control" [(ngModel)]="groupe.admins" id="admin" name="admin">
-                    <option>Paul Houde</option>
-                    <option>Ginette Reno</option>
-                    <option>Hélène Bourgeois</option>
-                    <option>Madonna Dion</option>
-                </select>
-            </div>
-        </div>
-        <input type="submit" value="Ajouter">
-    </form>
+        </form>
+    </mat-card>
 </div>
 
-<pre>user = {{groupe | json}}</pre>
+<!--//////////////////////////////////////////////////////////////-->
+<!--///      !!POUR TESTS, DECOMMENTER POUR UTILISER!!         ///-->
+<!--///      UTILE POUR VOIR LES INFORMATIONS DU GROUPE CRÉÉ   ///-->
+<!--//////////////////////////////////////////////////////////////-->
 
-<div>
-    <div *ngFor="let groupe of groupes">
-        <div> ID : {{groupe._id}} Nom : {{groupe.nom}} Date de fin : {{groupe.date_fin}} Description : {{groupe.description}}</div>
-    </div>
-</div>
+<!--<pre>user = {{groupe | json}}</pre>-->
+
+
+<!--//////////////////////////////////////////////////////////////-->
+<!--///        !!POUR TESTS, DECOMMENTER POUR UTILISER!!       ///-->
+<!--///  POUR VOIR LA LISTE DES GROUPES SE CRÉER DYNAMIQUEMENT ///-->
+<!--//////////////////////////////////////////////////////////////-->
+
+<!--<div>-->
+    <!--<div *ngFor="let groupe of groupes">-->
+        <!--<div> ID : {{groupe._id}} Nom : {{groupe.nom}} Date de fin : {{groupe.date_fin}} Description :-->
+            <!--{{groupe.description}}-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

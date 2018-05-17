@@ -9,11 +9,9 @@
             <mat-form-field>
                 <input matInput [matAutocomplete]="auto" placeholder="Chercher un tag...">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <div  *ngFor="let publication of publications">
-                        <mat-option *ngFor="let tag of publication.tags" [value]="tag" (click)="getTags(tag)">
-                            <span>{{ tag }}</span>
-                        </mat-option>
-                    </div>
+                    <mat-option *ngFor="let tag of tags" [value]="tag" (click)="getPublicationsParTags(tag)">
+                        <span >{{ tag }}</span>
+                    </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
         </form>
@@ -36,6 +34,7 @@
             <mat-card class="example-card">
                 <mat-card-header>
                     <mat-card-title class="auteur"><span>{{publication.auteur}}</span></mat-card-title>
+                    <button mat-button="" routerLink="/publications/{{publication._id}}" class="modifier"><span class=""><i _ngcontent-c1="" class="material-icons">edit</i></span></button>
                     <button mat-button="" (click)="deletePublication(publication)" class="bouton"><span class=""><i _ngcontent-c1="" class="material-icons">delete</i></span></button>
                     <mat-card-title><span>{{publication.titre}}</span></mat-card-title>
                     <mat-card-subtitle><span>{{publication.date_publication | date:'dd-MM-yyyy HH:MM:ss'}}</span> </mat-card-subtitle>
@@ -66,10 +65,11 @@
 
                 <mat-list>
                     <mat-label>Commentaire(s): </mat-label>
-                    <mat-list-item >
-                        <span>{{publication.commentaire}}</span>
+                    <mat-list-item *ngFor="let commentaire of publication.commentaire">
+                        <span>{{commentaire}}</span>
+                        <mat-divider></mat-divider>
                     </mat-list-item>
-                    <mat-divider></mat-divider>
+                    
                 </mat-list>
 
             </mat-card>
@@ -78,7 +78,7 @@
                 <mat-form-field>
                         <input [(ngModel)]="commentaire" name="commentaire" matInput placeholder="Ajouter un commentaire">
                 </mat-form-field>
-                <input  type="submit" value="Publier" (click)="ajoutCommentaires()">
+                <input  type="submit" value="Publier" (click)="ajoutCommentaires(publication)">
             </form>
             
         </div>
