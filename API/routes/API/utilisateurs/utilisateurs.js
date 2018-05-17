@@ -8,6 +8,8 @@ router.use('/auth', require('./auth'));
 router.use('/login', require('./login'));
 router.use('/update', require('./update'));
 router.use('/checkEmailNotTaken', require('./checkEmailNotTaken'));
+router.use('/getone', require('./getone'));
+router.use('/register', require('./register'));
 
 /**
  * Permet d'intercepter toutes les requêtes et de faire du préprocessing avant qu'on laisse la requête continuer.
@@ -34,8 +36,6 @@ router.use(function (req, res, next) {
         next();
     }
 });
-router.use('/getone', require('./getone'));
-router.use('/register', require('./register'));
 
 router.get('/', function (req, res, next) {
     //res.send('api Utilisateurs');

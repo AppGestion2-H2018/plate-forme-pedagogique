@@ -68,9 +68,14 @@
                 <mat-error *ngIf="codepermanent.invalid && (codepermanent.dirty || codepermanent.touched) && codepermanent.hasError('maxlength')">Le code permanent doit contenir au maximum 50 caractères.</mat-error>
             </mat-form-field>
 
-            <!-- TODO: Ajouter une liste des programmes -->
+            <!-- Programme -->
             <mat-form-field>
-                <input matInput [(ngModel)]="utilisateur.programme" name="utilisateur.programme" placeholder="Programme (Doit être un ObjectID) Ex: 5ae24fa820405a42f8e78724">
+                <mat-select [(ngModel)]="utilisateur.programme" #role="ngModel" name="utilisateur.programme" placeholder="Programme">
+                    <mat-option *ngFor="let programme of programmes" [value]="programme._id">
+                        {{ programme.nom }}
+                    </mat-option>
+                </mat-select>
+                <!--<mat-error *ngIf="type.invalid && (type.dirty || type.touched) && type.hasError('required')">Le type est obligatoire.</mat-error>-->
             </mat-form-field>
 
             <mat-radio-group [(ngModel)]="utilisateur.sexe" required #sexe="ngModel" name="utilisateur.sexe">

@@ -22,7 +22,6 @@ export class ConnecterUtilisateurComponent implements OnInit {
     }
 
     login(): void {
-
         this.utilisateurservie.getUtilisateurLogin(this.da, this.motdepasse).subscribe(reponseLogin => {
             this.reponseLogin = reponseLogin;
             console.log(this.reponseLogin);

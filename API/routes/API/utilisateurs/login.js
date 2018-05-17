@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
        //             bcrypt.compare(utilisateur.motdepasse, hash).then(function(value2) {
 
 
-                if (motdepasse == utilisateur.motdepasse ) {
+                if (utilisateur && motdepasse === utilisateur.motdepasse ) {
 
                     objReponse = {'Code': 1, 'Message': 'La connexion à été effectuée avec succès.'};
                     GestionCompleteDesNouveauxLogin(req, res, da).then(function (multiResultat) {
