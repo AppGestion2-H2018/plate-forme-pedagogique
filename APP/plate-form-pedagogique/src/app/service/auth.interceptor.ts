@@ -64,7 +64,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                     this.cookieService.set('auth_token', 'null', 0, "/");
                     this.cookieService.set('auth_id', 'null', 0, "/");
                     AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
-                    alert("Vous n'êtes pas authentifié!");
+                    alert("Vous n'êtes pas authentifié! Quelqu'un c'est peut-être connecté avec votre compte.");
                     console.info("PAS AUTHENTIFIÉ !");
                 } else if (err.status === 403) {
                     // Accès refusé
@@ -72,7 +72,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                     // this.cookieService.set('auth_da', 'null', 0, "/");
                     // this.cookieService.set('auth_token', 'null', 0, "/");
                     // this.cookieService.set('auth_id', 'null', 0, "/");
-                    alert("Accès refusé par le serveur!");
+                    alert("Accès refusé par le serveur! Vous n'avez pas les droits requis pour accéder à cette section.");
                     AuthHttpInterceptor.onConnectionChanged.emit(this.cookieService.get('auth_token') !== 'null');
                 }
             }
